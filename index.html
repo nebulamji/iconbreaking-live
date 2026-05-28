@@ -1187,7 +1187,7 @@
   }
 
 
-  /* May 28 support patch: live navigation + expanded IBA audience */
+  /* May 28 header/footer navigation support only */
   .site-nav{position:sticky;top:0;z-index:120;background:rgba(0,0,0,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
   .site-nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:14px;padding-bottom:14px}
   .nav-brand{font-family:'Playfair Display',serif;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;color:#fff}
@@ -1195,12 +1195,7 @@
   .nav-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--gray)}
   .nav-links a{transition:color .2s ease}
   .nav-links a:hover{color:var(--gold)}
-  .audience-grid,.nav-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-  .audience-card,.nav-card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));padding:30px;border-radius:24px}
-  .audience-card h3,.nav-card h3{font-size:1.1rem;margin-bottom:10px;color:#fff!important}
-  .audience-card p,.nav-card p{font-size:.95rem;color:var(--gray);line-height:1.7}
-  .nav-card .mini{display:inline-block;margin-bottom:12px;font-size:.65rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800}
-  @media(max-width:820px){.site-nav .wrap{align-items:flex-start;flex-direction:column}.nav-links{gap:12px;font-size:.62rem}.audience-grid,.nav-card-grid{grid-template-columns:1fr}}
+  @media(max-width:820px){.site-nav .wrap{align-items:flex-start;flex-direction:column}.nav-links{gap:12px;font-size:.62rem}}
 
   /* Reveal */
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
@@ -1231,6 +1226,8 @@
       <a href="/process/">We're Different</a>
       <a href="/new-page-5/">Masterclass</a>
       <a href="/contact-1/">Contact</a>
+      <a href="/about.html">About</a>
+      <a href="/services.html">Services</a>
       <a href="#apply">Founding 100</a>
     </div>
   </div>
@@ -1246,7 +1243,7 @@
       <span class="eyebrow"><span class="dot"></span>Release Infrastructure by Icon Breaking Agency</span>
       <h1 class="hero-headline">
         <span class="line-1">The Release System</span>
-        <span class="line-2"><span class="serif-italic">Serious Artists &amp; Teams</span> Use to Turn</span>
+        <span class="line-2"><span class="serif-italic">Serious Artists</span> Use to Turn</span>
         <span class="line-3">
           <span class="word-attention">Attention</span>
           <span class="word-into">into</span>
@@ -1255,11 +1252,11 @@
           <span class="word-audiences">Audiences<span class="period">.</span></span>
         </span>
       </h1>
-      <p class="lede">The <strong>IBA Release &amp; Grow System</strong> powered by <strong>Aggie</strong> gives artists, managers, label A&amp;Rs, and super producers the structure, accountability, and execution tools to grow <span class="italic gold-text">real fanbases.</span></p>
+      <p class="lede">The <strong>IBA Release &amp; Grow System</strong> powered by <strong>Aggie</strong> gives artists structure, accountability, and execution tools to grow <span class="italic gold-text">real fanbases.</span></p>
       <p class="sub-lede">Stop guessing your way through releases.</p>
       <div class="hero-cta-buttons">
         <a href="#apply" class="btn btn-gold">Apply For Founding 100 Access <span class="arr">&rarr;</span></a>
-        <span class="btn-micro">Limited to the first 100 artists and teams</span>
+        <span class="btn-micro">Limited to the first 100 artists</span>
       </div>
     </div>
   </div>
@@ -1309,7 +1306,7 @@
     </div>
 
     <div class="not-list reveal">
-      <span class="punch">This is <span class="gold-text">artist-and-team infrastructure.</span></span>
+      <span class="punch">This is <span class="gold-text">artist infrastructure.</span></span>
     </div>
 
     <div class="pillars">
@@ -1624,54 +1621,12 @@
   </div>
 </section>
 
-
-<!-- ============ WHO IBA BUILDS FOR ============ -->
-<section class="who" id="who-iba-serves">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Who IBA Serves</span>
-      <h2>Not just independent artists. <span class="italic">The people breaking artists.</span></h2>
-      <p>IBA supports the whole release team: the artist with the story, the manager building momentum, the A&amp;R shaping opportunity, and the producer turning raw talent into a career.</p>
-    </div>
-    <div class="audience-grid">
-      <div class="audience-card reveal">
-        <h3>Managers</h3>
-        <p>Campaign structure, rollout calendars, content systems, and clear accountability for managers who need a repeatable way to move artists from attention to audience.</p>
-      </div>
-      <div class="audience-card reveal">
-        <h3>Label A&amp;Rs</h3>
-        <p>Release intelligence, artist-development support, and execution infrastructure for A&amp;Rs who need clearer signals, sharper positioning, and stronger follow-through.</p>
-      </div>
-      <div class="audience-card reveal">
-        <h3>Super Producers</h3>
-        <p>Systems for producers breaking their own artists: story, rollout, content, audience growth, and the infrastructure to turn studio momentum into market momentum.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ NAVIGATION CONTENT MAP ============ -->
-<section class="what" id="navigation-map">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Navigate</span>
-      <h2>Every click now has somewhere <span class="italic">intentional</span> to go.</h2>
-      <p>The top navigation and footer routes support the current IBA x Aggie launch flow: narrative, difference, masterclass, and contact.</p>
-    </div>
-    <div class="nav-card-grid">
-      <a class="nav-card reveal" href="/our-story/"><span class="mini">Our Narrative</span><h3>Why IBA exists</h3><p>The story behind Icon Breaking Agency, Keyz, Max Gousse, and the move from raw artist potential to repeatable release infrastructure.</p></a>
-      <a class="nav-card reveal" href="/process/"><span class="mini">We're Different</span><h3>Not a generic agency</h3><p>IBA combines major-label experience, artist-development taste, and Aggie-powered execution systems for serious artists and teams.</p></a>
-      <a class="nav-card reveal" href="/new-page-5/"><span class="mini">Masterclass</span><h3>Release Lab</h3><p>A live training path for artists, managers, A&amp;Rs, and producer-led teams preparing to use the system.</p></a>
-    </div>
-  </div>
-</section>
-
 <!-- ============ MASTERCLASS ============ -->
 <section class="masterclass">
   <div class="narrow">
     <span class="ribbon">Coming Soon · Free Live Training</span>
     <h2>Free Release Lab <span class="italic">Masterclass.</span></h2>
-    <p>Register to attend the upcoming live masterclass where Keyz &amp; Max Gousse break down the Release System and how artists, managers, A&amp;Rs, and producer-led teams can execute releases the right way.</p>
+    <p>Register to attend the upcoming live masterclass where Keyz &amp; Max Gousse break down the Release System and how independent artists can finally execute releases the right way.</p>
     <a href="#apply" class="btn btn-gold">Sign Up Now <span class="arr">→</span></a>
     <span class="btn-micro">Limited live seats · Replays not guaranteed</span>
   </div>
@@ -1694,7 +1649,7 @@
     <div class="footer-grid">
       <div class="footer-col">
         <div class="big">Let's talk about your journey.</div>
-        <p>Every artist and every team moves through the industry differently. Whether you're developing a brand, planning a release, managing a roster, or pushing to break through, let's talk about where you are and what you're aiming for. No pressure. Just a focused conversation about your direction and the support that can help you level up.</p>
+        <p>Every artist moves through the industry differently. Whether you're developing your brand, planning a release, or pushing to break through, let's talk about where you are and what you're aiming for. No pressure. Just a focused conversation about your direction and the support that can help you level up.</p>
       </div>
       <div class="footer-col">
         <h5>Say Hello</h5>
