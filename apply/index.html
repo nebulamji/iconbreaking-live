@@ -20,13 +20,13 @@
     <section class="hero">
       <div class="eyebrow">Tier 3 · By Application</div>
       <h1>The Established Artist Advantage.</h1>
-      <p>Apply for the custom IBA lane for established artists, managers, labels, and teams that need release architecture, audience infrastructure, and senior strategic review from the Icon Breaking team.</p>
+      <p>Apply for the custom IBA lane for established artists, managers, labels, and teams preparing a release. Best fit: artists and teams who are 6–8 weeks away from launching and need release architecture, audience infrastructure, and senior strategic review from the Icon Breaking team.</p>
       <div style="margin-top:24px"><span class="tag">Keyz the Producer</span><span class="tag">Max Gousse</span><span class="tag">IBA x Aggie</span><span class="tag">Founding 100</span></div>
     </section>
     <section class="grid">
       <aside class="card side">
         <h2>What this application is for.</h2>
-        <p>This is not the Tier 1 or Tier 2 self-serve checkout. Tier 3 is for teams that need a custom path: release planning, audience monetization, dashboards, enterprise integrations, and private advisory.</p>
+        <p>This is not the Tier 1 or Tier 2 self-serve checkout. Tier 3 is for teams that need a custom path: release planning, audience monetization, dashboards, enterprise integrations, and private advisory.</p><p><b style="color:var(--gold2)">Preferred window:</b> 6–8 weeks before a single, EP, album, campaign, or roster push. That window gives the team enough runway to forecast demand, build content, and turn attention into owned audience.</p>
         <div class="points">
           <div class="point"><b>Artists</b><br/>Use this if you already have momentum, a release timeline, or a real budget to deploy.</div>
           <div class="point"><b>Managers / A&Rs</b><br/>Use this if you want a roster review, release-readiness scorecard, or campaign infrastructure for multiple acts.</div>
@@ -53,7 +53,10 @@
             <div><label for="challenge">Biggest challenge</label><select id="challenge" name="challenge" required><option value="">Select one</option><option>Audience Growth</option><option>Release Strategy</option><option>Revenue Generation</option><option>Brand Positioning</option><option>Industry Connections</option><option>All of the Above</option></select></div>
             <div><label for="budget">Monthly marketing budget</label><select id="budget" name="budget"><option value="">Prefer not to say</option><option>Under $5K</option><option>$5K–$25K</option><option>$25K–$100K</option><option>$100K+</option></select></div>
           </div>
-          <label for="timeline">Release / campaign timeline</label><input id="timeline" name="timeline" placeholder="Example: single in 6 weeks, album in Q3, roster review now" />
+          <div class="row">
+            <div><label for="launch_window">Launch window</label><select id="launch_window" name="launch_window" required><option value="">Select one</option><option>6–8 weeks from launch</option><option>Less than 6 weeks</option><option>8–12 weeks</option><option>More than 12 weeks</option><option>No release date yet</option></select></div>
+            <div><label for="timeline">Release / campaign timeline</label><input id="timeline" name="timeline" placeholder="Example: single in 6 weeks, album in Q3, roster review now" /></div>
+          </div>
           <label for="notes">What should the team know?</label><textarea id="notes" name="notes" placeholder="Share links, goals, current traction, team context, or why Tier 3 is the right lane."></textarea>
           <button class="btn" type="submit">Open Tier 3 Application Email →</button>
           <div id="msg" class="msg"></div>
@@ -82,6 +85,7 @@
         'Company / artist / organization: ' + val(fd,'company'),
         'Biggest challenge: ' + val(fd,'challenge'),
         'Monthly marketing budget: ' + (val(fd,'budget') || 'Prefer not to say'),
+        'Launch window: ' + val(fd,'launch_window'),
         'Release / campaign timeline: ' + val(fd,'timeline'),
         '',
         'What the team should know:',
