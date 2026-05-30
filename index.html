@@ -96,10 +96,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;bac
           <input class="input" type="text" name="links" placeholder="Links — Spotify, IG, website (optional)">
           <button class="btn" type="submit" id="submitBtn">Register Now</button>
         </form>
-        <p class="micro" id="microcopy">After registering, you’ll land on the VSL + proof page.</p>
+        <p class="micro" id="microcopy">After registering, you’ll land on the VSL + proof page. Questions: <a href="mailto:judson@iconbreaking.com">judson@iconbreaking.com</a>.</p>
         <div class="success" id="successBox">
           <h3>You’re on the list.</h3>
-          <p>Registration received. Watch the VSL and proof page next.</p>
+          <p>Registration received. Watch the VSL and proof page next. Questions: judson@iconbreaking.com.</p>
           <p style="margin-top:12px"><a href="/event-details.html">Watch the VSL →</a></p>
         </div>
       </aside>
@@ -146,7 +146,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;bac
     </div>
   </section>
 
-  <footer class="footer"><div class="footer-inner"><div>© 2026 Icon Breaking Agency · Powered by Aggie</div><div><a href="/index-agency.html">Original Aggie page</a> · <a href="/event-details.html">Event details</a></div></div></footer>
+  <footer class="footer"><div class="footer-inner"><div>© 2026 Icon Breaking Agency · Powered by Aggie</div><div><a href="mailto:judson@iconbreaking.com">judson@iconbreaking.com</a> · <a href="/index-agency.html">Original Aggie page</a> · <a href="/event-details.html">Event details</a></div></div></footer>
 </div>
 <script>
 var webinarTime = new Date('2026-06-04T19:00:00-04:00').getTime();
@@ -173,10 +173,13 @@ function handleWaitlist(e){
   btn.disabled=true; btn.textContent='Joining...';
   fetch('https://webhook.departmentofjazz.com/waitlist/iba-event',{
     method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')||'',role:fd.get('role')||'',window:fd.get('window')||'',links:fd.get('links')||'',source:'iconbreaking-root-registration',event:'june-4-live-webinar',timestamp:new Date().toISOString()})
-  }).catch(function(){}).finally(function(){
+    body:JSON.stringify({name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')||'',role:fd.get('role')||'',window:fd.get('window')||'',links:fd.get('links')||'',source:'iconbreaking-root-registration',event:'june-4-live-webinar',intake_email:'judson@iconbreaking.com',followup_email:'judson@iconbreaking.com',timestamp:new Date().toISOString()})
+  }).then(function(res){ if(!res.ok){ throw new Error('intake failed'); } return res.json().catch(function(){return {ok:true};}); }).then(function(){
     form.style.display='none'; micro.style.display='none'; ok.style.display='block';
     setTimeout(function(){ window.location.href='/event-details.html'; }, 4200);
+  }).catch(function(){
+    btn.disabled=false; btn.textContent='Register Now';
+    micro.innerHTML='Registration line is busy. Email <a href="mailto:judson@iconbreaking.com?subject=June%204%20Access">judson@iconbreaking.com</a> with subject “June 4 Access.”';
   });
 }
 </script>
