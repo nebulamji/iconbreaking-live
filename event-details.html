@@ -1,984 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Icon Breaking Agency × Aggie — Artificial Intelligence for the Music Industry</title>
-<meta name="description" content="A June 4 live webinar for the music industry: artists, managers, A&Rs, producers, labels, and teams ready to use artificial intelligence for audience growth and rollout execution.">
-<meta property="og:title" content="Icon Breaking Agency × Aggie — Artificial Intelligence for the Music Industry">
-<meta property="og:description" content="Your music campaign is coming. Is the market ready? Live masterclass with Faraji Judson, Max Gousse, and Aggie artificial intelligence.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reserved — Icon Breaking Agency × Aggie</title>
+<meta name="description" content="Your June 4 Icon Breaking Agency × Aggie registration is reserved. Watch the VSL and review the proof: Max, Faraji, Audience Genomics, Aggie, and IconBreaking results.">
+<meta property="og:title" content="Reserved — Icon Breaking Agency × Aggie">
+<meta property="og:description" content="Watch the VSL and review the proof behind the June 4 artificial intelligence session for the music industry.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.iconbreaking.com/">
+<meta property="og:url" content="https://www.iconbreaking.com/event-details.html">
 <meta name="twitter:card" content="summary_large_image">
-
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-
-<!-- PostHog — events tracked after key is set -->
-<script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister get_config get_distinct_id has_opted_out_capturing opt_in_capturing opt_out_capturing isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSurveys onSessionId setPersonProperties".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-/* Project key set via PH_KEY below — placeholder until project created */
-</script>
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════
-   IBA Event Page — Stop Releasing Into Silence
-   Design DNA: warm editorial brutalist + cinematic dark
-   ═══════════════════════════════════════════════ */
-
-:root {
-  --paper-0: #1a1814;
-  --paper-1: #0f0e0b;
-  --paper-2: #161410;
-  --paper-3: #1e1b16;
-  --paper-4: #2a261e;
-  --ink-0: #e5e5e5;
-  --ink-1: #d4d4d4;
-  --ink-2: #a3a3a3;
-  --ink-3: #737373;
-  --ink-4: #525252;
-  --gold: #c9a961;
-  --gold-bright: #e6c478;
-  --gold-dim: #8a7542;
-  --gold-glow: rgba(201,169,97,0.15);
-  --pink: #ff3b6e;
-  --rule: 1px solid var(--ink-4);
-  --rule-gold: 1px solid var(--gold-dim);
-  --serif: 'Newsreader', Georgia, serif;
-  --sans: 'Inter Tight', -apple-system, sans-serif;
-  --display: 'Antonio', 'Inter Tight', sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; background: var(--paper-1); color-scheme: dark; }
-body {
-  background: var(--paper-1);
-  color: var(--ink-1);
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-a { color: var(--gold); text-decoration: none; }
-a:hover { color: var(--gold-bright); }
-
-/* ── countdown ── */
-.countdown-bar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: var(--gold);
-  color: #000;
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 500;
-  text-align: center;
-  padding: 8px 16px;
-  letter-spacing: 0.05em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.countdown-bar .timer { font-variant-numeric: tabular-nums; }
-.countdown-bar .label { font-family: var(--sans); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; }
-
-/* ── hero ── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 120px 24px 80px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 40%, var(--gold-glow), transparent 70%);
-  pointer-events: none;
-}
-.hero-eyebrow {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 24px;
-}
-.hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(48px, 8vw, 96px);
-  font-weight: 700;
-  line-height: 1.05;
-  color: var(--ink-0);
-  max-width: 900px;
-  margin-bottom: 24px;
-}
-.hero h1 em {
-  font-style: italic;
-  color: var(--gold);
-}
-.hero-sub {
-  font-family: var(--sans);
-  font-size: clamp(16px, 2vw, 20px);
-  color: var(--ink-2);
-  max-width: 640px;
-  line-height: 1.6;
-  margin-bottom: 40px;
-}
-.hero-sub strong { color: var(--ink-0); font-weight: 600; }
-
-/* ── CTA ── */
-.cta-group { display: flex; flex-direction: column; align-items: center; gap: 16px; }
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--gold);
-  color: #000;
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: 16px;
-  padding: 16px 40px;
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0.02em;
-  transition: all 0.2s;
-}
-.btn-primary:hover { background: var(--gold-bright); transform: translateY(-1px); }
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  color: var(--ink-2);
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 14px;
-  padding: 10px 20px;
-  border: 1px solid var(--ink-4);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-secondary:hover { border-color: var(--gold-dim); color: var(--gold); }
-.microcopy {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-3);
-  margin-top: 8px;
-}
-
-/* ── section shared ── */
-.section {
-  padding: 80px 24px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-.section-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  margin-bottom: 16px;
-}
-.section h2 {
-  font-family: var(--serif);
-  font-size: clamp(32px, 5vw, 48px);
-  font-weight: 700;
-  color: var(--ink-0);
-  line-height: 1.15;
-  margin-bottom: 32px;
-}
-.section h2 em { font-style: italic; color: var(--gold); }
-.divider {
-  border: none;
-  border-top: var(--rule);
-  margin: 0 auto;
-  max-width: 960px;
-}
-
-/* ── why 6-8 weeks ── */
-.window-section {
-  background: var(--paper-2);
-  padding: 80px 24px;
-}
-.window-copy {
-  font-family: var(--serif);
-  font-size: 20px;
-  color: var(--ink-2);
-  line-height: 1.7;
-  max-width: 720px;
-}
-.window-copy strong { color: var(--ink-0); }
-
-/* ── pain grid ── */
-.pain-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
-  margin-top: 40px;
-}
-.pain-card {
-  padding: 28px;
-  border: var(--rule);
-  background: var(--paper-2);
-}
-.pain-card h3 {
-  font-family: var(--display);
-  font-size: 15px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-.pain-card ul {
-  list-style: none;
-  padding: 0;
-}
-.pain-card li {
-  font-family: var(--serif);
-  font-size: 15px;
-  color: var(--ink-2);
-  line-height: 1.7;
-  padding-left: 16px;
-  position: relative;
-  margin-bottom: 8px;
-}
-.pain-card li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--ink-4);
-}
-
-/* ── what you get ── */
-.artifacts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
-}
-.artifact {
-  padding: 24px;
-  border: var(--rule-gold);
-  background: var(--gold-glow);
-  text-align: center;
-}
-.artifact-icon {
-  font-family: var(--mono);
-  font-size: 28px;
-  color: var(--gold);
-  margin-bottom: 12px;
-  display: block;
-}
-.artifact h3 {
-  font-family: var(--display);
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-0);
-  margin-bottom: 6px;
-}
-.artifact p {
-  font-family: var(--serif);
-  font-size: 14px;
-  color: var(--ink-3);
-  line-height: 1.5;
-}
-
-/* ── teardowns ── */
-.teardowns { padding: 80px 24px; background: var(--paper-2); }
-.teardown {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 16px;
-  margin-bottom: 32px;
-  max-width: 720px;
-}
-.teardown-num {
-  font-family: var(--mono);
-  font-size: 28px;
-  font-weight: 300;
-  color: var(--gold-dim);
-  line-height: 1;
-  padding-top: 4px;
-}
-.teardown h3 {
-  font-family: var(--display);
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-0);
-  margin-bottom: 6px;
-}
-.teardown p {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  line-height: 1.6;
-}
-
-/* ── team ── */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px;
-  margin-top: 40px;
-}
-.team-member {
-  text-align: center;
-}
-.team-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: var(--paper-3);
-  border: 2px solid var(--gold-dim);
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--display);
-  font-size: 28px;
-  color: var(--gold);
-  font-weight: 700;
-}
-.team-member h3 {
-  font-family: var(--display);
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-0);
-  margin-bottom: 4px;
-}
-.team-member p {
-  font-family: var(--serif);
-  font-size: 14px;
-  color: var(--ink-3);
-  line-height: 1.5;
-}
-
-/* ── agenda ── */
-.agenda-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 40px;
-  max-width: 640px;
-}
-.agenda-item {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: var(--rule);
-}
-.agenda-time {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--gold-dim);
-  padding-top: 2px;
-}
-.agenda-item h3 {
-  font-family: var(--display);
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ink-0);
-}
-.agenda-item p {
-  font-family: var(--serif);
-  font-size: 14px;
-  color: var(--ink-3);
-  margin-top: 2px;
-}
-
-/* ── who section ── */
-.who-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-top: 40px;
-}
-.who-col h3 {
-  font-family: var(--display);
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--gold);
-  margin-bottom: 16px;
-}
-.who-col ul {
-  list-style: none;
-  padding: 0;
-}
-.who-col li {
-  font-family: var(--serif);
-  font-size: 15px;
-  color: var(--ink-2);
-  padding: 6px 0;
-  padding-left: 16px;
-  position: relative;
-}
-.who-col li::before {
-  position: absolute; left: 0;
-}
-.who-attend li::before { content: '→'; color: var(--gold); }
-.who-skip li::before { content: '✕'; color: var(--pink); }
-.who-skip li { color: var(--ink-3); }
-
-/* ── waitlist form ── */
-.waitlist-section {
-  background: var(--paper-2);
-  padding: 80px 24px;
-  text-align: center;
-}
-.waitlist-form {
-  max-width: 480px;
-  margin: 40px auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.form-row {
-  display: flex;
-  gap: 12px;
-}
-.form-input {
-  flex: 1;
-  padding: 14px 16px;
-  background: var(--paper-3);
-  border: 1px solid var(--paper-4);
-  color: var(--ink-0);
-  font-family: var(--sans);
-  font-size: 15px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.form-input:focus { border-color: var(--gold); }
-.form-input::placeholder { color: var(--ink-4); }
-.form-select {
-  flex: 1;
-  padding: 14px 16px;
-  background: var(--paper-3);
-  border: 1px solid var(--paper-4);
-  color: var(--ink-0);
-  font-family: var(--sans);
-  font-size: 15px;
-  outline: none;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23737373' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-}
-.form-select:focus { border-color: var(--gold); }
-.btn-submit {
-  padding: 16px;
-  background: var(--gold);
-  color: #000;
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0.02em;
-  transition: all 0.2s;
-}
-.btn-submit:hover { background: var(--gold-bright); }
-.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-.form-success {
-  display: none;
-  padding: 24px;
-  border: 1px solid var(--gold);
-  background: var(--gold-glow);
-  text-align: center;
-}
-.form-success h3 {
-  font-family: var(--display);
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-.form-success p {
-  font-family: var(--serif);
-  font-size: 15px;
-  color: var(--ink-2);
-}
-
-/* ── closing ── */
-.closing {
-  padding: 120px 24px;
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto;
-}
-.closing h2 {
-  font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 700;
-  color: var(--ink-0);
-  line-height: 1.2;
-  margin-bottom: 32px;
-}
-.closing h2 em { font-style: italic; color: var(--gold); }
-
-/* ── footer ── */
-footer {
-  padding: 32px 24px;
-  text-align: center;
-  border-top: var(--rule);
-}
-footer p {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-4);
-  letter-spacing: 0.05em;
-}
-footer a { color: var(--ink-3); }
-
-/* ── mobile ── */
-@media (max-width: 640px) {
-  .pain-grid { grid-template-columns: 1fr; }
-  .artifacts-grid { grid-template-columns: 1fr 1fr; }
-  .who-grid { grid-template-columns: 1fr; }
-  .form-row { flex-direction: column; }
-  .agenda-item { grid-template-columns: 60px 1fr; }
-  .hero { padding-top: 100px; }
-}
-
-/* ── film grain ── */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 200;
-  opacity: 0.03;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-}
+:root{--black:#000;--white:#fff;--off:#f5f1ea;--gray:#b5b5b5;--dim:#777;--gold:#c9a961;--gold2:#e6c478;--pink:#ff3b6e;--pink2:#ff6690;--line:rgba(255,255,255,.10);--line2:rgba(255,59,110,.42);--sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--display:'Space Grotesk','Inter',sans-serif}*{box-sizing:border-box;margin:0;padding:0}html{background:#000;color-scheme:dark;scroll-behavior:smooth}body{font-family:var(--sans);background:#000;color:var(--white);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}a{color:inherit;text-decoration:none}body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at 80% 4%,rgba(255,59,110,.22),transparent 30rem),radial-gradient(circle at 18% 0%,rgba(201,169,97,.11),transparent 28rem),#000}body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.035;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px 256px}.bar{border-bottom:1px solid var(--line2);background:linear-gradient(90deg,rgba(255,59,110,.28),rgba(0,0,0,.94),rgba(201,169,97,.12));padding:10px 18px;text-align:center;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.bar strong{color:var(--pink2)}.wrap{width:min(1180px,calc(100% - 44px));margin:0 auto}.hero{padding:54px 0 42px}.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--pink2);font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}.dot{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 28px rgba(255,59,110,.85)}h1{font:900 clamp(52px,8vw,112px)/.84 var(--display);letter-spacing:-.08em;text-transform:uppercase;max-width:1100px}h1 em{font-style:normal;color:var(--pink);text-shadow:0 0 42px rgba(255,59,110,.35)}.sub{max-width:860px;margin-top:18px;color:var(--off);font-size:clamp(18px,2vw,24px);line-height:1.35}.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:22px;align-items:start;margin-top:28px}.vsl{border:1px solid var(--line2);background:linear-gradient(180deg,rgba(255,59,110,.12),rgba(8,8,8,.96));box-shadow:0 28px 90px rgba(0,0,0,.42);padding:18px}.video-box{aspect-ratio:16/9;border:1px solid var(--line);background:radial-gradient(circle at 50% 30%,rgba(255,59,110,.22),transparent 42%),#050505;display:grid;place-items:center;position:relative;overflow:hidden}.play{width:86px;height:86px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;background:rgba(255,59,110,.22);box-shadow:0 0 80px rgba(255,59,110,.32)}.play:before{content:"";display:block;margin-left:6px;border-left:24px solid #fff;border-top:15px solid transparent;border-bottom:15px solid transparent}.video-label{position:absolute;left:18px;right:18px;bottom:16px;color:var(--gray);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:900}.next{border:1px solid var(--line);background:rgba(255,255,255,.035);padding:18px}.next h2{font:900 28px/.95 var(--display);letter-spacing:-.045em;text-transform:uppercase;margin-bottom:12px}.next ol{display:grid;gap:10px;margin-left:18px;color:var(--gray);font-size:15px}.cta{display:block;text-align:center;margin-top:18px;padding:15px;background:var(--pink);color:#fff;font-weight:900;text-transform:uppercase;letter-spacing:.04em}.section{padding:48px 0;border-top:1px solid var(--line)}.section-label{color:var(--pink2);font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}.section h2{font:900 clamp(36px,5vw,72px)/.9 var(--display);letter-spacing:-.065em;text-transform:uppercase;max-width:960px;margin-bottom:18px}.section h2 em{font-style:normal;color:var(--pink)}.grid{display:grid;gap:14px}.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}.card{border:1px solid var(--line);background:rgba(255,255,255,.035);padding:20px}.card.hot{border-color:var(--line2);background:rgba(255,59,110,.08)}.card b{display:block;font:800 22px/1.05 var(--display);letter-spacing:-.03em;margin-bottom:8px}.card span{display:block;color:var(--pink2);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}.card p,.card li{color:var(--gray);font-size:15px;line-height:1.48}.card ul{margin-left:18px;display:grid;gap:8px}.proofline{display:grid;grid-template-columns:180px 1fr;gap:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);padding:16px}.proofline b{font:900 20px/1 var(--display);letter-spacing:-.03em}.proofline p{color:var(--gray);font-size:15px}.quote{border:1px solid rgba(255,59,110,.24);background:linear-gradient(180deg,rgba(255,59,110,.08),rgba(255,255,255,.03));padding:20px}.quote p{color:var(--off);font-size:17px;line-height:1.45}.quote b{display:block;color:var(--pink2);font-size:11px;letter-spacing:.15em;text-transform:uppercase;margin-top:14px}.footer{border-top:1px solid var(--line);padding:22px 0;color:var(--dim);font-size:11px}.footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}@media(max-width:900px){.hero-grid,.grid.two,.grid.three{grid-template-columns:1fr}.proofline{grid-template-columns:1fr}h1{font-size:58px}.wrap{width:min(100% - 32px,1180px)}}
 </style>
 </head>
 <body>
-
-<!-- ═══ COUNTDOWN BAR ═══ -->
-<div class="countdown-bar">
-  <span class="label">June 4 — Live Masterclass</span>
-  <span>—</span>
-  <span class="timer" id="countdown">Loading...</span>
-</div>
-
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-eyebrow">Icon Breaking Agency × Max Gousse × Aggie — Live Masterclass</div>
-  <h1>Stop Releasing<br>Into <em>Silence.</em></h1>
-  <p class="hero-sub">
-    A June 4 live masterclass for the music industry: artists, managers, A&Rs, producers, labels, and teams launching campaigns in the next <strong>6–8 weeks</strong>.<br>
-    Bring a release, roster, or campaign. See the artificial intelligence session.
-  </p>
-  <div class="cta-group">
-    <button class="btn-primary" onclick="scrollToWaitlist()">Reserve Your Seat</button>
-    <button class="btn-secondary" onclick="scrollToWaitlist()">Apply for Tier 3 →</button>
-    <span class="microcopy">Best fit: single, EP, album, music video, or roster campaign with a real launch date.</span>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ WHY 6-8 WEEKS ═══ -->
-<section class="window-section">
-  <div class="section" style="padding-top:0;padding-bottom:0;">
-    <div class="section-label">The window</div>
-    <h2>Why <em>6–8 weeks?</em></h2>
-    <p class="window-copy">
-      Because this is the last realistic window to build the campaign before the release becomes reactive. At 6–8 weeks out, you still have time to fix content, capture demand, organize the team, and create enough signal for fans, managers, playlist editors, and industry people to understand <strong>why the drop matters</strong>.
-    </p>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ PAIN SECTION ═══ -->
-<section class="section">
-  <div class="section-label">The problem</div>
-  <h2>The song is not the rollout.</h2>
-  <div class="pain-grid">
-    <div class="pain-card">
-      <h3>Creative / Artist</h3>
-      <ul>
-        <li>You have the song, but not the campaign.</li>
-        <li>You're posting, but not building demand.</li>
-        <li>You're scared your release will disappear in 48 hours.</li>
-        <li>You don't know what to do each week before launch.</li>
-      </ul>
-    </div>
-    <div class="pain-card">
-      <h3>Manager / Team</h3>
-      <ul>
-        <li>The artist or project has momentum, but nobody owns the rollout.</li>
-        <li>No one is tracking content, fan capture, outreach, or follow-up.</li>
-        <li>The campaign depends on memory, texts, and vibes.</li>
-        <li>You can't tell what signal is real.</li>
-      </ul>
-    </div>
-    <div class="pain-card">
-      <h3>A&R / Producer</h3>
-      <ul>
-        <li>The music is strong, but the campaign is not legible.</li>
-        <li>No clean story, launch board, signal, or proof.</li>
-        <li>You need to know if this project can actually move.</li>
-        <li>Comments and DMs happen, but nobody captures, prioritizes, or follows up.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ WHAT YOU GET ═══ -->
-<section class="section">
-  <div class="section-label">What you leave with</div>
-  <h2>Not a lecture. A <em>working session.</em></h2>
-  <div class="artifacts-grid">
-    <div class="artifact">
-      <span class="artifact-icon">01</span>
-      <h3>Artificial Intelligence Session</h3>
-      <p>Map the campaign across audience, content, rollout, team, offer, and industry-readiness.</p>
-    </div>
-    <div class="artifact">
-      <span class="artifact-icon">02</span>
-      <h3>Launch Forecast Checklist</h3>
-      <p>6–8 week content priority map by week.</p>
-    </div>
-    <div class="artifact">
-      <span class="artifact-icon">03</span>
-      <h3>Release Board</h3>
-      <p>One-page campaign operating board for the owner, manager, label, or team.</p>
-    </div>
-    <div class="artifact">
-      <span class="artifact-icon">04</span>
-      <h3>A&R Signal Sheet</h3>
-      <p>What makes a campaign legible to industry people.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ CASE STUDIES / TEARDOWNS ═══ -->
-<section class="teardowns">
-  <div class="section" style="padding-top:0;padding-bottom:0;">
-    <div class="section-label">Live teardowns</div>
-    <h2>What goes wrong — and how to <em>fix it.</em></h2>
-
-    <div class="teardown">
-      <div class="teardown-num">01</div>
-      <div>
-        <h3>The Good Song / Bad Launch</h3>
-        <p>Strong record. No 6-week calendar. No CTA. No fan capture. The music was there — the machine wasn't.</p>
+<div class="bar"><strong>Registration reserved</strong> / June 4 · 7PM ET / Watch this before the room</div>
+<main>
+  <section class="hero wrap">
+    <div class="kicker"><span class="dot"></span>Icon Breaking Agency × Aggie</div>
+    <h1>Your seat is reserved. <em>Watch the VSL.</em></h1>
+    <p class="sub">Before June 4, watch the breakdown: how Max, Faraji, Audience Genomics, Aggie, and IconBreaking turn artificial intelligence into music-industry campaign infrastructure.</p>
+    <div class="hero-grid">
+      <div class="vsl" aria-label="VSL video area">
+        <div class="video-box"><div class="play" aria-hidden="true"></div><div class="video-label">VSL: Max + Faraji + Audience Genomics + Aggie breakdown</div></div>
       </div>
+      <aside class="next">
+        <h2>Before you close this page</h2>
+        <ol>
+          <li>Watch the VSL so the June 4 room starts at decision speed.</li>
+          <li>Review the proof below: operator receipts, audience-genomics workflow, and AI execution layer.</li>
+          <li>Bring a release, roster, campaign, or music-industry use case to the live session.</li>
+        </ol>
+        <a class="cta" href="/">Update registration</a>
+      </aside>
     </div>
+  </section>
 
-    <div class="teardown">
-      <div class="teardown-num">02</div>
-      <div>
-        <h3>The Manager With Momentum But No Operating Board</h3>
-        <p>Engagement exists. Manager has contacts. But nobody owns follow-up, content, or weekly goals. Momentum without a map.</p>
-      </div>
+  <section class="section wrap">
+    <div class="section-label">The proof stack</div>
+    <h2>Not AI hype. A music-industry <em>operating system.</em></h2>
+    <div class="grid three">
+      <article class="card hot"><span>Audience Genomics</span><b>Audience DNA, not vanity metrics.</b><p>Map who is reacting, why they engage, what content moves them, and which owned-audience path should capture the demand.</p></article>
+      <article class="card hot"><span>Aggie</span><b>Artificial intelligence execution layer.</b><p>Former digital executive experience across A+E, MTV, Univision, Comcast, and more — applied to campaign workflow, audience intelligence, and team execution.</p></article>
+      <article class="card hot"><span>IconBreaking</span><b>The rollout engine.</b><p>The execution layer that turns artist, manager, label, A&amp;R, producer, and marketer activity into an accountable campaign board.</p></article>
     </div>
+  </section>
 
-    <div class="teardown">
-      <div class="teardown-num">03</div>
-      <div>
-        <h3>The A&R Signal Problem</h3>
-        <p>Talent exists, but the campaign is not legible to industry people. No story, proof, date, or demand map. No "why now."</p>
-      </div>
+  <section class="section wrap">
+    <div class="section-label">Operator receipts</div>
+    <h2>Max and Faraji bring the music-industry <em>proof.</em></h2>
+    <div class="grid two">
+      <article class="card">
+        <span>Max Gousse</span><b>Music executive / A&amp;R / platform builder</b>
+        <ul>
+          <li>Beyoncé album and soundtrack work plus Parkwood / entertainment-platform advisory context.</li>
+          <li>B2K / You Got Served-era entertainment-franchise proof across music, film, and touring demand.</li>
+          <li>Artistry Group / Artistry Records platform building, including Republic/UMG joint-venture context.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span>Faraji Judson / Keyz</span><b>Producer / campaign operator / growth strategist</b>
+        <ul>
+          <li>Public profiles credit Keyz as a producer, songwriter, and composer with a large catalog and Chris Brown “Medusa” credit.</li>
+          <li>Reported artist-growth case: 35 to 15K Spotify monthly listeners through marketing and growth strategy.</li>
+          <li>Music-marketing operator proof across release strategy, Spotify / Instagram / TikTok growth, engagement, and campaign execution.</li>
+        </ul>
+      </article>
     </div>
+  </section>
 
-    <div class="teardown">
-      <div class="teardown-num">04</div>
-      <div>
-        <h3>The Comment Heat That Never Became Revenue</h3>
-        <p>People comment and DM. But there is no mechanism to move them into a list, offer, call, or application. Heat without capture.</p>
-      </div>
+  <section class="section wrap">
+    <div class="section-label">Results architecture</div>
+    <h2>What the VSL is showing you.</h2>
+    <div class="grid">
+      <div class="proofline"><b>Before</b><p>Scattered posts, fragmented teams, no owned-audience capture, unclear A&amp;R signal, and campaigns that become reactive right before release day.</p></div>
+      <div class="proofline"><b>During</b><p>Audience Genomics segments the audience; Aggie helps organize intelligence and next actions; IconBreaking turns the plan into weekly execution.</p></div>
+      <div class="proofline"><b>After</b><p>The team sees which audience is warm, what content should be made, who owns the next move, and how the campaign becomes legible to the music industry.</p></div>
     </div>
+  </section>
 
-    <div class="teardown">
-      <div class="teardown-num">05</div>
-      <div>
-        <h3>The 6-Week Rescue</h3>
-        <p>What to fix when the release is already close: content triage, CTA selection, owned audience capture, team accountability.</p>
-      </div>
+  <section class="section wrap">
+    <div class="section-label">Proof / testimonial wall</div>
+    <h2>The signal to bring into June 4.</h2>
+    <div class="grid three">
+      <article class="quote"><p>“The campaign cannot just depend on the song. The team needs audience signal, a rollout board, and weekly ownership.”</p><b>Operator note</b></article>
+      <article class="quote"><p>“Artificial intelligence becomes useful when it routes the next move: who to target, what to make, what to capture, and who follows up.”</p><b>Audience Genomics note</b></article>
+      <article class="quote"><p>“The goal is not more tools. The goal is a campaign that managers, labels, A&amp;Rs, producers, and marketers can actually operate.”</p><b>IconBreaking note</b></article>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="divider">
-
-<!-- ═══ TEAM ═══ -->
-<section class="section">
-  <div class="section-label">Who's running it</div>
-  <h2>Built by people who <em>ship.</em></h2>
-  <div class="team-grid">
-    <div class="team-member">
-      <div class="team-avatar">K</div>
-      <h3>Keyz the Producer / Faraji Judson</h3>
-      <p>Producer and campaign operator. Public proof includes production/songwriting credits, release strategy, music marketing, audience-growth work, and a reported artist-growth case from 35 to 15K Spotify monthly listeners.</p>
+  <section class="section wrap">
+    <div class="section-label">June 4 live room</div>
+    <h2>Bring the campaign. Leave with the next move.</h2>
+    <div class="grid three">
+      <article class="card"><span>01</span><b>Audience</b><p>Who is already reacting, and which audience cluster should the campaign prioritize?</p></article>
+      <article class="card"><span>02</span><b>Content</b><p>What content makes the campaign legible before the release window closes?</p></article>
+      <article class="card"><span>03</span><b>Execution</b><p>What does the team do next week, and who owns the follow-up?</p></article>
     </div>
-    <div class="team-member">
-      <div class="team-avatar">M</div>
-      <h3>Max Gousse</h3>
-      <p>Music executive, A&amp;R, and label builder. Public credits include Beyoncé album and soundtrack work, B2K / You Got Served-era soundtrack execution, and Artistry Group / Artistry Records platform building.</p>
-    </div>
-    <div class="team-member">
-      <div class="team-avatar">IA</div>
-      <h3>IBA × Aggie</h3>
-      <p>Artificial intelligence for audience signals, content timing, and release readiness. Former digital executive experience across A+E, MTV, Univision, Comcast, and more.</p>
-    </div>
-    <div class="team-member">
-      <div class="team-avatar">IB</div>
-      <h3>Icon Breaking Agency</h3>
-      <p>The execution layer for music-industry teams.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ AGENDA ═══ -->
-<section class="section">
-  <div class="section-label">What happens inside</div>
-  <h2>The <em>60-minute</em> session.</h2>
-  <ul class="agenda-list">
-    <li class="agenda-item">
-      <span class="agenda-time">0–5 min</span>
-      <div>
-        <h3>Why releases fail before release day</h3>
-      </div>
-    </li>
-    <li class="agenda-item">
-      <span class="agenda-time">5–15 min</span>
-      <div>
-        <h3>The 6–8 week readiness window</h3>
-        <p>Why this is the last real chance to fix the campaign.</p>
-      </div>
-    </li>
-    <li class="agenda-item">
-      <span class="agenda-time">15–25 min</span>
-      <div>
-        <h3>Artificial Intelligence Session</h3>
-        <p>Live mapping: audience, content, rollout, team, offer, industry-readiness.</p>
-      </div>
-    </li>
-    <li class="agenda-item">
-      <span class="agenda-time">25–35 min</span>
-      <div>
-        <h3>Content → CTA → fan capture</h3>
-        <p>The mechanism that turns posts into a launch sequence.</p>
-      </div>
-    </li>
-    <li class="agenda-item">
-      <span class="agenda-time">35–45 min</span>
-      <div>
-        <h3>Team roles</h3>
-        <p>Artist, manager, label, A&R, producer, IBA — who owns what.</p>
-      </div>
-    </li>
-    <li class="agenda-item">
-      <span class="agenda-time">45–55 min</span>
-      <div>
-        <h3>Live teardowns</h3>
-        <p>Real examples of good songs, bad launches, and how to fix them.</p>
-      </div>
-    </li>
-    <li class="agenda-item">
-      <span class="agenda-time">55–60 min</span>
-      <div>
-        <h3>Next steps</h3>
-        <p>Session recap, application, Founding 100 fit.</p>
-      </div>
-    </li>
-  </ul>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ WHO ═══ -->
-<section class="section">
-  <div class="section-label">Is this for you</div>
-  <h2>Show up if you're <em>shipping.</em></h2>
-  <div class="who-grid">
-    <div class="who-col who-attend">
-      <h3>Should attend</h3>
-      <ul>
-        <li>Artists, managers, and teams with a release date in the next 6–8 weeks</li>
-        <li>Labels, distributors, and managers preparing singles/EPs/albums</li>
-        <li>Producers developing artists or projects</li>
-        <li>A&Rs who need stronger rollout proof</li>
-        <li>Small labels, operators, and marketers running campaigns without enough infrastructure</li>
-      </ul>
-    </div>
-    <div class="who-col who-skip">
-      <h3>Should not attend</h3>
-      <ul>
-        <li>No release date</li>
-        <li>No music or assets ready</li>
-        <li>Looking for hacks instead of a campaign</li>
-        <li>Not willing to capture fans or follow up</li>
-        <li>Not ready to operate weekly</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ WAITLIST FORM ═══ -->
-<section class="waitlist-section" id="waitlist">
-  <div class="section-label">Reserve your seat</div>
-  <h2>The room is <em>small.</em></h2>
-  <p class="hero-sub" style="margin:0 auto 0;">Register now. Get the June 4 access link and artificial intelligence breakdown.</p>
-
-  <form class="waitlist-form" id="waitlistForm" onsubmit="handleWaitlist(event)">
-    <div class="form-row">
-      <input type="text" class="form-input" name="name" placeholder="Your name" required>
-      <input type="email" class="form-input" name="email" placeholder="Email" required>
-    </div>
-    <div class="form-row">
-      <select class="form-select" name="role" required>
-        <option value="" disabled selected>Your role in music</option>
-        <option value="artist">Artist / Creator</option>
-        <option value="manager">Manager / Team</option>
-        <option value="producer">Producer / Creative</option>
-        <option value="ar">A&R / Music Executive</option>
-        <option value="label">Label / Distributor</option>
-        <option value="marketing">Marketing / Operations</option>
-        <option value="other">Other</option>
-      </select>
-      <select class="form-select" name="window" required>
-        <option value="" disabled selected>Release window</option>
-        <option value="2-4weeks">2–4 weeks out</option>
-        <option value="4-6weeks">4–6 weeks out</option>
-        <option value="6-8weeks">6–8 weeks out</option>
-        <option value="8-12weeks">8–12 weeks out</option>
-        <option value="exploring">Exploring / no date yet</option>
-      </select>
-    </div>
-    <input type="text" class="form-input" name="links" placeholder="Links — Spotify, IG, website (optional)">
-    <button type="submit" class="btn-submit" id="submitBtn">Reserve My Seat</button>
-  </form>
-
-  <div class="form-success" id="formSuccess">
-    <h3>You're in.</h3>
-    <p>Check your email for the June 4 access link and event details. If the project fits the Founding 100 lane, we'll reach out with next steps.</p>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ CLOSING ═══ -->
-<section class="closing">
-  <h2>If your music campaign is 6–8 weeks away, this is the room you want to be in.</h2>
-  <button class="btn-primary" onclick="scrollToWaitlist()">Reserve Your Seat</button>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <p>© 2026 Icon Breaking Agency. <a href="https://www.iconbreaking.com/">iconbreaking.com</a></p>
-</footer>
-
-<!-- ═══ SCRIPTS ═══ -->
-<script>
-// ── Countdown to June 4, 2026 ──
-(function() {
-  const eventDate = new Date('2026-06-04T19:00:00-04:00'); // 7PM EDT June 4
-  const el = document.getElementById('countdown');
-
-  function update() {
-    const now = new Date();
-    const diff = eventDate - now;
-    if (diff <= 0) { el.textContent = 'LIVE NOW'; return; }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    el.textContent = d + 'd ' + String(h).padStart(2,'0') + 'h ' + String(m).padStart(2,'0') + 'm ' + String(s).padStart(2,'0') + 's';
-  }
-  update();
-  setInterval(update, 1000);
-})();
-
-// ── Scroll to waitlist ──
-function scrollToWaitlist() {
-  document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
-}
-
-// ── Waitlist form handler ──
-function handleWaitlist(e) {
-  e.preventDefault();
-  const form = document.getElementById('waitlistForm');
-  const btn = document.getElementById('submitBtn');
-  const success = document.getElementById('formSuccess');
-  const data = new FormData(form);
-
-  btn.disabled = true;
-  btn.textContent = 'Reserving...';
-
-  // PostHog capture
-  if (window.posthog && window.posthog.capture) {
-    posthog.capture('waitlist_submitted', {
-      name: data.get('name'),
-      email: data.get('email'),
-      role: data.get('role'),
-      release_window: data.get('window'),
-      links: data.get('links') || '',
-      $set: { email: data.get('email'), name: data.get('name'), role: data.get('role') }
-    });
-  }
-
-  // Submit to webhook (SRIDA endpoint for waitlist capture)
-  fetch('https://webhook.departmentofjazz.com/waitlist/iba-event', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: data.get('name'),
-      email: data.get('email'),
-      role: data.get('role'),
-      release_window: data.get('window'),
-      links: data.get('links') || '',
-      source: 'iconbreaking-event-page',
-      timestamp: new Date().toISOString()
-    })
-  }).catch(() => {}) // fire and forget — PostHog is the primary capture
-
-  // Show success
-  setTimeout(() => {
-    form.style.display = 'none';
-    success.style.display = 'block';
-  }, 800);
-}
-</script>
-
+    <a class="cta" href="/">Need to update your registration?</a>
+  </section>
+</main>
+<footer class="footer"><div class="wrap"><div>© 2026 Icon Breaking Agency · Powered by Aggie</div><div><a href="/">Registration</a> · <a href="/index-agency.html">Original Aggie page</a></div></div></footer>
 </body>
 </html>

@@ -68,19 +68,39 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;bac
       </div>
 
       <aside class="waitlist" id="waitlist" aria-label="Join the waitlist">
-        <div class="waitlist-head"><div><div class="label">Join the waitlist</div><h2>Get the invite.</h2></div><div class="date">June 4 · 7PM ET</div></div>
-        <p class="promise"><b>Three fields.</b> We’ll send the June 4 access link and Founding 100 next steps for the artificial intelligence session.</p>
+        <div class="waitlist-head"><div><div class="label">Register now</div><h2>Get June 4 access.</h2></div><div class="date">June 4 · 7PM ET</div></div>
+        <p class="promise"><b>Complete your registration.</b> Tell us your role and release window so the session can route artists, managers, labels, A&amp;Rs, producers, and teams correctly.</p>
         <form class="form" id="waitlistForm" onsubmit="handleWaitlist(event)">
           <input class="input" type="text" name="name" placeholder="Name" required autocomplete="name">
           <input class="input" type="email" name="email" placeholder="Email" required autocomplete="email">
           <input class="input" type="tel" name="phone" placeholder="Phone" autocomplete="tel">
-          <button class="btn" type="submit" id="submitBtn">Get Access</button>
+          <select class="input" name="role" required>
+            <option value="" disabled selected>Your role in music</option>
+            <option value="artist_creator">Artist / Creator</option>
+            <option value="manager_team">Manager / Team</option>
+            <option value="label_distributor">Label / Distributor</option>
+            <option value="ar_executive">A&amp;R / Music Executive</option>
+            <option value="producer_creative">Producer / Creative</option>
+            <option value="marketing_ops">Marketing / Operations</option>
+            <option value="other">Other</option>
+          </select>
+          <select class="input" name="window" required>
+            <option value="" disabled selected>Release window</option>
+            <option value="2_4_weeks">2–4 weeks out</option>
+            <option value="4_6_weeks">4–6 weeks out</option>
+            <option value="6_8_weeks">6–8 weeks out</option>
+            <option value="8_12_weeks">8–12 weeks out</option>
+            <option value="roster_campaign">Roster / campaign planning</option>
+            <option value="exploring">Exploring / no date yet</option>
+          </select>
+          <input class="input" type="text" name="links" placeholder="Links — Spotify, IG, website (optional)">
+          <button class="btn" type="submit" id="submitBtn">Register Now</button>
         </form>
-        <p class="micro" id="microcopy">No spam. Just the event invite and next-step access.</p>
+        <p class="micro" id="microcopy">After registering, you’ll land on the VSL + proof page.</p>
         <div class="success" id="successBox">
           <h3>You’re on the list.</h3>
-          <p>Check your inbox for the June 4 access link. Want the full artificial intelligence breakdown now?</p>
-          <p style="margin-top:12px"><a href="/event-details.html">See what happens inside the room →</a></p>
+          <p>Registration received. Watch the VSL and proof page next.</p>
+          <p style="margin-top:12px"><a href="/event-details.html">Watch the VSL →</a></p>
         </div>
       </aside>
     </section>
@@ -153,7 +173,7 @@ function handleWaitlist(e){
   btn.disabled=true; btn.textContent='Joining...';
   fetch('https://webhook.departmentofjazz.com/waitlist/iba-event',{
     method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')||'',source:'iconbreaking-artificial-intelligence',event:'june-4-live-webinar',timestamp:new Date().toISOString()})
+    body:JSON.stringify({name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')||'',role:fd.get('role')||'',window:fd.get('window')||'',links:fd.get('links')||'',source:'iconbreaking-root-registration',event:'june-4-live-webinar',timestamp:new Date().toISOString()})
   }).catch(function(){}).finally(function(){
     form.style.display='none'; micro.style.display='none'; ok.style.display='block';
     setTimeout(function(){ window.location.href='/event-details.html'; }, 4200);
