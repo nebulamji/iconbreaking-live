@@ -172,7 +172,7 @@ function handleWaitlist(e){
   var ok=document.getElementById('successBox');
   var fd=new FormData(form);
   btn.disabled=true; btn.textContent='Joining...';
-  fetch('https://webhook.departmentofjazz.com/waitlist/iba-event',{
+  fetch('https://themusicindustry.ai/waitlist/iba-event',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')||'',social:fd.get('social')||'',social_account:fd.get('social')||'',role:fd.get('role')||'',window:fd.get('window')||'',links:fd.get('links')||'',source:'iconbreaking-root-registration',event:'june-4-live-webinar',intake_email:'judson@iconbreaking.com',followup_email:'judson@iconbreaking.com',timestamp:new Date().toISOString()})
   }).then(function(res){ if(!res.ok){ throw new Error('intake failed'); } return res.json().catch(function(){return {ok:true};}); }).then(function(){
