@@ -70,23 +70,39 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;bac
 
       <aside class="waitlist" id="waitlist" aria-label="Join the waitlist">
         <div class="waitlist-head"><div><div class="label">Register now</div><h2>Get June 4 access.</h2></div><div class="date">June 4 · 7PM ET</div></div>
-        <p class="promise"><b>Complete your registration.</b> Tell us your role and release window in the official Icon Breaking registration form below. The room uses this to frame the right release lane: strategy first, tools second, execution support after.</p>
-        <iframe
-          src="https://api.leadconnectorhq.com/widget/form/bbn0HdsmkAR84AtlFhMh?utm_source=iconbreaking.com&utm_medium=live_webinar&utm_campaign=june_4_aggie"
-          style="width:100%;height:720px;border:1px solid rgba(255,59,110,.30);border-radius:14px;background:#fff;display:block"
-          id="inline-bbn0HdsmkAR84AtlFhMh"
-          data-layout='{"id":"INLINE"}'
-          data-trigger-type="alwaysShow"
-          data-trigger-value=""
-          data-activation-type="alwaysActivated"
-          data-activation-value=""
-          data-deactivation-type="neverDeactivate"
-          data-deactivation-value=""
-          data-form-name="RSVP - Form"
-          data-height="720"
-          data-layout-iframe-id="inline-bbn0HdsmkAR84AtlFhMh"
-          title="Icon Breaking June 4 RSVP Form"></iframe>
-        <p class="micro">Registration is handled through Icon Breaking's official CRM. Questions: <a href="mailto:judson@iconbreaking.com">judson@iconbreaking.com</a>.</p>
+        <p class="promise"><b>Complete your registration.</b> Tell us your role and release window so the room can frame the right release lane: strategy first, tools second, execution support after. The June 4 access link will be sent to your email once the host room is final.</p>
+        <form class="form" id="waitlistForm" onsubmit="handleWaitlist(event)">
+          <input class="input" type="text" name="name" placeholder="Name" required autocomplete="name">
+          <input class="input" type="email" name="email" placeholder="Email" required autocomplete="email">
+          <input class="input" type="tel" name="phone" placeholder="Phone" autocomplete="tel">
+          <input class="input" type="text" name="social" placeholder="Social media account — IG, TikTok, YouTube, etc. (optional)" autocomplete="off">
+          <select class="input" name="role" required>
+            <option value="" disabled selected>Your role in music</option>
+            <option value="artist_creator">Artist / Creator</option>
+            <option value="manager_team">Manager / Team</option>
+            <option value="label_distributor">Label / Distributor</option>
+            <option value="ar_executive">A&amp;R / Music Executive</option>
+            <option value="producer_creative">Producer / Creative</option>
+            <option value="marketing_ops">Marketing / Operations</option>
+            <option value="other">Other</option>
+          </select>
+          <select class="input" name="window" required>
+            <option value="" disabled selected>Release window</option>
+            <option value="2_4_weeks">2–4 weeks out</option>
+            <option value="4_6_weeks">4–6 weeks out</option>
+            <option value="6_8_weeks">6–8 weeks out</option>
+            <option value="8_12_weeks">8–12 weeks out</option>
+            <option value="roster_campaign">Roster / campaign planning</option>
+            <option value="exploring">Exploring / no date yet</option>
+          </select>
+          <input class="input" type="text" name="links" placeholder="Links — Spotify, IG, website (optional)">
+          <button class="btn" type="submit" id="submitBtn">Register Now</button>
+        </form>
+        <p class="micro" id="microcopy">Access link + reminders go to your email. Questions: <a href="mailto:judson@iconbreaking.com">judson@iconbreaking.com</a>.</p>
+        <div class="success" id="successBox">
+          <h3>You’re on the list.</h3>
+          <p>Registration received. We’ll send the June 4 access link and reminders to the email you entered. Questions: judson@iconbreaking.com.</p>
+        </div>
       </aside>
     </section>
   </main>
@@ -129,7 +145,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;bac
 
   <footer class="footer"><div class="footer-inner"><div>© 2026 Icon Breaking Agency · Powered by Aggie</div><div><a href="mailto:judson@iconbreaking.com">judson@iconbreaking.com</a> · <a href="/index-agency.html">Original Aggie page</a></div></div></footer>
 </div>
-<script src="https://link.msgsndr.com/js/form_embed.js" async></script>
 <script>
 var webinarTime = new Date('2026-06-04T19:00:00-04:00').getTime();
 function pad(n){ return String(n).padStart(2,'0'); }
@@ -145,6 +160,24 @@ function tickCountdown(){
   document.getElementById('seconds').textContent = pad(s);
 }
 tickCountdown(); setInterval(tickCountdown,1000);
+function handleWaitlist(e){
+  e.preventDefault();
+  var form=document.getElementById('waitlistForm');
+  var btn=document.getElementById('submitBtn');
+  var micro=document.getElementById('microcopy');
+  var ok=document.getElementById('successBox');
+  var fd=new FormData(form);
+  btn.disabled=true; btn.textContent='Joining...';
+  fetch('https://themusicindustry.ai/waitlist/iba-event',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')||'',social:fd.get('social')||'',social_account:fd.get('social')||'',role:fd.get('role')||'',window:fd.get('window')||'',links:fd.get('links')||'',source:'iconbreaking-root-registration',event:'june-4-live-webinar',intake_email:'judson@iconbreaking.com',followup_email:'judson@iconbreaking.com',timestamp:new Date().toISOString()})
+  }).then(function(res){ if(!res.ok){ throw new Error('intake failed'); } return res.json().catch(function(){return {ok:true};}); }).then(function(){
+    form.style.display='none'; micro.style.display='none'; ok.style.display='block';
+  }).catch(function(){
+    btn.disabled=false; btn.textContent='Register Now';
+    micro.innerHTML='Registration line is busy. Email <a href="mailto:judson@iconbreaking.com?subject=June%204%20Access">judson@iconbreaking.com</a> with subject “June 4 Access.”';
+  });
+}
 </script>
 </body>
 </html>
