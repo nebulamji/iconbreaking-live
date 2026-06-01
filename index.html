@@ -68,41 +68,24 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;bac
         </div>
       </div>
 
-      <aside class="waitlist" id="waitlist" aria-label="Join the waitlist">
-        <div class="waitlist-head"><div><div class="label">Register now</div><h2>Get June 4 access.</h2></div><div class="date">June 4 · 7PM ET</div></div>
-        <p class="promise"><b>Complete your registration.</b> Tell us your role and release window so the room can frame the right release lane: strategy first, tools second, execution support after. The June 4 access link will be sent to your email once the host room is final.</p>
-        <form class="form" id="waitlistForm" onsubmit="handleWaitlist(event)">
-          <input class="input" type="text" name="name" placeholder="Name" required autocomplete="name">
-          <input class="input" type="email" name="email" placeholder="Email" required autocomplete="email">
-          <input class="input" type="tel" name="phone" placeholder="Phone" autocomplete="tel">
-          <input class="input" type="text" name="social" placeholder="Social media account — IG, TikTok, YouTube, etc. (optional)" autocomplete="off">
-          <select class="input" name="role" required>
-            <option value="" disabled selected>Your role in music</option>
-            <option value="artist_creator">Artist / Creator</option>
-            <option value="manager_team">Manager / Team</option>
-            <option value="label_distributor">Label / Distributor</option>
-            <option value="ar_executive">A&amp;R / Music Executive</option>
-            <option value="producer_creative">Producer / Creative</option>
-            <option value="marketing_ops">Marketing / Operations</option>
-            <option value="other">Other</option>
-          </select>
-          <select class="input" name="window" required>
-            <option value="" disabled selected>Release window</option>
-            <option value="2_4_weeks">2–4 weeks out</option>
-            <option value="4_6_weeks">4–6 weeks out</option>
-            <option value="6_8_weeks">6–8 weeks out</option>
-            <option value="8_12_weeks">8–12 weeks out</option>
-            <option value="roster_campaign">Roster / campaign planning</option>
-            <option value="exploring">Exploring / no date yet</option>
-          </select>
-          <input class="input" type="text" name="links" placeholder="Links — Spotify, IG, website (optional)">
-          <button class="btn" type="submit" id="submitBtn">Register Now</button>
-        </form>
-        <p class="micro" id="microcopy">Access link + reminders go to your email. Questions: <a href="mailto:judson@iconbreaking.com">judson@iconbreaking.com</a>.</p>
-        <div class="success" id="successBox">
-          <h3>You’re on the list.</h3>
-          <p>Registration received. We’ll send the June 4 access link and reminders to the email you entered. Questions: judson@iconbreaking.com.</p>
-        </div>
+            <aside class="waitlist" id="iba-application" aria-label="Apply for IBA Founding 100">
+        <div class="waitlist-head"><div><div class="label">Apply now</div><h2>IBA Founding 100.</h2></div><div class="date">June 4 · 7PM ET</div></div>
+        <p class="promise"><b>Tell us about your release.</b> We review every application and reach out personally if it's a strong fit. Qualified applicants receive a direct booking link for a strategy call with the IBA team.</p>
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/1xZsIyryoUt5F9TtTGrb"
+          style="width:100%;min-height:860px;border:none"
+          id="iba-qual-form"
+          data-layout="{'id':'1xZsIyryoUt5F9TtTGrb'}"
+          data-trigger-type="alwaysShow"
+          data-activation-type="alwaysActivated"
+          data-deactivation-type="neverDeactivate"
+          data-form-name="IBA Founding 100 Qualification Form"
+          data-height="auto"
+          data-layout-iframe-id="iba-qual-form"
+          data-form-id="1xZsIyryoUt5F9TtTGrb"
+          title="IBA Founding 100 Qualification Form"
+          loading="lazy">
+        </iframe>
       </aside>
     </section>
   </main>
@@ -142,7 +125,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;bac
       <div class="proof-grid">
         <article class="proof-card"><b>Who it is for</b><p>Artists, managers, labels, A&amp;Rs, producers, distributors, marketers, and music operators with campaigns to move.</p></article>
         <article class="proof-card"><b>What gets sharper</b><p>Audience intelligence, content timing, fan capture, rollout ownership, and the signal the industry needs to understand the campaign.</p></article>
-        <article class="proof-card"><b>Register now</b><p>Bring your release window and see the strategy behind the results.</p><a class="proof-link" href="#waitlist">Register Now ↑</a></article>
+        <article class="proof-card"><b>Register now</b><p>Bring your release window and see the strategy behind the results.</p><a class="proof-link" href="#iba-application">Register Now ↑</a></article>
       </div>
     </div>
   </section>
@@ -164,16 +147,7 @@ function tickCountdown(){
   document.getElementById('seconds').textContent = pad(s);
 }
 tickCountdown(); setInterval(tickCountdown,1000);
-function handleWaitlist(e){
-  e.preventDefault();
-  var form=document.getElementById('waitlistForm');
-  var btn=document.getElementById('submitBtn');
-  var micro=document.getElementById('microcopy');
-  var ok=document.getElementById('successBox');
-  var fd=new FormData(form);
-  btn.disabled=true; btn.textContent='Joining...';
-  fetch('https://themusicindustry.ai/waitlist/iba-event',{
-    method:'POST',headers:{'Content-Type':'application/json'},
+,
     body:JSON.stringify({name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')||'',social:fd.get('social')||'',social_account:fd.get('social')||'',role:fd.get('role')||'',window:fd.get('window')||'',links:fd.get('links')||'',source:'iconbreaking-root-registration',event:'june-4-live-webinar',intake_email:'judson@iconbreaking.com',followup_email:'judson@iconbreaking.com',timestamp:new Date().toISOString()})
   }).then(function(res){ if(!res.ok){ throw new Error('intake failed'); } return res.json().catch(function(){return {ok:true};}); }).then(function(){
     form.style.display='none'; micro.style.display='none'; ok.style.display='block';
@@ -183,5 +157,6 @@ function handleWaitlist(e){
   });
 }
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
