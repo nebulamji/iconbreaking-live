@@ -188,18 +188,18 @@ def build_event_page(template_html: str, cfg: dict) -> str:
 
     # ── Worker endpoint → themusicindustry.ai intake ──
     html = re.sub(
-        r"fetch\('https://themusicindustry\.ai/waitlist/iba-event'",
+        r"fetch\('https://themusicindustry\.ai/intake/[^']*'",
         f"fetch('{intake_url}'",
         html
     )
     # Also update the source field in the JSON payload
     html = re.sub(
-        r"source:'iconbreaking-root-registration'",
+        r"source:'[^']*-registration'",
         f"source:'{slug}-registration'",
         html
     )
     html = re.sub(
-        r"event:'june-4-live-webinar'",
+        r"event:'[^']*'",
         f"event:'{slug}'",
         html
     )
