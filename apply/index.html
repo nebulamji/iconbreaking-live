@@ -46,8 +46,16 @@
             <div><label for="phone">Phone</label><input id="phone" name="phone" autocomplete="tel" /></div>
           </div>
           <div class="row">
-            <div><label for="role">Role</label><select id="role" name="role" required><option value="">Select one</option><option>Artist</option><option>Artist Manager</option><option>Label Executive</option><option>A&amp;R</option><option>Producer</option><option>Other</option></select></div>
+            <div><label for="role">Role</label><select id="role" name="role" required><option value="">Select one</option><option>Artist</option><option>Artist Manager</option><option>Label Executive</option><option>A&amp;R</option><option>Producer</option><option>Marketing / Ops</option><option>Other</option></select></div>
             <div><label for="company">Company / artist / organization</label><input id="company" name="company" autocomplete="organization" /></div>
+          </div>
+          <div class="row">
+            <div><label for="applicant_type">Who is this for?</label><select id="applicant_type" name="applicant_type" required><option value="">Select one</option><option value="artist_self">I am the artist / creator</option><option value="representing_artist">I manage or represent the artist/team</option><option value="introducing_artist">I am introducing or referring an artist</option><option value="industry_partner">I am an industry partner / other</option></select></div>
+            <div><label for="relationship_to_artist">Relationship to artist</label><input id="relationship_to_artist" name="relationship_to_artist" placeholder="Self, manager, label, A&R, friend, referrer…" /></div>
+          </div>
+          <div class="row">
+            <div><label for="artist_name">Artist / project name</label><input id="artist_name" name="artist_name" placeholder="Artist, roster, or project being submitted" /></div>
+            <div><label for="links">Instagram / music / website links</label><input id="links" name="links" placeholder="IG, Spotify, TikTok, website, EPK…" /></div>
           </div>
           <div class="row">
             <div><label for="challenge">Biggest challenge</label><select id="challenge" name="challenge" required><option value="">Select one</option><option>Audience Growth</option><option>Release Strategy</option><option>Revenue Generation</option><option>Brand Positioning</option><option>Industry Connections</option><option>All of the Above</option></select></div>
@@ -58,9 +66,9 @@
             <div><label for="timeline">Release / campaign timeline</label><input id="timeline" name="timeline" placeholder="Example: single in 6 weeks, album in Q3, roster review now" /></div>
           </div>
           <label for="notes">What should the team know?</label><textarea id="notes" name="notes" placeholder="Share links, goals, current traction, team context, or why Tier 3 is the right lane."></textarea>
-          <button class="btn" type="submit">Open Tier 3 Application Email →</button>
+          <button class="btn" type="submit">Submit Tier 3 Application →</button>
           <div id="msg" class="msg"></div>
-          <div class="micro">By applying, you agree to be contacted by Icon Breaking Agency about your application. This form is for business inquiries only.</div>
+          <div class="micro">By applying, you agree to be contacted by Icon Breaking Agency about your application. If you are introducing an artist, we will require artist consent or a warm introduction before contacting or acting for them. This form is for business inquiries only.</div>
         </form>
       </main>
     </section>
@@ -70,18 +78,23 @@
   (function(){
     const form = document.getElementById('tier3Form');
     const msg = document.getElementById('msg');
+    const btn = form.querySelector('button[type="submit"]');
+    const endpoint = 'https://themusicindustry.ai/intake/iba-june4';
     const show = (kind, html) => { msg.className = 'msg ' + kind; msg.innerHTML = html; };
     const val = (fd, key) => String(fd.get(key) || '').trim();
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const fd = new FormData(form);
+    const nameFrom = (fd) => [val(fd,'first_name'), val(fd,'last_name')].filter(Boolean).join(' ');
+    const buildMailto = (fd) => {
       const lines = [
         'Tier 3 Application — Icon Breaking Agency',
         '',
-        'Name: ' + [val(fd,'first_name'), val(fd,'last_name')].filter(Boolean).join(' '),
+        'Name: ' + nameFrom(fd),
         'Email: ' + val(fd,'email'),
         'Phone: ' + val(fd,'phone'),
         'Role: ' + val(fd,'role'),
+        'Who this is for: ' + val(fd,'applicant_type'),
+        'Relationship to artist: ' + (val(fd,'relationship_to_artist') || '(not provided)'),
+        'Artist / project name: ' + (val(fd,'artist_name') || '(not provided)'),
+        'Instagram / music / website links: ' + (val(fd,'links') || '(not provided)'),
         'Company / artist / organization: ' + val(fd,'company'),
         'Biggest challenge: ' + val(fd,'challenge'),
         'Monthly marketing budget: ' + (val(fd,'budget') || 'Prefer not to say'),
@@ -94,10 +107,43 @@
         'Source: iconbreaking.com/apply'
       ];
       const body = encodeURIComponent(lines.join('\n'));
-      const subject = encodeURIComponent('Tier 3 Application — ' + (val(fd,'company') || [val(fd,'first_name'), val(fd,'last_name')].filter(Boolean).join(' ') || 'IBA Prospect'));
-      const mailto = 'mailto:judson@iconbreaking.com?subject=' + subject + '&body=' + body;
-      show('ok', 'Your application packet is ready. If your email app does not open, <a href="' + mailto + '">click here to send it to Icon Breaking Agency</a>.');
-      window.location.href = mailto;
+      const subject = encodeURIComponent('Tier 3 Application — ' + (val(fd,'artist_name') || val(fd,'company') || nameFrom(fd) || 'IBA Prospect'));
+      return 'mailto:judson@iconbreaking.com?subject=' + subject + '&body=' + body;
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const mailto = buildMailto(fd);
+      const payload = Object.fromEntries(fd.entries());
+      payload.name = nameFrom(fd);
+      payload.release_window = val(fd,'launch_window');
+      payload.social = val(fd,'links');
+      payload.source = 'iconbreaking-apply-tier3';
+      payload.source_channel = 'iconbreaking_apply';
+      payload.page_url = 'https://www.iconbreaking.com/apply/';
+      payload.form_version = 'iconbreaking-tier3-application-v1';
+      payload.intake_email = 'judson@iconbreaking.com';
+      btn.disabled = true;
+      show('ok', 'Submitting your application…');
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || 'submit_failed');
+        if (data.route && data.route.status === 'awaiting_artist_consent') {
+          show('ok', 'Introduction received. The team will ask for a warm intro or artist consent before contacting or acting for the artist. Reference: ' + data.registration_id + '.');
+        } else {
+          show('ok', 'Application received. The Icon Breaking team will review and follow up with the right next step. Reference: ' + data.registration_id + '.');
+        }
+        form.reset();
+      } catch (err) {
+        show('err', 'The direct submit did not complete. Please <a href="' + mailto + '">click here to send the application by email</a>.');
+      } finally {
+        btn.disabled = false;
+      }
     });
   })();
   </script>
