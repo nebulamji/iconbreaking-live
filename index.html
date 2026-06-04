@@ -1,190 +1,1644 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Icon Breaking Agency × Aggie — Release Strategy Masterclass</title>
-<meta name="description" content="Learn the release strategy that has helped artists gain millions of fans, streams, and paid booked shows every month. IconBreaking shows the strategy and revenue engine; Aggie powers the execution layer.">
-<meta property="og:title" content="Icon Breaking Agency × Aggie — Release Strategy Masterclass">
-<meta property="og:description" content="June 4: learn the release strategy behind millions of fans, streams, and paid booked shows every month — with IconBreaking strategy and Aggie execution.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.iconbreaking.com/">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IconAgents — Music Business Intelligence Agent</title>
+<meta name="description" content="The execution-native AI agent stack for the music business. Aggie senses. GetRida strikes. IBA brands. Built by Icon Breaking Agency."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700&family=Antonio:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* Julian/Aggie visual canon: black, white, gray, IBA gold, Aggie hot pink. */
-:root{
-  --black:#000000;--black-2:#0a0a0a;--black-3:#141414;
-  --white:#ffffff;--off-white:#f5f1ea;--gray:#b5b5b5;--gray-dim:#777;
-  --gold:#c9a961;--gold-bright:#e6c478;
-  --pink:#ff3b6e;--pink-bright:#ff6690;--pink-soft:rgba(255,59,110,.12);
-  --line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);--line-pink:rgba(255,59,110,.44);
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--display:'Space Grotesk','Inter',sans-serif;
+/* IconAgents v2 — HUD music-studio aesthetic
+   Source DNA: KEYZ AI artifact / icon-agents v3 brief
+   Black base · gold primary · cyan secondary · scan-lines + data bars */
+
+:root {
+  --bg-0: #070707;
+  --bg-1: #0d0d0e;
+  --bg-2: #131316;
+  --bg-3: #1a1a1f;
+  --line: #26262b;
+  --line-2: #34343a;
+
+  --gold: #d4af37;
+  --gold-bright: #f0c850;
+  --gold-dim: #8c7322;
+  --cyan: #00e5ff;
+  --cyan-dim: #0099aa;
+  --green: #4ade80;
+  --red: #ff5151;
+
+  --text: #e8e8e8;
+  --text-2: #a8a8ad;
+  --text-3: #6b6b72;
+  --mute: #444;
+
+  --f-display: "Bebas Neue", "Antonio", "Impact", sans-serif;
+  --f-data: "Space Mono", "JetBrains Mono", ui-monospace, monospace;
+  --f-body: "Syne", "Inter Tight", system-ui, sans-serif;
+
+  --max: 1440px;
+  --gutter: clamp(20px, 4vw, 56px);
 }
-*{box-sizing:border-box;margin:0;padding:0}html{background:#000;color-scheme:dark}body{background:#000!important;color:var(--white);font-family:var(--sans);font-weight:400;line-height:1.45;overflow-x:hidden;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button,input{font-family:inherit}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(circle at 84% 3%,rgba(255,59,110,.22),transparent 30rem),radial-gradient(circle at 10% 0%,rgba(201,169,97,.10),transparent 26rem),#000}body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.035;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px 256px}.page{min-height:100vh;display:flex;flex-direction:column}.topline{border-bottom:1px solid var(--line);background:#000}.topline-inner{max-width:1240px;margin:0 auto;min-height:48px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font:900 14px/1 var(--display);letter-spacing:.02em;text-transform:uppercase}.brand span{color:var(--pink);font-style:italic;text-transform:none}.navnote{font-size:11px;color:var(--gray);letter-spacing:.16em;text-transform:uppercase}.ticker{border-bottom:1px solid var(--line-pink);background:linear-gradient(90deg,rgba(255,59,110,.30),rgba(0,0,0,.92),rgba(255,59,110,.18));color:var(--white);font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;text-align:center;padding:9px 16px}.ticker strong{color:var(--pink-bright)}.timerbar{border-bottom:1px solid var(--line);background:#050505}.timerbar-inner{max-width:1240px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;justify-content:center;gap:13px;flex-wrap:wrap}.timer-label{font-size:11px;color:var(--gray);font-weight:900;letter-spacing:.16em;text-transform:uppercase}.countdown{display:flex;gap:7px;align-items:center}.timebox{min-width:54px;padding:7px 8px;border:1px solid var(--line-pink);background:rgba(255,59,110,.10);text-align:center}.num{display:block;color:var(--white);font:900 20px/.85 var(--display);letter-spacing:-.04em}.unit{display:block;margin-top:4px;color:var(--pink-bright);font-size:8px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.hero{flex:1;display:grid;align-items:center;padding:22px 22px 22px;min-height:calc(100vh - 128px)}.hero-grid{width:min(1240px,100%);margin:0 auto;display:grid;grid-template-columns:minmax(300px,410px) minmax(200px,1fr) minmax(330px,380px);gap:18px;align-items:start}.visual{padding-top:0;min-width:0;justify-self:center}.copy{min-width:0;position:relative;z-index:1;overflow-wrap:break-word;word-break:break-word}.eyebrow{display:inline-flex;gap:10px;align-items:center;flex-wrap:wrap;max-width:100%;margin-bottom:12px;font-size:12px;line-height:1.35;letter-spacing:.18em;text-transform:uppercase;font-weight:900;color:var(--pink-bright)}.dot{width:8px;height:8px;background:var(--pink);border-radius:999px;box-shadow:0 0 30px rgba(255,59,110,.9)}h1{font-family:var(--display);font-weight:900;font-size:clamp(36px,3.8vw,54px);line-height:1;letter-spacing:-.07em;text-transform:uppercase;max-width:100%;margin-bottom:14px;color:var(--white);text-wrap:balance}h1 em{font-style:normal;color:var(--pink);text-shadow:0 0 44px rgba(255,59,110,.38)}.lede{font-size:clamp(17px,2vw,23px);line-height:1.3;max-width:720px;color:var(--off-white);margin-bottom:14px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 16px}.chip{border:1px solid var(--line-strong);background:rgba(255,255,255,.035);padding:8px 10px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--gray);font-weight:900}.chip.hot{border-color:var(--line-pink);color:var(--pink-bright);background:var(--pink-soft)}.iba-square{position:relative;width:min(410px,100%);aspect-ratio:1149/1369;border:2px solid var(--pink);background:linear-gradient(135deg,rgba(255,59,110,.30),rgba(0,0,0,.92) 55%,rgba(255,59,110,.12));display:grid;place-items:center;padding:10px;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 24px 80px rgba(255,59,110,.22);overflow:hidden}.iba-square:before{content:"";position:absolute;inset:10px;border:1px solid rgba(255,255,255,.12);pointer-events:none}.iba-square img{width:100%;height:100%;object-fit:contain;object-position:center;position:relative;z-index:1}.waitlist{border:1px solid var(--line-pink);background:linear-gradient(180deg,rgba(255,59,110,.11),rgba(8,8,8,.96));box-shadow:0 28px 90px rgba(0,0,0,.48);padding:24px;position:relative;z-index:2;min-width:0}.waitlist-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}.label{font-size:11px;text-transform:uppercase;letter-spacing:.16em;font-weight:900;color:var(--pink-bright);margin-bottom:8px}.waitlist h2{font-family:var(--display);font-size:30px;line-height:.98;letter-spacing:-.045em;text-transform:uppercase;color:var(--white)}.date{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--gold-bright);white-space:nowrap}.promise{border:1px solid var(--line-strong);background:rgba(255,255,255,.035);padding:12px;color:var(--gray);font-size:14px;line-height:1.38;margin:0 0 14px}.promise b{color:var(--white)}.form{display:grid;gap:9px}.input{width:100%;padding:13px 14px;background:#050505;border:1px solid var(--line-strong);color:var(--white);font-size:16px;outline:none}.input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,59,110,.12)}.input::placeholder{color:#666}.btn{width:100%;padding:15px;border:0;background:var(--pink);color:#fff;font-weight:900;font-size:15px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 50px rgba(255,59,110,.22)}.btn:hover{background:var(--pink-bright)}.btn:disabled{opacity:.6;cursor:not-allowed}.micro{font-size:11px;color:var(--gray-dim);line-height:1.45;margin-top:9px}.success{display:none;border:1px solid var(--pink);background:rgba(255,59,110,.10);padding:24px;text-align:center}.success h3{font-family:var(--display);font-size:32px;line-height:1;color:var(--pink-bright);text-transform:uppercase;margin-bottom:10px}.success p{color:var(--gray);font-size:14px}.success a{color:var(--pink-bright);border-bottom:1px solid rgba(255,59,110,.5);font-weight:800}.credentials{border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(0,0,0,.96));padding:54px 22px 58px}.credentials-inner{max-width:1240px;margin:0 auto}.section-kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:900;color:var(--pink-bright);margin-bottom:12px}.credentials h2{font-family:var(--display);font-size:clamp(34px,4.8vw,64px);line-height:.92;letter-spacing:-.06em;text-transform:uppercase;max-width:940px;margin-bottom:14px}.credentials h2 em{font-style:normal;color:var(--pink)}.credentials-intro{max-width:860px;color:var(--gray);font-size:17px;line-height:1.55;margin-bottom:22px}.operator-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0 14px}.operator-card{border:1px solid var(--line-strong);background:rgba(255,255,255,.035);padding:22px;min-height:420px}.operator-topline{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:var(--pink-bright);margin-bottom:10px}.operator-card h3{font-family:var(--display);font-size:clamp(34px,4vw,54px);line-height:.9;letter-spacing:-.055em;text-transform:uppercase;margin-bottom:12px}.operator-summary{color:var(--off-white);font-size:16px;line-height:1.45;margin-bottom:16px}.case-list{display:grid;gap:10px}.case-item{border:1px solid var(--line-strong);background:rgba(0,0,0,.28);padding:13px}.case-item b{display:block;color:var(--white);font-family:var(--display);font-size:18px;line-height:1.05;letter-spacing:-.025em;margin-bottom:7px}.case-item span{display:block;color:var(--gray);font-size:14px;line-height:1.44}.result-strip{display:flex;gap:7px;flex-wrap:wrap;margin:2px 0 14px;position:relative;z-index:1}.result-strip span{border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);padding:7px 9px;color:var(--white);font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.compact-creds{grid-template-columns:1fr 1fr}.cred-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.cred-card{border:1px solid var(--line-strong);background:rgba(255,255,255,.035);padding:18px;min-height:0}.cred-card b{display:block;font-family:var(--display);font-size:22px;line-height:1.02;letter-spacing:-.035em;color:var(--white);margin-bottom:9px}.cred-card span{display:block;color:var(--pink-bright);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}.cred-card p{color:var(--gray);font-size:14px;line-height:1.45}.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}.proof-card{border:1px solid var(--line-strong);background:rgba(255,255,255,.035);padding:16px}.proof-card b{display:block;color:var(--white);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}.proof-card p{color:var(--gray);font-size:14px;line-height:1.45}.proof-link{display:inline-flex;align-items:center;justify-content:center;margin-top:10px;padding:13px 16px;background:var(--pink);color:#fff!important;font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 18px 50px rgba(255,59,110,.22)}.proof-link:hover{background:var(--pink-bright)}@media(max-width:900px){.operator-grid{grid-template-columns:1fr}.cred-grid,.proof-grid,.compact-creds{grid-template-columns:1fr 1fr}}@media(max-width:620px){.credentials{padding:40px 16px}.operator-card{padding:18px;min-height:auto}.cred-grid,.proof-grid,.compact-creds{grid-template-columns:1fr}.credentials h2{font-size:38px}}.footer{border-top:1px solid var(--line);padding:18px 22px;color:var(--gray-dim);font-size:11px}.footer-inner{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer a{color:var(--gray)}@media(max-width:1240px){.hero-grid{grid-template-columns:1fr 1fr;gap:22px}.visual{max-width:360px;justify-self:center}.copy{min-width:0}.waitlist{grid-column:1/-1;max-width:680px;width:100%;justify-self:center}}
-@media(max-width:1080px){.hero{align-items:start;min-height:0;padding-top:24px}.hero-grid{grid-template-columns:1fr}.copy{order:1}.visual{order:2;max-width:520px;width:100%;justify-self:center}.waitlist{order:3;max-width:680px;width:100%;justify-self:center}.iba-square{width:min(420px,100%);margin:0 auto}}@media(max-width:620px){.visual{padding-top:0}.topline-inner{align-items:flex-start;flex-direction:column;padding:14px 16px;min-height:0}.navnote{font-size:10px}.ticker{font-size:10px;line-height:1.4}.timerbar-inner{justify-content:flex-start;padding:8px 16px}.hero{padding:22px 16px 24px}h1{font-size:35px;line-height:.95;letter-spacing:-.055em}.mobile-line{display:block}.chips{margin:12px 0} .iba-square{width:min(360px,100%)}.waitlist{padding:20px}.waitlist-head{flex-direction:column}.date{white-space:normal}}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+html {
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(212,175,55,0.08), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(0,229,255,0.04), transparent 55%),
+    var(--bg-0);
+  overflow-x: hidden;
+}
+
+/* ─── Global scan-line overlay ───────────────────────── */
+.scanlines {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.018) 0px,
+    rgba(255,255,255,0.018) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: screen;
+}
+.grain {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 51;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+}
+
+/* ─── Type ───────────────────────────────────────────── */
+.display {
+  font-family: var(--f-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+.data {
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.body { font-family: var(--f-body); }
+
+a { color: inherit; }
+
+/* ─── Layout ────────────────────────────────────────── */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ─── Status pill ────────────────────────────────────── */
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px 6px 10px;
+  border: 1px solid var(--line-2);
+  background: rgba(74, 222, 128, 0.06);
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.status-pill::before {
+  content: "";
+  width: 7px; height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* ─── Header ─────────────────────────────────────────── */
+.header {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(7,7,7,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+  gap: 24px;
+}
+.brand {
+  display: inline-flex; align-items: baseline; gap: 12px;
+  text-decoration: none;
+}
+.brand-mark {
+  font-family: var(--f-display);
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.brand-meta {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.brand-meta .sep { color: var(--gold-dim); margin: 0 8px; }
+.header-nav {
+  display: flex; align-items: center; gap: 22px;
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.header-nav a { color: var(--text-2); text-decoration: none; }
+.header-nav a:hover { color: var(--gold); }
+@media (max-width: 900px) { .header-nav { display: none; } }
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero {
+  padding: 56px 0 32px;
+  position: relative;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 1.4fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
+
+/* Avatar frame — HUD parallelogram */
+.avatar-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--bg-1);
+  clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 36px 100%, 0 calc(100% - 36px));
+  overflow: hidden;
+  border: 1px solid var(--gold-dim);
+}
+.avatar-stripes {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(45deg,
+      rgba(212,175,55,0.08) 0px,
+      rgba(212,175,55,0.08) 2px,
+      transparent 2px,
+      transparent 14px),
+    linear-gradient(180deg, var(--bg-2), var(--bg-0));
+}
+.avatar-scan {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0,229,255,0.05) 0px,
+    rgba(0,229,255,0.05) 1px,
+    transparent 1px,
+    transparent 4px);
+  pointer-events: none;
+}
+.avatar-mono {
+  position: absolute;
+  inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--f-display);
+  font-size: clamp(80px, 14vw, 220px);
+  color: var(--gold);
+  text-shadow: 0 0 60px rgba(212,175,55,0.55), 0 0 12px rgba(212,175,55,0.5);
+  letter-spacing: -0.02em;
+}
+.avatar-mono .slash {
+  color: var(--cyan);
+  text-shadow: 0 0 40px rgba(0,229,255,0.6);
+}
+.avatar-hud {
+  position: absolute;
+  left: 16px; bottom: 16px; right: 16px;
+  display: flex; align-items: end; justify-content: space-between;
+  pointer-events: none;
+}
+.avatar-meter {
+  display: flex; align-items: end; gap: 3px; height: 36px;
+}
+.avatar-meter span {
+  width: 4px;
+  background: var(--gold);
+  opacity: 0.6;
+  animation: bar 1.2s ease-in-out infinite;
+}
+.avatar-meter span:nth-child(2) { animation-delay: 0.1s; background: var(--gold-bright); }
+.avatar-meter span:nth-child(3) { animation-delay: 0.2s; }
+.avatar-meter span:nth-child(4) { animation-delay: 0.3s; background: var(--cyan); }
+.avatar-meter span:nth-child(5) { animation-delay: 0.4s; }
+.avatar-meter span:nth-child(6) { animation-delay: 0.5s; background: var(--gold-bright); }
+.avatar-meter span:nth-child(7) { animation-delay: 0.6s; }
+.avatar-meter span:nth-child(8) { animation-delay: 0.7s; background: var(--cyan); }
+@keyframes bar {
+  0%, 100% { height: 6px; }
+  50% { height: 36px; }
+}
+.avatar-tag {
+  font-family: var(--f-data);
+  font-size: 9px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  text-align: right;
+  line-height: 1.5;
+}
+.avatar-tag .gold { color: var(--gold); }
+
+.avatar-corner {
+  position: absolute;
+  top: 12px; left: 12px;
+  font-family: var(--f-data);
+  font-size: 9px; letter-spacing: 0.22em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.avatar-corner-r {
+  position: absolute;
+  top: 12px; right: 48px;
+  font-family: var(--f-data);
+  font-size: 9px; letter-spacing: 0.22em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+/* Hero text */
+.hero-eyebrow {
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-h1 {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(56px, 8vw, 124px);
+  line-height: 0.88;
+  letter-spacing: 0.002em;
+  text-transform: uppercase;
+  margin: 0 0 28px;
+  color: var(--text);
+}
+.hero-h1 .gold { color: var(--gold); }
+.hero-h1 .cyan { color: var(--cyan); }
+.hero-h1 .stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--gold);
+}
+.hero-tagline {
+  font-family: var(--f-body);
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.55;
+  color: var(--text-2);
+  max-width: 62ch;
+  margin: 0 0 36px;
+}
+.hero-tagline strong { color: var(--text); font-weight: 600; }
+.hero-tagline em { color: var(--gold); font-style: normal; }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 36px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.hero-stat {
+  padding: 18px 16px;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-family: var(--f-display);
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1;
+  color: var(--gold);
+}
+.hero-stat-label {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.hero-stat-idx {
+  font-family: var(--f-data);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
+.hero-ctas {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  align-items: center;
+}
+
+/* ─── Buttons ───────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px;
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary {
+  background: var(--gold);
+  color: #0b0b0b;
+  border-color: var(--gold);
+}
+.btn-primary:hover { background: var(--gold-bright); border-color: var(--gold-bright); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line-2);
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.btn .arrow { display: inline-block; transform: translateY(-1px); }
+
+/* ─── Ticker ─────────────────────────────────────────── */
+.ticker {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+  padding: 14px 0;
+  overflow: hidden;
+  margin-top: 36px;
+}
+.ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ticker 60s linear infinite;
+  font-family: var(--f-data);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.ticker-track > span {
+  padding: 0 28px;
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.ticker-track .dot {
+  width: 6px; height: 6px; background: var(--gold);
+  display: inline-block;
+}
+.ticker-track .dot.cyan { background: var(--cyan); }
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Section frame ──────────────────────────────────── */
+.section {
+  padding: 88px 0;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+.sec-tag {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sec-tag::before {
+  content: ""; width: 24px; height: 1px; background: var(--gold);
+  display: inline-block;
+}
+.sec-title {
+  font-family: var(--f-display);
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 0.95;
+  letter-spacing: 0.002em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  color: var(--text);
+}
+.sec-title .gold { color: var(--gold); }
+.sec-title .cyan { color: var(--cyan); }
+.sec-title .stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--gold);
+}
+.sec-intro {
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text-2);
+  max-width: 70ch;
+  margin: 0 0 48px;
+}
+.sec-head-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 56px;
+}
+.sec-head-row p {
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 50ch;
+}
+@media (max-width: 800px) { .sec-head-row { grid-template-columns: 1fr; } }
+
+/* ─── §000 The Compounding ──────────────────────────── */
+.compounding-layers {
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ gap: 1px;
+ background: var(--line);
+ border: 1px solid var(--line);
+ margin-bottom: 40px;
+}
+@media (max-width: 1000px) { .compounding-layers { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .compounding-layers { grid-template-columns: 1fr; } }
+
+.compounding-layer {
+ background: var(--bg-1);
+ padding: 32px 24px;
+ position: relative;
+ transition: all 0.25s ease;
+ min-height: 260px;
+ display: flex;
+ flex-direction: column;
+}
+.compounding-layer::before {
+ content: '';
+ position: absolute;
+ top: 0; left: 0; right: 0;
+ height: 2px;
+ background: var(--line-2);
+ transition: background 0.25s ease;
+}
+.compounding-layer.active {
+ background: var(--bg-2);
+}
+.compounding-layer.active::before {
+ background: var(--gold);
+}
+.compounding-layer.dim {
+ opacity: 0.45;
+}
+
+.compounding-layer-num {
+ font-family: var(--f-data);
+ font-size: 11px;
+ letter-spacing: 0.18em;
+ text-transform: uppercase;
+ color: var(--text-3);
+ margin-bottom: 20px;
+}
+.compounding-layer-num .micro {
+ margin-left: 8px;
+ font-size: 10px;
+ color: var(--gold-dim);
+}
+
+.compounding-layer-title {
+ font-family: var(--f-display);
+ font-size: 26px;
+ line-height: 1.15;
+ color: var(--text);
+ margin: 0 0 16px 0;
+ letter-spacing: 0.02em;
+ transition: color 0.2s ease;
+}
+.compounding-layer-title.gold { color: var(--gold); }
+.compounding-layer-title.cyan { color: var(--cyan); }
+.compounding-layer.active .compounding-layer-title.gold { color: var(--gold-bright); }
+.compounding-layer.active .compounding-layer-title.cyan { color: var(--cyan); }
+
+.compounding-layer-body {
+ font-family: var(--f-body);
+ font-size: 14px;
+ line-height: 1.6;
+ color: var(--text-2);
+ margin: 0;
+ flex: 1;
+}
+
+.compounding-thesis {
+ text-align: center;
+ padding: 32px 0 0;
+ font-family: var(--f-data);
+}
+.compounding-thesis-bracket {
+ color: var(--text-3);
+ font-size: 22px;
+ vertical-align: middle;
+}
+.compounding-thesis-text {
+ font-size: 13px;
+ letter-spacing: 0.04em;
+ color: var(--text-2);
+ line-height: 1.7;
+ max-width: 68ch;
+ display: inline-block;
+ vertical-align: middle;
+}
+.compounding-layer.active ~ .compounding-thesis .compounding-thesis-text {
+ color: var(--text);
+}
+
+/* ─── 9 Capabilities grid ───────────────────────────── */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+@media (max-width: 900px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .cap-grid { grid-template-columns: 1fr; } }
+
+.cap-cell {
+  background: var(--bg-1);
+  padding: 28px 24px 28px;
+  position: relative;
+  display: flex; flex-direction: column;
+  min-height: 280px;
+  transition: background 0.2s ease;
+}
+.cap-cell:hover { background: var(--bg-2); }
+.cap-cell:hover .cap-num { color: var(--gold-bright); }
+
+.cap-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 18px;
+}
+.cap-num {
+  font-family: var(--f-display);
+  font-size: 42px;
+  line-height: 1;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+.cap-tag {
+  font-family: var(--f-data);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid var(--cyan-dim);
+}
+.cap-title {
+  font-family: var(--f-display);
+  font-size: 24px;
+  line-height: 1.04;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+.cap-desc {
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+  margin: 0 0 18px;
+}
+.cap-exec {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line-2);
+  font-family: var(--f-data);
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cap-exec strong { color: var(--gold); font-weight: 400; }
+
+/* ─── The Fight ─────────────────────────────────────── */
+.fight {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 16px;
+}
+@media (max-width: 900px) { .fight { grid-template-columns: 1fr; } }
+
+.fight-col {
+  border: 1px solid var(--line);
+  background: var(--bg-1);
+  padding: 32px;
+}
+.fight-col.win {
+  border-color: var(--gold-dim);
+  background:
+    linear-gradient(180deg, rgba(212,175,55,0.05), transparent 70%),
+    var(--bg-1);
+}
+.fight-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.fight-name {
+  font-family: var(--f-display);
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.fight-col.win .fight-name { color: var(--gold); }
+.fight-pill {
+  font-family: var(--f-data);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 1px solid var(--line-2);
+}
+.fight-col.win .fight-pill {
+  color: var(--gold);
+  border-color: var(--gold-dim);
+}
+
+.fight-list { list-style: none; padding: 0; margin: 0; }
+.fight-list li {
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text-2);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.fight-list li:last-child { border-bottom: none; }
+.fight-list li::before {
+  content: "×";
+  color: var(--red);
+  font-family: var(--f-data);
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+.fight-col.win .fight-list li::before { content: "→"; color: var(--gold); }
+.fight-list li strong { color: var(--text); font-weight: 600; }
+
+.fight-comp {
+  margin-top: 24px;
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  line-height: 1.6;
+}
+.fight-comp .sum {
+  color: var(--text);
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.fight-col.win .fight-comp .sum { color: var(--gold); }
+
+/* ─── How It Works ──────────────────────────────────── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) { .steps { grid-template-columns: 1fr; } }
+.step {
+  padding: 32px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.step:last-child { border-right: none; }
+@media (max-width: 900px) {
+  .step { border-right: none; border-bottom: 1px solid var(--line); }
+  .step:last-child { border-bottom: none; }
+}
+.step-idx {
+  font-family: var(--f-display);
+  font-size: 72px;
+  line-height: 0.9;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  margin-bottom: 18px;
+  display: flex; align-items: baseline; gap: 14px;
+}
+.step-idx .micro {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.step-title {
+  font-family: var(--f-display);
+  font-size: 24px;
+  line-height: 1.04;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.step-desc {
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+.step-desc code {
+  background: var(--bg-2);
+  color: var(--cyan);
+  padding: 1px 6px;
+  font-family: var(--f-data);
+  font-size: 12px;
+}
+
+.terminal {
+  margin-top: 56px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  font-family: var(--f-data);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.terminal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.terminal-head .live {
+  color: var(--green);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.terminal-head .live::before {
+  content: "";
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 1.6s infinite;
+}
+.terminal-body {
+  padding: 22px 24px;
+  min-height: 280px;
+  color: var(--text-2);
+}
+.terminal-body .line { display: block; min-height: 1.7em; }
+.terminal-body .gold { color: var(--gold); }
+.terminal-body .cyan { color: var(--cyan); }
+.terminal-body .green { color: var(--green); }
+.terminal-body .dim { color: var(--text-3); }
+.terminal-body .rule {
+  display: block;
+  border-top: 1px dashed var(--line-2);
+  margin: 8px 0;
+  height: 1px;
+}
+.terminal-cursor {
+  display: inline-block;
+  width: 8px; height: 14px;
+  background: var(--gold);
+  vertical-align: -2px;
+  animation: cursor 0.9s steps(2) infinite;
+}
+@keyframes cursor { 50% { opacity: 0; } }
+
+/* ─── Founding 100 ──────────────────────────────────── */
+.founding {
+  background: var(--bg-1);
+  border-top: 1px solid var(--gold-dim);
+  border-bottom: 1px solid var(--gold-dim);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+.founding::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(135deg,
+    rgba(212,175,55,0.03) 0,
+    rgba(212,175,55,0.03) 2px,
+    transparent 2px,
+    transparent 20px);
+  pointer-events: none;
+}
+.founding-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 56px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) { .founding-grid { grid-template-columns: 1fr; } }
+
+.founding-tag {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.founding-display {
+  font-family: var(--f-display);
+  font-size: clamp(80px, 12vw, 180px);
+  line-height: 0.86;
+  letter-spacing: 0.002em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 24px;
+}
+.founding-display .gold { color: var(--gold); }
+.founding-display .num {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--gold);
+  font-size: 1.05em;
+}
+
+.founding-counter {
+  display: flex; align-items: baseline; gap: 14px;
+  margin: 28px 0 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--gold-dim);
+  border-bottom: 1px solid var(--gold-dim);
+}
+.founding-counter .filled {
+  font-family: var(--f-display);
+  font-size: 56px; line-height: 1;
+  color: var(--gold);
+}
+.founding-counter .of {
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.founding-counter .bar {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-2);
+  position: relative;
+  overflow: hidden;
+}
+.founding-counter .bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--gold);
+  width: 27%;
+}
+
+.founding-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.founding-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-body);
+  font-size: 14px;
+  color: var(--text-2);
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.founding-list li:last-child { border-bottom: none; }
+.founding-list .marker {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+}
+.founding-list strong { color: var(--text); font-weight: 600; }
+
+/* ─── Pricing ────────────────────────────────────────── */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+@media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
+.tier {
+  background: var(--bg-1);
+  padding: 36px 28px 32px;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.tier.featured {
+  background:
+    linear-gradient(180deg, rgba(212,175,55,0.08), transparent 60%),
+    var(--bg-1);
+}
+.tier-badge {
+  position: absolute; top: 0; right: 0;
+  background: var(--gold);
+  color: #0b0b0b;
+  font-family: var(--f-data);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+.tier-name {
+  font-family: var(--f-display);
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.tier-sub {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 24px;
+}
+.tier-price {
+  display: flex; align-items: baseline; gap: 6px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.tier-price .amt {
+  font-family: var(--f-display);
+  font-size: 64px;
+  line-height: 0.9;
+  color: var(--gold);
+}
+.tier-price .per {
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+.tier-feats {
+  list-style: none; padding: 0; margin: 0 0 28px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.tier-feats li {
+  font-family: var(--f-body);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-2);
+  padding-left: 18px;
+  position: relative;
+}
+.tier-feats li::before {
+  content: "+";
+  position: absolute; left: 0; top: 0;
+  color: var(--gold);
+  font-family: var(--f-data);
+}
+.tier-feats li.head {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-left: 0;
+  padding-top: 6px;
+  margin-top: 6px;
+  border-top: 1px dashed var(--line-2);
+}
+.tier-feats li.head::before { display: none; }
+
+.tier-cta {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ─── Chat ───────────────────────────────────────────── */
+.chat-section {
+  background:
+    radial-gradient(800px 600px at 50% 0%, rgba(212,175,55,0.06), transparent 60%),
+    var(--bg-0);
+}
+.chat-wrap {
+  border: 1px solid var(--gold-dim);
+  background: var(--bg-1);
+  padding: 0;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.chat-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.chat-head-left {
+  display: flex; align-items: center; gap: 14px;
+}
+.chat-avatar {
+  width: 36px; height: 36px;
+  background: var(--bg-0);
+  border: 1px solid var(--gold);
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  display: grid; place-items: center;
+  font-family: var(--f-display);
+  font-size: 16px;
+  color: var(--gold);
+}
+.chat-name {
+  font-family: var(--f-display);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.chat-name .slash { color: var(--gold-dim); margin: 0 6px; }
+.chat-name .role {
+  font-family: var(--f-data);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--text-3);
+}
+
+.chat-body {
+  padding: 24px;
+  min-height: 380px;
+  max-height: 520px;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 16px;
+  font-family: var(--f-body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.chat-body::-webkit-scrollbar { width: 8px; }
+.chat-body::-webkit-scrollbar-track { background: var(--bg-1); }
+.chat-body::-webkit-scrollbar-thumb { background: var(--line-2); }
+
+.msg {
+  max-width: 78%;
+  padding: 12px 16px;
+  border: 1px solid;
+  position: relative;
+}
+.msg.agent {
+  border-color: var(--gold-dim);
+  background: rgba(212,175,55,0.04);
+  align-self: flex-start;
+  color: var(--text);
+}
+.msg.user {
+  border-color: var(--cyan-dim);
+  background: rgba(0,229,255,0.04);
+  align-self: flex-end;
+  color: var(--text);
+}
+.msg .who {
+  display: block;
+  font-family: var(--f-data);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.msg.agent .who { color: var(--gold); }
+.msg.user .who { color: var(--cyan); }
+.msg p { margin: 0 0 8px; }
+.msg p:last-child { margin-bottom: 0; }
+.msg .sign {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--gold-dim);
+}
+
+.typing {
+  display: inline-flex; gap: 4px; padding: 4px 0;
+}
+.typing span {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: typing 1.2s ease-in-out infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.15s; }
+.typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typing {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+.chat-quick {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 12px 24px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+}
+.chat-quick button {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid var(--line-2);
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.chat-quick button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.chat-input {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.chat-input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 18px 22px;
+  font-family: var(--f-body);
+  font-size: 15px;
+  color: var(--text);
+}
+.chat-input input::placeholder { color: var(--text-3); }
+.chat-input button {
+  background: var(--gold);
+  color: #0b0b0b;
+  border: none;
+  padding: 0 28px;
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.chat-input button:hover { background: var(--gold-bright); }
+.chat-input button:disabled {
+  background: var(--bg-3);
+  color: var(--text-3);
+  cursor: not-allowed;
+}
+
+/* ─── FAQ ────────────────────────────────────────────── */
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+.faq-q {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 22px 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  cursor: pointer;
+  color: var(--text);
+  font-family: var(--f-display);
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.faq-q:hover { color: var(--gold); }
+.faq-q .plus {
+  font-family: var(--f-data);
+  font-size: 22px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+.faq-item.open .faq-q .plus { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.faq-item.open .faq-a { max-height: 600px; }
+.faq-a-inner {
+  padding: 0 0 24px;
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 80ch;
+}
+
+/* ─── Deploy CTA strip ──────────────────────────────── */
+.deploy {
+  padding: 100px 0;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.deploy-tag {
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.deploy-title {
+  font-family: var(--f-display);
+  font-size: clamp(56px, 8vw, 120px);
+  line-height: 0.92;
+  letter-spacing: 0.002em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  color: var(--text);
+}
+.deploy-title .gold { color: var(--gold); }
+.deploy-title .stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--gold);
+}
+.deploy-sub {
+  font-family: var(--f-body);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-2);
+  max-width: 60ch;
+  margin: 0 auto 36px;
+}
+.deploy-ctas {
+  display: inline-flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+}
+
+/* ─── Footer ─────────────────────────────────────────── */
+.footer {
+  background: var(--bg-1);
+  border-top: 1px solid var(--line);
+  padding: 56px 0 32px;
+}
+.footer-display {
+  font-family: var(--f-display);
+  font-size: clamp(56px, 10vw, 144px);
+  line-height: 0.88;
+  letter-spacing: 0.002em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 36px;
+}
+.footer-display .gold { color: var(--gold); }
+.footer-meta {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.footer-meta a { color: var(--text-2); text-decoration: none; }
+.footer-meta a:hover { color: var(--gold); }
+.footer-meta .sep { color: var(--gold-dim); margin: 0 10px; }
+
 </style>
-<script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('phx_QjmZYZzAVyZzYXQkK5BVggNhdLJFeu2peVHX8nYU7V9nUaWC',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only'});
-</script>
 </head>
-<body>
-<div class="page">
-  <header class="topline">
-    <div class="topline-inner">
-      <a class="brand" href="/">Icon Breaking <span>× Aggie</span></a>
-      <div class="navnote">Release strategy · music industry masterclass</div>
+<body data-screen-label="IconAgents — Landing v2">
+<div class="scanlines"></div>
+<div class="grain"></div>
+
+<!-- ═════ HEADER ═════ -->
+<header class="header">
+  <div class="wrap header-row">
+    <a href="#top" class="brand">
+      <span class="brand-mark">IconAgents</span>
+      <span class="brand-meta">
+        // Music Business Intelligence
+        <span class="sep">·</span>
+        v.26.05
+      </span>
+    </a>
+ <nav class="header-nav">
+ <a href="#compounding">The Compounding</a>
+ <a href="#capabilities">Capabilities</a>
+ <a href="#fight">The Fight</a>
+ <a href="#how">How</a>
+ <a href="#founding">Founding 100</a>
+ <a href="#pricing">Pricing</a>
+ <a href="#chat">Chat</a>
+ </nav>
+    <span class="status-pill">Agent Online</span>
+  </div>
+</header>
+
+<!-- ═════ HERO ═════ -->
+<section class="hero wrap" id="top">
+  <div class="hero-grid">
+    <!-- Avatar HUD -->
+    <div class="avatar-frame">
+      <div class="avatar-stripes"></div>
+      <div class="avatar-scan"></div>
+      <div class="avatar-corner">// AGENT.PORTRAIT</div>
+      <div class="avatar-corner-r">ξ-3 / KEYZ</div>
+      <div class="avatar-mono">
+        IA<span class="slash">/</span>
+      </div>
+      <div class="avatar-hud">
+        <div class="avatar-meter">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="avatar-tag">
+          <span class="gold">KEYZ // THE PRODUCER</span><br/>
+          MUSIC BUSINESS CONSULTANT<br/>
+          24/7 · 360° · ∞
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="ticker"><strong>LIVE WEBINAR</strong> / June 4 · 7PM ET / Achieving Icon Status: For Artists, Executives, Labels, and Investors.</div>
-  <div class="timerbar" aria-label="Countdown to the live webinar">
-    <div class="timerbar-inner">
-      <div class="timer-label">Starts in</div>
-      <div class="countdown" id="countdown">
-        <div class="timebox"><span class="num" id="days">--</span><span class="unit">Days</span></div>
-        <div class="timebox"><span class="num" id="hours">--</span><span class="unit">Hours</span></div>
-        <div class="timebox"><span class="num" id="minutes">--</span><span class="unit">Min</span></div>
-        <div class="timebox"><span class="num" id="seconds">--</span><span class="unit">Sec</span></div>
+
+    <!-- Hero text -->
+    <div>
+      <div class="hero-eyebrow">// NEXT-GEN MUSIC BUSINESS EXECUTION</div>
+      <h1 class="hero-h1">
+        Your music biz<br/>
+        <span class="gold">co-pilot.</span><br/>
+        <span class="stroke">Autonomous.</span>
+      </h1>
+      <p class="hero-tagline">
+        Powered by the real-world expertise of <strong>Keyz the Producer</strong> — Music Business Consultant, brand architect, revenue strategist. Your AI agent stack turns music into a <em>profitable, legally protected, market-ready business.</em> Under your brand. 24/7. The industry has chatbots. <strong>IconAgents has an army.</strong>
+      </p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-idx">// 01</div>
+          <div class="hero-stat-num">360°</div>
+          <div class="hero-stat-label">Business Coverage</div>
+        </div>
+ <div class="hero-stat">
+ <div class="hero-stat-idx">// 02</div>
+ <div class="hero-stat-num">1.01<sup style="font-size:0.4em;color:var(--cyan)">365</sup></div>
+ <div class="hero-stat-label">Daily Compound Rate</div>
+ </div>
+        <div class="hero-stat">
+          <div class="hero-stat-idx">// 03</div>
+          <div class="hero-stat-num">∞</div>
+          <div class="hero-stat-label">Industry Knowledge</div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#chat" class="btn btn-primary">Talk to IconAgents <span class="arrow">→</span></a>
+        <a href="#capabilities" class="btn btn-ghost">Explore capabilities</a>
       </div>
     </div>
   </div>
+</section>
 
-  <main class="hero">
-    <section class="hero-grid" aria-label="Icon Breaking Agency release strategy masterclass signup">
-      <div class="visual">
-        <div class="iba-square" aria-label="Icon Breaking Agency powered by Aggie visual">
-          <img src="assets/event/iba.png" alt="Icon Breaking Agency powered by Aggie release strategy masterclass visual">
-        </div>
+<!-- ═════ TICKER ═════ -->
+<div class="ticker">
+ <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- ═════ §000 — THE COMPOUNDING ═════ -->
+<section class="section" id="compounding">
+ <div class="wrap">
+ <div id="compounding-mount"></div>
+ </div>
+</section>
+
+<!-- ═════ §001 — 9 CAPABILITIES ═════ -->
+<section class="section" id="capabilities">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-tag">// §001 · AGENT CAPABILITIES</div>
+        <h2 class="sec-title">What IconAgents <span class="gold">delivers.</span></h2>
       </div>
+      <p>Nine capabilities. Faraji's taxonomy. Not marketing categories — the operational surface. Every section of the product, every pitch the agent sends, every receipt it logs descends from these nine.</p>
+    </div>
+    <div id="capabilities-mount"></div>
+  </div>
+</section>
 
-      <div class="copy">
-        <div class="eyebrow"><span class="dot"></span>Release strategy masterclass / powered by Aggie</div>
-        <h1><em><span class="mobile-line">Learn the Release</span> <span class="mobile-line">Strategy</span></em> <span class="mobile-line">Behind the Results.</span></h1>
-        <p class="lede">Learn the release strategy that has helped artists gain millions of fans, streams, and paid booked shows every month — then see the tools and how to leverage AI to handle the execution.</p>
-        <div class="chips" aria-label="Release strategy proof points">
-          <span class="chip hot">Release Strategy</span>
-          <span class="chip">Music Industry</span>
-          <span class="chip">Fans · Streams · Shows</span>
-        </div>
+<!-- ═════ §002 — THE FIGHT ═════ -->
+<section class="section" id="fight">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-tag">// §002 · COMPETITIVE LANDSCAPE</div>
+        <h2 class="sec-title">The field has chatbots.<br/><span class="gold">IconAgents has a finish line.</span></h2>
       </div>
+      <p>Music AI advises. SDR AI sells B2B SaaS. Distribution uploads tracks. Nobody serves music operators with an execution-native stack. Until now.</p>
+    </div>
+    <div id="fight-mount"></div>
+  </div>
+</section>
 
-      <aside class="waitlist" id="waitlist" aria-label="Join the waitlist">
-        <div class="waitlist-head"><div><div class="label">Register now</div><h2>Get June 4 access.</h2></div><div class="date">June 4 · 7PM ET</div></div>
-        <form class="form" id="waitlistForm" onsubmit="handleWaitlist(event)">
-          <input class="input" type="text" name="name" placeholder="Name" required autocomplete="name">
-          <input class="input" type="email" name="email" placeholder="Email" required autocomplete="email">
-          <input class="input" type="tel" name="phone" placeholder="Phone" autocomplete="tel">
-          <input class="input" type="text" name="social" placeholder="Social media account — IG, TikTok, YouTube, etc. (optional)" autocomplete="off">
-          <select class="input" name="role" required>
-            <option value="" disabled selected>Your role in music</option>
-            <option value="artist_creator">Artist / Creator</option>
-            <option value="manager_team">Manager / Team</option>
-            <option value="label_distributor">Label / Distributor</option>
-            <option value="ar_executive">A&amp;R / Music Executive</option>
-            <option value="producer_creative">Producer / Creative</option>
-            <option value="marketing_ops">Marketing / Operations</option>
-            <option value="other">Other</option>
-          </select>
-          <select class="input" name="window" required>
-            <option value="" disabled selected>Release window</option>
-            <option value="2_4_weeks">2–4 weeks out</option>
-            <option value="4_6_weeks">4–6 weeks out</option>
-            <option value="6_8_weeks">6–8 weeks out</option>
-            <option value="8_12_weeks">8–12 weeks out</option>
-            <option value="roster_campaign">Roster / campaign planning</option>
-            <option value="exploring">Exploring / no date yet</option>
-          </select>
-          <input class="input" type="text" name="links" placeholder="Links — Spotify, IG, website (optional)">
-          <button class="btn" type="submit" id="submitBtn">Register Now</button>
-        </form>
-        <p class="micro" id="microcopy">By submitting, you confirm you agree to receive communications from Icon Breaking Agency about this event, release strategy resources, reminders, and related offers. Msg/data rates may apply; unsubscribe or opt out anytime. Questions: <a href="mailto:judson@iconbreaking.com">judson@iconbreaking.com</a>.</p>
-        <div class="success" id="successBox">
-          <h3>You’re on the list.</h3>
-          <p>Registration received. We’ll send your June 4 access details, release-readiness scorecard, and reminders to the email you entered. Questions: judson@iconbreaking.com.</p>
-        </div>
-      </aside>
-    </section>
-  </main>
-
-
-  <section class="credentials" aria-label="Credentials and proof">
-    <div class="credentials-inner">
-      <div class="section-kicker">Credentials</div>
-      <h2>The strategy layer artists usually <em>miss.</em></h2>
-      <p class="credentials-intro">This is not a tools demo. Keyz The Producer and Max Gousse are the authority layer. Under that authority, IconBreaking is the strategy and revenue engine — the repeatable system behind hundreds of millions of streams and record sales — and Aggie is the execution layer that handles the follow-through once the strategy is clear.</p>
-      <div class="operator-grid">
-        <article class="operator-card max-card">
-          <div class="operator-topline">Music executive / A&amp;R / label builder</div>
-          <h3>Max Gousse</h3>
-          <p class="operator-summary">Public credits span major-label A&amp;R, artist development, soundtrack execution, and building Artistry Group / Artistry Records into a platform with label, management, publishing, film/TV, and merchandising arms.</p>
-          <div class="case-list">
-            <div class="case-item"><b>Beyoncé / Parkwood ecosystem</b><span>Public bio credits include Beyoncé album and soundtrack work, plus Parkwood / entertainment-platform advisory context across music, film, touring, merchandising, and brand partnerships.</span></div>
-            <div class="case-item"><b>B2K / You Got Served era</b><span>Executive producer and soundtrack-side proof around a youth-culture entertainment franchise that moved across music, film, and touring demand.</span></div>
-            <div class="case-item"><b>Artistry platform</b><span>Built a multi-vertical music company with a Republic/UMG joint venture and entertainment partnerships extending beyond record releases.</span></div>
-          </div>
-        </article>
-        <article class="operator-card">
-          <div class="operator-topline">Music executive / producer / label builder</div>
-          <h3>Keyz The Producer</h3>
-          <p class="operator-summary">Keyz The Producer brings the IBA operator lens: 15+ years across production, artist development, music marketing, release strategy, and campaign execution — creator credibility plus 50M+ stream-scale proof.</p>
-          <div class="case-list">
-            <div class="case-item"><b>Chris Brown / “Medusa” credit</b><span>Public bio material cites Keyz as producer/composer on Chris Brown’s “Medusa,” after building a 500+ song-and-track catalog across production, studio, and artist-development work.</span></div>
-            <div class="case-item"><b>2025: 50M+ streams</b><span>Across Keyz / IBA-associated work, 2025 streaming activity crossed 50M+ streams — commercial-scale proof beyond small artist-growth anecdotes.</span></div>
-            <div class="case-item"><b>Icon Breaking Agency / IBA</b><span>Founded IBA in 2018 as an entertainment branding and marketing agency, consulting independent artists, established artists, industry professionals, reality-TV talent, and actors.</span></div>
-          </div>
-        </article>
+<!-- ═════ §003 — HOW IT WORKS ═════ -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-tag">// §003 · EXECUTION PROTOCOL</div>
+        <h2 class="sec-title">Three steps. <span class="gold">Zero humans needed.</span></h2>
       </div>
-      <div class="operator-grid" aria-label="Team layers under Max and Keyz">
-        <article class="cred-card"><span>Strategy &amp; Revenue Engine</span><b>IconBreaking</b><p>Release strategy and revenue architecture from major-label and independent execution: A&amp;R positioning, artist development, rollout sequencing, campaign construction, and the business model behind the release.</p></article>
-        <article class="cred-card"><span>Execution Layer</span><b>Aggie</b><p>Audience Genomics / Aggie supplies the execution rail: workflow infrastructure, audience signal, fan capture, follow-up automation, and reporting once the strategy is set.</p></article>
+      <p>No new dashboard to learn. No agent to "prompt." You already use email. IconAgents lives there — BCC'd into every thread that should run itself.</p>
+    </div>
+    <div id="how-mount"></div>
+  </div>
+</section>
+
+<!-- ═════ §004 — FOUNDING 100 ═════ -->
+<section class="founding" id="founding">
+  <div id="founding-mount"></div>
+</section>
+
+<!-- ═════ §005 — PRICING ═════ -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-tag">// §005 · ENGAGEMENT TIERS</div>
+        <h2 class="sec-title">Pick your <span class="gold">firepower.</span></h2>
       </div>
-      <div class="proof-grid">
-        <article class="proof-card"><b>Who it is for</b><p>Artists, managers, labels, A&amp;Rs, producers, distributors, marketers, and music operators with campaigns to move.</p></article>
-        <article class="proof-card"><b>What gets sharper</b><p>Audience intelligence, content timing, fan capture, rollout ownership, and the signal the industry needs to understand the campaign.</p></article>
-        <article class="proof-card"><b>Register now</b><p>Bring your release window and see the strategy behind the results.</p><a class="proof-link" href="#waitlist">Register Now ↑</a></article>
+      <p>No credit system. No hidden fees. No rationing. You pay, IconAgents works. 5–50× cheaper than funded SDR competitors that don't serve music.</p>
+    </div>
+    <div id="pricing-mount"></div>
+    <p style="font-family:var(--f-data); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-3); margin-top:32px; text-align:center;">
+      // All three tiers available at founding pricing for the first 100 accounts. Rate locks permanently.
+    </p>
+  </div>
+</section>
+
+<!-- ═════ §006 — LIVE CHAT ═════ -->
+<section class="section chat-section">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-tag">// §006 · LIVE AGENT INTERFACE</div>
+        <h2 class="sec-title">Talk to <span class="gold">IconAgents.</span></h2>
+      </div>
+      <p>Don't scroll to a pricing table. Talk to the agent. It demonstrates value in real time — registration, sync, deals, releases. The agent IS the onboarding.</p>
+    </div>
+    <div id="chat-mount"></div>
+  </div>
+</section>
+
+<!-- ═════ §007 — FAQ ═════ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-tag">// §007 · FREQUENTLY ASKED</div>
+        <h2 class="sec-title">Frequently <span class="gold">asked.</span></h2>
+      </div>
+      <p>The questions we get on every intro call, in the order we get them.</p>
+    </div>
+    <div id="faq-mount"></div>
+  </div>
+</section>
+
+<!-- ═════ DEPLOY CTA ═════ -->
+<section class="deploy">
+  <div class="wrap">
+    <div class="deploy-tag">// READY TO DEPLOY?</div>
+    <h2 class="deploy-title">Stop pitching.<br/><span class="stroke">Start</span> <span class="gold">shipping.</span></h2>
+    <p class="deploy-sub">Your roster doesn't need another dashboard. It needs an agent that already sent the email.</p>
+    <div class="deploy-ctas">
+      <a href="#chat" class="btn btn-primary">Talk to IconAgents <span class="arrow">→</span></a>
+      <a href="mailto:faraji@iconbreaking.com?subject=IconAgents%20Founding%20100" class="btn btn-ghost">Claim a founder slot <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ FOOTER ═════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-display">Icon<span class="gold">/</span>Agents.</div>
+    <div class="footer-meta">
+      <div>
+        // Music Business Intelligence Agent
+        <span class="sep">·</span>
+        Built by Icon Breaking Agency
+      </div>
+      <div>
+        Powered by Audience Genomics
+        <span class="sep">·</span>
+        <a href="mailto:faraji@iconbreaking.com">faraji@iconbreaking.com</a>
+        <span class="sep">·</span>
+        © 2026 The Benford Group, LLC
       </div>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <footer class="footer"><div class="footer-inner"><div>© 2026 Icon Breaking Agency · Powered by Aggie</div><div><a href="mailto:judson@iconbreaking.com">judson@iconbreaking.com</a></div></div></footer>
-</div>
+<!-- ═════ Ticker content ═════ -->
 <script>
-var webinarTime = new Date('2026-06-04T19:00:00-04:00').getTime();
-function pad(n){ return String(n).padStart(2,'0'); }
-function tickCountdown(){
-  var diff = Math.max(0, webinarTime - Date.now());
-  var d = Math.floor(diff / 86400000);
-  var h = Math.floor((diff % 86400000) / 3600000);
-  var m = Math.floor((diff % 3600000) / 60000);
-  var s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('days').textContent = pad(d);
-  document.getElementById('hours').textContent = pad(h);
-  document.getElementById('minutes').textContent = pad(m);
-  document.getElementById('seconds').textContent = pad(s);
-}
-tickCountdown(); setInterval(tickCountdown,1000);
-function handleWaitlist(e){
-  e.preventDefault();
-  var form=document.getElementById('waitlistForm');
-  var btn=document.getElementById('submitBtn');
-  var micro=document.getElementById('microcopy');
-  var ok=document.getElementById('successBox');
-  var fd=new FormData(form);
-  btn.disabled=true; btn.textContent='Joining...';
-  fetch('https://themusicindustry.ai/intake/iba-june4',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone')||'',social:fd.get('social')||'',social_account:fd.get('social')||'',role:fd.get('role')||'',window:fd.get('window')||'',links:fd.get('links')||'',source:'iconbreaking-root-registration',event:'iba-june4',lane:'artist_intake',sop_ref:'IB-SOP-001',communications_consent:true,marketing_consent:true,consent_text:'By submitting, you confirm you agree to receive communications from Icon Breaking Agency about this event, release strategy resources, reminders, and related offers. Msg/data rates may apply; unsubscribe or opt out anytime.',consent_at:new Date().toISOString(),intake_email:'judson@iconbreaking.com',followup_email:'judson@iconbreaking.com',timestamp:new Date().toISOString()})
-  }).then(function(res){ if(!res.ok){ throw new Error('intake failed'); } return res.json().catch(function(){return {ok:true};}); }).then(function(){
-    form.style.display='none'; micro.style.display='none'; ok.style.display='block';
-  }).catch(function(){
-    btn.disabled=false; btn.textContent='Register Now';
-    micro.innerHTML='Registration line is busy. Email <a href="mailto:judson@iconbreaking.com?subject=June%204%20Access">judson@iconbreaking.com</a> with subject “June 4 Access.”';
-  });
-}
+(function() {
+  const items = [
+    ["MUSIC REGISTRATION", "gold"],
+    ["BRAND DEVELOPMENT", "cyan"],
+    ["REVENUE STRATEGY", "gold"],
+    ["SYNC LICENSING", "cyan"],
+    ["PUBLISHING ADMIN", "gold"],
+    ["ARTIST BRANDING", "cyan"],
+    ["DISTRIBUTION", "gold"],
+    ["BUSINESS INFRASTRUCTURE", "cyan"],
+    ["ROYALTY COLLECTION", "gold"],
+    ["IDENTITY DEPTH", "cyan"],
+    ["OUTBOUND OUTREACH", "gold"],
+    ["CRM PIPELINE", "cyan"],
+    ["DEAL INTELLIGENCE", "gold"],
+    ["FAN CLUB AUTOMATION", "cyan"],
+    ["RELEASE STRATEGY", "gold"],
+    ["AD CAMPAIGNS", "cyan"],
+    ["PLAYLIST PITCHING", "gold"],
+    ["BOOKING OUTREACH", "cyan"],
+    ["AI CALLS", "gold"],
+    ["FUNNEL DEPLOYMENT", "cyan"],
+  ];
+  const html = items.concat(items).map(([t, c]) =>
+    `<span><span class="dot ${c}"></span>${t}</span>`
+  ).join("");
+  document.getElementById("ticker").innerHTML = html;
+})();
 </script>
+
+<!-- ═════ React + Babel ═════ -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="iconagents-v2.jsx"></script>
+
+<script type="text/babel">
+  const mount = (id, el) => {
+    const node = document.getElementById(id);
+    if (node) ReactDOM.createRoot(node).render(el);
+  };
+  mount("compounding-mount", <IACompounding />);
+ mount("capabilities-mount", <IACapabilities />);
+  mount("fight-mount",        <IAFight />);
+  mount("how-mount",           <IAHow />);
+  mount("founding-mount",      <IAFounding />);
+  mount("pricing-mount",       <IAPricing />);
+  mount("chat-mount",          <IAChat />);
+  mount("faq-mount",           <IAFAQ />);
+</script>
+
 </body>
 </html>
