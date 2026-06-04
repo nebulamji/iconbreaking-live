@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBA x Aggie Masterclass — June 18th</title>
+<meta name="description" content="The System That Changes Everything. A live masterclass with Keyz the Producer and Max Gousse. June 18th. Register now.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --gold:#c9a84c;
+    --gold-dim:#a8882e;
+    --bg:#0a0a0a;
+    --surface:#111;
+    --surface2:#161616;
+    --line:#222;
+    --line-gold:rgba(201,168,76,.25);
+    --gray:#888;
+    --gray-dim:#555;
+    --white:#f5f5f0;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--white);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(10,10,10,.95),transparent)}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1rem;letter-spacing:.08em}
+  .nav-logo span{color:var(--gold)}
+  .nav-date{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 40px 80px;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,.06) 0%,transparent 60%);pointer-events:none}
+  .hero-inner{max-width:860px;margin:0 auto;width:100%}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.1;font-weight:700;margin-bottom:28px}
+  h1 em{font-style:italic;color:var(--gold)}
+  .hero-sub{font-size:1.1rem;color:var(--gray);max-width:560px;margin-bottom:48px;line-height:1.7}
+  .date-badge{display:inline-flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line-gold);padding:16px 28px;margin-bottom:48px}
+  .date-badge .label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-dim)}
+  .date-badge .value{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold)}
+
+  /* TOPICS */
+  .topics{padding:80px 40px;background:var(--surface)}
+  .wrap{max-width:960px;margin:0 auto}
+  .sec-head{margin-bottom:56px;text-align:center}
+  .sec-head h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin-top:16px}
+  .topics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;margin-top:48px}
+  .topic{background:var(--bg);padding:36px 32px;border-left:2px solid var(--line-gold);position:relative;overflow:hidden;transition:border-color .2s}
+  .topic:hover{border-color:var(--gold)}
+  .topic-num{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  .topic h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:8px}
+  .topic p{font-size:.88rem;color:var(--gray);line-height:1.6}
+
+  /* FORM */
+  .register{padding:100px 40px;position:relative}
+  .register::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(201,168,76,.04) 0%,transparent 60%);pointer-events:none}
+  .register-inner{max-width:600px;margin:0 auto;text-align:center}
+  .register-inner h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin-bottom:16px}
+  .register-inner .sub{color:var(--gray);margin-bottom:48px;font-size:1rem;line-height:1.7}
+  .form{display:flex;flex-direction:column;gap:16px;text-align:left}
+  .form input,.form select{width:100%;background:var(--surface);border:1px solid var(--line);color:var(--white);padding:16px 20px;font-size:.95rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none}
+  .form input:focus,.form select:focus{border-color:var(--gold)}
+  .form input::placeholder{color:var(--gray-dim)}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .btn-submit{width:100%;background:var(--gold);color:#000;border:none;padding:18px 32px;font-size:.9rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;margin-top:8px}
+  .btn-submit:hover{background:var(--gold-dim)}
+  .btn-submit:disabled{opacity:.5;cursor:not-allowed}
+  .form-note{font-size:.78rem;color:var(--gray-dim);text-align:center;margin-top:12px}
+
+  /* SUCCESS */
+  .success-msg{display:none;background:var(--surface);border:1px solid var(--line-gold);padding:40px;text-align:center}
+  .success-msg h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);margin-bottom:12px}
+  .success-msg p{color:var(--gray);font-size:.95rem}
+
+  /* WHO */
+  .who{padding:80px 40px;background:var(--surface2);border-top:1px solid var(--line)}
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-top:48px}
+  .who-card{padding:32px;border:1px solid var(--line)}
+  .who-card .name{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:4px}
+  .who-card .title{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+  .who-card p{font-size:.88rem;color:var(--gray);line-height:1.6}
+
+  /* FOOTER */
+  footer{padding:40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:.95rem}
+  .footer-logo span{color:var(--gold)}
+  footer small{color:var(--gray-dim);font-size:.78rem}
+
+  @media(max-width:640px){
+    nav{padding:16px 20px}
+    .hero,.topics,.register,.who{padding-left:20px;padding-right:20px}
+    .form-row{grid-template-columns:1fr}
+    footer{padding:32px 20px;flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Icon Breaking <span>×</span> Aggie</div>
+  <div class="nav-date">June 18th · Live Masterclass</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span>Live Masterclass · June 18th</div>
+    <h1>The System That<br><em>Changes Everything</em></h1>
+    <p class="hero-sub">A live breakdown of the exact infrastructure IBA uses to launch artists — from presaves to DSP domination to raising real money. Six modules. One session. Register below.</p>
+    <div class="date-badge">
+      <div>
+        <div class="label">Date</div>
+        <div class="value">June 18th, 2026</div>
+      </div>
+      <div style="width:1px;height:40px;background:var(--line-gold)"></div>
+      <div>
+        <div class="label">Format</div>
+        <div class="value" style="font-size:1rem;font-family:'Inter',sans-serif;font-weight:500">Live · Online · Free</div>
+      </div>
+    </div>
+    <a href="#register" class="btn-submit" style="display:inline-block;width:auto;padding:18px 40px;text-decoration:none;font-size:.85rem">Reserve Your Seat &rarr;</a>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="topics">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" style="justify-content:center"><span class="dot"></span>What We Cover</div>
+      <h2>Six Modules. Zero Fluff.</h2>
+    </div>
+    <div class="topics-grid">
+      <div class="topic">
+        <div class="topic-num">01</div>
+        <h3>Presaves</h3>
+        <p>How to build presave momentum that triggers the algorithm before your release even drops.</p>
+      </div>
+      <div class="topic">
+        <div class="topic-num">02</div>
+        <h3>Metadata</h3>
+        <p>The metadata setup most artists skip — and why it determines who finds your music and who doesn't.</p>
+      </div>
+      <div class="topic">
+        <div class="topic-num">03</div>
+        <h3>Distribution</h3>
+        <p>Choosing the right distributor, maximizing your royalty splits, and owning your rights from day one.</p>
+      </div>
+      <div class="topic">
+        <div class="topic-num">04</div>
+        <h3>Raising Money</h3>
+        <p>How independent artists fund campaigns, attract investors, and build the capital infrastructure to scale.</p>
+      </div>
+      <div class="topic">
+        <div class="topic-num">05</div>
+        <h3>DSP Secrets</h3>
+        <p>Platform-by-platform strategy — what Spotify, Apple Music, and TikTok actually reward and how to use it.</p>
+      </div>
+      <div class="topic">
+        <div class="topic-num">06</div>
+        <h3>Achieving Icon Status</h3>
+        <p>The long game — how IBA's system turns consistent execution into a career that outlasts the algorithm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="register" id="register">
+  <div class="register-inner">
+    <div class="eyebrow" style="justify-content:center;margin-bottom:20px"><span class="dot"></span>Reserve Your Seat</div>
+    <h2>June 18th.<br>Be There.</h2>
+    <p class="sub">This is a live session — limited capacity. Drop your info below and we'll send everything you need to join.</p>
+
+    <form class="form" id="masterclass-form">
+      <div class="form-row">
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+      </div>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number (optional)">
+      <select name="role">
+        <option value="" disabled selected>I am a...</option>
+        <option value="independent_artist">Independent Artist</option>
+        <option value="producer">Producer / Beatmaker</option>
+        <option value="manager">Artist Manager</option>
+        <option value="label">Label / A&R</option>
+        <option value="entrepreneur">Music Entrepreneur</option>
+        <option value="other">Other</option>
+      </select>
+      <button type="submit" class="btn-submit" id="submit-btn">Reserve My Seat &rarr;</button>
+      <p class="form-note">No spam. Just the masterclass details and a reminder the day before.</p>
+    </form>
+
+    <div class="success-msg" id="success-msg">
+      <h3>You're In.</h3>
+      <p>Check your email for confirmation. We'll send the join link the morning of June 18th.<br><br>
+      See you there &mdash; <strong>Keyz &amp; the IBA team.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="who">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" style="justify-content:center"><span class="dot"></span>Your Hosts</div>
+      <h2>The People In The Room</h2>
+    </div>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="name">Faraji "Keyz" Judson</div>
+        <div class="title">Founder · Icon Breaking Agency</div>
+        <p>Creator of the IBA Release System. Music marketing executive and the architect of the infrastructure this masterclass is built on.</p>
+      </div>
+      <div class="who-card">
+        <div class="name">Max Gousse</div>
+        <div class="title">Grammy-Winning Music Executive</div>
+        <p>25+ years at the highest level of the industry. Credits include Beyoncé, Saweetie, YG, B2K. He brings the room, the network, and the standard.</p>
+      </div>
+      <div class="who-card">
+        <div class="name">IBA x Aggie AI</div>
+        <div class="title">Powered by Aggie</div>
+        <p>Aggie AI is the execution engine behind IBA's system — handling content, rollout, optimization, and consistency at scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Icon Breaking <span>×</span> Aggie</div>
+  <small>&copy; 2026 &middot; IBA Release Infrastructure &middot; Powered by Aggie AI</small>
+</footer>
+
+<script>
+document.getElementById('masterclass-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Registering...';
+
+  const data = {
+    first_name: this.first_name.value.trim(),
+    last_name: this.last_name.value.trim(),
+    name: this.first_name.value.trim() + ' ' + this.last_name.value.trim(),
+    email: this.email.value.trim(),
+    phone: this.phone.value.trim(),
+    role: this.role.value,
+    source: 'masterclass-june18',
+    source_detail: 'IBA x Aggie Masterclass June 18th opt-in',
+    page_url: window.location.href,
+    event: 'masterclass_june18_optin',
+    form_version: 'masterclass-june18-v1'
+  };
+
+  try {
+    const res = await fetch('https://webhook.departmentofjazz.com/api/iconbreaking/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    document.getElementById('masterclass-form').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+    document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = 'Reserve My Seat →';
+    alert('Something went wrong. Please try again or email judson@iconbreaking.com');
+  }
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.topic, .who-card');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+}, { threshold: 0.1 });
+reveals.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
