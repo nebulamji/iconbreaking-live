@@ -239,40 +239,29 @@
 </footer>
 
 <script>
-document.getElementById('masterclass-form').addEventListener('submit', async function(e) {
+document.getElementById('masterclass-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.textContent = 'Registering...';
+  const first = this.first_name.value.trim();
+  const last = this.last_name.value.trim();
+  const email = this.email.value.trim();
+  const phone = this.phone.value.trim();
+  const role = this.role.value;
 
-  const data = {
-    first_name: this.first_name.value.trim(),
-    last_name: this.last_name.value.trim(),
-    name: this.first_name.value.trim() + ' ' + this.last_name.value.trim(),
-    email: this.email.value.trim(),
-    phone: this.phone.value.trim(),
-    role: this.role.value,
-    source: 'masterclass-june18',
-    source_detail: 'IBA x Aggie Masterclass June 18th opt-in',
-    page_url: window.location.href,
-    event: 'masterclass_june18_optin',
-    form_version: 'masterclass-june18-v1'
-  };
+  const subject = encodeURIComponent('Masterclass Registration — June 18th: ' + first + ' ' + last);
+  const body = encodeURIComponent(
+    'Name: ' + first + ' ' + last + '\n' +
+    'Email: ' + email + '\n' +
+    (phone ? 'Phone: ' + phone + '\n' : '') +
+    (role ? 'Role: ' + role + '\n' : '') +
+    '\nSource: IBA x Aggie Masterclass June 18th'
+  );
 
-  try {
-    const res = await fetch('https://webhook.departmentofjazz.com/api/iconbreaking/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    document.getElementById('masterclass-form').style.display = 'none';
-    document.getElementById('success-msg').style.display = 'block';
-    document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } catch(err) {
-    btn.disabled = false;
-    btn.textContent = 'Reserve My Seat →';
-    alert('Something went wrong. Please try again or email judson@iconbreaking.com');
-  }
+  window.location.href = 'mailto:judson@iconbreaking.com?subject=' + subject + '&body=' + body;
+
+  document.getElementById('masterclass-form').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+  document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
 
 // Reveal on scroll
