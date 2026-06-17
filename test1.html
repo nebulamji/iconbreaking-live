@@ -1,1274 +1,910 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Founding 100 — IBA × Aggie</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --black:#000000;
-    --black-2:#0a0a0a;
-    --black-3:#141414;
-    --black-4:#1c1c1c;
-    --white:#ffffff;
-    --off-white:#f5f1ea;
-    --gray:#b5b5b5;
-    --gray-dim:#7a7a7a;
-    --gold:#c9a961;
-    --gold-bright:#e6c478;
-    --gold-soft:rgba(201,169,97,0.12);
-    --pink:#ff3b6e;
-    --yellow:#ffd84d;
-    --line:rgba(255,255,255,0.08);
-    --line-strong:rgba(255,255,255,0.15);
-  }
-
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;background:#000 !important;color-scheme:dark only}
-  body{
-    background:#000 !important;
-    color:#fff !important;
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    font-weight:400;
-    line-height:1.6;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-    forced-color-adjust:none;
-  }
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  button,.btn{font-family:inherit;cursor:pointer;border:none}
-  h1,h2,h3,h4,h5,h6{color:#fff !important;font-weight:800;letter-spacing:-.025em;line-height:1.04}
-  p{color:var(--gray)}
-
-  /* Force dark on every section */
-  header,section,footer,.hero,.anno-bar,.stats-strip,.presale,.thesis,.case-studies,.two-buckets,.fit-call{
-    background-color:#000 !important;
-  }
-  .stats-strip,.case-studies{background-color:var(--black-2) !important}
-
-  @media(prefers-color-scheme:light){
-    html,body{background:#000 !important;color:#fff !important}
-  }
-
-  /* Film grain overlay */
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    pointer-events:none;
-    z-index:200;
-    opacity:.04;
-    mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
-  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
-  .narrow{max-width:800px;margin:0 auto;padding:0 32px}
-
-  /* Section hairline dividers */
-  .section-divider{
-    height:1px;
-    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
-    max-width:1240px;
-    margin:0 auto;
-  }
-
-  /* ====== ANNOUNCEMENT BAR ====== */
-  .anno-bar{
-    text-align:center;
-    padding:14px 32px;
-    font-size:.72rem;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    font-weight:700;
-    color:var(--gold);
-    border-bottom:1px solid rgba(201,169,97,0.15);
-    position:relative;
-    z-index:60;
-  }
-  .anno-bar .sep{margin:0 14px;opacity:.4}
-
-  /* ====== HERO ====== */
-  .hero{
-    position:relative;
-    overflow:hidden;
-    padding:100px 32px 60px;
-  }
-  /* Gold atmospheric glow */
-  .hero::before{
-    content:"";
-    position:absolute;
-    top:-250px;left:-200px;
-    width:1000px;height:1000px;
-    background:radial-gradient(circle,rgba(201,169,97,.10),transparent 60%);
-    filter:blur(80px);
-    pointer-events:none;
-    z-index:0;
-  }
-  /* Bottom divider */
-  .hero::after{
-    content:"";
-    position:absolute;
-    bottom:0;left:0;right:0;
-    height:1px;
-    background:linear-gradient(90deg,transparent 15%,rgba(201,169,97,.3) 50%,transparent 85%);
-  }
-  .hero-inner{
-    position:relative;
-    z-index:2;
-    max-width:1240px;
-    margin:0 auto;
-    text-align:center;
-  }
-  .hero-prehead{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    font-size:.72rem;
-    letter-spacing:.32em;
-    text-transform:uppercase;
-    font-weight:600;
-    color:var(--gold);
-    margin-bottom:32px;
-  }
-  .hero-prehead .dot{
-    width:6px;height:6px;border-radius:50%;
-    background:var(--gold);
-    box-shadow:0 0 12px var(--gold);
-    animation:pulse 2s infinite;
-  }
-  @keyframes pulse{
-    0%,100%{opacity:1;transform:scale(1)}
-    50%{opacity:.5;transform:scale(1.4)}
-  }
-  .hero h1{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:900;
-    font-size:clamp(3rem,8vw,6.5rem);
-    line-height:.95;
-    letter-spacing:-.03em;
-    margin-bottom:32px;
-    max-width:960px;
-    margin-left:auto;margin-right:auto;
-  }
-  .hero-sub{
-    font-size:clamp(1rem,2vw,1.15rem);
-    line-height:1.75;
-    color:var(--gray);
-    max-width:780px;
-    margin:0 auto 24px;
-    font-weight:400;
-  }
-  .hero-italic{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    font-size:clamp(1.05rem,2vw,1.2rem);
-    color:var(--gray);
-    max-width:700px;
-    margin:0 auto 48px;
-    line-height:1.7;
-    letter-spacing:-.01em;
-  }
-
-  /* ====== BUTTONS ====== */
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-    padding:22px 52px;
-    font-size:.78rem;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    font-weight:700;
-    border-radius:4px;
-    transition:.35s cubic-bezier(.4,0,.2,1);
-  }
-  .btn-gold{
-    background:var(--gold);
-    color:#000;
-    box-shadow:0 0 0 1px var(--gold),0 8px 30px rgba(201,169,97,.25);
-  }
-  .btn-gold:hover{
-    background:var(--gold-bright);
-    box-shadow:0 0 0 1px var(--gold-bright),0 12px 40px rgba(201,169,97,.4);
-    transform:translateY(-2px);
-  }
-  .btn-outline{
-    background:transparent;
-    color:var(--gold);
-    border:1px solid rgba(201,169,97,0.4);
-    box-shadow:none;
-  }
-  .btn-outline:hover{
-    border-color:var(--gold);
-    background:var(--gold-soft);
-    transform:translateY(-2px);
-  }
-  .microcopy{
-    font-size:.76rem;
-    color:var(--gray-dim);
-    margin-top:18px;
-    letter-spacing:.02em;
-  }
-
-  /* ====== VSL PLAYER ====== */
-  .vsl-player{
-    position:relative;
-    width:100%;
-    aspect-ratio:16/9;
-    background:var(--black-3);
-    border:1px solid rgba(201,169,97,0.18);
-    border-radius:6px;
-    overflow:hidden;
-    cursor:pointer;
-  }
-  .vsl-player::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(135deg,rgba(201,169,97,0.04) 0%,transparent 50%,rgba(255,59,110,0.03) 100%);
-    pointer-events:none;
-  }
-  .vsl-play-btn{
-    position:absolute;
-    top:50%;left:50%;
-    transform:translate(-50%,-50%);
-    width:80px;height:80px;
-    border-radius:50%;
-    background:rgba(201,169,97,0.9);
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 0 40px rgba(201,169,97,0.3),0 0 0 4px rgba(201,169,97,0.2);
-    transition:.3s ease;
-  }
-  .vsl-player:hover .vsl-play-btn{
-    transform:translate(-50%,-50%) scale(1.08);
-    box-shadow:0 0 50px rgba(201,169,97,0.5),0 0 0 6px rgba(201,169,97,0.3);
-  }
-  .vsl-play-btn svg{
-    width:28px;height:28px;
-    margin-left:4px;
-    fill:#000;
-  }
-  .vsl-caption{
-    font-size:.88rem;
-    color:var(--gray-dim);
-    max-width:500px;
-    margin:0 auto;
-    line-height:1.6;
-  }
-
-  /* ====== HERO VSL WRAPPER ====== */
-  .hero-vsl{
-    max-width:960px;
-    margin:0 auto 40px;
-  }
-  .hero-vsl .vsl-player{
-    margin-bottom:0;
-  }
-
-  /* ====== STATS STRIP ====== */
-  .stats-strip{
-    padding:56px 32px 64px;
-    position:relative;
-  }
-  .stats-strip::before{
-    content:"";
-    position:absolute;
-    bottom:0;left:0;right:0;
-    height:1px;
-    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
-  }
-  .stats-grid{
-    max-width:1240px;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    text-align:center;
-  }
-  .stats-grid .stat-cell{
-    padding:24px 16px;
-    border-right:1px solid var(--line);
-  }
-  .stats-grid .stat-cell:last-child{border-right:none}
-  .stat-num{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:800;
-    font-size:clamp(2.2rem,5vw,3.2rem);
-    color:var(--gold);
-    line-height:1;
-    margin-bottom:8px;
-    letter-spacing:-.02em;
-  }
-  .stat-label{
-    font-size:.78rem;
-    color:var(--gray-dim);
-    line-height:1.5;
-    letter-spacing:.02em;
-  }
-
-  /* ====== EYEBROW ====== */
-  .eyebrow{
-    display:inline-block;
-    font-size:.68rem;
-    letter-spacing:.32em;
-    text-transform:uppercase;
-    font-weight:700;
-    color:var(--gold);
-    margin-bottom:20px;
-  }
-
-  /* ====== SECTION H2 ====== */
-  .sec-h2{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:900;
-    font-size:clamp(2rem,4.5vw,3.4rem);
-    line-height:1.05;
-    margin-bottom:24px;
-    max-width:900px;
-  }
-  .sec-body{
-    font-size:clamp(.98rem,1.8vw,1.1rem);
-    line-height:1.75;
-    color:var(--gray);
-    max-width:720px;
-    margin-bottom:40px;
-  }
-
-  /* ====== PRE-SALE / APPLICATION ====== */
-  .presale{
-    padding:100px 32px 110px;
-    position:relative;
-  }
-  .presale-inner{
-    max-width:900px;
-    margin:0 auto;
-    text-align:center;
-  }
-  .presale-paths{
-    display:flex;
-    align-items:stretch;
-    gap:0;
-    margin:36px auto 40px;
-    max-width:740px;
-    border:1px solid rgba(201,169,97,0.2);
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .presale-path{
-    flex:1;
-    padding:28px 24px;
-    text-align:center;
-    border-right:1px solid rgba(201,169,97,0.15);
-  }
-  .presale-path:last-child{border-right:none}
-  .presale-path-label{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:800;
-    font-size:1rem;
-    color:var(--gold);
-    margin-bottom:6px;
-    letter-spacing:.02em;
-  }
-  .presale-path-desc{
-    font-size:.82rem;
-    color:var(--gray);
-    line-height:1.5;
-  }
-  .presale-cta-text{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:800;
-    font-size:clamp(1.1rem,2.2vw,1.4rem);
-    color:#fff;
-    letter-spacing:.02em;
-    margin-bottom:32px;
-  }
-  .form-placeholder{
-    min-height:500px;
-    background:var(--black-3);
-    border:1px dashed rgba(201,169,97,0.25);
-    border-radius:6px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
-  }
-  .form-placeholder::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(135deg,rgba(201,169,97,0.02) 0%,transparent 50%,rgba(255,59,110,0.01) 100%);
-  }
-  .form-placeholder-text{
-    font-size:.88rem;
-    color:var(--gray-dim);
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    font-weight:600;
-  }
-
-  /* ====== THESIS ====== */
-  .thesis{
-    padding:100px 32px 110px;
-    position:relative;
-  }
-  .thesis::before{
-    content:"";
-    position:absolute;
-    top:0;left:0;right:0;
-    height:1px;
-    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
-  }
-  .thesis-inner{
-    max-width:900px;
-    margin:0 auto;
-    text-align:center;
-  }
-  .thesis-vsl{
-    max-width:800px;
-    margin:40px auto;
-  }
-  .thesis-vsl .vsl-player{
-    margin-bottom:0;
-  }
-
-  /* ====== CASE STUDIES ====== */
-  .case-studies{
-    padding:100px 32px 110px;
-    position:relative;
-  }
-  .case-studies::before{
-    content:"";
-    position:absolute;
-    top:0;left:0;right:0;
-    height:1px;
-    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
-  }
-  .case-studies-inner{
-    max-width:1100px;
-    margin:0 auto;
-  }
-  .case-studies-header{
-    text-align:center;
-    margin-bottom:56px;
-  }
-  .case-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:24px;
-  }
-  .case-card{
-    border:1px solid rgba(201,169,97,0.15);
-    border-radius:6px;
-    overflow:hidden;
-    background:var(--black-3);
-    transition:border-color .3s ease;
-  }
-  .case-card:hover{
-    border-color:rgba(201,169,97,0.35);
-  }
-  .case-card-img{
-    width:100%;
-    aspect-ratio:16/9;
-    background:var(--black-4);
-    position:relative;
-    overflow:hidden;
-  }
-  .case-card-img::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(135deg,rgba(201,169,97,0.03) 0%,transparent 50%,rgba(255,59,110,0.02) 100%);
-  }
-  .case-card-img .vsl-play-btn{
-    width:56px;height:56px;
-  }
-  .case-card-img .vsl-play-btn svg{
-    width:20px;height:20px;
-    margin-left:3px;
-  }
-  .case-card-body{
-    padding:28px 28px 32px;
-  }
-  .case-card-stat{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:900;
-    font-size:clamp(1.4rem,3vw,1.8rem);
-    color:var(--gold);
-    margin-bottom:10px;
-    letter-spacing:-.01em;
-  }
-  .case-card-desc{
-    font-size:.88rem;
-    color:var(--gray);
-    line-height:1.65;
-  }
-  .case-card-full{
-    grid-column:1 / -1;
-  }
-  .case-disclaimer{
-    text-align:center;
-    margin-top:48px;
-    font-size:.68rem;
-    color:var(--gray-dim);
-    letter-spacing:.06em;
-    opacity:.7;
-    max-width:680px;
-    margin-left:auto;
-    margin-right:auto;
-    line-height:1.6;
-  }
-
-  /* ====== TIERS ====== */
-  .tiers-section{
-    padding:100px 32px 110px;
-    position:relative;
-  }
-  .tiers-section::before{
-    content:"";
-    position:absolute;
-    top:0;left:0;right:0;
-    height:1px;
-    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
-  }
-  .tiers-inner{
-    max-width:1100px;
-    margin:0 auto;
-  }
-  .tiers-header{
-    text-align:center;
-    margin-bottom:56px;
-  }
-  .tier-grid-new{
-    display:grid;
-    grid-template-columns:1.3fr 1fr;
-    gap:24px;
-    align-items:stretch;
-  }
-  .tier-card{
-    border:1px solid rgba(201,169,97,0.15);
-    border-radius:6px;
-    padding:40px 36px;
-    background:var(--black-3);
-    transition:border-color .3s ease;
-    display:flex;
-    flex-direction:column;
-  }
-  .tier-card:hover{
-    border-color:rgba(201,169,97,0.35);
-  }
-  .tier-card-featured{
-    border-color:rgba(201,169,97,0.4);
-    background:linear-gradient(180deg,rgba(201,169,97,0.04),var(--black-3));
-    position:relative;
-  }
-  .tier-card-featured::before{
-    content:"Founding 100 Inner Circle";
-    position:absolute;
-    top:-11px;left:50%;
-    transform:translateX(-50%);
-    font-size:.58rem;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-    font-weight:700;
-    color:var(--gold);
-    background:#000;
-    padding:0 14px;
-    white-space:nowrap;
-  }
-  .tier-label{
-    display:inline-block;
-    font-size:.62rem;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-    font-weight:700;
-    color:var(--pink);
-    border:1px solid rgba(255,59,110,0.3);
-    border-radius:3px;
-    padding:4px 12px;
-    margin-bottom:20px;
-  }
-  .tier-card-title{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:900;
-    font-size:clamp(1.3rem,2.5vw,1.7rem);
-    line-height:1.1;
-    margin-bottom:14px;
-    color:#fff !important;
-  }
-  .tier-card-desc{
-    font-size:.88rem;
-    color:var(--gray);
-    line-height:1.65;
-    margin-bottom:24px;
-  }
-
-  /* Slider toggle */
-  .price-toggle{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:0;
-    margin-bottom:28px;
-    border:1px solid var(--line-strong);
-    border-radius:6px;
-    overflow:hidden;
-    background:var(--black-4);
-  }
-  .toggle-btn{
-    flex:1;
-    padding:14px 20px;
-    font-size:.78rem;
-    font-weight:600;
-    letter-spacing:.04em;
-    color:var(--gray-dim);
-    background:transparent;
-    cursor:pointer;
-    transition:all .25s ease;
-    border:none;
-    font-family:inherit;
-  }
-  .toggle-btn.active{
-    background:rgba(201,169,97,0.12);
-    color:var(--gold);
-  }
-  .toggle-btn:hover:not(.active){
-    color:var(--gray);
-  }
-  .toggle-btn .toggle-price{
-    display:block;
-    font-family:'Big Shoulders Display',sans-serif;
-    font-size:1.6rem;
-    font-weight:900;
-    margin-top:4px;
-  }
-  .toggle-btn.active .toggle-price{
-    color:var(--gold-bright);
-  }
-
-  /* Tier price display */
-  .tier-price-display{
-    text-align:center;
-    margin-bottom:24px;
-  }
-  .tier-price-display .price-num{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-size:clamp(2.5rem,5vw,3.5rem);
-    font-weight:900;
-    color:#fff;
-    line-height:1;
-  }
-  .tier-price-display .price-unit{
-    font-size:.4em;
-    font-family:'Inter',sans-serif;
-    font-weight:400;
-    color:var(--gray-dim);
-  }
-  .tier-price-display .price-sub{
-    font-size:.72rem;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:var(--gray-dim);
-    margin-top:6px;
-  }
-
-  /* Tier features list */
-  .tier-features{
-    list-style:none;
-    margin-bottom:32px;
-    flex:1;
-  }
-  .tier-features li{
-    padding:10px 0;
-    font-size:.85rem;
-    color:var(--gray);
-    border-bottom:1px solid var(--line);
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-  }
-  .tier-features li::before{
-    content:"+";
-    color:var(--gold);
-    font-weight:700;
-    flex-shrink:0;
-  }
-  .tier-features li:last-child{border-bottom:none}
-
-  /* Tier 3 specific */
-  .tier3-price{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-size:clamp(2.2rem,4vw,3rem);
-    font-weight:900;
-    color:var(--gold);
-    text-align:center;
-    margin-bottom:6px;
-    line-height:1;
-  }
-  .tier3-price-sub{
-    font-size:.72rem;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:var(--gold);
-    text-align:center;
-    margin-bottom:24px;
-    opacity:.8;
-  }
-  .tier3-1on1{
-    border:1px solid rgba(201,169,97,0.25);
-    border-radius:4px;
-    padding:16px 20px;
-    margin-bottom:24px;
-    background:rgba(201,169,97,0.05);
-  }
-  .tier3-1on1 .label{
-    font-size:.62rem;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-    font-weight:700;
-    color:var(--gold);
-    margin-bottom:6px;
-  }
-  .tier3-1on1 .desc{
-    font-size:.82rem;
-    color:var(--gray);
-    line-height:1.55;
-  }
-
-  /* Disclaimer */
-  .tier-disclaimer{
-    text-align:center;
-    margin-top:40px;
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    color:var(--gray-dim);
-    font-size:.92rem;
-  }
-
-  /* Mobile */
-  @media(max-width:800px){
-    .tier-grid-new{grid-template-columns:1fr}
-  }
-  @media(max-width:600px){
-    .tiers-section{padding:70px 20px 80px}
-    .tier-card{padding:28px 22px}
-    .toggle-btn{padding:12px 10px;font-size:.7rem}
-    .toggle-btn .toggle-price{font-size:1.3rem}
-  }
-    text-transform:uppercase;
-    font-size:.7rem;
-    white-space:nowrap;
-    padding-right:20px;
-    width:120px;
-  }
-  .bucket-table td:last-child{
-    color:var(--gray);
-  }
-
-  /* ====== COMPARISON TABLE ====== */
-  .comparison-wrap{
-    max-width:900px;
-    margin:0 auto;
-  }
-  .comparison-title{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:800;
-    font-size:clamp(1.1rem,2vw,1.3rem);
-    text-align:center;
-    margin-bottom:24px;
-    letter-spacing:.02em;
-  }
-  .comparison-table{
-    width:100%;
-    border-collapse:collapse;
-    border:1px solid rgba(201,169,97,0.12);
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .comparison-table thead th{
-    background:var(--black-3);
-    padding:16px 20px;
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:800;
-    font-size:.82rem;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    text-align:left;
-    color:var(--gold);
-    border-bottom:1px solid rgba(201,169,97,0.15);
-  }
-  .comparison-table thead th:first-child{
-    color:var(--gray-dim);
-    font-weight:600;
-    letter-spacing:.12em;
-    font-family:'Inter',sans-serif;
-  }
-  .comparison-table tbody td{
-    padding:14px 20px;
-    font-size:.84rem;
-    color:var(--gray);
-    border-bottom:1px solid var(--line);
-    line-height:1.5;
-  }
-  .comparison-table tbody tr:last-child td{border-bottom:none}
-  .comparison-table tbody td:first-child{
-    color:var(--gray-dim);
-    font-weight:600;
-    text-transform:uppercase;
-    font-size:.7rem;
-    letter-spacing:.06em;
-    white-space:nowrap;
-  }
-
-  /* ====== FIT CALL SECTION ====== */
-  .fit-call{
-    padding:100px 32px 120px;
-    position:relative;
-  }
-  .fit-call::before{
-    content:"";
-    position:absolute;
-    top:0;left:0;right:0;
-    height:1px;
-    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
-  }
-  .fit-call-inner{
-    max-width:680px;
-    margin:0 auto;
-    text-align:center;
-  }
-  .fit-call h2{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:900;
-    font-size:clamp(2rem,5vw,3.5rem);
-    margin-bottom:28px;
-    line-height:1.05;
-  }
-  .fit-call-body{
-    font-size:clamp(1rem,2vw,1.1rem);
-    line-height:1.75;
-    color:var(--gray);
-    margin-bottom:48px;
-  }
-  .fit-call .microcopy{
-    max-width:540px;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:22px;
-    font-size:.74rem;
-  }
-
-  /* ====== FOOTER ====== */
-  footer{
-    padding:48px 32px;
-    border-top:1px solid var(--line);
-  }
-  .footer-inner{
-    max-width:1240px;
-    margin:0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:16px;
-  }
-  .footer-brand{
-    font-family:'Big Shoulders Display',sans-serif;
-    font-weight:800;
-    font-size:1rem;
-    letter-spacing:.08em;
-    color:var(--gold);
-  }
-  .footer-copy{
-    font-size:.7rem;
-    color:var(--gray-dim);
-  }
-  .footer-links{
-    display:flex;gap:24px;
-  }
-  .footer-links a{
-    font-size:.7rem;
-    color:var(--gray-dim);
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    transition:color .2s;
-  }
-  .footer-links a:hover{color:var(--gold)}
-
-  /* ====== SCROLL REVEAL ====== */
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
-  .reveal.in{opacity:1;transform:translateY(0)}
-
-  /* ====== RESPONSIVE ====== */
-  @media(max-width:1024px){
-    .stats-grid{grid-template-columns:repeat(2,1fr)}
-    .stats-grid .stat-cell{border-right:none;border-bottom:1px solid var(--line)}
-    .stats-grid .stat-cell:nth-child(odd){border-right:1px solid var(--line)}
-    .stats-grid .stat-cell:nth-child(-n+2){border-bottom:1px solid var(--line)}
-    .stats-grid .stat-cell:nth-child(n+3){border-bottom:none}
-    .case-grid{gap:20px}
-    .bucket-grid{gap:20px}
-    .comparison-table thead th,
-    .comparison-table tbody td{padding:12px 14px}
-  }
-  @media(max-width:768px){
-    .hero{padding:70px 24px 40px}
-    .hero h1{font-size:clamp(2.4rem,9vw,3.5rem)}
-    .hero-sub{font-size:.95rem}
-    .btn{padding:18px 36px;font-size:.72rem;width:100%;max-width:360px}
-    .stats-strip{padding:40px 24px 48px}
-    .stats-grid{grid-template-columns:repeat(2,1fr)}
-    .stats-grid .stat-cell{border-right:none !important;border-bottom:1px solid var(--line)}
-    .stats-grid .stat-cell:nth-last-child(-n+2){border-bottom:none}
-    .presale{padding:70px 24px 80px}
-    .presale-paths{flex-direction:column;max-width:100%}
-    .presale-path{border-right:none !important;border-bottom:1px solid rgba(201,169,97,0.15)}
-    .presale-path:last-child{border-bottom:none}
-    .form-placeholder{min-height:380px}
-    .thesis{padding:70px 24px 80px}
-    .case-studies{padding:70px 24px 80px}
-    .case-grid{grid-template-columns:1fr}
-    .case-card-full{grid-column:auto}
-    .two-buckets{padding:70px 24px 80px}
-    .bucket-grid{grid-template-columns:1fr}
-    .comparison-table{font-size:.78rem}
-    .comparison-table thead th,
-    .comparison-table tbody td{padding:10px 12px}
-    .comparison-table tbody td:first-child{white-space:normal;font-size:.68rem}
-    .fit-call{padding:70px 24px 80px}
-  }
-  @media(max-width:540px){
-    .anno-bar{font-size:.58rem;letter-spacing:.14em;padding:12px 16px}
-    .anno-bar .sep{display:none}
-    .hero-prehead{font-size:.58rem;letter-spacing:.2em}
-    .stat-label{font-size:.7rem}
-    .bucket-card{padding:28px 20px}
-    .bucket-table td:first-child{width:90px;font-size:.64rem}
-    .footer-inner{flex-direction:column;text-align:center}
-  }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBA × Aggie — Founding 100</title>
+<meta name="description" content="The AI-powered release infrastructure for serious artists and teams. 100 Founding members only.">
 </head>
-<body>
+<body style="margin:0;padding:0;background:#0a0a0a;">
 
-<!-- ====== 1. ANNOUNCEMENT BAR ====== -->
-<div class="anno-bar">
-  Founding 100 Now Open<span class="sep">·</span>100 Artists, Producers, Managers & Teams Only
-</div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
-<!-- ====== 2. HERO ====== -->
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-prehead reveal">
-      <span class="dot"></span>
-      Founding 100 &middot; The First Artist Teams Building With IBA &times; Aggie
-    </div>
-    <h1 class="reveal">The Next Artists to Break Won't Do It by Hand</h1>
-    <p class="hero-sub reveal">
-      IBA builds the AI-powered release infrastructure behind serious artists and teams — content, rollout strategy, ad execution, fan-data capture, reporting, and the agent team that keeps the machine moving. Built by principals at IBA connected to 200M+ records sold, 500+ songs produced and written, three Diamond singles, and $800M+ in global revenue projects. Powered by Aggie. Available first to 100 Founding members.
-    </p>
-    <p class="hero-italic reveal">No experience with AI required. No case studies needed. Just real motion and a real artist.</p>
+/* ─── Reset & Base ─── */
+.iba-root *,
+.iba-root *::before,
+.iba-root *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    <!-- VSL Placeholder -->
-    <div class="hero-vsl reveal">
-      <div class="vsl-player">
-        <div class="vsl-play-btn">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
-        </div>
-      </div>
-    </div>
+.iba-root {
+  background: #0a0a0a;
+  color: #e8e8e8;
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  overflow-x: hidden;
+}
 
-    <a href="#" class="btn btn-gold reveal">Book Your 15-Minute Founding 100 Call</a>
-    <p class="microcopy reveal">We'll look at your artist, release window, bottlenecks, and whether you belong in the first 100.</p>
-  </div>
-</header>
+/* ─── 1. TICKER BAR ─── */
+.iba-ticker {
+  background: #c9a84c;
+  width: 100%;
+  padding: 8px 0;
+  overflow: hidden;
+  position: relative;
+}
 
-<!-- ====== STATS STRIP ====== -->
-<section class="stats-strip">
-  <div class="stats-grid">
-    <div class="stat-cell reveal">
-      <div class="stat-num">$200M+</div>
-      <div class="stat-label">Records sold, principal-connected</div>
-    </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num">3&times; Diamond</div>
-      <div class="stat-label">Singles across catalog</div>
-    </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num">$800M+</div>
-      <div class="stat-label">Global revenue projects</div>
-    </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num">50M+</div>
-      <div class="stat-label">Streams, associated work 2025</div>
-    </div>
-  </div>
-</section>
+.iba-ticker__track {
+  display: flex;
+  width: max-content;
+  animation: iba-ticker-scroll 40s linear infinite;
+}
 
-<!-- ====== 3. PRE-SALE / APPLICATION ====== -->
-<section class="presale">
-  <div class="presale-inner">
-    <div class="eyebrow reveal">Founding 100 Access</div>
-    <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;">Lock in your seat before the first 100 close.</h2>
-    <p class="sec-body reveal" style="margin-left:auto;margin-right:auto;">Direct work with IBA's artist-development team and Aggie's AI agent infrastructure. Founding 100 pricing holds for the first 100 accepted. After that, public rates.</p>
+.iba-ticker__track:hover {
+  animation-play-state: paused;
+}
 
-    <div class="presale-paths reveal">
-      <div class="presale-path">
-        <div class="presale-path-label">IBA Runs The Machine</div>
-        <div class="presale-path-desc">IBA builds and runs the machine</div>
-      </div>
-      <div class="presale-path">
-        <div class="presale-path-label">IBA Installs The Machine</div>
-        <div class="presale-path-desc">IBA trains your team to run it</div>
-      </div>
-    </div>
+.iba-ticker__item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  padding: 0 40px;
+}
 
-    <p class="presale-cta-text reveal">Fill out the form. Do it now. Expect the call.</p>
+.iba-ticker__sep {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(10,10,10,0.4);
+  padding: 0 8px;
+}
 
-    <div class="form-placeholder reveal">
-      <span class="form-placeholder-text">Application Form — Embed Placeholder</span>
-    </div>
-  </div>
-</section>
+@keyframes iba-ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-<!-- ====== 4. THESIS ====== -->
-<section class="thesis">
-  <div class="thesis-inner">
-    <div class="eyebrow reveal">The thesis</div>
-    <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;max-width:860px;">The $31.7B recorded music market does not reward talent by itself. It rewards signal, consistency, distribution, audience movement, data, and execution.</h2>
-    <p class="sec-body reveal" style="margin-left:auto;margin-right:auto;">IBA builds the AI agent team behind your next release — content, rollout, ads, fan-data capture, and reporting — so your music stops depending on luck, memory, and last-minute posting.</p>
+/* ─── 2. HERO SECTION ─── */
+.iba-hero {
+  background: #0a0a0a;
+  padding: 56px 24px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-    <div class="thesis-vsl reveal">
-      <div class="vsl-player">
-        <div class="vsl-play-btn">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
-        </div>
-      </div>
-    </div>
+.iba-hero__badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
 
-    <p class="vsl-caption reveal" style="margin-top:24px;">The video explains the full system. The call determines fit.</p>
-  </div>
-</section>
+.iba-hero__badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-<!-- ====== 5. CASE STUDIES / PROOF ====== -->
-<section class="case-studies">
-  <div class="case-studies-inner">
-    <div class="case-studies-header">
-      <div class="eyebrow reveal">Results</div>
-      <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;">What the infrastructure looks like when it works.</h2>
-    </div>
+.iba-hero__badge-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 
-    <div class="case-grid">
-      <!-- Card 1 -->
-      <div class="case-card reveal">
-        <div class="case-card-img">
-          <div class="vsl-play-btn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
-          </div>
-        </div>
-        <div class="case-card-body">
-          <div class="case-card-stat">30K → 240K Instagram growth</div>
-          <p class="case-card-desc">Artist development + content infrastructure. Consistent posting, AI-assisted content production, audience data capture. Result: 8x follower growth in one campaign cycle.</p>
-        </div>
-      </div>
+.iba-hero__badge-text--secondary {
+  font-size: 10px;
+  color: #8a7035;
+  letter-spacing: 1.5px;
+}
 
-      <!-- Card 2 -->
-      <div class="case-card reveal">
-        <div class="case-card-img">
-          <div class="vsl-play-btn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
-          </div>
-        </div>
-        <div class="case-card-body">
-          <div class="case-card-stat">~200 → 700K streams from one campaign</div>
-          <p class="case-card-desc">Release infrastructure deployed around a single. Rollout strategy, ad execution, fan-data capture. Result: from ~200 monthly listeners to nearly 700K streams.</p>
-        </div>
-      </div>
+.iba-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c9a84c;
+  flex-shrink: 0;
+  position: relative;
+}
 
-      <!-- Card 3 — full width -->
-      <div class="case-card case-card-full reveal">
-        <div class="case-card-img">
-          <div class="vsl-play-btn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
-          </div>
-        </div>
-        <div class="case-card-body">
-          <div class="case-card-stat">20 monthly listeners → 2.4M streams/year</div>
-          <p class="case-card-desc">Sustained infrastructure. Not a one-hit campaign. The machine running 12 months straight. Compounding audience, compounding data, compounding releases.</p>
-        </div>
-      </div>
-    </div>
+.iba-live-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.3);
+  animation: iba-pulse 2s ease-out infinite;
+}
 
-    <p class="case-disclaimer reveal">Principal-connected projects, associated work, and case-specific results. Results not typical and depend on artist, genre, market conditions, and execution.</p>
-  </div>
-</section>
+@keyframes iba-pulse {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
 
-<!-- ====== 6. TIERS — TWO WAYS TO WORK ====== -->
-<section class="tiers-section">
-  <div class="tiers-inner">
-    <div class="tiers-header">
-      <div class="eyebrow reveal">How it works</div>
-      <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;">Two ways to work with IBA × Aggie.</h2>
-    </div>
+.iba-hero__headline {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(42px, 6.5vw, 72px);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 0.97;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  max-width: 820px;
+  margin-bottom: 14px;
+}
 
-    <div class="tier-grid-new">
-      <!-- TIER 1 + TIER 2 COMBINED (slider toggle) -->
-      <div class="tier-card reveal">
-        <span class="tier-label">Self-Serve</span>
-        <h3 class="tier-card-title">The Artist Who's Done Playing Small</h3>
-        <p class="tier-card-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie. Toggle between the two plans to see what fits.</p>
+.iba-hero__headline em {
+  font-style: normal;
+  background: linear-gradient(90deg, #c9a84c, #f0d78c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-        <!-- Slider toggle -->
-        <div class="price-toggle">
-          <button class="toggle-btn active" onclick="switchTier('t1')">Artist<div class="toggle-price">$99/mo</div></button>
-          <button class="toggle-btn" onclick="switchTier('t2')">Real Growth<div class="toggle-price">$500/mo</div></button>
-        </div>
+.iba-hero__sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  color: #a3a3a3;
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 0;
+}
 
-        <!-- Tier 1 features (default visible) -->
-        <div id="tier1-features">
-          <div class="tier-price-display">
-            <span class="price-num">$99<span class="price-unit">/mo</span></span>
-            <div class="price-sub">Monthly · Cancel anytime</div>
-          </div>
-          <ul class="tier-features">
-            <li>Up to 100 AI-powered posts per month</li>
-            <li>Full social media marketing creation</li>
-            <li>Release &amp; event campaign systems</li>
-            <li>Entry-level custom AI agents built by Keyz</li>
-            <li>Weekly execution structure</li>
-            <li>Fanbase growth tracking</li>
-            <li>Release checklists and rollout workflows</li>
-          </ul>
-          <a href="https://app.letaggiedoit.com/join?campaign=ibatier1" class="btn btn-outline" target="_blank" rel="noopener" style="width:100%;text-align:center">Claim Your Spot →</a>
-        </div>
+/* ─── 3. VIDEO SECTION ─── */
+.iba-video-wrap {
+  background: #0a0a0a;
+  padding: 4px 24px 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-        <!-- Tier 2 features (hidden by default) -->
-        <div id="tier2-features" style="display:none">
-          <div class="tier-price-display">
-            <span class="price-num">$500<span class="price-unit">/mo</span></span>
-            <div class="price-sub">Monthly · Cancel anytime</div>
-          </div>
-          <ul class="tier-features">
-            <li>Advanced AI agents engineered by Keyz</li>
-            <li>Automated content calendars</li>
-            <li>Multi-platform scheduling</li>
-            <li>Long-form repurposing systems</li>
-            <li>Spotify growth &amp; playlist strategy agents</li>
-            <li>Full Keyz curriculum workflows</li>
-            <li>Brand identity + storytelling frameworks</li>
-            <li>Custom merch store buildout</li>
-            <li>Ecommerce optimization</li>
-            <li>Growth analytics dashboard</li>
-          </ul>
-          <a href="https://app.letaggiedoit.com/join?campaign=ibatier2" class="btn btn-gold" target="_blank" rel="noopener" style="width:100%;text-align:center">Claim Your Spot →</a>
-        </div>
-      </div>
+.iba-video__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  max-width: 860px;
+  line-height: 1.6;
+}
 
-      <!-- TIER 3 — FOUNDING 100 INNER CIRCLE -->
-      <div class="tier-card tier-card-featured reveal">
-        <span class="tier-label">1-on-1</span>
-        <h3 class="tier-card-title">The Established Artist Advantage</h3>
-        <p class="tier-card-desc">Direct consulting with the IBA team, Keyz the Producer and Max Gousse. Personalized release architecture, custom AI agents, and multi-quarter rollout planning.</p>
+.iba-video__container {
+  max-width: 860px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111111;
+  border: 1px solid rgba(201,168,76,0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        <div class="tier3-price">Custom</div>
-        <div class="tier3-price-sub">By Application Only</div>
+.iba-video__container iframe,
+.iba-video__container video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
 
-        <div class="tier3-1on1">
-          <div class="label">Founding 100 Inner Circle</div>
-          <div class="desc">Direct 1-on-1 work with IBA principals. Personalized release architecture, custom agents built for your brand, private communication channels, and priority access to new Aggie features. Limited to 100 Founding members.</div>
-        </div>
+.iba-video__placeholder {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(201,168,76,0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 24px;
+  user-select: none;
+  pointer-events: none;
+}
 
-        <ul class="tier-features">
-          <li>Direct consulting with Keyz &amp; Max Gousse</li>
-          <li>Personalized release architecture</li>
-          <li>Custom AI agents built for your brand</li>
-          <li>Multi-quarter rollout planning</li>
-          <li>Audience monetization systems</li>
-          <li>Team dashboards &amp; enterprise integrations</li>
-          <li>Priority access to new Aggie features</li>
-          <li>Private communication channels</li>
-        </ul>
-        <a href="mailto:judson@iconbreaking.com" class="btn btn-gold" style="width:100%;text-align:center">Apply for Founding 100 →</a>
-      </div>
-    </div>
+/* ─── 4. STATS BANNER ─── */
+.iba-stats {
+  background: rgba(201,168,76,0.04);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  margin-top: 56px;
+  padding: 36px 24px;
+}
 
-    <p class="tier-disclaimer reveal">The IBA Release System powered by Aggie gives artists structure, accountability, and execution tools to grow real fanbases.</p>
-  </div>
-</section>
+.iba-stats__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
 
-<!-- ====== 7. FIT CALL ====== -->
-<section class="fit-call">
-  <div class="fit-call-inner">
-    <h2 class="reveal">Founding 100 is not a subscription page.<br>It is a fit call.</h2>
-    <p class="fit-call-body reveal">Book 15 minutes. We'll look at where your release system is leaking and whether IBA should build the infrastructure around your next move.</p>
-    <a href="#" class="btn btn-gold reveal">Book Your 15-Minute Founding 100 Call</a>
-    <p class="microcopy reveal">100 spots. Application-first. Built for serious artists, producers, managers, labels, and operators with real motion.</p>
-  </div>
-</section>
+.iba-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  position: relative;
+  text-align: center;
+}
 
-<!-- ====== 8. FOOTER ====== -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">IBA &times; Aggie</div>
-    <div class="footer-copy">&copy; 2026 Icon Breaking Agency. All rights reserved.</div>
-    <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-    </div>
-  </div>
-</footer>
+.iba-stat + .iba-stat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(201,168,76,0.2);
+}
 
-<!-- ====== SCROLL REVEAL JS ====== -->
-<script>
-(function(){
-  var reveals = document.querySelectorAll('.reveal');
-  if(!reveals.length) return;
+.iba-stat__number {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #c9a84c;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
 
-  var stagger = 0;
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        var delay = 0;
-        /* Stagger siblings in same parent */
-        var siblings = entry.target.parentElement.querySelectorAll('.reveal');
-        var idx = Array.prototype.indexOf.call(siblings, entry.target);
-        if(idx > 0 && idx < 6) delay = idx * 100;
+.iba-stat__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1.4;
+}
 
-        setTimeout(function(){
-          entry.target.classList.add('in');
-        }, delay);
+/* ─── 5. FORM SECTION ─── */
+.iba-form-section {
+  background: #0a0a0a;
+  padding: 64px 24px 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-        observer.unobserve(entry.target);
-      }
-    });
-  },{threshold:0.08, rootMargin:'0px 0px -30px 0px'});
+.iba-form__heading {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-  reveals.forEach(function(el){
-    observer.observe(el);
-  });
-})();
+.iba-form__heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(201,168,76,0.15);
+  max-width: 200px;
+}
 
-// Tier toggle
-function switchTier(t){
-  var btns = document.querySelectorAll('.toggle-btn');
-  var t1 = document.getElementById('tier1-features');
-  var t2 = document.getElementById('tier2-features');
-  if(t === 't1'){
-    btns[0].classList.add('active');
-    btns[1].classList.remove('active');
-    t1.style.display = '';
-    t2.style.display = 'none';
-  } else {
-    btns[0].classList.remove('active');
-    btns[1].classList.add('active');
-    t1.style.display = 'none';
-    t2.style.display = '';
+.iba-form__embed {
+  background: #0d0d0d;
+  border: 1px solid rgba(201,168,76,0.1);
+}
+
+/* ─── 6. RULE DIVIDER ─── */
+.iba-rule {
+  border: none;
+  border-top: 1px solid rgba(201,168,76,0.18);
+  margin: 0;
+  width: 100%;
+}
+
+/* ─── LOWER SECTIONS ─── */
+.iba-section {
+  padding: 72px 24px;
+}
+
+.iba-section__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.iba-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+
+.iba-section__h2 {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: -0.3px;
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
+.iba-thesis {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 300;
+  color: #e8e8e8;
+  line-height: 1.55;
+  border-left: 2px solid #c9a84c;
+  padding-left: 24px;
+  margin-bottom: 32px;
+  max-width: 780px;
+  font-style: italic;
+}
+
+.iba-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #a3a3a3;
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+/* Results */
+.iba-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(201,168,76,0.12);
+}
+
+.iba-result {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+
+.iba-result:last-child { border-bottom: none; }
+
+.iba-result__num {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #c9a84c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+  border-right: 1px solid rgba(201,168,76,0.12);
+}
+
+.iba-result__detail {
+  padding: 24px 28px;
+}
+
+.iba-result__detail strong {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.iba-result__detail p {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.iba-disclaimer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #444;
+  line-height: 1.6;
+  margin-top: 20px;
+  max-width: 680px;
+}
+
+/* Pricing */
+.iba-pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.iba-pricing-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.iba-pricing-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.iba-plan {
+  border: 1px solid rgba(201,168,76,0.12);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.iba-plan--f100 {
+  border-color: rgba(201,168,76,0.35);
+  position: relative;
+}
+
+.iba-plan--custom {
+  border-style: dashed;
+}
+
+.iba-plan__badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  color: #0a0a0a;
+  background: #c9a84c;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.iba-plan__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  gap: 12px;
+}
+
+.iba-plan__name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.iba-plan__price {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #c9a84c;
+}
+
+.iba-plan__price span {
+  font-size: 16px;
+  color: #555;
+}
+
+.iba-plan__price-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.iba-plan__cadence {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.iba-plan__lead {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #888;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.iba-plan__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.iba-plan__features li {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #888;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.iba-plan__features li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: rgba(201,168,76,0.4);
+  font-size: 11px;
+}
+
+.iba-btn {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #0a0a0a;
+  background: #c9a84c;
+  padding: 12px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background 0.2s;
+}
+
+.iba-btn:hover { background: #f0d78c; }
+
+/* Form CTA line */
+.iba-form__cta-line {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+}
+
+/* Footer */
+.iba-footer {
+  padding: 40px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+
+.iba-footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.iba-footer__powered { color: #555 !important; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .iba-hero {
+    padding: 40px 20px 48px;
+  }
+
+  .iba-hero__headline {
+    font-size: clamp(36px, 9vw, 52px);
+  }
+
+  .iba-hero__sub {
+    font-size: 15px;
+  }
+
+  .iba-video-wrap {
+    padding: 0 20px;
+  }
+
+  .iba-video__label {
+    font-size: 11px;
+  }
+
+  .iba-stats__inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .iba-stat:nth-child(3)::before {
+    display: none;
+  }
+
+  .iba-stat:nth-child(3),
+  .iba-stat:nth-child(4) {
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .iba-stat__number {
+    font-size: 30px;
+  }
+
+  .iba-form-section {
+    padding: 48px 20px 48px;
+  }
+
+  .iba-pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .iba-result {
+    grid-template-columns: 80px 1fr;
+  }
+
+  .iba-result__num {
+    font-size: 26px;
+    padding: 20px 12px;
   }
 }
-</script>
+</style>
 
+<div class="iba-root">
+
+  <!-- ─── 1. TICKER BAR ─── -->
+  <div class="iba-ticker" aria-label="Founding 100 announcement">
+    <div class="iba-ticker__track" aria-hidden="true">
+      <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
+      <span class="iba-ticker__sep">|</span>
+      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      <span class="iba-ticker__sep">|</span>
+      <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
+      <span class="iba-ticker__sep">|</span>
+      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      <span class="iba-ticker__sep">|</span>
+      <!-- Duplicate set for seamless loop -->
+      <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
+      <span class="iba-ticker__sep">|</span>
+      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      <span class="iba-ticker__sep">|</span>
+      <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
+      <span class="iba-ticker__sep">|</span>
+      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      <span class="iba-ticker__sep">|</span>
+    </div>
+  </div>
+
+  <!-- ─── 2. HERO SECTION ─── -->
+  <section class="iba-hero">
+    <div class="iba-hero__badges">
+      <div class="iba-hero__badge">
+        <span class="iba-live-dot" aria-hidden="true"></span>
+        <span class="iba-hero__badge-text">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
+      </div>
+    </div>
+
+    <h1 class="iba-hero__headline">
+      The Next Artists to Break Won’t Do It by Hand
+    </h1>
+
+    <p class="iba-hero__sub">
+      IBA builds the AI-powered release infrastructure behind serious artists and teams — content, rollout strategy, ad execution, fan-data capture, reporting, and the agent team that keeps the machine moving. Built by principals at IBA connected to 200M+ records sold, 500+ songs produced and written, three Diamond singles, and $800M+ in global revenue projects. Powered by Aggie. Available first to 100 Founding members.
+    </p>
+  </section>
+
+  <!-- ─── 3. VIDEO SECTION ─── -->
+  <div class="iba-video-wrap">
+    <p class="iba-video__label">
+      No experience with AI required. No case studies needed.<br>
+      Just real motion and a real artist.
+    </p>
+    <div class="iba-video__container">
+      <iframe
+        src="https://www.youtube.com/embed/cgIOF1Xv6uc?rel=0&modestbranding=1&color=white"
+        title="IBA × Aggie — Founding 100"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- ─── 4. STATS BANNER ─── -->
+  <div class="iba-stats" aria-label="IBA × Aggie track record">
+    <div class="iba-stats__inner">
+      <div class="iba-stat">
+        <div class="iba-stat__number">200M+</div>
+        <div class="iba-stat__label">Records Sold</div>
+      </div>
+      <div class="iba-stat">
+        <div class="iba-stat__number">500+</div>
+        <div class="iba-stat__label">Songs Produced &amp; Written</div>
+      </div>
+      <div class="iba-stat">
+        <div class="iba-stat__number">3×</div>
+        <div class="iba-stat__label">Diamond Singles</div>
+      </div>
+      <div class="iba-stat">
+        <div class="iba-stat__number">$800M+</div>
+        <div class="iba-stat__label">Global Revenue Projects</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 5. FORM SECTION ─── -->
+  <section class="iba-form-section">
+    <p class="iba-form__cta-line">Fill out the form. Take action. Expect the call from us.</p>
+    <div class="iba-form__heading">Apply for Founding 100</div>
+
+    <div class="iba-form__embed">
+      <iframe
+        src="https://app.truportals.com/widget/quiz/z0N7as5YRXfyv77ELbAP"
+        style="border:none;width:100%;min-height:650px;display:block;"
+        scrolling="no"
+        id="z0N7as5YRXfyv77ELbAP"
+        title="quiz"
+      ></iframe>
+    </div>
+  </section>
+
+  <hr class="iba-rule">
+
+  <!-- ─── THESIS ─── -->
+  <section class="iba-section">
+    <div class="iba-section__inner">
+      <blockquote class="iba-thesis">
+        "The $31.7B recorded music market does not reward talent by itself. It rewards signal, consistency, distribution, audience movement, data, and execution."
+      </blockquote>
+      <p class="iba-body">
+        IBA builds the AI agent team behind your next release — content, rollout, ads, fan-data capture, and reporting — so your music stops depending on luck, memory, and last-minute posting.
+      </p>
+    </div>
+  </section>
+
+  <hr class="iba-rule">
+
+  <!-- ─── RESULTS ─── -->
+  <section class="iba-section">
+    <div class="iba-section__inner">
+      <p class="iba-eyebrow">Results</p>
+      <h2 class="iba-section__h2">What the infrastructure looks like when it works.</h2>
+      <div class="iba-results">
+        <div class="iba-result">
+          <div class="iba-result__num">8×</div>
+          <div class="iba-result__detail">
+            <strong>30K → 240K Instagram</strong>
+            <p>Artist development + content infrastructure. Consistent posting, AI-assisted production, audience data capture.</p>
+          </div>
+        </div>
+        <div class="iba-result">
+          <div class="iba-result__num">700K</div>
+          <div class="iba-result__detail">
+            <strong>~200 → 700K streams from one campaign</strong>
+            <p>Release infrastructure deployed around a single. Rollout strategy, ad execution, fan-data capture.</p>
+          </div>
+        </div>
+        <div class="iba-result">
+          <div class="iba-result__num">2.4M</div>
+          <div class="iba-result__detail">
+            <strong>20 monthly listeners → 2.4M streams/year</strong>
+            <p>Sustained infrastructure. Not a one-hit campaign. The machine running 12 months straight.</p>
+          </div>
+        </div>
+      </div>
+      <p class="iba-disclaimer">Principal-connected projects, associated work, and case-specific results. Results not typical and depend on artist, genre, market conditions, and execution.</p>
+    </div>
+  </section>
+
+  <hr class="iba-rule">
+
+  <!-- ─── PRICING ─── -->
+  <section class="iba-section">
+    <div class="iba-section__inner">
+      <p class="iba-eyebrow">How it Works</p>
+      <h2 class="iba-section__h2">Two ways to work with IBA × Aggie.</h2>
+
+      <div class="iba-pricing-grid">
+
+        <!-- Self-Serve -->
+        <div class="iba-pricing-col">
+          <p class="iba-pricing-label">Self-Serve</p>
+          <p class="iba-pricing-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie.</p>
+
+          <div class="iba-plan">
+            <div class="iba-plan__header">
+              <span class="iba-plan__name">Artist</span>
+              <span class="iba-plan__price">$99<span>/mo</span></span>
+            </div>
+            <p class="iba-plan__cadence">Monthly · Cancel anytime</p>
+            <ul class="iba-plan__features">
+              <li>Up to 100 AI-powered posts per month</li>
+              <li>Full social media marketing creation</li>
+              <li>Release &amp; event campaign systems</li>
+              <li>Entry-level custom AI agents built by Keyz</li>
+              <li>Weekly execution structure</li>
+              <li>Fanbase growth tracking</li>
+              <li>Release checklists and rollout workflows</li>
+            </ul>
+            <a href="https://app.letaggiedoit.com/join?campaign=ibatier1" class="iba-btn">Claim Your Spot →</a>
+          </div>
+
+          <div class="iba-plan">
+            <div class="iba-plan__header">
+              <span class="iba-plan__name">Real Growth</span>
+              <span class="iba-plan__price">$500<span>/mo</span></span>
+            </div>
+            <p class="iba-plan__cadence">Monthly · Cancel anytime</p>
+            <ul class="iba-plan__features">
+              <li>Advanced AI agents engineered by Keyz</li>
+              <li>Automated content calendars</li>
+              <li>Multi-platform scheduling</li>
+              <li>Long-form repurposing systems</li>
+              <li>Spotify growth &amp; playlist strategy agents</li>
+              <li>Full Keyz curriculum workflows</li>
+              <li>Brand identity + storytelling frameworks</li>
+              <li>Custom merch store buildout</li>
+              <li>Growth analytics dashboard</li>
+            </ul>
+            <a href="https://app.letaggiedoit.com/join?campaign=ibatier2" class="iba-btn">Claim Your Spot →</a>
+          </div>
+        </div>
+
+        <!-- 1-on-1 -->
+        <div class="iba-pricing-col">
+          <p class="iba-pricing-label">1-on-1</p>
+          <p class="iba-pricing-desc">Direct consulting with IBA principals — Keyz the Producer and Max Gousse. Personalized architecture, custom agents, multi-quarter planning.</p>
+
+          <div class="iba-plan iba-plan--custom">
+            <div class="iba-plan__header">
+              <span class="iba-plan__name">Custom</span>
+              <span class="iba-plan__price-tag">By Application Only</span>
+            </div>
+          </div>
+
+          <div class="iba-plan iba-plan--f100">
+            <div class="iba-plan__badge">Founding 100</div>
+            <div class="iba-plan__header">
+              <span class="iba-plan__name">Inner Circle</span>
+            </div>
+            <p class="iba-plan__lead">Direct 1-on-1 work with IBA principals. Personalized release architecture, custom agents built for your brand, private communication channels, and priority access to new Aggie features. Limited to 100 Founding members.</p>
+            <ul class="iba-plan__features">
+              <li>Direct consulting with Keyz &amp; Max Gousse</li>
+              <li>Personalized release architecture</li>
+              <li>Custom AI agents built for your brand</li>
+              <li>Multi-quarter rollout planning</li>
+              <li>Audience monetization systems</li>
+              <li>Team dashboards &amp; enterprise integrations</li>
+              <li>Priority access to new Aggie features</li>
+              <li>Private communication channels</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="iba-rule">
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="iba-footer">
+    <p>© 2026 Icon Breaking Agency. All rights reserved.</p>
+    <p class="iba-footer__powered">Powered by Aggie</p>
+  </footer>
+
+</div>
+
+<script src="https://app.truportals.com/js/form_embed.js"></script>
 </body>
 </html>
