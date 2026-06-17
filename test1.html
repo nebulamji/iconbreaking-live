@@ -259,12 +259,13 @@
 
 .iba-stat__number {
   font-family: 'Big Shoulders Display', sans-serif;
-  font-size: 36px;
+  font-size: clamp(28px, 4vw, 42px);
   font-weight: 700;
   color: #c9a84c;
   line-height: 1;
   letter-spacing: -0.5px;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .iba-stat__label {
@@ -280,7 +281,7 @@
 /* ─── 5. FORM SECTION ─── */
 .iba-form-section {
   background: #0a0a0a;
-  padding: 4px 24px 4px;
+  padding: 64px 24px 64px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -375,14 +376,17 @@
   color: #a3a3a3;
   line-height: 1.7;
   max-width: 680px;
+  margin: 0 auto 32px;
+  text-align: left;
 }
 
 /* Results */
 .iba-results {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid rgba(201,168,76,0.12);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  border: none;
+  margin-top: 40px;
 }
 
 .iba-result {
@@ -673,18 +677,111 @@
 }
 
   /* ====== TOGGLE TIERS 1/2 + 1ON1 ====== */
-  .tier-two-box {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: start;
-  }
+  /* ─── PRICING GRID ─── */
+.iba-pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.iba-pricing-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.iba-pricing-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.iba-pricing-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.iba-plan {
+  border: 1px solid rgba(201,168,76,0.12);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.iba-plan__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.iba-plan__name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.iba-plan__price {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #c9a84c;
+}
+
+.iba-plan__price span {
+  font-size: 14px;
+  color: #888;
+  font-weight: 400;
+}
+
+.iba-plan__cadence {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.iba-plan__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.iba-plan__features li {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.7;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+
+.iba-plan__features li:last-child {
+  border-bottom: none;
+}
+
+.iba-plan--custom .iba-plan__header {
+  margin-bottom: 0;
+}
+
+.iba-plan__price-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
   .tier-box {
     border: 1px solid rgba(201,168,76,0.15);
     background: #0a0a0a;
     padding: 28px;
     border-radius: 4px;
-    text-align: left;
   }
   .tier-box-right {
     border-color: rgba(201,168,76,0.35);
@@ -890,9 +987,6 @@
       ></iframe>
     </div>
   </section>
-</div>
-
-</div>
 
 
   <hr class="iba-rule">
@@ -923,9 +1017,6 @@
       </p>
     </div>
   </section>
-</div>
-
-</div>
 
 
   <hr class="iba-rule">
@@ -960,9 +1051,6 @@
       </div>
     </div>
   </section>
-</div>
-
-</div>
 
 
   <hr class="iba-rule">
@@ -1049,9 +1137,6 @@
       </div>
     </div>
   </section>
-</div>
-
-</div>
 
 
   <hr class="iba-rule">
