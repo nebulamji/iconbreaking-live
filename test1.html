@@ -45,10 +45,10 @@
   p{color:var(--gray)}
 
   /* Force dark on every section */
-  header,section,footer,.hero,.anno-bar,.vsl-section,.proof-strip,.fit-call{
+  header,section,footer,.hero,.anno-bar,.stats-strip,.presale,.thesis,.case-studies,.two-buckets,.fit-call{
     background-color:#000 !important;
   }
-  .proof-strip{background-color:var(--black-2) !important}
+  .stats-strip,.case-studies{background-color:var(--black-2) !important}
 
   @media(prefers-color-scheme:light){
     html,body{background:#000 !important;color:#fff !important}
@@ -67,6 +67,14 @@
 
   .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
   .narrow{max-width:800px;margin:0 auto;padding:0 32px}
+
+  /* Section hairline dividers */
+  .section-divider{
+    height:1px;
+    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
+    max-width:1240px;
+    margin:0 auto;
+  }
 
   /* ====== ANNOUNCEMENT BAR ====== */
   .anno-bar{
@@ -87,7 +95,7 @@
   .hero{
     position:relative;
     overflow:hidden;
-    padding:100px 32px 120px;
+    padding:100px 32px 60px;
   }
   /* Gold atmospheric glow */
   .hero::before{
@@ -151,12 +159,17 @@
     line-height:1.75;
     color:var(--gray);
     max-width:780px;
-    margin:0 auto 48px;
+    margin:0 auto 24px;
     font-weight:400;
   }
-  .hero-sub .italic{
+  .hero-italic{
     font-family:'Playfair Display',serif;
     font-style:italic;
+    font-size:clamp(1.05rem,2vw,1.2rem);
+    color:var(--gray);
+    max-width:700px;
+    margin:0 auto 48px;
+    line-height:1.7;
     letter-spacing:-.01em;
   }
 
@@ -184,6 +197,17 @@
     box-shadow:0 0 0 1px var(--gold-bright),0 12px 40px rgba(201,169,97,.4);
     transform:translateY(-2px);
   }
+  .btn-outline{
+    background:transparent;
+    color:var(--gold);
+    border:1px solid rgba(201,169,97,0.4);
+    box-shadow:none;
+  }
+  .btn-outline:hover{
+    border-color:var(--gold);
+    background:var(--gold-soft);
+    transform:translateY(-2px);
+  }
   .microcopy{
     font-size:.76rem;
     color:var(--gray-dim);
@@ -191,16 +215,7 @@
     letter-spacing:.02em;
   }
 
-  /* ====== VSL SECTION ====== */
-  .vsl-section{
-    padding:80px 32px 100px;
-    position:relative;
-  }
-  .vsl-inner{
-    max-width:960px;
-    margin:0 auto;
-    text-align:center;
-  }
+  /* ====== VSL PLAYER ====== */
   .vsl-player{
     position:relative;
     width:100%;
@@ -210,7 +225,6 @@
     border-radius:6px;
     overflow:hidden;
     cursor:pointer;
-    margin-bottom:28px;
   }
   .vsl-player::before{
     content:"";
@@ -243,37 +257,43 @@
     font-size:.88rem;
     color:var(--gray-dim);
     max-width:500px;
-    margin:0 auto 36px;
+    margin:0 auto;
     line-height:1.6;
   }
 
-  /* ====== PROOF STRIP ====== */
-  .proof-strip{
-    padding:80px 32px 90px;
+  /* ====== HERO VSL WRAPPER ====== */
+  .hero-vsl{
+    max-width:960px;
+    margin:0 auto 40px;
+  }
+  .hero-vsl .vsl-player{
+    margin-bottom:0;
+  }
+
+  /* ====== STATS STRIP ====== */
+  .stats-strip{
+    padding:56px 32px 64px;
     position:relative;
   }
-  .proof-strip::before{
-    content:"";
-    position:absolute;
-    top:0;left:0;right:0;
-    height:1px;
-    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
-  }
-  .proof-strip::after{
+  .stats-strip::before{
     content:"";
     position:absolute;
     bottom:0;left:0;right:0;
     height:1px;
     background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
   }
-  .proof-grid{
+  .stats-grid{
     max-width:1240px;
     margin:0 auto;
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:48px 32px;
     text-align:center;
   }
+  .stats-grid .stat-cell{
+    padding:24px 16px;
+    border-right:1px solid var(--line);
+  }
+  .stats-grid .stat-cell:last-child{border-right:none}
   .stat-num{
     font-family:'Big Shoulders Display',sans-serif;
     font-weight:800;
@@ -289,19 +309,375 @@
     line-height:1.5;
     letter-spacing:.02em;
   }
-  .proof-disclaimer{
+
+  /* ====== EYEBROW ====== */
+  .eyebrow{
+    display:inline-block;
+    font-size:.68rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--gold);
+    margin-bottom:20px;
+  }
+
+  /* ====== SECTION H2 ====== */
+  .sec-h2{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:900;
+    font-size:clamp(2rem,4.5vw,3.4rem);
+    line-height:1.05;
+    margin-bottom:24px;
+    max-width:900px;
+  }
+  .sec-body{
+    font-size:clamp(.98rem,1.8vw,1.1rem);
+    line-height:1.75;
+    color:var(--gray);
+    max-width:720px;
+    margin-bottom:40px;
+  }
+
+  /* ====== PRE-SALE / APPLICATION ====== */
+  .presale{
+    padding:100px 32px 110px;
+    position:relative;
+  }
+  .presale-inner{
+    max-width:900px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .presale-paths{
+    display:flex;
+    align-items:stretch;
+    gap:0;
+    margin:36px auto 40px;
+    max-width:740px;
+    border:1px solid rgba(201,169,97,0.2);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .presale-path{
+    flex:1;
+    padding:28px 24px;
+    text-align:center;
+    border-right:1px solid rgba(201,169,97,0.15);
+  }
+  .presale-path:last-child{border-right:none}
+  .presale-path-label{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:1rem;
+    color:var(--gold);
+    margin-bottom:6px;
+    letter-spacing:.02em;
+  }
+  .presale-path-desc{
+    font-size:.82rem;
+    color:var(--gray);
+    line-height:1.5;
+  }
+  .presale-cta-text{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:clamp(1.1rem,2.2vw,1.4rem);
+    color:#fff;
+    letter-spacing:.02em;
+    margin-bottom:32px;
+  }
+  .form-placeholder{
+    min-height:500px;
+    background:var(--black-3);
+    border:1px dashed rgba(201,169,97,0.25);
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .form-placeholder::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(201,169,97,0.02) 0%,transparent 50%,rgba(255,59,110,0.01) 100%);
+  }
+  .form-placeholder-text{
+    font-size:.88rem;
+    color:var(--gray-dim);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+
+  /* ====== THESIS ====== */
+  .thesis{
+    padding:100px 32px 110px;
+    position:relative;
+  }
+  .thesis::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
+  }
+  .thesis-inner{
+    max-width:900px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .thesis-vsl{
+    max-width:800px;
+    margin:40px auto;
+  }
+  .thesis-vsl .vsl-player{
+    margin-bottom:0;
+  }
+
+  /* ====== CASE STUDIES ====== */
+  .case-studies{
+    padding:100px 32px 110px;
+    position:relative;
+  }
+  .case-studies::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
+  }
+  .case-studies-inner{
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .case-studies-header{
+    text-align:center;
+    margin-bottom:56px;
+  }
+  .case-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+  .case-card{
+    border:1px solid rgba(201,169,97,0.15);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--black-3);
+    transition:border-color .3s ease;
+  }
+  .case-card:hover{
+    border-color:rgba(201,169,97,0.35);
+  }
+  .case-card-img{
+    width:100%;
+    aspect-ratio:16/9;
+    background:var(--black-4);
+    position:relative;
+    overflow:hidden;
+  }
+  .case-card-img::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(201,169,97,0.03) 0%,transparent 50%,rgba(255,59,110,0.02) 100%);
+  }
+  .case-card-img .vsl-play-btn{
+    width:56px;height:56px;
+  }
+  .case-card-img .vsl-play-btn svg{
+    width:20px;height:20px;
+    margin-left:3px;
+  }
+  .case-card-body{
+    padding:28px 28px 32px;
+  }
+  .case-card-stat{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:900;
+    font-size:clamp(1.4rem,3vw,1.8rem);
+    color:var(--gold);
+    margin-bottom:10px;
+    letter-spacing:-.01em;
+  }
+  .case-card-desc{
+    font-size:.88rem;
+    color:var(--gray);
+    line-height:1.65;
+  }
+  .case-card-full{
+    grid-column:1 / -1;
+  }
+  .case-disclaimer{
     text-align:center;
     margin-top:48px;
     font-size:.68rem;
     color:var(--gray-dim);
     letter-spacing:.06em;
     opacity:.7;
+    max-width:680px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.6;
+  }
+
+  /* ====== TWO BUCKETS ====== */
+  .two-buckets{
+    padding:100px 32px 110px;
+    position:relative;
+  }
+  .two-buckets::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
+  }
+  .two-buckets-inner{
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .two-buckets-header{
+    text-align:center;
+    margin-bottom:56px;
+  }
+  .bucket-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    margin-bottom:56px;
+  }
+  .bucket-card{
+    border:1px solid rgba(201,169,97,0.15);
+    border-radius:6px;
+    padding:40px 36px;
+    background:var(--black-3);
+    transition:border-color .3s ease;
+  }
+  .bucket-card:hover{
+    border-color:rgba(201,169,97,0.35);
+  }
+  .bucket-label{
+    display:inline-block;
+    font-size:.62rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--pink);
+    border:1px solid rgba(255,59,110,0.3);
+    border-radius:3px;
+    padding:4px 12px;
+    margin-bottom:20px;
+  }
+  .bucket-title{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:900;
+    font-size:clamp(1.3rem,2.5vw,1.7rem);
+    line-height:1.1;
+    margin-bottom:14px;
+    color:#fff !important;
+  }
+  .bucket-desc{
+    font-size:.9rem;
+    color:var(--gray);
+    line-height:1.65;
+    margin-bottom:28px;
+  }
+  .bucket-table{
+    width:100%;
+    border-collapse:collapse;
+  }
+  .bucket-table tr{
+    border-bottom:1px solid var(--line);
+  }
+  .bucket-table tr:last-child{border-bottom:none}
+  .bucket-table td{
+    padding:12px 0;
+    font-size:.82rem;
+    vertical-align:top;
+  }
+  .bucket-table td:first-child{
+    color:var(--gray-dim);
+    font-weight:600;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    font-size:.7rem;
+    white-space:nowrap;
+    padding-right:20px;
+    width:120px;
+  }
+  .bucket-table td:last-child{
+    color:var(--gray);
+  }
+
+  /* ====== COMPARISON TABLE ====== */
+  .comparison-wrap{
+    max-width:900px;
+    margin:0 auto;
+  }
+  .comparison-title{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:clamp(1.1rem,2vw,1.3rem);
+    text-align:center;
+    margin-bottom:24px;
+    letter-spacing:.02em;
+  }
+  .comparison-table{
+    width:100%;
+    border-collapse:collapse;
+    border:1px solid rgba(201,169,97,0.12);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .comparison-table thead th{
+    background:var(--black-3);
+    padding:16px 20px;
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:.82rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    text-align:left;
+    color:var(--gold);
+    border-bottom:1px solid rgba(201,169,97,0.15);
+  }
+  .comparison-table thead th:first-child{
+    color:var(--gray-dim);
+    font-weight:600;
+    letter-spacing:.12em;
+    font-family:'Inter',sans-serif;
+  }
+  .comparison-table tbody td{
+    padding:14px 20px;
+    font-size:.84rem;
+    color:var(--gray);
+    border-bottom:1px solid var(--line);
+    line-height:1.5;
+  }
+  .comparison-table tbody tr:last-child td{border-bottom:none}
+  .comparison-table tbody td:first-child{
+    color:var(--gray-dim);
+    font-weight:600;
+    text-transform:uppercase;
+    font-size:.7rem;
+    letter-spacing:.06em;
+    white-space:nowrap;
   }
 
   /* ====== FIT CALL SECTION ====== */
   .fit-call{
     padding:100px 32px 120px;
     position:relative;
+  }
+  .fit-call::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
   }
   .fit-call-inner{
     max-width:680px;
@@ -372,37 +748,61 @@
 
   /* ====== RESPONSIVE ====== */
   @media(max-width:1024px){
-    .proof-grid{grid-template-columns:repeat(2,1fr);gap:40px 24px}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .stats-grid .stat-cell{border-right:none;border-bottom:1px solid var(--line)}
+    .stats-grid .stat-cell:nth-child(odd){border-right:1px solid var(--line)}
+    .stats-grid .stat-cell:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .stats-grid .stat-cell:nth-child(n+3){border-bottom:none}
+    .case-grid{gap:20px}
+    .bucket-grid{gap:20px}
+    .comparison-table thead th,
+    .comparison-table tbody td{padding:12px 14px}
   }
   @media(max-width:768px){
-    .hero{padding:70px 24px 80px}
+    .hero{padding:70px 24px 40px}
     .hero h1{font-size:clamp(2.4rem,9vw,3.5rem)}
     .hero-sub{font-size:.95rem}
     .btn{padding:18px 36px;font-size:.72rem;width:100%;max-width:360px}
-    .vsl-section{padding:50px 24px 70px}
-    .proof-strip{padding:60px 24px 70px}
-    .proof-grid{gap:32px 16px}
-    .stat-num{font-size:clamp(1.8rem,6vw,2.4rem)}
+    .stats-strip{padding:40px 24px 48px}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .stats-grid .stat-cell{border-right:none !important;border-bottom:1px solid var(--line)}
+    .stats-grid .stat-cell:nth-last-child(-n+2){border-bottom:none}
+    .presale{padding:70px 24px 80px}
+    .presale-paths{flex-direction:column;max-width:100%}
+    .presale-path{border-right:none !important;border-bottom:1px solid rgba(201,169,97,0.15)}
+    .presale-path:last-child{border-bottom:none}
+    .form-placeholder{min-height:380px}
+    .thesis{padding:70px 24px 80px}
+    .case-studies{padding:70px 24px 80px}
+    .case-grid{grid-template-columns:1fr}
+    .case-card-full{grid-column:auto}
+    .two-buckets{padding:70px 24px 80px}
+    .bucket-grid{grid-template-columns:1fr}
+    .comparison-table{font-size:.78rem}
+    .comparison-table thead th,
+    .comparison-table tbody td{padding:10px 12px}
+    .comparison-table tbody td:first-child{white-space:normal;font-size:.68rem}
     .fit-call{padding:70px 24px 80px}
   }
   @media(max-width:540px){
     .anno-bar{font-size:.58rem;letter-spacing:.14em;padding:12px 16px}
     .anno-bar .sep{display:none}
     .hero-prehead{font-size:.58rem;letter-spacing:.2em}
-    .proof-grid{grid-template-columns:repeat(2,1fr);gap:28px 12px}
     .stat-label{font-size:.7rem}
+    .bucket-card{padding:28px 20px}
+    .bucket-table td:first-child{width:90px;font-size:.64rem}
     .footer-inner{flex-direction:column;text-align:center}
   }
 </style>
 </head>
 <body>
 
-<!-- ====== ANNOUNCEMENT BAR ====== -->
+<!-- ====== 1. ANNOUNCEMENT BAR ====== -->
 <div class="anno-bar">
   Founding 100 Now Open<span class="sep">·</span>100 Artists, Producers, Managers & Teams Only
 </div>
 
-<!-- ====== HERO ====== -->
+<!-- ====== 2. HERO ====== -->
 <header class="hero">
   <div class="hero-inner">
     <div class="hero-prehead reveal">
@@ -413,64 +813,205 @@
     <p class="hero-sub reveal">
       IBA builds the AI-powered release infrastructure behind serious artists and teams — content, rollout strategy, ad execution, fan-data capture, reporting, and the agent team that keeps the machine moving. Built by principals connected to 200M+ records sold, three Diamond singles, and $800M+ in global revenue projects. Powered by Aggie. Available first to 100 Founding members.
     </p>
+    <p class="hero-italic reveal">No experience with AI required. No case studies needed. Just real motion and a real artist.</p>
+
+    <!-- VSL Placeholder -->
+    <div class="hero-vsl reveal">
+      <div class="vsl-player">
+        <div class="vsl-play-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
+      </div>
+    </div>
+
     <a href="#" class="btn btn-gold reveal">Book Your 15-Minute Founding 100 Call</a>
     <p class="microcopy reveal">We'll look at your artist, release window, bottlenecks, and whether you belong in the first 100.</p>
   </div>
 </header>
 
-<!-- ====== VSL SECTION ====== -->
-<section class="vsl-section">
-  <div class="vsl-inner">
-    <div class="vsl-player reveal">
-      <div class="vsl-play-btn">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
-      </div>
+<!-- ====== STATS STRIP ====== -->
+<section class="stats-strip">
+  <div class="stats-grid">
+    <div class="stat-cell reveal">
+      <div class="stat-num">$200M+</div>
+      <div class="stat-label">Records sold, principal-connected</div>
     </div>
-    <p class="vsl-caption reveal">The video explains the full system. The call determines fit.</p>
-    <a href="#" class="btn btn-gold reveal">Book Your 15-Minute Founding 100 Call</a>
-  </div>
-</section>
-
-<!-- ====== PROOF STRIP ====== -->
-<section class="proof-strip">
-  <div class="proof-grid">
-    <div class="reveal">
-      <div class="stat-num">200M+</div>
-      <div class="stat-label">Records sold across principal-connected projects</div>
+    <div class="stat-cell reveal">
+      <div class="stat-num">3&times; Diamond</div>
+      <div class="stat-label">Singles across catalog</div>
     </div>
-    <div class="reveal">
-      <div class="stat-num">3&times;</div>
-      <div class="stat-label">Diamond singles</div>
-    </div>
-    <div class="reveal">
+    <div class="stat-cell reveal">
       <div class="stat-num">$800M+</div>
       <div class="stat-label">Global revenue projects</div>
     </div>
-    <div class="reveal">
+    <div class="stat-cell reveal">
       <div class="stat-num">50M+</div>
-      <div class="stat-label">Streams across associated work in 2025</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-num">500+</div>
-      <div class="stat-label">Songs and tracks produced</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-num">30K &rarr; 240K</div>
-      <div class="stat-label">Instagram growth</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-num">~200 &rarr; 700K</div>
-      <div class="stat-label">Monthly listeners to streams from one campaign</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-num">20 &rarr; 2.4M</div>
-      <div class="stat-label">Monthly listeners to streams/year</div>
+      <div class="stat-label">Streams, associated work 2025</div>
     </div>
   </div>
-  <p class="proof-disclaimer reveal">Principal-connected projects, associated work, and case-specific results.</p>
 </section>
 
-<!-- ====== FIT CALL SECTION ====== -->
+<!-- ====== 3. PRE-SALE / APPLICATION ====== -->
+<section class="presale">
+  <div class="presale-inner">
+    <div class="eyebrow reveal">Founding 100 Access</div>
+    <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;">Lock in your seat before the first 100 close.</h2>
+    <p class="sec-body reveal" style="margin-left:auto;margin-right:auto;">Direct work with IBA's artist-development team and Aggie's AI agent infrastructure. Founding 100 pricing holds for the first 100 accepted. After that, public rates.</p>
+
+    <div class="presale-paths reveal">
+      <div class="presale-path">
+        <div class="presale-path-label">Release Infrastructure (managed)</div>
+        <div class="presale-path-desc">IBA builds and runs the machine</div>
+      </div>
+      <div class="presale-path">
+        <div class="presale-path-label">Founding 100 Coaching</div>
+        <div class="presale-path-desc">IBA trains your team to run it</div>
+      </div>
+    </div>
+
+    <p class="presale-cta-text reveal">Fill out the form. Do it now. Expect the call.</p>
+
+    <div class="form-placeholder reveal">
+      <span class="form-placeholder-text">Application Form — Embed Placeholder</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 4. THESIS ====== -->
+<section class="thesis">
+  <div class="thesis-inner">
+    <div class="eyebrow reveal">The thesis</div>
+    <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;max-width:860px;">The $31.7B recorded music market does not reward talent by itself. It rewards signal, consistency, distribution, audience movement, data, and execution.</h2>
+    <p class="sec-body reveal" style="margin-left:auto;margin-right:auto;">IBA builds the AI agent team behind your next release — content, rollout, ads, fan-data capture, and reporting — so your music stops depending on luck, memory, and last-minute posting.</p>
+
+    <div class="thesis-vsl reveal">
+      <div class="vsl-player">
+        <div class="vsl-play-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <p class="vsl-caption reveal" style="margin-top:24px;">The video explains the full system. The call determines fit.</p>
+  </div>
+</section>
+
+<!-- ====== 5. CASE STUDIES / PROOF ====== -->
+<section class="case-studies">
+  <div class="case-studies-inner">
+    <div class="case-studies-header">
+      <div class="eyebrow reveal">Results</div>
+      <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;">What the infrastructure looks like when it works.</h2>
+    </div>
+
+    <div class="case-grid">
+      <!-- Card 1 -->
+      <div class="case-card reveal">
+        <div class="case-card-img">
+          <div class="vsl-play-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
+          </div>
+        </div>
+        <div class="case-card-body">
+          <div class="case-card-stat">30K → 240K Instagram growth</div>
+          <p class="case-card-desc">Artist development + content infrastructure. Consistent posting, AI-assisted content production, audience data capture. Result: 8x follower growth in one campaign cycle.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="case-card reveal">
+        <div class="case-card-img">
+          <div class="vsl-play-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
+          </div>
+        </div>
+        <div class="case-card-body">
+          <div class="case-card-stat">~200 → 700K streams from one campaign</div>
+          <p class="case-card-desc">Release infrastructure deployed around a single. Rollout strategy, ad execution, fan-data capture. Result: from ~200 monthly listeners to nearly 700K streams.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 — full width -->
+      <div class="case-card case-card-full reveal">
+        <div class="case-card-img">
+          <div class="vsl-play-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
+          </div>
+        </div>
+        <div class="case-card-body">
+          <div class="case-card-stat">20 monthly listeners → 2.4M streams/year</div>
+          <p class="case-card-desc">Sustained infrastructure. Not a one-hit campaign. The machine running 12 months straight. Compounding audience, compounding data, compounding releases.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="case-disclaimer reveal">Principal-connected projects, associated work, and case-specific results. Results not typical and depend on artist, genre, market conditions, and execution.</p>
+  </div>
+</section>
+
+<!-- ====== 6. TWO-BUCKETS FRAMEWORK ====== -->
+<section class="two-buckets">
+  <div class="two-buckets-inner">
+    <div class="two-buckets-header">
+      <div class="eyebrow reveal">Two paths</div>
+      <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;">Two ways to work with IBA × Aggie.</h2>
+    </div>
+
+    <div class="bucket-grid">
+      <!-- Bucket A -->
+      <div class="bucket-card reveal">
+        <span class="bucket-label">Bucket A</span>
+        <h3 class="bucket-title">Managed Release Infrastructure</h3>
+        <p class="bucket-desc">IBA builds and runs the full AI-powered release infrastructure around your artist. Content, rollout strategy, ad execution, fan-data capture, reporting. Your team keeps creative control. The machine keeps moving.</p>
+        <table class="bucket-table">
+          <tr><td>Who it fits</td><td>Artists and teams who want it done, not taught</td></tr>
+          <tr><td>Time to live</td><td>2–4 weeks onboarding</td></tr>
+          <tr><td>Investment</td><td>Monthly retainer + campaign budget</td></tr>
+          <tr><td>Best for</td><td>Active artists with upcoming releases</td></tr>
+        </table>
+      </div>
+
+      <!-- Bucket B -->
+      <div class="bucket-card reveal">
+        <span class="bucket-label">Bucket B</span>
+        <h3 class="bucket-title">Founding 100 Coaching</h3>
+        <p class="bucket-desc">IBA trains your team to build and run the AI agent infrastructure yourself. Content systems, rollout frameworks, ad playbooks, data capture protocols. You own the machine. We install it.</p>
+        <table class="bucket-table">
+          <tr><td>Who it fits</td><td>Operators who want to own the system</td></tr>
+          <tr><td>Time to live</td><td>6-week intensive</td></tr>
+          <tr><td>Investment</td><td>Founding 100 pricing (first 100 only)</td></tr>
+          <tr><td>Best for</td><td>Managers, labels, producers building long-term</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="comparison-wrap reveal">
+      <div class="comparison-title">Side-by-Side</div>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Managed Infrastructure</th>
+            <th>Founding 100 Coaching</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Setup</td><td>IBA does everything</td><td>IBA trains your team</td></tr>
+          <tr><td>Ongoing</td><td>IBA runs the machine</td><td>You run the machine</td></tr>
+          <tr><td>Creative control</td><td>Your team</td><td>Your team</td></tr>
+          <tr><td>Speed to first result</td><td>2–4 weeks</td><td>6–8 weeks</td></tr>
+          <tr><td>Cost model</td><td>Monthly retainer</td><td>One-time + optional support</td></tr>
+          <tr><td>AI agents</td><td>IBA manages</td><td>You manage</td></tr>
+          <tr><td>Data ownership</td><td>Yours</td><td>Yours</td></tr>
+          <tr><td>Best if</td><td>You want results now</td><td>You want the system forever</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 7. FIT CALL ====== -->
 <section class="fit-call">
   <div class="fit-call-inner">
     <h2 class="reveal">Founding 100 is not a subscription page.<br>It is a fit call.</h2>
@@ -480,7 +1021,7 @@
   </div>
 </section>
 
-<!-- ====== FOOTER ====== -->
+<!-- ====== 8. FOOTER ====== -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">IBA &times; Aggie</div>
@@ -495,17 +1036,27 @@
 <!-- ====== SCROLL REVEAL JS ====== -->
 <script>
 (function(){
-  const reveals = document.querySelectorAll('.reveal');
+  var reveals = document.querySelectorAll('.reveal');
   if(!reveals.length) return;
 
-  const observer = new IntersectionObserver(function(entries){
+  var stagger = 0;
+  var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if(entry.isIntersecting){
-        entry.target.classList.add('in');
+        var delay = 0;
+        /* Stagger siblings in same parent */
+        var siblings = entry.target.parentElement.querySelectorAll('.reveal');
+        var idx = Array.prototype.indexOf.call(siblings, entry.target);
+        if(idx > 0 && idx < 6) delay = idx * 100;
+
+        setTimeout(function(){
+          entry.target.classList.add('in');
+        }, delay);
+
         observer.unobserve(entry.target);
       }
     });
-  },{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  },{threshold:0.08, rootMargin:'0px 0px -30px 0px'});
 
   reveals.forEach(function(el){
     observer.observe(el);
