@@ -1081,10 +1081,23 @@
       <h2 class="iba-section__h2">Two ways to work with IBA × Aggie.</h2>
 
       <div class="tier-two-box">
-        <!-- SELF-SERVE: TIER 1 + TIER 2 stacked -->
-        <div style="display:flex; flex-direction:column; gap:24px;">
-          <div class="tier-box">
-            <div class="tier-box-label">Self-Serve · $99/mo</div>
+        <!-- SELF-SERVE: TIER 1 + TIER 2 toggle -->
+        <div class="tier-box">
+          <div class="tier-box-label">Self-Serve</div>
+          <p class="tier-box-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie.</p>
+
+          <div class="price-toggle">
+            <div class="toggle-option active" onclick="switchTier(1)">
+              Artist
+              <span class="toggle-price">$99/mo</span>
+            </div>
+            <div class="toggle-option" onclick="switchTier(2)">
+              Real Growth
+              <span class="toggle-price">$500/mo</span>
+            </div>
+          </div>
+
+          <div id="tier1-content">
             <div class="tier-box-title">The Artist Who’s Already Moving</div>
             <ul class="tier-features">
               <li>Up to 100 AI-powered posts per month</li>
@@ -1098,8 +1111,7 @@
             <a href="https://app.letaggiedoit.com/join?campaign=ibatier1" class="iba-btn">Claim Your Spot →</a>
           </div>
 
-          <div class="tier-box">
-            <div class="tier-box-label">Self-Serve · $500/mo</div>
+          <div id="tier2-content" style="display:none;">
             <div class="tier-box-title">The Artist Who Wants Real Growth</div>
             <ul class="tier-features">
               <li>Advanced AI agents engineered by Keyz</li>
