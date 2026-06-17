@@ -523,43 +523,64 @@
     line-height:1.6;
   }
 
-  /* ====== TWO BUCKETS ====== */
-  .two-buckets{
+  /* ====== TIERS ====== */
+  .tiers-section{
     padding:100px 32px 110px;
     position:relative;
   }
-  .two-buckets::before{
+  .tiers-section::before{
     content:"";
     position:absolute;
     top:0;left:0;right:0;
     height:1px;
     background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
   }
-  .two-buckets-inner{
+  .tiers-inner{
     max-width:1100px;
     margin:0 auto;
   }
-  .two-buckets-header{
+  .tiers-header{
     text-align:center;
     margin-bottom:56px;
   }
-  .bucket-grid{
+  .tier-grid-new{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1.3fr 1fr;
     gap:24px;
-    margin-bottom:56px;
+    align-items:stretch;
   }
-  .bucket-card{
+  .tier-card{
     border:1px solid rgba(201,169,97,0.15);
     border-radius:6px;
     padding:40px 36px;
     background:var(--black-3);
     transition:border-color .3s ease;
+    display:flex;
+    flex-direction:column;
   }
-  .bucket-card:hover{
+  .tier-card:hover{
     border-color:rgba(201,169,97,0.35);
   }
-  .bucket-label{
+  .tier-card-featured{
+    border-color:rgba(201,169,97,0.4);
+    background:linear-gradient(180deg,rgba(201,169,97,0.04),var(--black-3));
+    position:relative;
+  }
+  .tier-card-featured::before{
+    content:"Founding 100 Inner Circle";
+    position:absolute;
+    top:-11px;left:50%;
+    transform:translateX(-50%);
+    font-size:.58rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--gold);
+    background:#000;
+    padding:0 14px;
+    white-space:nowrap;
+  }
+  .tier-label{
     display:inline-block;
     font-size:.62rem;
     letter-spacing:.28em;
@@ -571,7 +592,7 @@
     padding:4px 12px;
     margin-bottom:20px;
   }
-  .bucket-title{
+  .tier-card-title{
     font-family:'Big Shoulders Display',sans-serif;
     font-weight:900;
     font-size:clamp(1.3rem,2.5vw,1.7rem);
@@ -579,29 +600,165 @@
     margin-bottom:14px;
     color:#fff !important;
   }
-  .bucket-desc{
-    font-size:.9rem;
+  .tier-card-desc{
+    font-size:.88rem;
     color:var(--gray);
     line-height:1.65;
+    margin-bottom:24px;
+  }
+
+  /* Slider toggle */
+  .price-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
     margin-bottom:28px;
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--black-4);
   }
-  .bucket-table{
-    width:100%;
-    border-collapse:collapse;
-  }
-  .bucket-table tr{
-    border-bottom:1px solid var(--line);
-  }
-  .bucket-table tr:last-child{border-bottom:none}
-  .bucket-table td{
-    padding:12px 0;
-    font-size:.82rem;
-    vertical-align:top;
-  }
-  .bucket-table td:first-child{
-    color:var(--gray-dim);
+  .toggle-btn{
+    flex:1;
+    padding:14px 20px;
+    font-size:.78rem;
     font-weight:600;
     letter-spacing:.04em;
+    color:var(--gray-dim);
+    background:transparent;
+    cursor:pointer;
+    transition:all .25s ease;
+    border:none;
+    font-family:inherit;
+  }
+  .toggle-btn.active{
+    background:rgba(201,169,97,0.12);
+    color:var(--gold);
+  }
+  .toggle-btn:hover:not(.active){
+    color:var(--gray);
+  }
+  .toggle-btn .toggle-price{
+    display:block;
+    font-family:'Big Shoulders Display',sans-serif;
+    font-size:1.6rem;
+    font-weight:900;
+    margin-top:4px;
+  }
+  .toggle-btn.active .toggle-price{
+    color:var(--gold-bright);
+  }
+
+  /* Tier price display */
+  .tier-price-display{
+    text-align:center;
+    margin-bottom:24px;
+  }
+  .tier-price-display .price-num{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-size:clamp(2.5rem,5vw,3.5rem);
+    font-weight:900;
+    color:#fff;
+    line-height:1;
+  }
+  .tier-price-display .price-unit{
+    font-size:.4em;
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    color:var(--gray-dim);
+  }
+  .tier-price-display .price-sub{
+    font-size:.72rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--gray-dim);
+    margin-top:6px;
+  }
+
+  /* Tier features list */
+  .tier-features{
+    list-style:none;
+    margin-bottom:32px;
+    flex:1;
+  }
+  .tier-features li{
+    padding:10px 0;
+    font-size:.85rem;
+    color:var(--gray);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+  }
+  .tier-features li::before{
+    content:"+";
+    color:var(--gold);
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .tier-features li:last-child{border-bottom:none}
+
+  /* Tier 3 specific */
+  .tier3-price{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-size:clamp(2.2rem,4vw,3rem);
+    font-weight:900;
+    color:var(--gold);
+    text-align:center;
+    margin-bottom:6px;
+    line-height:1;
+  }
+  .tier3-price-sub{
+    font-size:.72rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    text-align:center;
+    margin-bottom:24px;
+    opacity:.8;
+  }
+  .tier3-1on1{
+    border:1px solid rgba(201,169,97,0.25);
+    border-radius:4px;
+    padding:16px 20px;
+    margin-bottom:24px;
+    background:rgba(201,169,97,0.05);
+  }
+  .tier3-1on1 .label{
+    font-size:.62rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--gold);
+    margin-bottom:6px;
+  }
+  .tier3-1on1 .desc{
+    font-size:.82rem;
+    color:var(--gray);
+    line-height:1.55;
+  }
+
+  /* Disclaimer */
+  .tier-disclaimer{
+    text-align:center;
+    margin-top:40px;
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    color:var(--gray-dim);
+    font-size:.92rem;
+  }
+
+  /* Mobile */
+  @media(max-width:800px){
+    .tier-grid-new{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    .tiers-section{padding:70px 20px 80px}
+    .tier-card{padding:28px 22px}
+    .toggle-btn{padding:12px 10px;font-size:.7rem}
+    .toggle-btn .toggle-price{font-size:1.3rem}
+  }
     text-transform:uppercase;
     font-size:.7rem;
     white-space:nowrap;
@@ -949,65 +1106,96 @@
   </div>
 </section>
 
-<!-- ====== 6. TWO-BUCKETS FRAMEWORK ====== -->
-<section class="two-buckets">
-  <div class="two-buckets-inner">
-    <div class="two-buckets-header">
+<!-- ====== 6. TIERS — TWO WAYS TO WORK ====== -->
+<section class="tiers-section">
+  <div class="tiers-inner">
+    <div class="tiers-header">
       <div class="eyebrow reveal">How it works</div>
       <h2 class="sec-h2 reveal" style="margin-left:auto;margin-right:auto;">Two ways to work with IBA × Aggie.</h2>
     </div>
 
-    <div class="bucket-grid">
-      <!-- Bucket A -->
-      <div class="bucket-card reveal">
-        <span class="bucket-label">Managed</span>
-        <h3 class="bucket-title">IBA Runs The Machine</h3>
-        <p class="bucket-desc">IBA builds and runs the full AI-powered release infrastructure around your artist. Content, rollout strategy, ad execution, fan-data capture, reporting. Your team keeps creative control. The machine keeps moving.</p>
-        <table class="bucket-table">
-          <tr><td>Who it fits</td><td>Artists and teams who want it done, not taught</td></tr>
-          <tr><td>Time to live</td><td>2–4 weeks onboarding</td></tr>
-          <tr><td>Investment</td><td>Monthly retainer + campaign budget</td></tr>
-          <tr><td>Best for</td><td>Active artists with upcoming releases</td></tr>
-        </table>
+    <div class="tier-grid-new">
+      <!-- TIER 1 + TIER 2 COMBINED (slider toggle) -->
+      <div class="tier-card reveal">
+        <span class="tier-label">Self-Serve</span>
+        <h3 class="tier-card-title">The Artist Who's Done Playing Small</h3>
+        <p class="tier-card-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie. Toggle between the two plans to see what fits.</p>
+
+        <!-- Slider toggle -->
+        <div class="price-toggle">
+          <button class="toggle-btn active" onclick="switchTier('t1')">Artist<div class="toggle-price">$99/mo</div></button>
+          <button class="toggle-btn" onclick="switchTier('t2')">Real Growth<div class="toggle-price">$500/mo</div></button>
+        </div>
+
+        <!-- Tier 1 features (default visible) -->
+        <div id="tier1-features">
+          <div class="tier-price-display">
+            <span class="price-num">$99<span class="price-unit">/mo</span></span>
+            <div class="price-sub">Monthly · Cancel anytime</div>
+          </div>
+          <ul class="tier-features">
+            <li>Up to 100 AI-powered posts per month</li>
+            <li>Full social media marketing creation</li>
+            <li>Release &amp; event campaign systems</li>
+            <li>Entry-level custom AI agents built by Keyz</li>
+            <li>Weekly execution structure</li>
+            <li>Fanbase growth tracking</li>
+            <li>Release checklists and rollout workflows</li>
+          </ul>
+          <a href="https://app.letaggiedoit.com/join?campaign=ibatier1" class="btn btn-outline" target="_blank" rel="noopener" style="width:100%;text-align:center">Claim Your Spot →</a>
+        </div>
+
+        <!-- Tier 2 features (hidden by default) -->
+        <div id="tier2-features" style="display:none">
+          <div class="tier-price-display">
+            <span class="price-num">$500<span class="price-unit">/mo</span></span>
+            <div class="price-sub">Monthly · Cancel anytime</div>
+          </div>
+          <ul class="tier-features">
+            <li>Advanced AI agents engineered by Keyz</li>
+            <li>Automated content calendars</li>
+            <li>Multi-platform scheduling</li>
+            <li>Long-form repurposing systems</li>
+            <li>Spotify growth &amp; playlist strategy agents</li>
+            <li>Full Keyz curriculum workflows</li>
+            <li>Brand identity + storytelling frameworks</li>
+            <li>Custom merch store buildout</li>
+            <li>Ecommerce optimization</li>
+            <li>Growth analytics dashboard</li>
+          </ul>
+          <a href="https://app.letaggiedoit.com/join?campaign=ibatier2" class="btn btn-gold" target="_blank" rel="noopener" style="width:100%;text-align:center">Claim Your Spot →</a>
+        </div>
       </div>
 
-      <!-- Bucket B -->
-      <div class="bucket-card reveal">
-        <span class="bucket-label">Coaching</span>
-        <h3 class="bucket-title">IBA Installs The Machine</h3>
-        <p class="bucket-desc">IBA trains your team to build and run the AI agent infrastructure yourself. Content systems, rollout frameworks, ad playbooks, data capture protocols. You own the machine. We install it.</p>
-        <table class="bucket-table">
-          <tr><td>Who it fits</td><td>Operators who want to own the system</td></tr>
-          <tr><td>Time to live</td><td>6-week intensive</td></tr>
-          <tr><td>Investment</td><td>Founding 100 pricing (first 100 only)</td></tr>
-          <tr><td>Best for</td><td>Managers, labels, producers building long-term</td></tr>
-        </table>
+      <!-- TIER 3 — FOUNDING 100 INNER CIRCLE -->
+      <div class="tier-card tier-card-featured reveal">
+        <span class="tier-label">1-on-1</span>
+        <h3 class="tier-card-title">The Established Artist Advantage</h3>
+        <p class="tier-card-desc">Direct consulting with the IBA team, Keyz the Producer and Max Gousse. Personalized release architecture, custom AI agents, and multi-quarter rollout planning.</p>
+
+        <div class="tier3-price">Custom</div>
+        <div class="tier3-price-sub">By Application Only</div>
+
+        <div class="tier3-1on1">
+          <div class="label">Founding 100 Inner Circle</div>
+          <div class="desc">Direct 1-on-1 work with IBA principals. Personalized release architecture, custom agents built for your brand, private communication channels, and priority access to new Aggie features. Limited to 100 Founding members.</div>
+        </div>
+
+        <ul class="tier-features">
+          <li>Direct consulting with Keyz &amp; Max Gousse</li>
+          <li>Personalized release architecture</li>
+          <li>Custom AI agents built for your brand</li>
+          <li>Multi-quarter rollout planning</li>
+          <li>Audience monetization systems</li>
+          <li>Team dashboards &amp; enterprise integrations</li>
+          <li>Priority access to new Aggie features</li>
+          <li>Private communication channels</li>
+        </ul>
+        <a href="mailto:judson@iconbreaking.com" class="btn btn-gold" style="width:100%;text-align:center">Apply for Founding 100 →</a>
       </div>
     </div>
 
-    <!-- Comparison Table -->
-    <div class="comparison-wrap reveal">
-      <div class="comparison-title">Side-by-Side</div>
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>Metric</th>
-            <th>IBA Runs It</th>
-            <th>IBA Installs It</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Setup</td><td>IBA does everything</td><td>IBA trains your team</td></tr>
-          <tr><td>Ongoing</td><td>IBA runs the machine</td><td>You run the machine</td></tr>
-          <tr><td>Creative control</td><td>Your team</td><td>Your team</td></tr>
-          <tr><td>Speed to first result</td><td>2–4 weeks</td><td>6–8 weeks</td></tr>
-          <tr><td>Cost model</td><td>Monthly retainer</td><td>One-time + optional support</td></tr>
-          <tr><td>AI agents</td><td>IBA manages</td><td>You manage</td></tr>
-          <tr><td>Data ownership</td><td>Yours</td><td>Yours</td></tr>
-          <tr><td>Best if</td><td>You want results now</td><td>You want the system forever</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <p class="tier-disclaimer reveal">The IBA Release System powered by Aggie gives artists structure, accountability, and execution tools to grow real fanbases.</p>
   </div>
 </section>
 
@@ -1062,6 +1250,24 @@
     observer.observe(el);
   });
 })();
+
+// Tier toggle
+function switchTier(t){
+  var btns = document.querySelectorAll('.toggle-btn');
+  var t1 = document.getElementById('tier1-features');
+  var t2 = document.getElementById('tier2-features');
+  if(t === 't1'){
+    btns[0].classList.add('active');
+    btns[1].classList.remove('active');
+    t1.style.display = '';
+    t2.style.display = 'none';
+  } else {
+    btns[0].classList.remove('active');
+    btns[1].classList.add('active');
+    t1.style.display = 'none';
+    t2.style.display = '';
+  }
+}
 </script>
 
 </body>
