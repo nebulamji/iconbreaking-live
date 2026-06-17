@@ -74,7 +74,7 @@
 /* ─── 2. HERO SECTION ─── */
 .iba-hero {
   background: #0a0a0a;
-  padding: 56px 24px 24px;
+  padding: 48px 24px 12px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -157,13 +157,13 @@
   color: #a3a3a3;
   line-height: 1.65;
   max-width: 680px;
-  margin-bottom: 0;
+  margin-bottom: 8px;
 }
 
 /* ─── 3. VIDEO SECTION ─── */
 .iba-video-wrap {
   background: #0a0a0a;
-  padding: 4px 24px 0;
+  padding: 0 24px 0;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -175,7 +175,7 @@
   color: #c9a84c;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   max-width: 860px;
   line-height: 1.6;
 }
@@ -273,7 +273,7 @@
 /* ─── 5. FORM SECTION ─── */
 .iba-form-section {
   background: #0a0a0a;
-  padding: 64px 24px 64px;
+  padding: 32px 24px 32px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -658,6 +658,129 @@
     padding: 20px 12px;
   }
 }
+
+  /* ====== TOGGLE TIERS 1/2 + 1ON1 ====== */
+  .tier-two-box {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 32px;
+  }
+  .tier-box {
+    border: 1px solid rgba(201,168,76,0.15);
+    background: #0a0a0a;
+    padding: 28px;
+    border-radius: 4px;
+  }
+  .tier-box-right {
+    border-color: rgba(201,168,76,0.35);
+  }
+  .tier-box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #c9a84c;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .tier-box-title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+  .tier-box-desc {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  .price-toggle {
+    display: flex;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .toggle-option {
+    flex: 1;
+    padding: 12px 16px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #888;
+    transition: all .2s;
+    border-right: 1px solid rgba(201,168,76,0.2);
+  }
+  .toggle-option:last-child { border-right: none; }
+  .toggle-option.active {
+    background: rgba(201,168,76,0.1);
+    color: #c9a84c;
+    font-weight: 600;
+  }
+  .toggle-price {
+    display: block;
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 4px;
+  }
+  .toggle-option.active .toggle-price { color: #c9a84c; }
+
+  .tier-features {
+    list-style: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+  .tier-features li {
+    font-size: 13px;
+    color: #888;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .tier-features li:last-child { border-bottom: none; }
+
+  .tier-box-right .inner-circle-box {
+    border: 1px solid rgba(201,168,76,0.25);
+    background: rgba(201,168,76,0.04);
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .tier-box-right .inner-circle-box .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #c9a84c;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+
+  .iba-btn {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: #0a0a0a;
+    background: #c9a84c;
+    padding: 12px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .iba-btn.outline {
+    background: transparent;
+    color: #c9a84c;
+    border: 1px solid rgba(201,168,76,0.4);
+  }
+
+  @media (max-width: 800px) {
+    .tier-two-box { grid-template-columns: 1fr; gap: 24px; }
+  }
+
 </style>
 
 <div class="iba-root">
@@ -667,20 +790,20 @@
     <div class="iba-ticker__track" aria-hidden="true">
       <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
       <span class="iba-ticker__sep">|</span>
-      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      
       <span class="iba-ticker__sep">|</span>
       <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
       <span class="iba-ticker__sep">|</span>
-      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      
       <span class="iba-ticker__sep">|</span>
       <!-- Duplicate set for seamless loop -->
       <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
       <span class="iba-ticker__sep">|</span>
-      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      
       <span class="iba-ticker__sep">|</span>
       <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
       <span class="iba-ticker__sep">|</span>
-      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      
       <span class="iba-ticker__sep">|</span>
     </div>
   </div>
@@ -698,9 +821,7 @@
       The Next Artists to Break Won’t Do It by Hand
     </h1>
 
-    <p class="iba-hero__sub">
-      IBA builds the AI-powered release infrastructure behind serious artists and teams — content, rollout strategy, ad execution, fan-data capture, reporting, and the agent team that keeps the machine moving. Built by principals at IBA connected to 200M+ records sold, 500+ songs produced and written, three Diamond singles, and $800M+ in global revenue projects. Powered by Aggie. Available first to 100 Founding members.
-    </p>
+    <p class="iba-hero__sub">IBA builds the AI-powered release infrastructure behind serious artists and teams — content, rollout strategy, ad execution, fan-data capture, reporting, and the agent team that keeps the machine moving. Built by principals at IBA connected to 200M+ records sold, 500+ songs produced and written, three Diamond singles, and $800M+ in global revenue projects. Powered by Aggie. Available first to 100 Founding members.</p>
   </section>
 
   <!-- ─── 3. VIDEO SECTION ─── -->
@@ -743,14 +864,14 @@
   </div>
 
   <!-- ─── 5. FORM SECTION ─── -->
-  <section class="iba-form-section">
+  <section class="iba-form-section" id="apply">
     <p class="iba-form__cta-line">Fill out the form. Take action. Expect the call from us.</p>
     <div class="iba-form__heading">Apply for Founding 100</div>
 
     <div class="iba-form__embed">
       <iframe
         src="https://app.truportals.com/widget/quiz/z0N7as5YRXfyv77ELbAP"
-        style="border:none;width:100%;min-height:650px;display:block;"
+        style="border:none;width:100%;min-height:420px;display:block;"
         scrolling="no"
         id="z0N7as5YRXfyv77ELbAP"
         title="quiz"
@@ -814,20 +935,26 @@
       <p class="iba-eyebrow">How it Works</p>
       <h2 class="iba-section__h2">Two ways to work with IBA × Aggie.</h2>
 
-      <div class="iba-pricing-grid">
+      <div class="tier-two-box">
+        <!-- TIER 1 + TIER 2 (toggle) -->
+        <div class="tier-box">
+          <div class="tier-box-label">Self-Serve</div>
+          <div class="tier-box-title">The Artist Who’s Done Playing Small</div>
+          <p class="tier-box-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie.</p>
 
-        <!-- Self-Serve -->
-        <div class="iba-pricing-col">
-          <p class="iba-pricing-label">Self-Serve</p>
-          <p class="iba-pricing-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie.</p>
-
-          <div class="iba-plan">
-            <div class="iba-plan__header">
-              <span class="iba-plan__name">Artist</span>
-              <span class="iba-plan__price">$99<span>/mo</span></span>
+          <div class="price-toggle">
+            <div class="toggle-option active" onclick="switchTier(1)">
+              Artist
+              <span class="toggle-price">$99/mo</span>
             </div>
-            <p class="iba-plan__cadence">Monthly · Cancel anytime</p>
-            <ul class="iba-plan__features">
+            <div class="toggle-option" onclick="switchTier(2)">
+              Real Growth
+              <span class="toggle-price">$500/mo</span>
+            </div>
+          </div>
+
+          <div id="tier1-content">
+            <ul class="tier-features">
               <li>Up to 100 AI-powered posts per month</li>
               <li>Full social media marketing creation</li>
               <li>Release &amp; event campaign systems</li>
@@ -839,13 +966,8 @@
             <a href="https://app.letaggiedoit.com/join?campaign=ibatier1" class="iba-btn">Claim Your Spot →</a>
           </div>
 
-          <div class="iba-plan">
-            <div class="iba-plan__header">
-              <span class="iba-plan__name">Real Growth</span>
-              <span class="iba-plan__price">$500<span>/mo</span></span>
-            </div>
-            <p class="iba-plan__cadence">Monthly · Cancel anytime</p>
-            <ul class="iba-plan__features">
+          <div id="tier2-content" style="display:none">
+            <ul class="tier-features">
               <li>Advanced AI agents engineered by Keyz</li>
               <li>Automated content calendars</li>
               <li>Multi-platform scheduling</li>
@@ -860,37 +982,30 @@
           </div>
         </div>
 
-        <!-- 1-on-1 -->
-        <div class="iba-pricing-col">
-          <p class="iba-pricing-label">1-on-1</p>
-          <p class="iba-pricing-desc">Direct consulting with IBA principals — Keyz the Producer and Max Gousse. Personalized architecture, custom agents, multi-quarter planning.</p>
+        <!-- 1-ON-1 / FOUNDING 100 -->
+        <div class="tier-box tier-box-right">
+          <div class="tier-box-label">1-on-1</div>
+          <div class="tier-box-title">The Established Artist Advantage</div>
+          <p class="tier-box-desc">Direct consulting with IBA principals — Keyz the Producer and Max Gousse.</p>
 
-          <div class="iba-plan iba-plan--custom">
-            <div class="iba-plan__header">
-              <span class="iba-plan__name">Custom</span>
-              <span class="iba-plan__price-tag">By Application Only</span>
-            </div>
+          <div class="inner-circle-box">
+            <div class="badge">Founding 100 Inner Circle</div>
+            <p style="font-size:13px; color:#aaa; line-height:1.5; margin:0;">Direct 1-on-1 work with IBA principals. Personalized release architecture, custom agents built for your brand, private communication channels, and priority access to new Aggie features. Limited to 100 Founding members.</p>
           </div>
 
-          <div class="iba-plan iba-plan--f100">
-            <div class="iba-plan__badge">Founding 100</div>
-            <div class="iba-plan__header">
-              <span class="iba-plan__name">Inner Circle</span>
-            </div>
-            <p class="iba-plan__lead">Direct 1-on-1 work with IBA principals. Personalized release architecture, custom agents built for your brand, private communication channels, and priority access to new Aggie features. Limited to 100 Founding members.</p>
-            <ul class="iba-plan__features">
-              <li>Direct consulting with Keyz &amp; Max Gousse</li>
-              <li>Personalized release architecture</li>
-              <li>Custom AI agents built for your brand</li>
-              <li>Multi-quarter rollout planning</li>
-              <li>Audience monetization systems</li>
-              <li>Team dashboards &amp; enterprise integrations</li>
-              <li>Priority access to new Aggie features</li>
-              <li>Private communication channels</li>
-            </ul>
-          </div>
+          <ul class="tier-features">
+            <li>Direct consulting with Keyz &amp; Max Gousse</li>
+            <li>Personalized release architecture</li>
+            <li>Custom AI agents built for your brand</li>
+            <li>Multi-quarter rollout planning</li>
+            <li>Audience monetization systems</li>
+            <li>Team dashboards &amp; enterprise integrations</li>
+            <li>Priority access to new Aggie features</li>
+            <li>Private communication channels</li>
+          </ul>
+
+          <a href="#apply" class="iba-btn">Apply for Founding 100 →</a>
         </div>
-
       </div>
     </div>
   </section>
@@ -904,6 +1019,25 @@
   </footer>
 
 </div>
+
+
+<script>
+function switchTier(tier) {
+  const t1 = document.getElementById('tier1-content');
+  const t2 = document.getElementById('tier2-content');
+  const options = document.querySelectorAll('.toggle-option');
+  
+  options.forEach((opt, i) => opt.classList.toggle('active', (i+1) === tier));
+  
+  if (tier === 1) {
+    t1.style.display = '';
+    t2.style.display = 'none';
+  } else {
+    t1.style.display = 'none';
+    t2.style.display = '';
+  }
+}
+</script>
 
 <script src="https://app.truportals.com/js/form_embed.js"></script>
 </body>
