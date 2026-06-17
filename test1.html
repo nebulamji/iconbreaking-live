@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Founding 100 — IBA × Aggie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000000;
+    --black-2:#0a0a0a;
+    --black-3:#141414;
+    --black-4:#1c1c1c;
+    --white:#ffffff;
+    --off-white:#f5f1ea;
+    --gray:#b5b5b5;
+    --gray-dim:#7a7a7a;
+    --gold:#c9a961;
+    --gold-bright:#e6c478;
+    --gold-soft:rgba(201,169,97,0.12);
+    --pink:#ff3b6e;
+    --yellow:#ffd84d;
+    --line:rgba(255,255,255,0.08);
+    --line-strong:rgba(255,255,255,0.15);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:#000 !important;color-scheme:dark only}
+  body{
+    background:#000 !important;
+    color:#fff !important;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    forced-color-adjust:none;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  button,.btn{font-family:inherit;cursor:pointer;border:none}
+  h1,h2,h3,h4,h5,h6{color:#fff !important;font-weight:800;letter-spacing:-.025em;line-height:1.04}
+  p{color:var(--gray)}
+
+  /* Force dark on every section */
+  header,section,footer,.hero,.anno-bar,.vsl-section,.proof-strip,.fit-call{
+    background-color:#000 !important;
+  }
+  .proof-strip{background-color:var(--black-2) !important}
+
+  @media(prefers-color-scheme:light){
+    html,body{background:#000 !important;color:#fff !important}
+  }
+
+  /* Film grain overlay */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:200;
+    opacity:.04;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  .narrow{max-width:800px;margin:0 auto;padding:0 32px}
+
+  /* ====== ANNOUNCEMENT BAR ====== */
+  .anno-bar{
+    text-align:center;
+    padding:14px 32px;
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--gold);
+    border-bottom:1px solid rgba(201,169,97,0.15);
+    position:relative;
+    z-index:60;
+  }
+  .anno-bar .sep{margin:0 14px;opacity:.4}
+
+  /* ====== HERO ====== */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:100px 32px 120px;
+  }
+  /* Gold atmospheric glow */
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-250px;left:-200px;
+    width:1000px;height:1000px;
+    background:radial-gradient(circle,rgba(201,169,97,.10),transparent 60%);
+    filter:blur(80px);
+    pointer-events:none;
+    z-index:0;
+  }
+  /* Bottom divider */
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent 15%,rgba(201,169,97,.3) 50%,transparent 85%);
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:1240px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .hero-prehead{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:.72rem;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--gold);
+    margin-bottom:32px;
+  }
+  .hero-prehead .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 12px var(--gold);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:.5;transform:scale(1.4)}
+  }
+  .hero h1{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:900;
+    font-size:clamp(3rem,8vw,6.5rem);
+    line-height:.95;
+    letter-spacing:-.03em;
+    margin-bottom:32px;
+    max-width:960px;
+    margin-left:auto;margin-right:auto;
+  }
+  .hero-sub{
+    font-size:clamp(1rem,2vw,1.15rem);
+    line-height:1.75;
+    color:var(--gray);
+    max-width:780px;
+    margin:0 auto 48px;
+    font-weight:400;
+  }
+  .hero-sub .italic{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    letter-spacing:-.01em;
+  }
+
+  /* ====== BUTTONS ====== */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    padding:22px 52px;
+    font-size:.78rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:700;
+    border-radius:4px;
+    transition:.35s cubic-bezier(.4,0,.2,1);
+  }
+  .btn-gold{
+    background:var(--gold);
+    color:#000;
+    box-shadow:0 0 0 1px var(--gold),0 8px 30px rgba(201,169,97,.25);
+  }
+  .btn-gold:hover{
+    background:var(--gold-bright);
+    box-shadow:0 0 0 1px var(--gold-bright),0 12px 40px rgba(201,169,97,.4);
+    transform:translateY(-2px);
+  }
+  .microcopy{
+    font-size:.76rem;
+    color:var(--gray-dim);
+    margin-top:18px;
+    letter-spacing:.02em;
+  }
+
+  /* ====== VSL SECTION ====== */
+  .vsl-section{
+    padding:80px 32px 100px;
+    position:relative;
+  }
+  .vsl-inner{
+    max-width:960px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .vsl-player{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:var(--black-3);
+    border:1px solid rgba(201,169,97,0.18);
+    border-radius:6px;
+    overflow:hidden;
+    cursor:pointer;
+    margin-bottom:28px;
+  }
+  .vsl-player::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(201,169,97,0.04) 0%,transparent 50%,rgba(255,59,110,0.03) 100%);
+    pointer-events:none;
+  }
+  .vsl-play-btn{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:80px;height:80px;
+    border-radius:50%;
+    background:rgba(201,169,97,0.9);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 40px rgba(201,169,97,0.3),0 0 0 4px rgba(201,169,97,0.2);
+    transition:.3s ease;
+  }
+  .vsl-player:hover .vsl-play-btn{
+    transform:translate(-50%,-50%) scale(1.08);
+    box-shadow:0 0 50px rgba(201,169,97,0.5),0 0 0 6px rgba(201,169,97,0.3);
+  }
+  .vsl-play-btn svg{
+    width:28px;height:28px;
+    margin-left:4px;
+    fill:#000;
+  }
+  .vsl-caption{
+    font-size:.88rem;
+    color:var(--gray-dim);
+    max-width:500px;
+    margin:0 auto 36px;
+    line-height:1.6;
+  }
+
+  /* ====== PROOF STRIP ====== */
+  .proof-strip{
+    padding:80px 32px 90px;
+    position:relative;
+  }
+  .proof-strip::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
+  }
+  .proof-strip::after{
+    content:"";
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent 10%,rgba(201,169,97,.2) 50%,transparent 90%);
+  }
+  .proof-grid{
+    max-width:1240px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:48px 32px;
+    text-align:center;
+  }
+  .stat-num{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:clamp(2.2rem,5vw,3.2rem);
+    color:var(--gold);
+    line-height:1;
+    margin-bottom:8px;
+    letter-spacing:-.02em;
+  }
+  .stat-label{
+    font-size:.78rem;
+    color:var(--gray-dim);
+    line-height:1.5;
+    letter-spacing:.02em;
+  }
+  .proof-disclaimer{
+    text-align:center;
+    margin-top:48px;
+    font-size:.68rem;
+    color:var(--gray-dim);
+    letter-spacing:.06em;
+    opacity:.7;
+  }
+
+  /* ====== FIT CALL SECTION ====== */
+  .fit-call{
+    padding:100px 32px 120px;
+    position:relative;
+  }
+  .fit-call-inner{
+    max-width:680px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .fit-call h2{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:900;
+    font-size:clamp(2rem,5vw,3.5rem);
+    margin-bottom:28px;
+    line-height:1.05;
+  }
+  .fit-call-body{
+    font-size:clamp(1rem,2vw,1.1rem);
+    line-height:1.75;
+    color:var(--gray);
+    margin-bottom:48px;
+  }
+  .fit-call .microcopy{
+    max-width:540px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:22px;
+    font-size:.74rem;
+  }
+
+  /* ====== FOOTER ====== */
+  footer{
+    padding:48px 32px;
+    border-top:1px solid var(--line);
+  }
+  .footer-inner{
+    max-width:1240px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-brand{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:1rem;
+    letter-spacing:.08em;
+    color:var(--gold);
+  }
+  .footer-copy{
+    font-size:.7rem;
+    color:var(--gray-dim);
+  }
+  .footer-links{
+    display:flex;gap:24px;
+  }
+  .footer-links a{
+    font-size:.7rem;
+    color:var(--gray-dim);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    transition:color .2s;
+  }
+  .footer-links a:hover{color:var(--gold)}
+
+  /* ====== SCROLL REVEAL ====== */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  /* ====== RESPONSIVE ====== */
+  @media(max-width:1024px){
+    .proof-grid{grid-template-columns:repeat(2,1fr);gap:40px 24px}
+  }
+  @media(max-width:768px){
+    .hero{padding:70px 24px 80px}
+    .hero h1{font-size:clamp(2.4rem,9vw,3.5rem)}
+    .hero-sub{font-size:.95rem}
+    .btn{padding:18px 36px;font-size:.72rem;width:100%;max-width:360px}
+    .vsl-section{padding:50px 24px 70px}
+    .proof-strip{padding:60px 24px 70px}
+    .proof-grid{gap:32px 16px}
+    .stat-num{font-size:clamp(1.8rem,6vw,2.4rem)}
+    .fit-call{padding:70px 24px 80px}
+  }
+  @media(max-width:540px){
+    .anno-bar{font-size:.58rem;letter-spacing:.14em;padding:12px 16px}
+    .anno-bar .sep{display:none}
+    .hero-prehead{font-size:.58rem;letter-spacing:.2em}
+    .proof-grid{grid-template-columns:repeat(2,1fr);gap:28px 12px}
+    .stat-label{font-size:.7rem}
+    .footer-inner{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== ANNOUNCEMENT BAR ====== -->
+<div class="anno-bar">
+  Founding 100 Now Open<span class="sep">·</span>100 Artists, Producers, Managers & Teams Only
+</div>
+
+<!-- ====== HERO ====== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-prehead reveal">
+      <span class="dot"></span>
+      Founding 100 &middot; The First Artist Teams Building With IBA &times; Aggie
+    </div>
+    <h1 class="reveal">The Next Artists to Break Won't Do It by Hand</h1>
+    <p class="hero-sub reveal">
+      IBA builds the AI-powered release infrastructure behind serious artists and teams — content, rollout strategy, ad execution, fan-data capture, reporting, and the agent team that keeps the machine moving. Built by principals connected to 200M+ records sold, three Diamond singles, and $800M+ in global revenue projects. Powered by Aggie. Available first to 100 Founding members.
+    </p>
+    <a href="#" class="btn btn-gold reveal">Book Your 15-Minute Founding 100 Call</a>
+    <p class="microcopy reveal">We'll look at your artist, release window, bottlenecks, and whether you belong in the first 100.</p>
+  </div>
+</header>
+
+<!-- ====== VSL SECTION ====== -->
+<section class="vsl-section">
+  <div class="vsl-inner">
+    <div class="vsl-player reveal">
+      <div class="vsl-play-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="6,3 20,12 6,21"/></svg>
+      </div>
+    </div>
+    <p class="vsl-caption reveal">The video explains the full system. The call determines fit.</p>
+    <a href="#" class="btn btn-gold reveal">Book Your 15-Minute Founding 100 Call</a>
+  </div>
+</section>
+
+<!-- ====== PROOF STRIP ====== -->
+<section class="proof-strip">
+  <div class="proof-grid">
+    <div class="reveal">
+      <div class="stat-num">200M+</div>
+      <div class="stat-label">Records sold across principal-connected projects</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">3&times;</div>
+      <div class="stat-label">Diamond singles</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">$800M+</div>
+      <div class="stat-label">Global revenue projects</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">50M+</div>
+      <div class="stat-label">Streams across associated work in 2025</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Songs and tracks produced</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">30K &rarr; 240K</div>
+      <div class="stat-label">Instagram growth</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">~200 &rarr; 700K</div>
+      <div class="stat-label">Monthly listeners to streams from one campaign</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">20 &rarr; 2.4M</div>
+      <div class="stat-label">Monthly listeners to streams/year</div>
+    </div>
+  </div>
+  <p class="proof-disclaimer reveal">Principal-connected projects, associated work, and case-specific results.</p>
+</section>
+
+<!-- ====== FIT CALL SECTION ====== -->
+<section class="fit-call">
+  <div class="fit-call-inner">
+    <h2 class="reveal">Founding 100 is not a subscription page.<br>It is a fit call.</h2>
+    <p class="fit-call-body reveal">Book 15 minutes. We'll look at where your release system is leaking and whether IBA should build the infrastructure around your next move.</p>
+    <a href="#" class="btn btn-gold reveal">Book Your 15-Minute Founding 100 Call</a>
+    <p class="microcopy reveal">100 spots. Application-first. Built for serious artists, producers, managers, labels, and operators with real motion.</p>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">IBA &times; Aggie</div>
+    <div class="footer-copy">&copy; 2026 Icon Breaking Agency. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ====== SCROLL REVEAL JS ====== -->
+<script>
+(function(){
+  const reveals = document.querySelectorAll('.reveal');
+  if(!reveals.length) return;
+
+  const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+
+  reveals.forEach(function(el){
+    observer.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>
