@@ -376,7 +376,6 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  margin-right: auto;
   font-style: italic;
 }
 
@@ -900,9 +899,16 @@
     border: 1px solid rgba(201,168,76,0.4);
   }
 
-  @media (max-width: 800px) {
-    .tier-two-box { grid-template-columns: 1fr; gap: 24px; }
-  }
+/* Pricing two-column grid */
+.tier-two-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 800px) {
+  .tier-two-box { grid-template-columns: 1fr; gap: 24px; }
+}
 
 /* v3-short-sub */ </style>
 
@@ -949,8 +955,7 @@
 
   <!-- ─── VIDEO UNDER HEADLINE ─── -->
   <div class="iba-video-wrap">
-    <p class="iba-video__label">No experience with AI required. No case studies needed.<br>
-      Just real motion as an artist — or access to real artists and teams.</p>
+    <p class="iba-video__label">If you're already moving — this is how you move faster, cleaner, and with real infrastructure.</p>
     <div class="iba-video__container">
       <iframe
         src="https://www.youtube.com/embed/cgIOF1Xv6uc?rel=0&modestbranding=1&color=white"
@@ -983,29 +988,9 @@
     </div>
   </div>
 
-  <!-- ─── 5. FORM SECTION ─── -->
-  <section class="iba-form-section" id="apply">
-    <p class="iba-form__cta-line">Fill out the form. Take action. Expect the call from us.</p>
-    <div class="iba-form__heading">Apply for Founding 100</div><!-- shrunk -->
-
-    <div class="iba-form__embed">
-      <iframe
-        src="https://app.truportals.com/widget/quiz/z0N7as5YRXfyv77ELbAP"
-        style="border:none;width:100%;min-height:180px;display:block;"
-        scrolling="no"
-        id="z0N7as5YRXfyv77ELbAP"
-        title="quiz"
-      ></iframe>
-    </div>
-  </section>
-
-
-  <hr class="iba-rule">
-
-  <!-- ─── VIDEO UNDER FORM ─── -->
+  <!-- ─── VIDEO UNDER STATS ─── -->
   <div class="iba-video-wrap">
-    <p class="iba-video__label">No experience with AI required. No case studies needed.<br>
-      Just real motion as an artist — or access to real artists and teams.</p>
+    <p class="iba-video__label">Built for producers, managers, and operators who are already executing and want to scale.</p>
     <div class="iba-video__container">
       <iframe
         src="https://www.youtube.com/embed/cgIOF1Xv6uc?rel=0&modestbranding=1&color=white"
@@ -1021,10 +1006,10 @@
   <section class="iba-section">
     <div class="iba-section__inner">
       <blockquote class="iba-thesis">
-        "The new breed of artists and teams are using release strategy + agentic AI to break millions of streams in months."
+        "If you're already moving, we help you move faster, cleaner, and with real infrastructure."
       </blockquote>
       <p class="iba-body">
-        A no-bullshit, industry-vetted system for any professional in the music industry to use Agentic AI and Aggie for exponential growth in 2026.
+        A no-bullshit, industry-vetted system for established artists, producers, managers, and operators who are already executing and want to scale.
       </p>
     </div>
   </section>
@@ -1091,7 +1076,7 @@
           </div>
 
           <div id="tier1-content">
-            <div class="tier-box-title">The Artist Who’s Done Playing Small</div>
+            <div class="tier-box-title">The Artist Who’s Already Moving</div>
             <ul class="tier-features">
               <li>Up to 100 AI-powered posts per month</li>
               <li>Full social media marketing creation</li>
@@ -1149,6 +1134,24 @@
     </div>
   </section>
 
+
+  <hr class="iba-rule">
+
+  <!-- ─── FORM SECTION ─── -->
+  <section class="iba-form-section" id="apply">
+    <p class="iba-form__cta-line">Fill out the form. Take action. Expect the call from us.</p>
+    <div class="iba-form__heading">Apply for Founding 100</div>
+
+    <div class="iba-form__embed">
+      <iframe
+        src="https://app.truportals.com/widget/quiz/z0N7as5YRXfyv77ELbAP"
+        style="border:none;width:100%;min-height:180px;display:block;"
+        scrolling="no"
+        id="z0N7as5YRXfyv77ELbAP"
+        title="quiz"
+      ></iframe>
+    </div>
+  </section>
 
   <hr class="iba-rule">
 
