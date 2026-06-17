@@ -74,7 +74,7 @@
 /* ─── 2. HERO SECTION ─── */
 .iba-hero {
   background: #0a0a0a;
-  padding: 48px 24px 12px;
+  padding: 56px 24px 24px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -140,6 +140,7 @@
   text-transform: uppercase;
   max-width: 820px;
   margin-bottom: 14px;
+  text-align: left;
 }
 
 .iba-hero__headline em {
@@ -158,6 +159,7 @@
   line-height: 1.65;
   max-width: 680px;
   margin-bottom: 0;
+  text-align: left;
 }
 
 /* ─── 3. VIDEO SECTION ─── */
@@ -166,6 +168,7 @@
   padding: 0 24px 0;
   max-width: 1100px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .iba-video__label {
@@ -289,6 +292,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  justify-content: center;
 }
 
 .iba-form__heading::after {
@@ -315,6 +319,12 @@
 /* ─── LOWER SECTIONS ─── */
 .iba-section {
   padding: 72px 24px;
+}
+
+.iba-section__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: left;
 }
 
 .iba-section__inner {
@@ -580,6 +590,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 6px;
+  text-align: center;
 }
 
 /* Footer */
@@ -662,14 +673,16 @@
   /* ====== TOGGLE TIERS 1/2 + 1ON1 ====== */
   .tier-two-box {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 32px;
+    align-items: start;
   }
   .tier-box {
     border: 1px solid rgba(201,168,76,0.15);
     background: #0a0a0a;
     padding: 28px;
     border-radius: 4px;
+    text-align: left;
   }
   .tier-box-right {
     border-color: rgba(201,168,76,0.35);
