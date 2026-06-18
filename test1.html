@@ -900,9 +900,57 @@
     border: 1px solid rgba(201,168,76,0.4);
   }
 
+  .tier-two-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
   @media (max-width: 800px) {
     .tier-two-box { grid-template-columns: 1fr; gap: 24px; }
   }
+
+/* ─── STICKY CTA BAR ─── */
+#iba-sticky-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: #ffffff;
+  border-bottom: 2px solid #0a0a0a;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+#iba-sticky-bar.visible {
+  transform: translateY(0);
+}
+#iba-sticky-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 13px 24px;
+  text-decoration: none;
+  cursor: pointer;
+}
+#iba-sticky-bar .sticky-arrow {
+  font-size: 16px;
+  color: #0a0a0a;
+  line-height: 1;
+}
+#iba-sticky-bar .sticky-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  #iba-sticky-bar .sticky-text { font-size: 10px; letter-spacing: 1.5px; }
+}
 
 /* v3-short-sub */
 
@@ -1039,6 +1087,15 @@
   .iba-team-grid { grid-template-columns: 1fr; gap: 20px; }
 }
 </style>
+
+<!-- ─── STICKY CTA BAR ─── -->
+<div id="iba-sticky-bar">
+  <a href="#apply">
+    <span class="sticky-arrow">↑</span>
+    <span class="sticky-text">Click Here to Join the Founding 100 at Pre-Sale Price</span>
+    <span class="sticky-arrow">↑</span>
+  </a>
+</div>
 
 <div class="iba-root">
 
@@ -1389,5 +1446,18 @@ function switchTier(tier) {
 </script>
 
 <script src="https://app.truportals.com/js/form_embed.js"></script>
+<script>
+(function() {
+  var bar = document.getElementById('iba-sticky-bar');
+  var threshold = 400;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > threshold) {
+      bar.classList.add('visible');
+    } else {
+      bar.classList.remove('visible');
+    }
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
