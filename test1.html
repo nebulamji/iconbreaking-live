@@ -957,6 +957,49 @@
   #iba-sticky-bar .sticky-text { font-size: 10px; letter-spacing: 1.5px; }
 }
 
+/* ─── INDUSTRY QUOTES ─── */
+.iba-quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.iba-quote {
+  border-left: 3px solid rgba(201,168,76,0.4);
+  padding-left: 20px;
+}
+.iba-quote__text {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  margin-bottom: 12px;
+}
+.iba-quote__name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+.iba-quote__creds {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .iba-quotes { grid-template-columns: 1fr; gap: 24px; }
+}
+
 /* v3-short-sub */
 
 /* ─── INFRASTRUCTURE PILLARS ─── */
@@ -1258,6 +1301,30 @@
     </div>
   </section>
 
+
+  <hr class="iba-rule">
+
+  <!-- ─── INDUSTRY QUOTES ─── -->
+  <section class="iba-section">
+    <div class="iba-section__inner">
+      <p class="iba-eyebrow">The Industry Speaks</p>
+      <div class="iba-quotes">
+
+        <div class="iba-quote">
+          <p class="iba-quote__text">"Be so f***ing hungry, that you're ready to ride the wave."</p>
+          <p class="iba-quote__name">Monica Payne</p>
+          <p class="iba-quote__creds">Founder, Monica Payne Enterprises · Talent Booking · 14 Years · Los Angeles<br>Bardot · W Hotel Hollywood · The Roosevelt · JW Marriott</p>
+        </div>
+
+        <div class="iba-quote">
+          <p class="iba-quote__text">"Use the tech."</p>
+          <p class="iba-quote__name">Max Gousse</p>
+          <p class="iba-quote__creds">Chairman, Artistry Records · Island Def Jam · 40 Years<br>Beyoncé · Rihanna · Jay-Z · Saweetie · Kelly Rowland</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <hr class="iba-rule">
 
