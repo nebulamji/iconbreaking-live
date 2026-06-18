@@ -84,6 +84,7 @@
   flex-direction: column;
   gap: 8px;
   margin-bottom: 28px;
+  align-items: center;
 }
 
 .iba-hero__badge {
@@ -140,6 +141,7 @@
   text-transform: uppercase;
   max-width: 820px;
   margin-bottom: 14px;
+  text-align: left;
 }
 
 .iba-hero__headline em {
@@ -158,6 +160,7 @@
   line-height: 1.65;
   max-width: 680px;
   margin-bottom: 0;
+  text-align: left;
 }
 
 /* ─── 3. VIDEO SECTION ─── */
@@ -166,6 +169,7 @@
   padding: 0 24px 0;
   max-width: 1100px;
   margin: 0 auto;
+  text-align: left;
 }
 
 .iba-video__label {
@@ -178,11 +182,15 @@
   margin-bottom: 20px;
   max-width: 860px;
   line-height: 1.6;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .iba-video__container {
   max-width: 860px;
   width: 100%;
+  margin: 0 auto;
   aspect-ratio: 16 / 9;
   background: #111111;
   border: 1px solid rgba(201,168,76,0.2);
@@ -252,12 +260,13 @@
 
 .iba-stat__number {
   font-family: 'Big Shoulders Display', sans-serif;
-  font-size: 36px;
+  font-size: clamp(28px, 4vw, 42px);
   font-weight: 700;
   color: #c9a84c;
   line-height: 1;
   letter-spacing: -0.5px;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .iba-stat__label {
@@ -289,6 +298,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  justify-content: center;
 }
 
 .iba-form__heading::after {
@@ -320,6 +330,12 @@
 .iba-section__inner {
   max-width: 1100px;
   margin: 0 auto;
+  text-align: left;
+}
+
+.iba-section__inner {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .iba-eyebrow {
@@ -330,6 +346,7 @@
   text-transform: uppercase;
   letter-spacing: 3px;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 .iba-section__h2 {
@@ -341,6 +358,9 @@
   letter-spacing: -0.3px;
   margin-bottom: 40px;
   max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .iba-thesis {
@@ -353,6 +373,10 @@
   padding-left: 24px;
   margin-bottom: 32px;
   max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-right: auto;
   font-style: italic;
 }
 
@@ -362,14 +386,17 @@
   color: #a3a3a3;
   line-height: 1.7;
   max-width: 680px;
+  margin: 0 auto 32px;
+  text-align: center;
 }
 
 /* Results */
 .iba-results {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid rgba(201,168,76,0.12);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  border: none;
+  margin-top: 40px;
 }
 
 .iba-result {
@@ -580,6 +607,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 28px;
+  text-align: center;
 }
 
 /* Footer */
@@ -599,273 +627,6 @@
 }
 
 .iba-footer__powered { color: #555 !important; }
-
-/* ─── WHO THIS IS FOR ─── */
-.iba-for-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border: 1px solid rgba(201,168,76,0.12);
-  margin-bottom: 48px;
-}
-
-.iba-for-card {
-  padding: 32px 24px;
-  border-right: 1px solid rgba(201,168,76,0.12);
-  position: relative;
-}
-
-.iba-for-card:last-child { border-right: none; }
-
-.iba-for-card__tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  font-weight: 500;
-  color: #c9a84c;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 16px;
-}
-
-.iba-for-card__text {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  color: #888;
-  line-height: 1.65;
-}
-
-.iba-for-qualifier {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  color: #555;
-  line-height: 1.7;
-  border-left: 2px solid rgba(201,168,76,0.25);
-  padding-left: 20px;
-  max-width: 640px;
-}
-
-/* ─── INFRASTRUCTURE PILLARS ─── */
-.iba-pillars {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid rgba(201,168,76,0.12);
-  margin-bottom: 48px;
-}
-
-.iba-pillar {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 0;
-  border-bottom: 1px solid rgba(201,168,76,0.12);
-}
-
-.iba-pillar:last-child { border-bottom: none; }
-
-.iba-pillar__index {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: rgba(201,168,76,0.4);
-  padding: 28px 16px;
-  border-right: 1px solid rgba(201,168,76,0.12);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 30px;
-}
-
-.iba-pillar__body {
-  padding: 24px 28px;
-}
-
-.iba-pillar__arrow {
-  font-size: 10px;
-  color: rgba(201,168,76,0.5);
-  margin-right: 10px;
-}
-
-.iba-pillar__title {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-}
-
-.iba-pillar__desc {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  color: #666;
-  line-height: 1.65;
-}
-
-.iba-keyz-quote {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-size: clamp(20px, 2.4vw, 28px);
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: -0.2px;
-  line-height: 1.2;
-  border-left: 3px solid #c9a84c;
-  padding-left: 24px;
-  margin-bottom: 10px;
-}
-
-.iba-keyz-quote__attr {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: #c9a84c;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding-left: 27px;
-}
-
-/* ─── TEAM BIOS ─── */
-.iba-team-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-
-.iba-bio {
-  border: 1px solid rgba(201,168,76,0.12);
-}
-
-.iba-bio__photo-wrap {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #111;
-  border-bottom: 1px solid rgba(201,168,76,0.12);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.iba-bio__photo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.iba-bio__photo-placeholder {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-size: 80px;
-  font-weight: 900;
-  color: rgba(201,168,76,0.12);
-  text-transform: uppercase;
-  letter-spacing: -2px;
-  user-select: none;
-}
-
-.iba-bio__content {
-  padding: 28px;
-}
-
-.iba-bio__role {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  font-weight: 500;
-  color: #c9a84c;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-}
-
-.iba-bio__name {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-bottom: 6px;
-}
-
-.iba-bio__credits {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.iba-bio__body {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  color: #777;
-  line-height: 1.75;
-}
-
-/* ─── ONBOARDING SECTION ─── */
-.iba-onboarding-steps {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border: 1px solid rgba(201,168,76,0.12);
-  margin-bottom: 40px;
-}
-
-.iba-step {
-  padding: 28px;
-  border-bottom: 1px solid rgba(201,168,76,0.12);
-  border-right: 1px solid rgba(201,168,76,0.12);
-}
-
-.iba-step:nth-child(even) { border-right: none; }
-.iba-step:nth-child(5),
-.iba-step:nth-child(6) { border-bottom: none; }
-
-.iba-step__num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: rgba(201,168,76,0.5);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.iba-step__title {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-size: 17px;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-bottom: 8px;
-}
-
-.iba-step__sub {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  color: #666;
-  line-height: 1.6;
-}
-
-.iba-onboarding-lead {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  color: #666;
-  line-height: 1.7;
-  margin-bottom: 32px;
-  max-width: 680px;
-}
-
-.iba-onboarding-note {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: #444;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 28px;
-}
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
@@ -908,7 +669,7 @@
   }
 
   .iba-form-section {
-    padding: 48px 20px 48px;
+    padding: 4px 16px 4px;
   }
 
   .iba-pricing-grid {
@@ -924,29 +685,358 @@
     font-size: 26px;
     padding: 20px 12px;
   }
+}
 
-  .iba-for-grid {
-    grid-template-columns: 1fr 1fr;
+  /* ====== TOGGLE TIERS 1/2 + 1ON1 ====== */
+  /* ─── PRICING GRID ─── */
+.iba-pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.iba-pricing-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.iba-pricing-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.iba-pricing-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.iba-plan {
+  border: 1px solid rgba(201,168,76,0.12);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.iba-plan__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.iba-plan__name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.iba-plan__price {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #c9a84c;
+}
+
+.iba-plan__price span {
+  font-size: 14px;
+  color: #888;
+  font-weight: 400;
+}
+
+.iba-plan__cadence {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.iba-plan__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+
+.iba-plan__features li {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.7;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+
+.iba-plan__features li:last-child {
+  border-bottom: none;
+}
+
+.iba-plan--custom .iba-plan__header {
+  margin-bottom: 0;
+}
+
+.iba-plan__price-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+  .tier-box {
+    border: 1px solid rgba(201,168,76,0.15);
+    background: #0a0a0a;
+    padding: 28px;
+    border-radius: 4px;
+  }
+  .tier-box-right {
+    border-color: rgba(201,168,76,0.35);
+  }
+  .tier-box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #c9a84c;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .tier-box-title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+  .tier-box-desc {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.55;
+    margin-bottom: 20px;
   }
 
-  .iba-for-card:nth-child(2) { border-right: none; }
-  .iba-for-card:nth-child(3),
-  .iba-for-card:nth-child(4) {
-    border-top: 1px solid rgba(201,168,76,0.12);
+  .price-toggle {
+    display: flex;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .toggle-option {
+    flex: 1;
+    padding: 12px 16px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #888;
+    transition: all .2s;
+    border-right: 1px solid rgba(201,168,76,0.2);
+  }
+  .toggle-option:last-child { border-right: none; }
+  .toggle-option.active {
+    background: rgba(201,168,76,0.1);
+    color: #c9a84c;
+    font-weight: 600;
+  }
+  .toggle-price {
+    display: block;
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 4px;
+  }
+  .toggle-option.active .toggle-price { color: #c9a84c; }
+
+  .tier-features {
+    list-style: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+  .tier-features li {
+    font-size: 13px;
+    color: #888;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .tier-features li:last-child { border-bottom: none; }
+
+  .tier-box-right .inner-circle-box {
+    border: 1px solid rgba(201,168,76,0.25);
+    background: rgba(201,168,76,0.04);
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .tier-box-right .inner-circle-box .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #c9a84c;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
   }
 
-  .iba-team-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .iba-btn {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: #0a0a0a;
+    background: #c9a84c;
+    padding: 12px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .iba-btn.outline {
+    background: transparent;
+    color: #c9a84c;
+    border: 1px solid rgba(201,168,76,0.4);
   }
 
-  .iba-onboarding-steps {
-    grid-template-columns: 1fr;
+  @media (max-width: 800px) {
+    .tier-two-box { grid-template-columns: 1fr; gap: 24px; }
   }
 
-  .iba-step { border-right: none; }
-  .iba-step:nth-child(5) { border-bottom: 1px solid rgba(201,168,76,0.12); }
-  .iba-step:last-child { border-bottom: none; }
+/* v3-short-sub */
+
+/* ─── INFRASTRUCTURE PILLARS ─── */
+.iba-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(201,168,76,0.12);
+  margin-bottom: 48px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.iba-pillar {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.iba-pillar:last-child { border-bottom: none; }
+.iba-pillar__index {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: rgba(201,168,76,0.4);
+  border-right: 1px solid rgba(201,168,76,0.12);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 26px;
+}
+.iba-pillar__body { padding: 22px 24px; }
+.iba-pillar__arrow { font-size: 10px; color: rgba(201,168,76,0.5); margin-right: 8px; }
+.iba-pillar__title {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+.iba-pillar__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.65;
+}
+.iba-keyz-quote {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+  border-left: 3px solid #c9a84c;
+  padding-left: 20px;
+  max-width: 780px;
+  margin: 0 auto 8px;
+}
+.iba-keyz-quote__attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  display: block;
+}
+
+/* ─── TEAM BIOS ─── */
+.iba-team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.iba-bio { border: 1px solid rgba(201,168,76,0.12); }
+.iba-bio__photo-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #111;
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iba-bio__photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.iba-bio__photo-placeholder {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 64px;
+  font-weight: 900;
+  color: rgba(201,168,76,0.1);
+  text-transform: uppercase;
+  user-select: none;
+}
+.iba-bio__content { padding: 24px; }
+.iba-bio__role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.iba-bio__name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+.iba-bio__credits {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.iba-bio__body {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.75;
+}
+@media (max-width: 768px) {
+  .iba-team-grid { grid-template-columns: 1fr; gap: 20px; }
 }
 </style>
 
@@ -957,20 +1047,20 @@
     <div class="iba-ticker__track" aria-hidden="true">
       <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
       <span class="iba-ticker__sep">|</span>
-      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      
       <span class="iba-ticker__sep">|</span>
       <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
       <span class="iba-ticker__sep">|</span>
-      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      
       <span class="iba-ticker__sep">|</span>
       <!-- Duplicate set for seamless loop -->
       <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
       <span class="iba-ticker__sep">|</span>
-      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      
       <span class="iba-ticker__sep">|</span>
       <span class="iba-ticker__item">Founding 100 Now Open · 100 Artists, Producers, Managers &amp; Teams Only</span>
       <span class="iba-ticker__sep">|</span>
-      <span class="iba-ticker__item">Founding 100 · The First Artist Teams Building With IBA × Aggie</span>
+      
       <span class="iba-ticker__sep">|</span>
     </div>
   </div>
@@ -986,19 +1076,15 @@
 
     <h1 class="iba-hero__headline">
       The Next Artists to Break Will Have <em>a Machine</em> Behind Them
-    </h1>
+    </h1><!-- ref copy -->
 
-    <p class="iba-hero__sub">
-      Start using the AI-powered release infrastructure behind serious artists and teams that allow you to manage content, rollout strategy, ad execution, fan-data capture, reporting, using AI agents that can be used entirely by yourself.
-    </p>
+    <p class="iba-hero__sub">Start using the AI-powered release infrastructure behind serious artists and teams that allow you to manage content, rollout strategy, ad execution, fan-data capture, reporting, using AI agents that can be used entirely by yourself.</p>
   </section>
 
-  <!-- ─── 3. VIDEO SECTION ─── -->
+  <!-- ─── VIDEO UNDER HEADLINE ─── -->
   <div class="iba-video-wrap">
-    <p class="iba-video__label">
-      No experience with AI required. No case studies needed.<br>
-      Just real motion as an artist — or access to real artists and teams.
-    </p>
+    <p class="iba-video__label">No experience with AI required. No case studies needed.<br>
+      Just real motion as an artist — or access to real artists and teams.</p>
     <div class="iba-video__container">
       <iframe
         src="https://www.youtube.com/embed/cgIOF1Xv6uc?rel=0&modestbranding=1&color=white"
@@ -1009,7 +1095,6 @@
       ></iframe>
     </div>
   </div>
-
   <!-- ─── 4. STATS BANNER ─── -->
   <div class="iba-stats" aria-label="IBA × Aggie track record">
     <div class="iba-stats__inner">
@@ -1033,14 +1118,14 @@
   </div>
 
   <!-- ─── 5. FORM SECTION ─── -->
-  <section class="iba-form-section">
+  <section class="iba-form-section" id="apply">
     <p class="iba-form__cta-line">Fill out the form. Take action. Expect the call from us.</p>
-    <div class="iba-form__heading">Apply for Founding 100</div>
+    <div class="iba-form__heading">Apply for Founding 100</div><!-- shrunk -->
 
     <div class="iba-form__embed">
       <iframe
         src="https://app.truportals.com/widget/quiz/z0N7as5YRXfyv77ELbAP"
-        style="border:none;width:100%;min-height:650px;display:block;"
+        style="border:none;width:100%;min-height:180px;display:block;"
         scrolling="no"
         id="z0N7as5YRXfyv77ELbAP"
         title="quiz"
@@ -1048,19 +1133,36 @@
     </div>
   </section>
 
+
   <hr class="iba-rule">
+
+  <!-- ─── VIDEO UNDER FORM ─── -->
+  <div class="iba-video-wrap">
+    <p class="iba-video__label">No experience with AI required. No case studies needed.<br>
+      Just real motion as an artist — or access to real artists and teams.</p>
+    <div class="iba-video__container">
+      <iframe
+        src="https://www.youtube.com/embed/cgIOF1Xv6uc?rel=0&modestbranding=1&color=white"
+        title="IBA × Aggie — Founding 100"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
 
   <!-- ─── THESIS ─── -->
   <section class="iba-section">
     <div class="iba-section__inner">
       <blockquote class="iba-thesis">
-        "The $31.7B recorded music market does not reward talent by itself. It rewards signal, consistency, distribution, audience movement, data, and execution."
+        "The new breed of artists and teams are using release strategy + agentic AI to break millions of streams in months."
       </blockquote>
       <p class="iba-body">
-        IBA builds the AI agent team behind your next release — content, rollout, ads, fan-data capture, and reporting — so your music stops depending on luck, memory, and last-minute posting.
+        A no-bullshit, industry-vetted system for any professional in the music industry to use Agentic AI and Aggie for exponential growth in 2026.
       </p>
     </div>
   </section>
+
 
   <hr class="iba-rule">
 
@@ -1092,9 +1194,9 @@
           </div>
         </div>
       </div>
-      <p class="iba-disclaimer">Principal-connected projects, associated work, and case-specific results. Results not typical and depend on artist, genre, market conditions, and execution.</p>
     </div>
   </section>
+
 
   <hr class="iba-rule">
 
@@ -1104,20 +1206,27 @@
       <p class="iba-eyebrow">How it Works</p>
       <h2 class="iba-section__h2">Two ways to work with IBA × Aggie.</h2>
 
-      <div class="iba-pricing-grid">
+      <div class="tier-two-box">
+        <!-- TIER 1 + TIER 2 (toggle) -->
+        <div class="tier-box">
+          <div class="tier-box-label">Self-Serve</div>
+          
+          <p class="tier-box-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie.</p>
 
-        <!-- Self-Serve -->
-        <div class="iba-pricing-col">
-          <p class="iba-pricing-label">Self-Serve</p>
-          <p class="iba-pricing-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie.</p>
-
-          <div class="iba-plan">
-            <div class="iba-plan__header">
-              <span class="iba-plan__name">Artist</span>
-              <span class="iba-plan__price">$99<span>/mo</span></span>
+          <div class="price-toggle">
+            <div class="toggle-option active" onclick="switchTier(1)">
+              Artist
+              <span class="toggle-price">$99/mo</span>
             </div>
-            <p class="iba-plan__cadence">Monthly · Cancel anytime</p>
-            <ul class="iba-plan__features">
+            <div class="toggle-option" onclick="switchTier(2)">
+              Real Growth
+              <span class="toggle-price">$500/mo</span>
+            </div>
+          </div>
+
+          <div id="tier1-content">
+            <div class="tier-box-title">The Artist Who’s Done Playing Small</div>
+            <ul class="tier-features">
               <li>Up to 100 AI-powered posts per month</li>
               <li>Full social media marketing creation</li>
               <li>Release &amp; event campaign systems</li>
@@ -1129,13 +1238,9 @@
             <a href="https://app.letaggiedoit.com/join?campaign=ibatier1" class="iba-btn">Claim Your Spot →</a>
           </div>
 
-          <div class="iba-plan">
-            <div class="iba-plan__header">
-              <span class="iba-plan__name">Real Growth</span>
-              <span class="iba-plan__price">$500<span>/mo</span></span>
-            </div>
-            <p class="iba-plan__cadence">Monthly · Cancel anytime</p>
-            <ul class="iba-plan__features">
+          <div id="tier2-content" style="display:none">
+            <div class="tier-box-title">The Artist Who Wants Real Growth</div>
+            <ul class="tier-features">
               <li>Advanced AI agents engineered by Keyz</li>
               <li>Automated content calendars</li>
               <li>Multi-platform scheduling</li>
@@ -1150,71 +1255,34 @@
           </div>
         </div>
 
-        <!-- 1-on-1 -->
-        <div class="iba-pricing-col">
-          <p class="iba-pricing-label">1-on-1</p>
-          <p class="iba-pricing-desc">Direct consulting with IBA principals — Keyz the Producer and Max Gousse. Personalized architecture, custom agents, multi-quarter planning.</p>
+        <!-- 1-ON-1 / FOUNDING 100 -->
+        <div class="tier-box tier-box-right">
+          <div class="tier-box-label">1-on-1</div>
+          <div class="tier-box-title">The Established Artist Advantage</div>
+          <p class="tier-box-desc">Direct consulting with IBA principals — Keyz the Producer and Max Gousse.</p>
 
-          <div class="iba-plan iba-plan--custom">
-            <div class="iba-plan__header">
-              <span class="iba-plan__name">Custom</span>
-              <span class="iba-plan__price-tag">By Application Only</span>
-            </div>
+          <div class="inner-circle-box">
+            <div class="badge">Founding 100 Inner Circle</div>
+            <p style="font-size:13px; color:#aaa; line-height:1.5; margin:0;">Direct 1-on-1 work with IBA principals. Personalized release architecture, custom agents built for your brand, private communication channels, and priority access to new Aggie features. Limited to 100 Founding members.</p>
           </div>
 
-          <div class="iba-plan iba-plan--f100">
-            <div class="iba-plan__badge">Founding 100</div>
-            <div class="iba-plan__header">
-              <span class="iba-plan__name">Inner Circle</span>
-            </div>
-            <p class="iba-plan__lead">Direct 1-on-1 work with IBA principals. Personalized release architecture, custom agents built for your brand, private communication channels, and priority access to new Aggie features. Limited to 100 Founding members.</p>
-            <ul class="iba-plan__features">
-              <li>Direct consulting with Keyz &amp; Max Gousse</li>
-              <li>Personalized release architecture</li>
-              <li>Custom AI agents built for your brand</li>
-              <li>Multi-quarter rollout planning</li>
-              <li>Audience monetization systems</li>
-              <li>Team dashboards &amp; enterprise integrations</li>
-              <li>Priority access to new Aggie features</li>
-              <li>Private communication channels</li>
-            </ul>
-          </div>
+          <ul class="tier-features">
+            <li>Direct consulting with Keyz &amp; Max Gousse</li>
+            <li>Personalized release architecture</li>
+            <li>Custom AI agents built for your brand</li>
+            <li>Multi-quarter rollout planning</li>
+            <li>Audience monetization systems</li>
+            <li>Team dashboards &amp; enterprise integrations</li>
+            <li>Priority access to new Aggie features</li>
+            <li>Private communication channels</li>
+          </ul>
+
+          <a href="#apply" class="iba-btn">Apply for Founding 100 →</a>
         </div>
-
       </div>
     </div>
   </section>
 
-  <hr class="iba-rule">
-
-  <!-- ─── WHO THIS IS FOR ─── -->
-  <section class="iba-section">
-    <div class="iba-section__inner">
-      <p class="iba-eyebrow">Who This Is For</p>
-      <h2 class="iba-section__h2">Built for artists ready to execute.</h2>
-
-      <div class="iba-for-grid">
-        <div class="iba-for-card">
-          <p class="iba-for-card__tag">Prepare</p>
-          <p class="iba-for-card__text">Artists who are preparing a release in the next 90 days</p>
-        </div>
-        <div class="iba-for-card">
-          <p class="iba-for-card__tag">Grow</p>
-          <p class="iba-for-card__text">Artists who want to grow real fans — not vanity metrics</p>
-        </div>
-        <div class="iba-for-card">
-          <p class="iba-for-card__tag">Clarity</p>
-          <p class="iba-for-card__text">Artists who are tired of guessing their marketing strategy</p>
-        </div>
-        <div class="iba-for-card">
-          <p class="iba-for-card__tag">Build</p>
-          <p class="iba-for-card__text">Artists who are ready to execute consistently</p>
-        </div>
-      </div>
-
-      <p class="iba-for-qualifier">If you're looking for shortcuts, this isn't for you. This is for artists who are serious about building real audience infrastructure.</p>
-    </div>
-  </section>
 
   <hr class="iba-rule">
 
@@ -1249,7 +1317,7 @@
       </div>
 
       <p class="iba-keyz-quote">"Talent gets you noticed. Discipline keeps you here.<br>Most artists only focus on the first part."</p>
-      <p class="iba-keyz-quote__attr">— Keyz the Producer</p>
+      <span class="iba-keyz-quote__attr">— Keyz the Producer</span>
     </div>
   </section>
 
@@ -1263,91 +1331,31 @@
 
       <div class="iba-team-grid">
 
-        <!-- Keyz the Producer -->
         <div class="iba-bio">
           <div class="iba-bio__photo-wrap">
-            <!-- PHOTO: replace src with Keyz headshot URL -->
-            <img src="" alt="Keyz the Producer" onerror="this.style.display='none'">
-            <div class="iba-bio__photo-placeholder">KEYZ</div>
+            <img src="assets/event/faraji-keyz.jpg" alt="Keyz the Producer">
           </div>
           <div class="iba-bio__content">
             <p class="iba-bio__role">Co-Founder · Producer · Strategist</p>
             <p class="iba-bio__name">Keyz the Producer</p>
             <p class="iba-bio__credits">2M+ Annual Reach · Spotify · Instagram · TikTok Growth Authority</p>
-            <p class="iba-bio__body">
-              Keyz the Producer has become a respected authority in modern music marketing and artist development, known for guiding artists on how to grow across platforms like Spotify, Instagram, and TikTok. Since 2018, he has built a reputation as a go-to expert for rollout strategy, social media growth, and fanbase building, reaching more than two million people annually through his educational content and industry insights.
-            </p>
+            <p class="iba-bio__body">Keyz the Producer has become a respected authority in modern music marketing and artist development, known for guiding artists on how to grow across platforms like Spotify, Instagram, and TikTok. Since 2018, he has built a reputation as a go-to expert for rollout strategy, social media growth, and fanbase building, reaching more than two million people annually through his educational content and industry insights.</p>
           </div>
         </div>
 
-        <!-- Max Gousse -->
         <div class="iba-bio">
           <div class="iba-bio__photo-wrap">
-            <!-- PHOTO: replace src with Max Gousse headshot URL -->
-            <img src="" alt="Max Gousse" onerror="this.style.display='none'">
-            <div class="iba-bio__photo-placeholder">MAX</div>
+            <img src="assets/event/max-gousse.jpg" alt="Max Gousse">
           </div>
           <div class="iba-bio__content">
             <p class="iba-bio__role">Co-Founder · Executive · A&amp;R</p>
             <p class="iba-bio__name">Max Gousse</p>
             <p class="iba-bio__credits">East West · MCA · Epic/Sony · Island Def Jam · Music World · 40 Years</p>
-            <p class="iba-bio__body">
-              Max Gousse's career spans nearly forty years across top institutions including East West Records, MCA Music Publishing, Epic/Sony Records, Music World Entertainment, and The Island Def Jam Music Group. He has contributed to major projects for Beyoncé — including <em>I Am… Sasha Fierce</em>, <em>B'Day</em>, and <em>The Dreamgirls</em> soundtrack — as well as work with Rihanna, Jay-Z, Saweetie, Solange, Kelly Rowland, YG, Ty Dolla $ign, and more. His background as both a producer and high-level A&amp;R executive gives him a rare dual perspective on creative development and commercial success.
-            </p>
+            <p class="iba-bio__body">Max Gousse's career spans nearly forty years across top institutions including East West Records, MCA Music Publishing, Epic/Sony Records, Music World Entertainment, and The Island Def Jam Music Group. He has contributed to major projects for Beyoncé — including <em>I Am… Sasha Fierce</em>, <em>B'Day</em>, and <em>The Dreamgirls</em> soundtrack — as well as work with Rihanna, Jay-Z, Saweetie, Solange, Kelly Rowland, YG, and Ty Dolla $ign. His dual background as producer and high-level A&amp;R executive gives him a rare perspective on creative development and commercial success.</p>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
-
-  <hr class="iba-rule">
-
-  <!-- ─── EXCLUSIVE FOUNDING MEMBER ONBOARDING ─── -->
-  <section class="iba-section">
-    <div class="iba-section__inner">
-      <p class="iba-eyebrow">Exclusive Founding Member Onboarding</p>
-      <h2 class="iba-section__h2">A focused, action-first onboarding call.</h2>
-
-      <p class="iba-onboarding-lead">
-        An industry pro listens to your release goals, critiques your strategy, and gives concrete next steps you can implement immediately. This is not generic advice — it's hands-on feedback tailored to your track, timeline, and audience.
-      </p>
-      <p class="iba-onboarding-note">Limited-time offer: founding members receive a private, strategic review of their release plan with Keyz the Producer or Max Gousse.</p>
-
-      <div class="iba-onboarding-steps">
-        <div class="iba-step">
-          <p class="iba-step__num">01.</p>
-          <p class="iba-step__title">One 60-minute live session</p>
-          <p class="iba-step__sub">With Keyz the Producer or Max Gousse</p>
-        </div>
-        <div class="iba-step">
-          <p class="iba-step__num">02.</p>
-          <p class="iba-step__title">Collaboration &amp; placement guidance</p>
-          <p class="iba-step__sub">Feature strategy, playlist pitching priorities, and influencer outreach ideas</p>
-        </div>
-        <div class="iba-step">
-          <p class="iba-step__num">03.</p>
-          <p class="iba-step__title">Deep review of your release strategy</p>
-          <p class="iba-step__sub">Single/album rollout, timing, lead single choice, and promotional sequencing</p>
-        </div>
-        <div class="iba-step">
-          <p class="iba-step__num">04.</p>
-          <p class="iba-step__title">Practical deliverables</p>
-          <p class="iba-step__sub">A concise action plan with prioritized next steps and a follow-up checklist</p>
-        </div>
-        <div class="iba-step">
-          <p class="iba-step__num">05.</p>
-          <p class="iba-step__title">Marketing &amp; positioning feedback</p>
-          <p class="iba-step__sub">Messaging, target audience, and organic vs. paid mix</p>
-        </div>
-        <div class="iba-step">
-          <p class="iba-step__num">06.</p>
-          <p class="iba-step__title">Optional recording</p>
-          <p class="iba-step__sub">A session recording for later reference</p>
-        </div>
-      </div>
-
-      <a href="https://app.truportals.com/widget/quiz/z0N7as5YRXfyv77ELbAP" class="iba-btn">Apply for Founding 100 Access →</a>
     </div>
   </section>
 
@@ -1360,6 +1368,25 @@
   </footer>
 
 </div>
+
+
+<script>
+function switchTier(tier) {
+  const t1 = document.getElementById('tier1-content');
+  const t2 = document.getElementById('tier2-content');
+  const options = document.querySelectorAll('.toggle-option');
+  
+  options.forEach((opt, i) => opt.classList.toggle('active', (i+1) === tier));
+  
+  if (tier === 1) {
+    t1.style.display = '';
+    t2.style.display = 'none';
+  } else {
+    t1.style.display = 'none';
+    t2.style.display = '';
+  }
+}
+</script>
 
 <script src="https://app.truportals.com/js/form_embed.js"></script>
 </body>
