@@ -1271,7 +1271,8 @@
         <!-- TIER 1 + TIER 2 (toggle) -->
         <div class="tier-box">
           <div class="tier-box-label">Self-Serve</div>
-          
+          <div class="tier-box-title" id="camp-a-title">The Artist Who’s Done Playing Small</div>
+
           <p class="tier-box-desc">AI-powered content, release systems, and growth tracking — built by Keyz, powered by Aggie.</p>
 
           <div class="price-toggle">
@@ -1286,7 +1287,6 @@
           </div>
 
           <div id="tier1-content">
-            <div class="tier-box-title">The Artist Who’s Done Playing Small</div>
             <ul class="tier-features">
               <li>Up to 100 AI-powered posts per month</li>
               <li>Full social media marketing creation</li>
@@ -1299,7 +1299,6 @@
           </div>
 
           <div id="tier2-content" style="display:none">
-            <div class="tier-box-title">The Artist Who Wants Real Growth</div>
             <ul class="tier-features">
               <li>Automated content calendars</li>
               <li>Multi-platform scheduling</li>
@@ -1318,7 +1317,6 @@
         <div class="tier-box tier-box-right">
           <div class="tier-box-label">1-on-1</div>
           <div class="tier-box-title">The Founding 100</div>
-          <p class="tier-box-desc">Direct consulting with IBA principals — Keyz the Producer and Max Gousse.</p>
 
           <div class="inner-circle-box">
             <div class="badge">Founding 100 Inner Circle</div>
@@ -1433,16 +1431,19 @@
 function switchTier(tier) {
   const t1 = document.getElementById('tier1-content');
   const t2 = document.getElementById('tier2-content');
+  const title = document.getElementById('camp-a-title');
   const options = document.querySelectorAll('.toggle-option');
-  
+
   options.forEach((opt, i) => opt.classList.toggle('active', (i+1) === tier));
-  
+
   if (tier === 1) {
     t1.style.display = '';
     t2.style.display = 'none';
+    title.textContent = "The Artist Who’s Done Playing Small";
   } else {
     t1.style.display = 'none';
     t2.style.display = '';
+    title.textContent = "The Artist Who Wants Real Growth";
   }
 }
 </script>
