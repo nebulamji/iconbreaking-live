@@ -1496,23 +1496,30 @@
 
 <script>
 function switchTier(tier) {
-  const t1 = document.getElementById('tier1-content');
-  const t2 = document.getElementById('tier2-content');
-  const title = document.getElementById('camp-a-title');
-  const options = document.querySelectorAll('.toggle-option');
+  var t1 = document.getElementById('tier1-content');
+  var t2 = document.getElementById('tier2-content');
+  var title = document.getElementById('camp-a-title');
+  var options = document.querySelectorAll('.toggle-option');
 
-  options.forEach((opt, i) => opt.classList.toggle('active', (i+1) === tier));
+  options.forEach(function(opt, i) { opt.classList.toggle('active', (i+1) === tier); });
 
   if (tier === 1) {
-    t1.style.display = '';
+    t1.style.display = 'block';
     t2.style.display = 'none';
-    title.textContent = "The Professional Who’s Done Playing Small";
+    if (title) title.textContent = "The Professional Who's Done Playing Small";
   } else {
-    t1.style.display = ‘none’;
-    t2.style.display = ‘’;
-    title.textContent = "The Professional Who Wants Real Growth";
+    t1.style.display = 'none';
+    t2.style.display = 'block';
+    if (title) title.textContent = "The Professional Who Wants Real Growth";
   }
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var opts = document.querySelectorAll('.toggle-option');
+  if (opts.length >= 2) {
+    opts[0].addEventListener('click', function() { switchTier(1); });
+    opts[1].addEventListener('click', function() { switchTier(2); });
+  }
+});
 </script>
 
 <script src="https://app.truportals.com/js/form_embed.js"></script>
