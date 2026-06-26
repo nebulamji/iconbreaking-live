@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IBA × Aggie — Founding 100</title>
 <meta name="description" content="The AI-powered release infrastructure for serious artists and teams. 100 Founding members only.">
+
+<!-- PostHog Analytics - Icon Breaking Agency -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister get_config get_distinct_id has_opted_out_capturing opt_in_capturing opt_out_capturing isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSurveys setPersonProperties".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_zbkdBQty5wpZhPTo8SfrzwNnJuVnJrnsfD7gvUbnzEFt',{api_host:'https://us.i.posthog.com', capture_pageview: true, capture_pageleave: true, session_recording: {recordCrossOriginIframes: true}});
+</script>
+
+<script>
+// IBA Landing Page Tracking
+if (window.posthog) {
+  posthog.capture('landing_page_viewed', {
+    page: 'test1',
+    source: document.referrer || 'direct',
+    utm_source: new URLSearchParams(window.location.search).get('utm_source') || null,
+    utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || null,
+    utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || null
+  });
+}
+</script>
+
 </head>
 <body style="margin:0;padding:0;background:#0a0a0a;">
 
@@ -1536,5 +1556,46 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { passive: true });
 })();
 </script>
+
+<!-- TruPortals form + CTA click tracking -->
+<script>
+// Track TruPortals form submissions via postMessage
+window.addEventListener('message', function(e) {
+  if (e.origin === 'https://app.truportals.com' || (e.data && e.data.type)) {
+    var data = e.data || {};
+    if (data.type === 'formSubmit' || data.type === 'quizComplete' || data.event === 'formSubmit') {
+      if (window.posthog) {
+        posthog.capture('form_submitted', {
+          page: 'test1',
+          form_type: 'truportals_quiz',
+          source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+        });
+      }
+    }
+  }
+});
+
+// Track CTA clicks on tier boxes and sticky bar
+document.addEventListener('click', function(e) {
+  var target = e.target.closest('a[href], button, .tier-box, .iba-sticky-bar__cta, .iba-hero__cta');
+  if (!target) return;
+  
+  var href = target.getAttribute('href') || '';
+  var classes = target.className || '';
+  var text = (target.textContent || '').trim().substring(0, 100);
+  
+  if (window.posthog) {
+    posthog.capture('cta_clicked', {
+      page: 'test1',
+      element_type: target.tagName,
+      element_class: classes,
+      element_text: text,
+      href: href,
+      source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+    });
+  }
+}, true);
+</script>
+
 </body>
 </html>
