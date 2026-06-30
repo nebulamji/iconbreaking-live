@@ -128,9 +128,32 @@ button.optin-btn:disabled{opacity:.6;cursor:wait}
     </div>
     <div class="form-card">
       <h2>Claim Your <span class="gold">Seat</span></h2>
-      <p class="lead">One opt-in — name + email. We send the July 2 Zoom link, your Discord invite, and the June 4 replay access.</p>
-      <a href="https://www.iconbreaking.com/test1#apply" class="optin-btn" style="display:block;text-align:center;text-decoration:none;">Claim My Seat — Zoom + Discord + Replay</a>
-      <p class="optin-note" style="font-size:13px;color:#9a9a9a;margin-top:14px;text-align:center;">You'll go to the secure registration page. Name + email — we send the July 2 Zoom link, your Discord invite, and the June 4 replay.</p>
+      <p class="lead">Drop your name + email — we hold your seat. Then join the IBA Community on Discord for the July 2 Zoom link, the June 4 replay with Max Gousse, and the room.</p>
+      <form class="optin-form" action="https://themusicindustry.ai/intake/iba-july2" method="POST" novalidate>
+        <input type="hidden" name="event_slug" value="iba-july2"/>
+        <input type="hidden" name="source" value="iconbreaking-july2-landing"/>
+        <div class="f-row">
+          <div class="field"><label for="f1-name">Full Name</label><input type="text" id="f1-name" name="name" placeholder="Your full name" required/></div>
+          <div class="field"><label for="f1-email">Email</label><input type="email" id="f1-email" name="email" placeholder="your@email.com" required/></div>
+        </div>
+        <div class="f-row">
+          <div class="field"><label for="f1-phone">Phone <span style="color:#9a9a9a">(optional)</span></label><input type="tel" id="f1-phone" name="phone" placeholder="+1 (000) 000-0000"/></div>
+          <div class="field"><label for="f1-role">Role <span style="color:#9a9a9a">(optional)</span></label>
+            <select id="f1-role" name="role"><option value="" selected>Select...</option><option value="artist">Artist</option><option value="manager">Manager</option><option value="executive">Executive</option><option value="producer">Producer</option><option value="other">Other</option></select>
+          </div>
+        </div>
+        <button type="submit" class="optin-btn">Claim My Seat</button>
+        <div class="optin-err"></div>
+      </form>
+      <div class="optin-success">
+        <div class="check">✓</div>
+        <h3>You're In. Your Seat's Held.</h3>
+        <p>Three things, right now:</p>
+        <a href="https://discord.gg/mKKK44pd" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:14px;">Join the IBA Community on Discord →</a>
+        <a href="https://www.youtube.com/watch?v=cgIOF1Xv6uc" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:10px;background:#1a1a1a;color:#c9a84c;border-color:#c9a84c;">Watch the June 4 Replay with Max Gousse →</a>
+        <a href="https://discord.gg/mKKK44pd" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:10px;background:#1a1a1a;color:#c9a84c;border-color:#c9a84c;">Get the July 2 Zoom Link →</a>
+        <p style="margin-top:14px;font-size:12px;color:#9a9a9a;">The July 2 Zoom link drops in Discord on July 1. Your seat is held — see you there.</p>
+      </div>
 
     </div>
   </div>
@@ -146,8 +169,8 @@ button.optin-btn:disabled{opacity:.6;cursor:wait}
 <section class="cta-bottom" id="optin-bottom">
   <hr class="divider"/>
   <h2>Ready to Claim Your <span class="gold">Seat</span>?</h2>
-  <p>Opt in at the top — get the July 2 Zoom link, your Discord invite, and the June 4 replay access.</p>
-  <a href="#optin-top" class="cta-link">Send My Zoom Link + Discord Invite ↑</a>
+  <p>Drop your name + email up top — then join the IBA Community on Discord for the July 2 Zoom link and the June 4 replay.</p>
+  <a href="#optin-top" class="cta-link">Claim My Seat ↑</a>
 </section>
 
 <div class="foot">
@@ -161,12 +184,21 @@ var sb=document.getElementById('stickyBar');
 window.addEventListener('scroll',function(){ sb.classList.toggle('show', window.scrollY>500); },{passive:true});
 // countdown to July 2, 2026 7:00 PM ET (23:00 UTC)
 (function(){var target=new Date('2026-07-02T23:00:00Z').getTime();function tick(){var now=Date.now(),d=target-now;var cd=document.getElementById('cd');if(!cd)return;if(d<=0){cd.innerHTML='<span class="cd-live">Live now</span>';return;}var days=Math.floor(d/86400000),hrs=Math.floor(d%86400000/3600000),mins=Math.floor(d%3600000/60000),secs=Math.floor(d%60000/1000);var set=function(id,v){var el=document.getElementById(id);if(el)el.textContent=String(v).padStart(2,'0');};set('cd-days',days);set('cd-hrs',hrs);set('cd-mins',mins);set('cd-secs',secs);}tick();setInterval(tick,1000);})();
-// opt-in routes to the live /test1 TruPortals registration form (GHL intake).
-// Worker /intake/iba-july2 route is NOT live (misfiles into June-4) — do NOT re-enable here until the worker patch is deployed.
-(function(){
-  var cta=document.querySelector('.optin-btn');
-  if(cta && window.posthog){ cta.addEventListener('click',function(){ posthog.capture('masterclass_register_click',{event_slug:'iba-july2',source:'iconbreaking-july2-landing',destination:'/test1#apply'}); }); }
-})();
+// opt-in: capture to worker /intake/iba-july2 (LIVE + verified 2026-06-30: D1 collect + GHL contact upsert + Discord #opted-in webhook, NO email to registrant — send gate OFF, ghl_workflow_id null). On success, reveal Zoom + Discord + Replay on-page.
+document.querySelectorAll('.optin-form').forEach(function(form){
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn=form.querySelector('.optin-btn'), err=form.querySelector('.optin-err'), succ=form.parentElement.querySelector('.optin-success');
+    err.style.display='none'; btn.disabled=true; btn.textContent='Holding your seat…';
+    var fd=new FormData(form); var obj={};
+    fd.forEach(function(v,k){obj[k]=v;});
+    try{
+      var r=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)});
+      if(r.ok){ form.style.display='none'; if(succ) succ.classList.add('show'); if(window.posthog)posthog.capture('masterclass_registered',{event_slug:'iba-july2',email:obj.email,form:obj.source,discord_invite_shown:true}); }
+      else { err.textContent='Hold up — try again in a moment, or jump straight to Discord: discord.gg/mKKK44pd'; err.style.display='block'; btn.disabled=false; btn.textContent='Claim My Seat'; }
+    }catch(ex){ err.textContent='Network error — try again, or jump straight to Discord: discord.gg/mKKK44pd'; err.style.display='block'; btn.disabled=false; btn.textContent='Claim My Seat'; }
+  });
+});
 </script>
 </body>
 </html>
@@ -176,3 +208,5 @@ window.addEventListener('scroll',function(){ sb.classList.toggle('show', window.
 <!-- v14 2026-06-30T14:43:00 -->
 <!-- v15 2026-06-30T14:43:49 -->
 <!-- v16 2026-06-30 deploy: retarget optin to live /test1 TruPortals intake; worker /intake/iba-july2 NOT live -->
+
+<!-- v17 2026-06-30 deploy: form posts to LIVE worker /intake/iba-july2 (D1+GHL collect, Discord notify, NO email); success = Zoom+Discord+Replay buttons -->
