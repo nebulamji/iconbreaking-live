@@ -148,11 +148,7 @@ button.optin-btn:disabled{opacity:.6;cursor:wait}
       <div class="optin-success">
         <div class="check">✓</div>
         <h3>You're In. Your Seat's Held.</h3>
-        <p>Three things, right now:</p>
-        <a href="https://discord.gg/mKKK44pd" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:14px;">Join the IBA Community on Discord →</a>
-        <a href="https://www.youtube.com/watch?v=cgIOF1Xv6uc" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:10px;background:#1a1a1a;color:#c9a84c;border-color:#c9a84c;">Watch the June 4 Replay with Max Gousse →</a>
-        <a href="https://discord.gg/mKKK44pd" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:10px;background:#1a1a1a;color:#c9a84c;border-color:#c9a84c;">Get the July 2 Zoom Link →</a>
-        <p style="margin-top:14px;font-size:12px;color:#9a9a9a;">The July 2 Zoom link drops in Discord on July 1. Your seat is held — see you there.</p>
+        <a href="https://discord.gg/mKKK44pd" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:14px;">Join the IBA Community on Discord for Zoom + Replay →</a>
       </div>
 
     </div>
@@ -184,7 +180,7 @@ var sb=document.getElementById('stickyBar');
 window.addEventListener('scroll',function(){ sb.classList.toggle('show', window.scrollY>500); },{passive:true});
 // countdown to July 2, 2026 7:00 PM ET (23:00 UTC)
 (function(){var target=new Date('2026-07-02T23:00:00Z').getTime();function tick(){var now=Date.now(),d=target-now;var cd=document.getElementById('cd');if(!cd)return;if(d<=0){cd.innerHTML='<span class="cd-live">Live now</span>';return;}var days=Math.floor(d/86400000),hrs=Math.floor(d%86400000/3600000),mins=Math.floor(d%3600000/60000),secs=Math.floor(d%60000/1000);var set=function(id,v){var el=document.getElementById(id);if(el)el.textContent=String(v).padStart(2,'0');};set('cd-days',days);set('cd-hrs',hrs);set('cd-mins',mins);set('cd-secs',secs);}tick();setInterval(tick,1000);})();
-// opt-in: capture to worker /intake/iba-july2 (LIVE + verified 2026-06-30: D1 collect + GHL contact upsert + Discord #opted-in webhook, NO email to registrant — send gate OFF, ghl_workflow_id null). On success, reveal Zoom + Discord + Replay on-page.
+// opt-in: capture to worker /intake/iba-july2 (LIVE + verified 2026-06-30: D1 collect + GHL contact upsert + Discord #opted-in webhook, NO email to registrant — send gate OFF, ghl_workflow_id null). On success, reveal the single Discord invite on-page (Zoom + Replay delivered via Discord).
 document.querySelectorAll('.optin-form').forEach(function(form){
   form.addEventListener('submit', async function(e){
     e.preventDefault();
@@ -210,3 +206,5 @@ document.querySelectorAll('.optin-form').forEach(function(form){
 <!-- v16 2026-06-30 deploy: retarget optin to live /test1 TruPortals intake; worker /intake/iba-july2 NOT live -->
 
 <!-- v17 2026-06-30 deploy: form posts to LIVE worker /intake/iba-july2 (D1+GHL collect, Discord notify, NO email); success = Zoom+Discord+Replay buttons -->
+
+<!-- v18 2026-06-30 deploy: success state = single Discord button (Join for Zoom + Replay); removed 3-button split -->
