@@ -148,7 +148,7 @@ button.optin-btn:disabled{opacity:.6;cursor:wait}
       <div class="optin-success">
         <div class="check">✓</div>
         <h3>You're In. Your Seat's Held.</h3>
-        <a href="https://discord.gg/mKKK44pd" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:14px;">Join the IBA Community on Discord for Zoom + Replay →</a>
+        <a href="https://discord.gg/3ECSg5ApPJ" target="_blank" rel="noopener" class="optin-btn" style="display:block;text-align:center;text-decoration:none;margin-top:14px;">Join the IBA Community on Discord for Zoom + Replay →</a>
       </div>
 
     </div>
@@ -191,8 +191,8 @@ document.querySelectorAll('.optin-form').forEach(function(form){
     try{
       var r=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)});
       if(r.ok){ form.style.display='none'; if(succ) succ.classList.add('show'); if(window.posthog)posthog.capture('masterclass_registered',{event_slug:'iba-july2',email:obj.email,form:obj.source,discord_invite_shown:true}); }
-      else { err.textContent='Hold up — try again in a moment, or jump straight to Discord: discord.gg/mKKK44pd'; err.style.display='block'; btn.disabled=false; btn.textContent='Claim My Seat'; }
-    }catch(ex){ err.textContent='Network error — try again, or jump straight to Discord: discord.gg/mKKK44pd'; err.style.display='block'; btn.disabled=false; btn.textContent='Claim My Seat'; }
+      else { err.textContent='Hold up — try again in a moment, or jump straight to Discord: discord.gg/3ECSg5ApPJ'; err.style.display='block'; btn.disabled=false; btn.textContent='Claim My Seat'; }
+    }catch(ex){ err.textContent='Network error — try again, or jump straight to Discord: discord.gg/3ECSg5ApPJ'; err.style.display='block'; btn.disabled=false; btn.textContent='Claim My Seat'; }
   });
 });
 </script>
