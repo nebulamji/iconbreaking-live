@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IBA × Aggie — 11-Week Rollout Strategy Agent</title>
-<meta name="description" content="The IBA-hardened 11-Week Rollout Strategy Agent — built on Keyz's release strategy, music-metadata-informed, recognition-aware. Powered by Aggie.">
+<title>IBA — Rollout Strategy Agent</title>
+<meta name="description" content="The IBA Rollout Strategy Agent — chat-first, built on Keyz the Producer's 11-week release strategy, music-metadata-informed, recognition-aware. Ask it anything about your rollout.">
 <script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister get_config get_distinct_id has_opted_out_of_capturing opt_in_capturing opt_out_c_capturing isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureFlagEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSurveys setPersonProperties".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister get_config get_distinct_id has_opted_out_of_capturing opt_in_capturing opt_out_of_capturing isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureFlagEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSurveys setPersonProperties".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 posthog.init('phc_zbkdBQty5wpZhPTo8SfrzwNnJuVnJrnsfD7gvUbnzEFt',{api_host:'https://us.i.posthog.com',capture_pageview:true});
-if(window.posthog){posthog.capture('agent_page_viewed',{agent:'iba-rollout-v1.25',source:document.referrer||'direct'});}
+if(window.posthog){posthog.capture('agent_page_viewed',{agent:'iba-rollout-v2',source:document.referrer||'direct'});}
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -17,125 +17,157 @@ html{scroll-behavior:smooth}
 body{background:#0a0a0a;color:#e8e8e8;font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:#c9a84c;text-decoration:none}
 a:hover{color:#ff2d87}
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
 .mono{font-family:'JetBrains Mono',monospace}
 .gold{color:#c9a84c}
 .pink{color:#ff2d87}
 h1,h2,h3{font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.3px;line-height:1}
-/* topbar */
 .topbar{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid #1f1f1f}
-.topbar-inner{max-width:1080px;margin:0 auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topbar-inner{max-width:1040px;margin:0 auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#c9a84c}
 .brand b{color:#fff}
-.brand .x{color:#ff2d87}
 .topbar-cta{background:#c9a84c;color:#0a0a0a;padding:8px 14px;border-radius:8px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;font-size:12px;letter-spacing:1px;white-space:nowrap}
 .topbar-cta:hover{background:#ff2d87;color:#fff}
-/* hero */
-.hero{padding:46px 0 26px}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;margin-bottom:16px}
+.hero{padding:40px 0 18px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;margin-bottom:14px}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#c9a84c;box-shadow:0 0 12px #c9a84c;animation:p 2s infinite}
 @keyframes p{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
-h1{font-size:clamp(32px,5vw,52px);margin-bottom:14px}
+h1{font-size:clamp(30px,5vw,50px);margin-bottom:12px}
 h1 em{font-style:normal;background:linear-gradient(90deg,#c9a84c,#ff2d87);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.lede{font-size:15px;font-weight:300;color:#b5b5b5;max-width:680px;line-height:1.6;margin-bottom:18px}
+.lede{font-size:15px;font-weight:300;color:#b5b5b5;max-width:660px;line-height:1.6;margin-bottom:20px}
 .lede strong{color:#fff}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-.chip{border:1px solid #2a2a2a;background:#121212;padding:6px 12px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#9a9a9a}
-.chip b{color:#c9a84c}
-/* source lineage box */
-.lineage{border:1px solid #2a2a2a;background:#111;border-left:3px solid #c9a84c;border-radius:12px;padding:16px 18px;margin-bottom:26px;font-size:13px;color:#b5b5b5;line-height:1.6}
-.lineage b{color:#fff}
-.lineage .src{color:#ff2d87}
-/* section */
-section{padding:26px 0}
-.sh{font-size:clamp(22px,3vw,30px);margin-bottom:6px}
-.ss{font-size:13px;color:#8a8a8a;margin-bottom:18px;font-weight:300}
-/* progress / recognition */
-.recap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:14px 18px;margin-bottom:24px}
+/* CHAT — the hero surface */
+.chat{border:1px solid #2a2a2a;background:#0f0f0f;border-radius:16px;overflow:hidden;box-shadow:0 6px 30px rgba(0,0,0,.4)}
+.chat-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #1f1f1f;background:#111}
+.chat-head .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#c9a84c,#ff2d87);display:flex;align-items:center;justify-content:center;font-family:'Big Shoulders Display',sans-serif;font-weight:900;color:#0a0a0a;font-size:15px}
+.chat-head .who{font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff;letter-spacing:1px}
+.chat-head .who span{color:#7a7a7a}
+.chat-head .live{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:#c9a84c;letter-spacing:1px;text-transform:uppercase}
+.chat-body{padding:18px;height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:#333 transparent}
+.chat-body::-webkit-scrollbar{width:6px}
+.chat-body::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+.msg{max-width:84%;padding:11px 15px;border-radius:13px;font-size:13.5px;line-height:1.6;white-space:pre-wrap}
+.msg.bot{background:#161616;border:1px solid #222;border-top-left-radius:3px;align-self:flex-start}
+.msg.user{background:linear-gradient(135deg,#c9a84c,#b8963f);color:#0a0a0a;border-top-right-radius:3px;align-self:flex-end;font-weight:500}
+.msg .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:#ff2d87;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:6px}
+.msg.bot .tag{color:#c9a84c}
+.sugg{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px 0;border-top:1px solid #1f1f1f}
+.sugg button{background:#161616;border:1px solid #2a2a2a;color:#b5b5b5;border-radius:999px;padding:7px 13px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;text-transform:uppercase}
+.sugg button:hover{border-color:#c9a84c;color:#c9a84c}
+.chat-input{display:flex;gap:10px;padding:12px 14px 14px;border-top:1px solid #1f1f1f}
+.chat-input input{flex:1;background:#161616;border:1px solid #2a2a2a;border-radius:10px;padding:12px 14px;color:#fff;font-family:'Inter',sans-serif;font-size:14px}
+.chat-input input:focus{outline:none;border-color:#c9a84c}
+.send{background:#c9a84c;color:#0a0a0a;border:none;border-radius:10px;padding:0 18px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:1px;cursor:pointer}
+.send:hover{background:#ff2d87;color:#fff}
+/* lead capture */
+.lead{margin-top:14px;border:1px solid #2a2a2a;background:#111;border-left:3px solid #ff2d87;border-radius:12px;padding:16px 18px}
+.lead h3{font-size:17px;margin-bottom:4px}
+.lead p{font-size:12.5px;color:#9a9a9a;margin-bottom:12px;line-height:1.5}
+.lead-row{display:flex;gap:10px;flex-wrap:wrap}
+.lead-row input{flex:1;min-width:150px;background:#161616;border:1px solid #2a2a2a;border-radius:9px;padding:11px 13px;color:#fff;font-family:'Inter',sans-serif;font-size:14px}
+.lead-row input:focus{outline:none;border-color:#c9a84c}
+.lead-btn{background:#ff2d87;color:#fff;border:none;border-radius:9px;padding:0 20px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:1px;cursor:pointer}
+.lead-btn:hover{background:#c9a84c;color:#0a0a0a}
+.lead-ok{display:none;font-size:13px;color:#c9a84c;padding:6px 0}
+.lead-ok.show{display:block}
+.lead-err{display:none;font-size:12px;color:#ff6690;padding:6px 0}
+.lead-err.show{display:block}
+/* sections */
+section{padding:24px 0}
+.sh{font-size:clamp(21px,3vw,28px);margin-bottom:6px}
+.ss{font-size:13px;color:#8a8a8a;margin-bottom:16px;font-weight:300}
+.recap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:13px 18px;margin-bottom:18px}
 .recap .stat{font-family:'Big Shoulders Display',sans-serif;font-weight:900}
-.recap .stat .n{font-size:30px;color:#c9a84c}
+.recap .stat .n{font-size:28px;color:#c9a84c}
 .recap .stat .l{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#7a7a7a}
-.bar{flex:1;min-width:160px;height:10px;background:#1c1c1c;border-radius:999px;overflow:hidden}
+.bar{flex:1;min-width:150px;height:9px;background:#1c1c1c;border-radius:999px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c9a84c,#ff2d87);transition:width .4s ease}
 .recog{font-family:'JetBrains Mono',monospace;font-size:11px;color:#9a9a9a;letter-spacing:1px}
 .recog.on{color:#c9a84c}
-/* weeks */
-.weeks{display:grid;gap:14px}
-.week{border:1px solid #2a2a2a;background:#111;border-radius:12px;padding:16px 18px;transition:border-color .2s}
+.weeks{display:grid;gap:12px}
+.week{border:1px solid #2a2a2a;background:#111;border-radius:12px;padding:15px 17px;transition:border-color .2s}
 .week.done{border-color:#c9a84c;background:#13110a}
-.week-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.week-head{display:flex;align-items:center;gap:11px;margin-bottom:9px}
 .wk-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:#0a0a0a;background:#c9a84c;padding:4px 9px;border-radius:6px;font-weight:600;letter-spacing:1px;white-space:nowrap}
-.week.done .wk-num{background:#c9a84c}
-.wk-title{font-family:'Big Shoulders Display',sans-serif;font-size:19px;font-weight:900;text-transform:uppercase;flex:1}
+.wk-title{font-family:'Big Shoulders Display',sans-serif;font-size:18px;font-weight:900;text-transform:uppercase;flex:1}
 .wk-badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#7a7a7a;opacity:0;transition:opacity .2s}
 .week.done .wk-badge{opacity:1;color:#c9a84c}
 .wk-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#ff2d87}
-.wk-body{font-size:13px;color:#b5b5b5;line-height:1.55;margin-bottom:10px}
+.wk-body{font-size:13px;color:#b5b5b5;line-height:1.55;margin-bottom:9px}
 .wk-body strong{color:#fff}
 .wk-del{font-size:12px;color:#9a9a9a;margin-bottom:6px}
 .wk-del b{color:#c9a84c;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px}
-ul.wk-list{list-style:none;display:grid;gap:5px;margin-bottom:12px}
+ul.wk-list{list-style:none;display:grid;gap:5px;margin-bottom:11px}
 ul.wk-list li{font-size:12.5px;color:#b5b5b5;padding-left:16px;position:relative}
 ul.wk-list li::before{content:'›';position:absolute;left:0;color:#c9a84c}
-.check{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#9a9a9a;border-top:1px solid #1f1f1f;padding-top:10px}
+.check{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#9a9a9a;border-top:1px solid #1f1f1f;padding-top:9px}
 .check input{accent-color:#c9a84c;width:15px;height:15px;cursor:pointer}
-/* metadata standards */
 .meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .meta-card{border:1px solid #2a2a2a;background:#111;border-radius:12px;padding:14px}
 .meta-card h4{font-family:'Big Shoulders Display',sans-serif;font-size:15px;text-transform:uppercase;margin-bottom:8px;color:#fff}
 .meta-card p{font-size:12px;color:#9a9a9a;line-height:1.5}
 .meta-card code{font-family:'JetBrains Mono',monospace;color:#c9a84c;font-size:11px}
-/* ask */
-.ask{border:1px solid #2a2a2a;background:#0f0f0f;border-radius:14px;padding:18px}
-.ask h3{font-size:20px;margin-bottom:4px}
-.ask .hint{font-size:12px;color:#7a7a7a;margin-bottom:14px}
-.ask-row{display:flex;gap:10px;margin-bottom:12px}
-.ask-row input{flex:1;background:#161616;border:1px solid #2a2a2a;border-radius:9px;padding:12px 14px;color:#fff;font-family:'Inter',sans-serif;font-size:14px}
-.ask-row input:focus{outline:none;border-color:#c9a84c}
-.ask-btn{background:#c9a84c;color:#0a0a0a;border:none;border-radius:9px;padding:0 18px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:1px;cursor:pointer}
-.ask-btn:hover{background:#ff2d87;color:#fff}
-.ask-out{background:#121212;border:1px solid #1f1f1f;border-radius:10px;padding:14px 16px;font-size:13px;color:#cfcfcf;line-height:1.6;min-height:60px;white-space:pre-wrap}
-.ask-out .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:#ff2d87;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:6px}
-.sugg{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
-.sugg button{background:#161616;border:1px solid #2a2a2a;color:#b5b5b5;border-radius:999px;padding:7px 13px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;text-transform:uppercase}
-.sugg button:hover{border-color:#c9a84c;color:#c9a84c}
-.fullnote{margin-top:14px;font-size:12px;color:#7a7a7a;line-height:1.5}
-.fullnote a{color:#c9a84c}
-/* cta */
-.cta{margin:34px 0 26px;border:1px solid #2a2a2a;background:linear-gradient(180deg,#121212,#0c0c0c);border-radius:14px;padding:28px 22px;text-align:center}
-.cta h2{font-size:26px;margin-bottom:8px}
-.cta p{font-size:13px;color:#9a9a9a;margin-bottom:16px}
+.cta{margin:30px 0 22px;border:1px solid #2a2a2a;background:linear-gradient(180deg,#121212,#0c0c0c);border-radius:14px;padding:26px 22px;text-align:center}
+.cta h2{font-size:24px;margin-bottom:8px}
+.cta p{font-size:13px;color:#9a9a9a;margin-bottom:15px}
 .btnrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .btn{padding:12px 20px;border-radius:9px;font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:1px}
 .btn.gold{background:#c9a84c;color:#0a0a0a}
 .btn.pink{background:#ff2d87;color:#fff}
-.btn.ghost{background:transparent;border:1px solid #c9a84c;color:#c9a84c}
-.foot{text-align:center;padding:26px 0;font-size:11px;color:#5a5a5a;line-height:1.7;border-top:1px solid #1a1a1a}
+.foot{text-align:center;padding:24px 0;font-size:11px;color:#5a5a5a;line-height:1.7;border-top:1px solid #1a1a1a}
 .foot a{color:#7a7a7a}
-@media(max-width:640px){.topbar-cta{display:none}.recap .bar{order:3;width:100%}}
+@media(max-width:640px){.topbar-cta{display:none}.recap .bar{order:3;width:100%}.chat-body{height:300px}}
 </style>
 </head>
 <body>
 
 <div class="topbar"><div class="topbar-inner">
-  <span class="brand">IBA <span class="x">×</span> Aggie · <b>Rollout Strategy Agent</b> · v1.25</span>
-  <a href="#ask" class="topbar-cta">Ask the Agent</a>
+  <span class="brand">IBA · <b>Rollout Strategy Agent</b> · v2</span>
+  <a href="/#apply" class="topbar-cta">Apply for Founding 100</a>
 </div></div>
 
 <div class="wrap">
 <section class="hero">
-  <span class="eyebrow"><span class="dot"></span>IBA-Hardened Build · Powered by Aggie</span>
-  <h1>The 11-Week <em>Rollout Strategy</em> Agent</h1>
-  <p class="lede">The release machine behind Icon Breaking Agency — built on <strong>Keyz the Producer's</strong> release strategy, made <strong>music-metadata-informed</strong> and <strong>recognition-aware</strong>. Pick a week, run the deliverables, get recognized. Ask it anything about your rollout.</p>
-  <div class="chips">
-    <span class="chip"><b>11</b> Weeks</span>
-    <span class="chip"><b>3</b> Phases</span>
-    <span class="chip">Metadata <b>Standard</b></span>
-    <span class="chip">Recognition <b>Tracking</b></span>
-    <span class="chip">Built on <b>Keyz</b> strategy</span>
+  <span class="eyebrow"><span class="dot"></span>IBA Rollout Agent · Live</span>
+  <h1>Your release rollout, <em>on command.</em></h1>
+  <p class="lede">Chat with the IBA Rollout Agent — built on <strong>Keyz the Producer's</strong> 11-week release strategy, music-metadata-informed, and recognition-aware. Ask it what to do this week, how to set up Spotify, how to write captions, or what metadata you need. It answers immediately.</p>
+
+  <!-- CHAT HERO -->
+  <div class="chat">
+    <div class="chat-head">
+      <div class="av">R</div>
+      <div class="who">IBA Rollout Agent <span>· 11-week protocol</span></div>
+      <div class="live">● Live</div>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="msg bot"><span class="tag">Rollout Agent</span>Hey — I'm the IBA Rollout Agent. I'm built on Keyz's 11-week release strategy + the music metadata standard. Tell me where you are in your release, or pick a prompt below, and I'll map your next moves right now.</div>
+    </div>
+    <div class="sugg" id="sugg">
+      <button>What should I do in week 4?</button>
+      <button>How do I set up Spotify?</button>
+      <button>Write captions for my song</button>
+      <button>What metadata do I need?</button>
+      <button>What happens on release day?</button>
+    </div>
+    <div class="chat-input">
+      <input id="chatInput" placeholder="Ask the Rollout Agent anything about your release…" autocomplete="off">
+      <button class="send" id="sendBtn">Send</button>
+    </div>
   </div>
-  <div class="lineage">
-    <b>Source lineage.</b> This is the IBA-hardened rebuild of the rollout agent Aggie shipped to Keyz &amp; Kyle (Tyler Esposito, <span class="src">11-Week Rollout Strategy Agent</span>, 2026-07-13). The original runs on a frontier model (Claude) via Aggie's artifact. This IBA build encodes the protocol, layers in music release <b>metadata standards</b>, and adds <b>recognition tracking</b> so an artist's progress is visible and credited. For full generative answers, the original agent is linked below.
+
+  <!-- LEAD CAPTURE → live IBA intake (TruPortals CRM + build@themusicindustry.ai + Discord #opted-in) -->
+  <div class="lead">
+    <h3>Save your rollout plan</h3>
+    <p>Drop your name + email — I'll save your rollout, send you the week-by-week templates, and hold your seat for the next IBA masterclass. Goes straight into the IBA platform.</p>
+    <form id="leadForm">
+      <div class="lead-row">
+        <input type="text" id="lf-name" name="name" placeholder="Full name" required>
+        <input type="email" id="lf-email" name="email" placeholder="your@email.com" required>
+        <button type="submit" class="lead-btn">Save my plan</button>
+      </div>
+      <div class="lead-ok" id="leadOk">✓ You're in. Your rollout plan + templates are on the way — check your inbox, and join the IBA Community on Discord for the live masterclass + replay.</div>
+      <div class="lead-err" id="leadErr"></div>
+    </form>
   </div>
 </section>
 
@@ -152,47 +184,29 @@ ul.wk-list li::before{content:'›';position:absolute;left:0;color:#c9a84c}
 
 <section>
   <h2 class="sh">Music Release Metadata Standard</h2>
-  <p class="ss">The metadata layer Julian &amp; Aggie flagged as the foundation. Get this right and every DSP, playlist pitch, and royalty stream is clean.</p>
+  <p class="ss">The metadata layer that's the foundation of every clean release. Get this right and every DSP, playlist pitch, and royalty stream lands where it should.</p>
   <div class="meta-grid">
     <div class="meta-card"><h4>Core Identifiers</h4><p><code>ISRC</code> per track · <code>UPC</code> per release · explicit flag · release date · label &amp; P-line · original release date.</p></div>
     <div class="meta-card"><h4>Credits &amp; Splits</h4><p>Writers, composers, publishers, performers, producers — with <b>publishing splits %</b> for each. Missing splits = delayed or misrouted royalties.</p></div>
     <div class="meta-card"><h4>DSP Fields</h4><p>Spotify Canvas (3–8s), Apple lyrics &amp; songwriter credits, YouTube Music Art Tracks, Amazon HD flag, TikTok sound start date.</p></div>
     <div class="meta-card"><h4>Assets</h4><p>3000×3000 cover (RGB, no upscaled), 16:9 video where possible, clean instrumental &amp; acapella stems for remix/UGC.</p></div>
     <div class="meta-card"><h4>Delivery</h4><p>Distributor upload <b>≥ 3 weeks</b> before release. Locked metadata <b>no later than T-14 days</b>. Pitching windows close before street date.</p></div>
-    <div class="meta-card"><h4>Rights &amp; Clearance</h4><p>Sample clearances, feature agreements, master use licenses — in writing before distribution. Aggie logs each in the rollout.</p></div>
-  </div>
-</section>
-
-<section id="ask">
-  <h2 class="sh">Ask the Rollout Agent</h2>
-  <p class="ss">On-page engine grounded in the 11-week protocol + metadata standard. For frontier-model depth, use the full Aggie agent linked below.</p>
-  <div class="ask">
-    <div class="ask-row"><input id="askInput" placeholder="e.g. What should I be doing in week 3? How do I set up Spotify? Write captions for my song." autocomplete="off"><button class="ask-btn" id="askBtn">Ask</button></div>
-    <div class="ask-out" id="askOut"><span class="tag">Rollout Agent · ready</span>Ask anything about your release rollout — weeks, captions, Spotify, metadata, ads, release day.</div>
-    <div class="sugg" id="sugg">
-      <button>What should I do in week 4?</button>
-      <button>How do I set up Spotify?</button>
-      <button>Write captions for my song</button>
-      <button>What metadata do I need?</button>
-      <button>What happens on release day?</button>
-    </div>
-    <p class="fullnote">Full LLM-grade answers (generative captions, dynamic plans): <a href="https://claude.ai/public/artifacts/3609c223-bae0-4618-a5c5-0a578ce3354c" target="_blank" rel="noopener">open the original Aggie agent →</a></p>
+    <div class="meta-card"><h4>Rights &amp; Clearance</h4><p>Sample clearances, feature agreements, master use licenses — in writing before distribution. Each one is logged in your rollout.</p></div>
   </div>
 </section>
 
 <div class="cta">
   <h2>Run Your Rollout With IBA</h2>
-  <p>Join the Founding 100 and run this 11-week machine with Keyz's strategy and Aggie's agents.</p>
+  <p>Join the Founding 100 and run this 11-week machine with Keyz's strategy and the IBA platform.</p>
   <div class="btnrow">
     <a href="/#apply" class="btn gold">Apply for Founding 100</a>
     <a href="/July16Masterclass.html" class="btn pink">July 16 Masterclass</a>
-    <a href="https://claude.ai/public/artifacts/3609c223-bae0-4618-a5c5-0a578ce3354c" target="_blank" rel="noopener" class="btn ghost">Full Aggie Agent →</a>
   </div>
 </div>
 
 <div class="foot">
-  © 2026 IBA · Powered by Aggie AI · Delivered by The Music Industry · themusicindustry.ai<br/>
-  Rollout Strategy Agent v1.25 — IBA-hardened build, powered by Aggie
+  © 2026 IBA · Delivered by The Music Industry · themusicindustry.ai<br/>
+  Rollout Strategy Agent v2 — IBA
 </div>
 </div>
 
@@ -209,7 +223,7 @@ const WEEKS=[
 {n:'08',ph:'Release',title:'Release Day',meta:'T-0',body:'Today everything fires at once. Post across channels, push the link, run ads, message your warm list, and watch the first 24h signals to amplify what is working.',del:'Coordinated multi-channel drop + 24h signal read',list:['Post release across IG, TikTok, YouTube, stories','Push buy/stream link to warm list and Discord','Launch ads to the warm + lookalike audience','Read 24h signals: saves, completion rate, shares']},
 {n:'09',ph:'Post-Release',title:'Sustain & Amplify',meta:'T+1 to T+7',body:'Keep the content cadence. Push remixes, acoustic, or visualizers. Amplify whatever the 24h signal read showed was working. Pitch to curators again with numbers.',del:'Sustain content + amplify winner',list:['Daily short-form continues, remix/alt versions','Double down on top-performing asset/format','Re-pitch curators with first-week numbers','Engage every comment and DM']},
 {n:'10',ph:'Post-Release',title:'UGC & Community',meta:'T+8 to T+14',body:'Activate UGC. Run a caption contest, a duet challenge, a fan remix prompt. Capture every fan action into the data room for the next release.',del:'UGC challenge live + fan data captured',list:['Launch a duet/remix/caption challenge','Feature best fan UGC on your feed','Capture new fans into CRM/funnel','Run community live or AMA']},
-{n:'11',ph:'Post-Release',title:'Recap & Next Release',meta:'T+15 to T+21',body:'Close the loop. Full report vs the goal from week 1, what worked, what to keep, and lock the next release date. The machine compounds when each rollout feeds the next.',del:'Rollout report + next release locked',list:['Report streams/saves/followers vs goal','Document what worked into the playbbook','Lock next release date and KPI','Migrate audience data to next rollout']}
+{n:'11',ph:'Post-Release',title:'Recap & Next Release',meta:'T+15 to T+21',body:'Close the loop. Full report vs the goal from week 1, what worked, what to keep, and lock the next release date. The machine compounds when each rollout feeds the next.',del:'Rollout report + next release locked',list:['Report streams/saves/followers vs goal','Document what worked into the playbook','Lock next release date and KPI','Migrate audience data to next rollout']}
 ];
 
 // ===== RENDER WEEKS =====
@@ -241,16 +255,15 @@ function update(){
 document.querySelectorAll('.week input').forEach(c=>c.addEventListener('change',update));
 update();
 
-// ===== ASK ENGINE (protocol-grounded, client-side) =====
-const OUT=document.getElementById('askOut'),INP=document.getElementById('askInput');
+// ===== CHAT ENGINE (protocol-grounded, chat-first) =====
+const chatBody=document.getElementById('chatBody'),chatInput=document.getElementById('chatInput');
+function addMsg(cls,html,tag){const m=document.createElement('div');m.className='msg '+cls;if(tag)m.innerHTML='<span class="tag">'+tag+'</span>'+html;else m.innerHTML=html;chatBody.appendChild(m);chatBody.scrollTop=chatBody.scrollHeight;return m;}
 function find(q){
   q=q.toLowerCase().trim();
-  // week detection
   const wm=q.match(/week\s*(\d{1,2})/);
   if(wm){const n=parseInt(wm[1]);if(n>=1&&n<=11){const w=WEEKS[n-1];return {tag:`Week ${n} · ${w.ph} · ${w.title}`,a:`Week ${n} — ${w.title} (${w.ph}, ${w.meta}).\n\nObjective: ${w.body}\n\nDeliverable: ${w.del}\n\nActions:\n${w.list.map(x=>'• '+x).join('\n')}`};}}
-  // caption intent
   if(/caption|captions|write|post caption|hook/.test(q)){
-    return {tag:'Captions · grounded in release angle',a:'Caption framework for a release post:\n\n1) Hook — name the feeling, not the product ("this one almost didn\'t make the album…")\n2) Context — one line on what the song is about\n3) Call — listen / save / pre-save / duet\n4) Tag — @keyz + producer + feature\n\nKeep under 125 chars before the link. Pair with a 6–9s hook clip. Run 3 variants and amplify the one with the best save rate. (For full generative captions tailored to your exact song, use the Aggie agent linked below — it runs on a frontier model.)'};
+    return {tag:'Captions · grounded in release angle',a:'Caption framework for a release post:\n\n1) Hook — name the feeling, not the product ("this one almost didn\'t make the album…")\n2) Context — one line on what the song is about\n3) Call — listen / save / pre-save / duet\n4) Tag — @keyz + producer + feature\n\nKeep under 125 chars before the link. Pair with a 6–9s hook clip. Run 3 variants and amplify the one with the best save rate.'};
   }
   if(/spotify/.test(q)){
     return {tag:'Spotify setup',a:'Spotify setup (weeks 2 & 5):\n\n• Claim Spotify for Artists and update bio + image\n• Set the Spotify Canvas (3–8s loop) for the track\n• Build a pre-save via your distributor or funnel\n• Pitch to Spotify editorial through the Spotify for Artists pitching tool at least 1 week before release\n• Confirm metadata (ISRC/UPC/splits) is locked — bad splits delay or misroute royalties\n\nSpotify favors consistency: keep releasing on a cadence.'};
@@ -276,12 +289,25 @@ function find(q){
   if(/phase|pre-release|post|three phase|how many week/.test(q)){
     return {tag:'Protocol overview',a:'The 11-week protocol is three phases:\n\n• Pre-Release (weeks 1–6): foundation, metadata, audience, content, pre-save, tease\n• Release (weeks 7–8): setup then release day\n• Post-Release (weeks 9–11): sustain, UGC, recap\n\nAsk me "week 3" or "metadata" or "captions" to go deep on any part.'};
   }
-  return {tag:'Rollout Agent',a:'I am grounded in the 11-week rollout protocol + the music metadata standard. Try:\n\n• "What should I do in week 4?"\n• "How do I set up Spotify?"\n• "Write captions for my song"\n• "What metadata do I need?"\n• "What happens on release day?"\n\nFor full generative answers tailored to your song, the Aggie frontier-model agent is linked below.'};
+  return {tag:'Rollout Agent',a:'I\'m grounded in the 11-week rollout protocol + the music metadata standard. Try:\n\n• "What should I do in week 4?"\n• "How do I set up Spotify?"\n• "Write captions for my song"\n• "What metadata do I need?"\n• "What happens on release day?"'};
 }
-function run(){const r=find(INP.value);OUT.innerHTML=`<span class="tag">${r.tag}</span>${r.a.replace(/</g,'&lt;')}`;if(window.posthog)posthog.capture('rollout_agent_ask',{q:INP.value.slice(0,80)});}
-document.getElementById('askBtn').addEventListener('click',run);
-INP.addEventListener('keydown',e=>{if(e.key==='Enter')run();});
-document.querySelectorAll('#sugg button').forEach(b=>b.addEventListener('click',()=>{INP.value=b.textContent;run();}));
+function run(q){const text=(q!==undefined?q:chatInput.value).trim();if(!text)return;addMsg('user',text.replace(/</g,'&lt;'));chatInput.value='';const r=find(text);setTimeout(()=>{addMsg('bot',r.a.replace(/</g,'&lt;'),r.tag);if(window.posthog)posthog.capture('rollout_agent_chat',{q:text.slice(0,80)});},280);}
+document.getElementById('sendBtn').addEventListener('click',()=>run());
+chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')run();});
+document.querySelectorAll('#sugg button').forEach(b=>b.addEventListener('click',()=>{run(b.textContent);}));
+
+// ===== LEAD CAPTURE → live IBA intake rail =====
+const leadForm=document.getElementById('leadForm'),leadOk=document.getElementById('leadOk'),leadErr=document.getElementById('leadErr');
+leadForm.addEventListener('submit',async function(e){
+  e.preventDefault();
+  var btn=leadForm.querySelector('.lead-btn'),obj={name:document.getElementById('lf-name').value,email:document.getElementById('lf-email').value,event_slug:'iba-july2',source:'rollout-agent',role:'artist'};
+  btn.disabled=true;btn.textContent='Saving…';leadErr.classList.remove('show');leadOk.classList.remove('show');
+  try{
+    var r=await fetch('https://themusicindustry.ai/intake/iba-july2',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)});
+    if(r.ok){leadForm.style.display='none';leadOk.classList.add('show');if(window.posthog)posthog.capture('rollout_lead_captured',{email:obj.email,source:obj.source});}
+    else{leadErr.textContent='Hold up — try again in a moment, or join the IBA Community on Discord: discord.gg/2zZx3nZ4rA';leadErr.classList.add('show');btn.disabled=false;btn.textContent='Save my plan';}
+  }catch(ex){leadErr.textContent='Network error — try again, or jump straight to Discord: discord.gg/2zZx3nZ4rA';leadErr.classList.add('show');btn.disabled=false;btn.textContent='Save my plan';}
+});
 </script>
 </body>
 </html>
