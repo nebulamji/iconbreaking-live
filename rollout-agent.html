@@ -147,7 +147,7 @@ ul.wk-list li::before{content:'›';position:absolute;left:0;color:#c9a84c}
         <input type="email" id="lf-email" name="email" placeholder="your@email.com" required>
         <button type="submit" class="lead-btn">Save</button>
       </div>
-      <div class="lead-ok" id="leadOk">✓ Saved. Templates inbound — join Discord at <a href="https://discord.gg/2zZx3nZ4rA">discord.gg/2zZx3nZ4rA</a></div>
+      <div class="lead-ok" id="leadOk">✓ Saved. Templates inbound — join Discord at <a href="https://discord.gg/3ECSg5ApPJ">discord.gg/3ECSg5ApPJ</a></div>
       <div class="lead-err" id="leadErr"></div>
     </form>
   </div>
@@ -270,12 +270,12 @@ document.querySelectorAll('#sugg button').forEach(b=>b.addEventListener('click',
 const leadForm=document.getElementById('leadForm'),leadOk=document.getElementById('leadOk'),leadErr=document.getElementById('leadErr');
 leadForm.addEventListener('submit',async function(e){
   e.preventDefault();const btn=leadForm.querySelector('.lead-btn');
-  const obj={name:document.getElementById('lf-name').value,email:document.getElementById('lf-email').value,event_slug:'iba-july2',source:'rollout-agent-v3',role:'artist'};
+  const obj={name:document.getElementById('lf-name').value,email:document.getElementById('lf-email').value,event_slug:'iba',source:'rollout-agent-v4',role:'artist'};
   btn.disabled=true;btn.textContent='Saving…';leadErr.classList.remove('show');leadOk.classList.remove('show');
-  try{const r=await fetch('https://themusicindustry.ai/intake/iba-july2',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)});
+  try{const r=await fetch('https://themusicindustry.ai/intake/iba',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)});
     if(r.ok){leadForm.style.display='none';leadOk.classList.add('show');if(window.posthog)posthog.capture('rollout_lead_captured',{email:obj.email,source:obj.source});}
-    else{leadErr.textContent='Try again, or join Discord: discord.gg/2zZx3nZ4rA';leadErr.classList.add('show');btn.disabled=false;btn.textContent='Save';}
-  }catch(ex){leadErr.textContent='Network error: discord.gg/2zZx3nZ4rA';leadErr.classList.add('show');btn.disabled=false;btn.textContent='Save';}
+    else{leadErr.textContent='Try again, or join Discord: discord.gg/3ECSg5ApPJ';leadErr.classList.add('show');btn.disabled=false;btn.textContent='Save';}
+  }catch(ex){leadErr.textContent='Network error: discord.gg/3ECSg5ApPJ';leadErr.classList.add('show');btn.disabled=false;btn.textContent='Save';}
 });
 </script>
 </body>
