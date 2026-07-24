@@ -8,7 +8,7 @@
 <script>
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister get_config get_distinct_id has_opted_out_of_capturing opt_in_capturing opt_out_of_capturing isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureFlagEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSurveys setPersonProperties".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 posthog.init('phc_zbkdBQty5wpZhPTo8SfrzwNnJuVnJrnsfD7gvUbnzEFt',{api_host:'https://us.i.posthog.com',capture_pageview:true});
-if(window.posthog){posthog.capture('agent_page_viewed',{agent:'iba-rollout-v3',source:document.referrer||'direct'});}
+if(window.posthog){posthog.capture('agent_page_viewed',{agent:'iba-rollout-v5',source:document.referrer||'direct'});}
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -202,11 +202,16 @@ ul.wk-list li::before{content:'›';position:absolute;left:0;color:#c9a84c}
 
 <div class="foot">
   © 2026 IBA · themusicindustry.ai<br/>
-  Rollout Agent v3 — Built on Keyz the Producer's release strategy
+  Rollout Agent v5 — Built on Keyz the Producer's release strategy
 </div>
 </div>
 
 <script>
+// ===== TMI RAIL (client infra) =====
+const TMI_CHAT='https://themusicindustry.ai/api/iba/rollout-chat';
+const TMI_INTAKE='https://themusicindustry.ai/intake/iba';
+const SESSION_ID=(function(){try{let s=sessionStorage.getItem('iba_rollout_sid');if(!s){s='ra_'+Math.random().toString(36).slice(2,10)+Date.now().toString(36);sessionStorage.setItem('iba_rollout_sid',s);}return s;}catch(e){return 'ra_'+Date.now();}})();
+let knownEmail='';
 // ===== 11-WEEK PROTOCOL =====
 const WEEKS=[
 {n:'01',ph:'Pre-Release',title:'Foundation & Goal Lock',meta:'T-77 to T-71',body:'Lock the release goal: song or project, release date, and the one number you are chasing (first-week streams, followers, or playlist adds). Build the asset folder and confirm all rights are clear.',del:'Goal lock sheet + asset folder + rights checklist',list:['Lock release date and primary KPI','Confirm writers/publishers and collect publishing splits','Gather stems, acapella, instrumental, cover art 3000×3000','Start sample/feature clearance in writing']},
@@ -262,7 +267,38 @@ function find(q){
   if(/phase|overview|how many week/i.test(q))return {tag:'Protocol Overview',msg:'3 phases · 11 weeks· Pre-Release (weeks 1–6): foundation, metadata, audience, content, pre-save, tease. Release (7–8): setup + release day. Post-Release (9–11): sustain, UGC, recap. Ask "week 4" or "captions" to go deep.'};
   return {tag:'Rollout Agent',msg:'I\'m the IBA Rollout Agent. Try:\n• "What should I do in week 4?"\n• "How do I set up Spotify?"\n• "Write captions for my song"\n• "What metadata do I need?"\n• "What happens on release day?"'};
 }
-function run(q){const text=(q!==undefined?q:chatInput.value).trim();if(!text)return;addMsg('user',text.replace(/</g,'&lt;'));chatInput.value='';const r=find(text);setTimeout(()=>{addMsg('bot',r.msg.replace(/</g,'&lt;'),r.tag);document.getElementById('leadCapture').classList.add('show');if(window.posthog)posthog.capture('rollout_agent_chat',{q:text.slice(0,80)});},220);}
+function ctaHtml(cta){
+  if(!cta||!cta.url)return '';
+  const label=(cta.label||'Continue').replace(/</g,'&lt;');
+  const url=String(cta.url).replace(/"/g,'');
+  return '<div class="sugg" style="padding:8px 0 0"><a class="topbar-cta" style="display:inline-block" href="'+url+'" target="_blank" rel="noopener">'+label+'</a>'+
+    ' <a class="topbar-cta" style="display:inline-block;background:#222;color:#c9a84c;border:1px solid #333" href="https://discord.gg/3ECSg5ApPJ" target="_blank" rel="noopener">Discord</a>'+
+    ' <a class="topbar-cta" style="display:inline-block;background:#222;color:#c9a84c;border:1px solid #333" href="https://www.iconbreaking.com/masterclasses" target="_blank" rel="noopener">Masterclass</a></div>';
+}
+async function askAgent(text){
+  const weekHint=(text.match(/week\s*(\d{1,2})/i)||[])[1]||'';
+  try{
+    const r=await fetch(TMI_CHAT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({message:text,surface:'rollout-agent',session_id:SESSION_ID,week_hint:weekHint,email:knownEmail||undefined})});
+    if(!r.ok)throw new Error('http_'+r.status);
+    const d=await r.json();
+    if(!d||!d.ok||!d.reply)throw new Error('bad_payload');
+    return {tag:d.intent_signal==='rollout'?(weekHint?('Week '+weekHint):'Icon Agent'):'Icon Agent',msg:String(d.reply),cta:d.cta||null,rail:'tmi'};
+  }catch(e){
+    const local=find(text);
+    return {tag:local.tag,msg:local.msg,cta:{label:'Claim Masterclass Spot',url:'https://www.iconbreaking.com/masterclasses'},rail:'local'};
+  }
+}
+async function run(q){
+  const text=(q!==undefined?q:chatInput.value).trim();if(!text)return;
+  addMsg('user',text.replace(/</g,'&lt;'));chatInput.value='';
+  const thinking=addMsg('bot','…','Icon Agent');
+  const r=await askAgent(text);
+  thinking.remove();
+  const bot=addMsg('bot',r.msg.replace(/</g,'&lt;')+ctaHtml(r.cta),r.tag);
+  document.getElementById('leadCapture').classList.add('show');
+  if(window.posthog)posthog.capture('rollout_agent_chat',{q:text.slice(0,80),rail:r.rail,agent:'iba-rollout-v5'});
+}
 document.getElementById('sendBtn').addEventListener('click',()=>run());
 chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')run();});
 document.querySelectorAll('#sugg button').forEach(b=>b.addEventListener('click',()=>{run(b.textContent);}));
@@ -270,9 +306,10 @@ document.querySelectorAll('#sugg button').forEach(b=>b.addEventListener('click',
 const leadForm=document.getElementById('leadForm'),leadOk=document.getElementById('leadOk'),leadErr=document.getElementById('leadErr');
 leadForm.addEventListener('submit',async function(e){
   e.preventDefault();const btn=leadForm.querySelector('.lead-btn');
-  const obj={name:document.getElementById('lf-name').value,email:document.getElementById('lf-email').value,event_slug:'iba',source:'rollout-agent-v4',role:'artist'};
+  knownEmail=document.getElementById('lf-email').value.trim();
+  const obj={name:document.getElementById('lf-name').value,email:knownEmail,event_slug:'iba',source:'rollout-agent-v5',role:'artist'};
   btn.disabled=true;btn.textContent='Saving…';leadErr.classList.remove('show');leadOk.classList.remove('show');
-  try{const r=await fetch('https://themusicindustry.ai/intake/iba',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)});
+  try{const r=await fetch(TMI_INTAKE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)});
     if(r.ok){leadForm.style.display='none';leadOk.classList.add('show');if(window.posthog)posthog.capture('rollout_lead_captured',{email:obj.email,source:obj.source});}
     else{leadErr.textContent='Try again, or join Discord: discord.gg/3ECSg5ApPJ';leadErr.classList.add('show');btn.disabled=false;btn.textContent='Save';}
   }catch(ex){leadErr.textContent='Network error: discord.gg/3ECSg5ApPJ';leadErr.classList.add('show');btn.disabled=false;btn.textContent='Save';}
