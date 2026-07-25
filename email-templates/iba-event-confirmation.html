@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{customValues.general___event_name}} — You're In</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Space+Grotesk:wght@700&display=swap');
+  body, table, td { margin: 0; padding: 0; }
+  body { background-color: #000000; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  img { border: 0; display: block; max-width: 100%; }
+  a { color: #ff3b6e; text-decoration: none; }
+  @media only screen and (max-width: 600px) {
+    .email-wrapper { width: 100% !important; }
+    .email-body { padding: 24px 16px !important; }
+    .event-title { font-size: 32px !important; line-height: 1 !important; }
+    .detail-row td { display: block !important; width: 100% !important; padding: 0 0 10px 0 !important; }
+    .cta-btn { display: block !important; width: 100% !important; text-align: center !important; }
+  }
+</style>
+</head>
+<body style="background-color:#000000; margin:0; padding:0;">
+
+<!-- Wrapper -->
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color:#000000;">
+  <tr>
+    <td align="center" style="padding: 32px 16px 48px;">
+
+      <!-- Email container -->
+      <table role="presentation" class="email-wrapper" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; width:100%;">
+
+        <!-- Top bar / brand line -->
+        <tr>
+          <td style="border-bottom: 1px solid #1a1a1a; padding: 14px 0 14px; text-align: center;">
+            <span style="font-family: 'Space Grotesk', Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ffffff;">
+              ICON<span style="color: #ff3b6e; font-style: italic;">BREAKING</span>
+            </span>
+            <span style="display: inline-block; margin: 0 10px; color: #333; font-size: 10px;">·</span>
+            <span style="font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #777777;">
+              IBA FOUNDING 100
+            </span>
+          </td>
+        </tr>
+
+        <!-- Pink ticker bar -->
+        <tr>
+          <td style="background: linear-gradient(90deg, rgba(255,59,110,0.28), rgba(0,0,0,0.92), rgba(255,59,110,0.16)); border-bottom: 1px solid rgba(255,59,110,0.3); padding: 9px 24px; text-align: center;">
+            <span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ffffff;">
+              <strong style="color: #ff6690;">{{customValues.general___event_date}}</strong>
+              &nbsp;·&nbsp;
+              {{customValues.general___event_time}}
+              &nbsp;·&nbsp;
+              {{customValues.general___event_location_name}}
+            </span>
+          </td>
+        </tr>
+
+        <!-- Main body -->
+        <tr>
+          <td class="email-body" style="background-color: #000000; border: 1px solid rgba(255,59,110,0.25); border-top: none; padding: 36px 36px 40px;">
+
+            <!-- Status label -->
+            <p style="margin: 0 0 16px; font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ff6690;">
+              ● REGISTRATION CONFIRMED
+            </p>
+
+            <!-- Headline -->
+            <h1 class="event-title" style="margin: 0 0 8px; font-family: 'Space Grotesk', Arial, sans-serif; font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: -0.04em; text-transform: uppercase; color: #ffffff;">
+              You're in.
+            </h1>
+
+            <p style="margin: 0 0 24px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #b5b5b5;">
+              Hi {{contact.first_name}} — your spot for <strong style="color: #ffffff;">{{customValues.general___event_name}}</strong> is confirmed. Here's everything you need.
+            </p>
+
+            <!-- Event detail block -->
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #1f1f1f; background-color: #080808; margin: 0 0 28px;">
+              <tr>
+                <td style="padding: 20px 22px; border-bottom: 1px solid #1a1a1a;">
+                  <p style="margin: 0 0 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #777777;">EVENT</p>
+                  <p style="margin: 0; font-family: 'Space Grotesk', Arial, sans-serif; font-size: 18px; font-weight: 700; color: #ffffff; letter-spacing: -0.02em;">{{customValues.general___event_name}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 0;">
+                  <!-- Detail row: date + time side by side -->
+                  <table role="presentation" class="detail-row" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td style="width: 50%; padding: 16px 22px; border-bottom: 1px solid #1a1a1a; border-right: 1px solid #1a1a1a; vertical-align: top;">
+                        <p style="margin: 0 0 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #777777;">DATE</p>
+                        <p style="margin: 0; font-family: Arial, sans-serif; font-size: 15px; font-weight: 700; color: #e6c478;">{{customValues.general___event_date}}</p>
+                      </td>
+                      <td style="width: 50%; padding: 16px 22px; border-bottom: 1px solid #1a1a1a; vertical-align: top;">
+                        <p style="margin: 0 0 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #777777;">TIME</p>
+                        <p style="margin: 0; font-family: Arial, sans-serif; font-size: 15px; font-weight: 700; color: #e6c478;">{{customValues.general___event_time}}</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 16px 22px;">
+                  <p style="margin: 0 0 4px; font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #777777;">LOCATION</p>
+                  <p style="margin: 0; font-family: Arial, sans-serif; font-size: 15px; color: #b5b5b5;">{{customValues.general___event_location_name}}</p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Primary CTA: Join link -->
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin: 0 0 14px;">
+              <tr>
+                <td align="center">
+                  <a href="{{customValues.general___event_ticket_link}}" class="cta-btn"
+                     style="display: inline-block; background-color: #ff3b6e; color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 16px 36px; min-width: 240px; text-align: center;">
+                    JOIN THE SESSION →
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin: 0 0 32px; font-family: Arial, sans-serif; font-size: 11px; color: #555555; text-align: center;">
+              Save this email. The link above is your access to the live session.
+            </p>
+
+            <!-- Divider -->
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin: 0 0 28px;">
+              <tr><td style="border-top: 1px solid #1a1a1a; font-size: 0; line-height: 0;">&nbsp;</td></tr>
+            </table>
+
+            <!-- What to expect -->
+            <p style="margin: 0 0 10px; font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ff6690;">WHAT YOU'LL COVER</p>
+            <p style="margin: 0 0 24px; font-family: Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #b5b5b5;">
+              {{customValues.general___event_incentive}}
+            </p>
+
+            <!-- Divider -->
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin: 0 0 28px;">
+              <tr><td style="border-top: 1px solid #1a1a1a; font-size: 0; line-height: 0;">&nbsp;</td></tr>
+            </table>
+
+            <!-- Hosts -->
+            <p style="margin: 0 0 10px; font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #777777;">YOUR HOSTS</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin: 0 0 32px;">
+              <tr>
+                <td style="padding: 12px 14px; background: #080808; border: 1px solid #1a1a1a; margin-bottom: 8px;">
+                  <p style="margin: 0; font-family: Arial, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff;">Max Gousse</p>
+                  <p style="margin: 2px 0 0; font-family: Arial, sans-serif; font-size: 12px; color: #777777;">Music Exec · A&R · Release Architecture</p>
+                </td>
+              </tr>
+              <tr><td style="height: 6px;"></td></tr>
+              <tr>
+                <td style="padding: 12px 14px; background: #080808; border: 1px solid #1a1a1a;">
+                  <p style="margin: 0; font-family: Arial, sans-serif; font-size: 13px; font-weight: 700; color: #ffffff;">Keyz The Producer &amp; Aggie</p>
+                  <p style="margin: 2px 0 0; font-family: Arial, sans-serif; font-size: 12px; color: #777777;">Production · Audience Genomics · Execution</p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Reminder note -->
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid rgba(230,196,120,0.2); background: rgba(230,196,120,0.04); margin: 0 0 32px;">
+              <tr>
+                <td style="padding: 16px 18px;">
+                  <p style="margin: 0; font-family: Arial, sans-serif; font-size: 13px; line-height: 1.55; color: #b5b5b5;">
+                    <strong style="color: #e6c478;">You'll receive a reminder</strong> before the session. Add this to your calendar now so nothing gets in the way.
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Footer note -->
+            <p style="margin: 0; font-family: Arial, sans-serif; font-size: 12px; line-height: 1.55; color: #555555;">
+              Questions? Email <a href="mailto:judson@iconbreaking.com" style="color: #ff6690;">judson@iconbreaking.com</a>
+            </p>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding: 20px 0 0; border-top: 1px solid #111;">
+            <p style="margin: 0; font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #444444; text-align: center;">
+              IconBreaking Agency · IBA Founding 100
+            </p>
+            <p style="margin: 6px 0 0; font-family: Arial, sans-serif; font-size: 10px; color: #333333; text-align: center;">
+              <a href="{{contact.unsubscribe_url}}" style="color: #444444;">Unsubscribe</a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
