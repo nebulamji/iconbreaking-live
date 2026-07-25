@@ -392,6 +392,11 @@ body {
         <h3>Talk to Your Agent</h3>
         <span class="status-badge live">● ONLINE</span>
       </div>
+      <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+        <button class="skill-selector active" data-skill="rollout" style="background:var(--gold);color:#0b0b0b;border:none;padding:5px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Rollout Agent</button>
+        <button class="skill-selector" data-skill="daily-intel" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:5px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Daily Intel</button>
+        <button class="skill-selector" data-skill="scorecard" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:5px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Scorecard</button>
+      </div>
       <div id="agentChatWidget" style="margin-top:16px">
         <div id="chatMessages" style="max-height:300px;overflow-y:auto;margin-bottom:16px;display:flex;flex-direction:column;gap:12px">
           <div style="background:var(--bg-2);border:1px solid var(--line);padding:12px 16px;border-radius:0;font-size:13px;color:var(--text-2)">
@@ -408,6 +413,7 @@ body {
           <button class="chat-suggestion" data-msg="Summarize my intel" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:6px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Summarize Intel</button>
           <button class="chat-suggestion" data-msg="What should I focus on this week?" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:6px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Focus This Week</button>
           <button class="chat-suggestion" data-msg="Week 4 of my rollout" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:6px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Rollout Week 4</button>
+          <button class="chat-suggestion" data-msg="Score my artist readiness" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:6px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Score Readiness</button>
         </div>
       </div>
     </div>
@@ -957,6 +963,29 @@ const chatInput = document.getElementById('chatInput');
 const chatSend = document.getElementById('chatSend');
 const chatSessionId = `ws-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
+let currentChatSkill = 'rollout';
+
+document.querySelectorAll('.skill-selector').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.skill-selector').forEach(b => {
+      b.style.background = 'transparent';
+      b.style.border = '1px solid var(--line)';
+      b.style.color = 'var(--text-3)';
+    });
+    btn.style.background = 'var(--gold)';
+    btn.style.border = 'none';
+    btn.style.color = '#0b0b0b';
+    currentChatSkill = btn.dataset.skill;
+    // Update welcome message based on skill
+    const welcomeMsgs = {
+      'rollout': 'Ask me about your 11-week rollout protocol, any week, any step.',
+      'daily-intel': 'Ask me about today\'s signals, your pillar intel, or market moves.',
+      'scorecard': 'Ask me to score your readiness, check your metadata, or assess your launch.',
+    };
+    chatMessages.innerHTML = `<div style="background:var(--bg-2);border:1px solid var(--line);padding:12px 16px;border-radius:0;font-size:13px;color:var(--text-2)"><span style="font-family:var(--f-data);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:4px">ICON AGENT</span>${welcomeMsgs[currentChatSkill] || 'How can I help?'}</div>`;
+  });
+});
+
 async function sendChatMessage(text) {
   if (!text.trim()) return;
   
@@ -980,7 +1009,8 @@ async function sendChatMessage(text) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
   
   try {
-    const res = await fetch(`${IBA_API}/rollout-chat`, {
+    const skillEndpoint = currentChatSkill === 'rollout' ? 'rollout-chat' : `skill-chat?skill=${currentChatSkill}`;
+    const res = await fetch(`${IBA_API}/${skillEndpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -988,6 +1018,7 @@ async function sendChatMessage(text) {
         session_id: chatSessionId,
         surface: 'workspace',
         email: getEmail() || undefined,
+        skill: currentChatSkill,
       }),
     });
     const data = await res.json();
