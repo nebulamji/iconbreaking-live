@@ -385,6 +385,32 @@ body {
         <!-- 11 week bars rendered by JS -->
       </div>
     </div>
+
+    <!-- Agent Chat Widget -->
+    <div class="card" style="margin-bottom:48px">
+      <div class="card-head">
+        <h3>Talk to Your Agent</h3>
+        <span class="status-badge live">● ONLINE</span>
+      </div>
+      <div id="agentChatWidget" style="margin-top:16px">
+        <div id="chatMessages" style="max-height:300px;overflow-y:auto;margin-bottom:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--bg-2);border:1px solid var(--line);padding:12px 16px;border-radius:0;font-size:13px;color:var(--text-2)">
+            <span style="font-family:var(--f-data);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:4px">ICON AGENT</span>
+            Welcome to your workspace. Ask me about today's intel, your rollout, or any signal in your brief.
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <input type="text" id="chatInput" placeholder="Ask your agent..." style="flex:1;background:var(--bg-0);border:1px solid var(--line-2);color:var(--text);padding:12px 14px;font-family:var(--f-body);font-size:14px;outline:none"/>
+          <button id="chatSend" style="background:var(--gold);color:#0b0b0b;border:none;padding:0 20px;font-family:var(--f-data);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer">Send</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <button class="chat-suggestion" data-msg="What's today's top signal?" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:6px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Top Signal</button>
+          <button class="chat-suggestion" data-msg="Summarize my intel" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:6px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Summarize Intel</button>
+          <button class="chat-suggestion" data-msg="What should I focus on this week?" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:6px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Focus This Week</button>
+          <button class="chat-suggestion" data-msg="Week 4 of my rollout" style="background:transparent;border:1px solid var(--line);color:var(--text-3);padding:6px 12px;font-family:var(--f-data);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer">Rollout Week 4</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ═════ TRUE: coverage + receipts ═════ -->
@@ -471,6 +497,10 @@ body {
         </p>
         <div class="pillar-grid" id="pillarConfig">
           <!-- Rendered by JS -->
+        </div>
+        <div style="margin-top:24px;display:flex;gap:12px;align-items:center">
+          <button class="gate-btn" id="savePillars" style="padding:12px 24px;background:var(--gold);color:#0b0b0b;border:none;font-family:var(--f-data);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer">Save Changes</button>
+          <span id="pillarTotal" style="font-family:var(--f-data);font-size:12px;color:var(--text-3)"></span>
         </div>
       </div>
     </div>
@@ -650,6 +680,7 @@ function enterWorkspace(email) {
   workspace.classList.add('active');
   document.getElementById('userLabel').textContent = email;
   loadWorkspaceData(email);
+  loadReceipts(email);
 }
 
 // ── Tab switching ───────────────────────────────────────────────
@@ -836,8 +867,24 @@ async function loadWorkspaceData(email) {
     s.addEventListener('input', e => {
       const idx = e.target.dataset.idx;
       document.querySelector(`[data-pct-idx="${idx}"]`).textContent = e.target.value + '%';
+      // Update total
+      let total = 0;
+      configEl.querySelectorAll('.slider').forEach(sl => total += parseInt(sl.value, 10));
+      const totalEl = document.getElementById('pillarTotal');
+      if (totalEl) {
+        totalEl.textContent = `Total: ${total} ${total < 80 || total > 120 ? '(⚠ expected ~100)' : '✓'}`;
+        totalEl.style.color = total < 80 || total > 120 ? 'var(--red)' : 'var(--green)';
+      }
     });
   });
+  // Initialize total
+  let initTotal = 0;
+  configEl.querySelectorAll('.slider').forEach(sl => initTotal += parseInt(sl.value, 10));
+  const initTotalEl = document.getElementById('pillarTotal');
+  if (initTotalEl) {
+    initTotalEl.textContent = `Total: ${initTotal} ${initTotal < 80 || initTotal > 120 ? '(⚠ expected ~100)' : '✓'}`;
+    initTotalEl.style.color = initTotal < 80 || initTotal > 120 ? 'var(--red)' : 'var(--green)';
+  }
   
   // Save pillar config button
   const saveBtn = document.getElementById('savePillars');
@@ -899,6 +946,103 @@ async function loadWorkspaceData(email) {
   }
 }
 
+// ── Agent chat widget ────────────────────────────────────────────
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+const chatSessionId = `ws-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+async function sendChatMessage(text) {
+  if (!text.trim()) return;
+  
+  // Add user message
+  const userMsg = document.createElement('div');
+  userMsg.style.cssText = 'background:var(--bg-1);border:1px solid var(--line-2);padding:12px 16px;font-size:13px;color:var(--text);margin-left:40px';
+  userMsg.innerHTML = `<span style="font-family:var(--f-data);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-3);display:block;margin-bottom:4px">YOU</span>${text}`;
+  chatMessages.appendChild(userMsg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  
+  chatInput.value = '';
+  chatSend.textContent = '...';
+  chatSend.disabled = true;
+  
+  // Typing indicator
+  const typingMsg = document.createElement('div');
+  typingMsg.id = 'typing-indicator';
+  typingMsg.style.cssText = 'background:var(--bg-2);border:1px solid var(--line);padding:12px 16px;font-size:13px;color:var(--text-3)';
+  typingMsg.innerHTML = '<span style="font-family:var(--f-data);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:4px">ICON AGENT</span><span style="animation:pulse 1s infinite">typing...</span>';
+  chatMessages.appendChild(typingMsg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  
+  try {
+    const res = await fetch(`${IBA_API}/rollout-chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: text,
+        session_id: chatSessionId,
+        surface: 'workspace',
+        email: getEmail() || undefined,
+      }),
+    });
+    const data = await res.json();
+    
+    typingMsg.remove();
+    
+    if (data.ok && data.reply) {
+      const botMsg = document.createElement('div');
+      botMsg.style.cssText = 'background:var(--bg-2);border:1px solid var(--line);padding:12px 16px;font-size:13px;color:var(--text-2)';
+      botMsg.innerHTML = `<span style="font-family:var(--f-data);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:4px">ICON AGENT</span>${data.reply.replace(/\n/g,'<br/>')}${data.cta ? '<br/><a href="' + data.cta.url + '" style="display:inline-block;margin-top:8px;color:var(--gold);font-family:var(--f-data);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none">' + data.cta.label + ' →</a>' : ''}`;
+      chatMessages.appendChild(botMsg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    } else {
+      throw new Error('Chat failed');
+    }
+  } catch (e) {
+    typingMsg.remove();
+    const errMsg = document.createElement('div');
+    errMsg.style.cssText = 'background:var(--bg-2);border:1px solid var(--line);padding:12px 16px;font-size:13px;color:var(--text-3)';
+    errMsg.innerHTML = '<span style="font-family:var(--f-data);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:4px">SYSTEM</span>Connection issue — try again.';
+    chatMessages.appendChild(errMsg);
+  }
+  
+  chatSend.textContent = 'Send';
+  chatSend.disabled = false;
+}
+
+if (chatSend) {
+  chatSend.addEventListener('click', () => sendChatMessage(chatInput.value));
+  chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendChatMessage(chatInput.value); });
+  document.querySelectorAll('.chat-suggestion').forEach(btn => {
+    btn.addEventListener('click', () => sendChatMessage(btn.dataset.msg));
+  });
+}
+
+// ── Dynamic receipts from API ───────────────────────────────────
+async function loadReceipts(email) {
+  const receiptList = document.getElementById('receiptList');
+  if (!receiptList) return;
+  
+  try {
+    const slug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
+    const res = await fetch(`https://${RAIL}/api/v1/intel/${slug}?limit=10`, {
+      headers: localStorage.getItem('ia_api_key') ? { 'Authorization': `Bearer ${localStorage.getItem('ia_api_key')}` } : {},
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.ok && data.briefs && data.briefs.length > 0) {
+        receiptList.innerHTML = data.briefs.map(b => `
+          <div class="receipt-row">
+            <span class="ts">${b.date}</span>
+            <span class="action">Daily intel brief — ${b.signal_count || 0} signals</span>
+            <span class="status ${b.delivery_status === 'delivered' ? 'delivered' : 'pending'}">${(b.delivery_status || 'pending').toUpperCase()}</span>
+          </div>
+        `).join('');
+      }
+    }
+  } catch { /* keep demo rows */ }
+}
+
 // ── Animate number count-up ──────────────────────────────────────
 function animateNumber(id, target) {
   const el = document.getElementById(id);
@@ -912,10 +1056,29 @@ function animateNumber(id, target) {
   }, 30);
 }
 
-// ── Auto-login if session exists ────────────────────────────────
-const existingSession = getSession();
-if (existingSession) {
-  enterWorkspace(getEmail());
+// ── Provisioned state handler (Stripe checkout redirect) ───────
+const urlParams = new URLSearchParams(window.location.search);
+const provisioned = urlParams.get('provisioned');
+const provisionedEmail = urlParams.get('email');
+if (provisioned === 'true' && provisionedEmail) {
+  setSession(`soft-${btoa(provisionedEmail)}`, provisionedEmail);
+  // Show welcome banner
+  setTimeout(() => {
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:var(--gold);color:#0b0b0b;padding:12px 24px;font-family:var(--f-data);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;text-align:center;z-index:100';
+    banner.textContent = '✓ Founding 100 access activated. Your agent is now live.';
+    document.body.appendChild(banner);
+    setTimeout(() => banner.style.display = 'none', 5000);
+    // Clean URL
+    window.history.replaceState({}, '', window.location.pathname);
+  }, 500);
+  enterWorkspace(provisionedEmail);
+} else {
+  // ── Auto-login if session exists ────────────────────────────────
+  const existingSession = getSession();
+  if (existingSession) {
+    enterWorkspace(getEmail());
+  }
 }
 </script>
 
