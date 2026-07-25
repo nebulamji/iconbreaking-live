@@ -447,3 +447,70 @@ function IAFAQ() {
     </div>
   );
 }
+
+/* ─── §008 — IASkills (Agent Stack Showcase) ───────────────────── */
+
+const SKILLS_DATA = [
+  {
+    idx: "01",
+    icon: "ROL",
+    name: "Rollout Agent",
+    desc: "11-week music release protocol. Pre-save to recap. Your agent runs the rollout, tracks deliverables, and compounds each release into the next.",
+    status: "live",
+  },
+  {
+    idx: "02",
+    icon: "INT",
+    name: "Daily Intel Agent",
+    desc: "Five-pillar market intelligence delivered to your inbox every morning. Capital, AI/Music, Web3, Industry Structure, Top Signal — weighted to your vertical.",
+    status: "live",
+  },
+  {
+    idx: "03",
+    icon: "SCR",
+    name: "Scorecard Agent",
+    desc: "Masterclass registrant readiness scoring. Artist identity, catalog, metadata, release plan, market positioning — one score, one next step.",
+    status: "live",
+  },
+  {
+    idx: "04",
+    icon: "DSC",
+    name: "Discovery Agent",
+    desc: "Qualify inbound leads by phone. Consent, fit, budget, timing. Routes warm leads to sales or Discord — cold leads back to nurture.",
+    status: "soon",
+  },
+  {
+    idx: "05",
+    icon: "SAL",
+    name: "Sales Agent",
+    desc: "Close cycle execution. Follow-ups, booking, price ladder. Same Bella law: price last, no-repeat, Discord/masterclass CTAs throughout.",
+    status: "soon",
+  },
+  {
+    idx: "06",
+    icon: "CON",
+    name: "Consulting Agent",
+    desc: "Scanner briefs, work packets, strategic review. Agent joins the call, scans the vision, leaves to execute the work — returns with deliverables.",
+    status: "soon",
+  },
+];
+
+function IASkills() {
+  return (
+    <div className="skills-grid">
+      {SKILLS_DATA.map(skill => (
+        <div key={skill.idx} className={`skill-card ${skill.status}`}>
+          <div className="skill-header">
+            <div className="skill-idx">// {skill.idx}</div>
+            <div className={`skill-badge badge-${skill.status}`}>
+              {skill.status === 'live' ? '● LIVE' : 'SOON'}
+            </div>
+          </div>
+          <div className="skill-icon">{skill.icon}</div>
+          <h3 className="skill-name">{skill.name}</h3>
+          <p className="skill-desc">{skill.desc}</p>
+        </div>
+      ))}
+    </div>
+  );
+}

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tier 3 Application | Icon Breaking Agency</title>
-  <meta name="description" content="Apply for the Tier 3 Established Artist Advantage with Icon Breaking Agency." />
+  <title>Founding 100 Application | Icon Breaking Agency</title>
+  <meta name="description" content="Apply for the Founding 100 — Icon Breaking Agency's founder cohort for established artists, managers, and teams." />
   <link rel="canonical" href="https://www.iconbreaking.com/apply/" />
   <style>
     :root{--black:#030303;--ink:#0b0b0f;--panel:#121218;--gold:#d8b45a;--gold2:#f4d992;--muted:#aaa39a;--line:#2b2520;--white:#fffaf0;--red:#ff4d6d}
@@ -22,15 +22,15 @@ posthog.init('phx_QjmZYZzAVyZzYXQkK5BVggNhdLJFeu2peVHX8nYU7V9nUaWC',{api_host:'h
       <a class="back" href="/">← Back to IBA</a>
     </nav>
     <section class="hero">
-      <div class="eyebrow">Tier 3 · By Application</div>
-      <h1>The Established Artist Advantage.</h1>
-      <p>Apply for the custom IBA lane for established artists, managers, labels, and teams preparing a release. Best fit: artists and teams who are 6–8 weeks away from launching and need release architecture, audience infrastructure, and senior strategic review from the Icon Breaking team.</p>
-      <div style="margin-top:24px"><span class="tag">Keyz the Producer</span><span class="tag">Max Gousse</span><span class="tag">IBA x Aggie</span><span class="tag">Founding 100</span></div>
+      <div class="eyebrow">Founding 100 · By Application</div>
+      <h1>The Founder Advantage.</h1>
+      <p>Apply for the Founding 100 — the first 100 Icon Agents accounts. For established artists, managers, labels, and teams preparing a release. Best fit: artists and teams who are 6–8 weeks away from launching and need release architecture, audience infrastructure, and senior strategic review from the Icon Breaking team.</p>
+      <div style="margin-top:24px"><span class="tag">Keyz the Producer</span><span class="tag">IBA x Aggie</span><span class="tag">Founding 100</span><span class="tag">27/100 Filled</span></div>
     </section>
     <section class="grid">
       <aside class="card side">
-        <h2>What this application is for.</h2>
-        <p>This is not the Tier 1 or Tier 2 self-serve checkout. Tier 3 is for teams that need a custom path: release planning, audience monetization, dashboards, enterprise integrations, and private advisory.</p><p><b style="color:var(--gold2)">Preferred window:</b> 6–8 weeks before a single, EP, album, campaign, or roster push. That window gives the team enough runway to forecast demand, build content, and turn attention into owned audience.</p>
+        <h2>What the Founding 100 is.</h2>
+        <p>This is not the self-serve checkout. The Founding 100 is for teams that need a custom path: release planning, audience monetization, dashboards, enterprise integrations, and private advisory. Founder pricing locks permanently at $500/month — never increases.</p><p><b style="color:var(--gold2)">Preferred window:</b> 6–8 weeks before a single, EP, album, campaign, or roster push. That window gives the team enough runway to forecast demand, build content, and turn attention into owned audience.</p>
         <div class="points">
           <div class="point"><b>Artists</b><br/>Use this if you already have momentum, a release timeline, or a real budget to deploy.</div>
           <div class="point"><b>Managers / A&Rs</b><br/>Use this if you want a roster review, release-readiness scorecard, or campaign infrastructure for multiple acts.</div>
@@ -38,7 +38,7 @@ posthog.init('phx_QjmZYZzAVyZzYXQkK5BVggNhdLJFeu2peVHX8nYU7V9nUaWC',{api_host:'h
         </div>
       </aside>
       <main class="card form">
-        <h2>Apply for Tier 3.</h2>
+        <h2>Apply for Founding 100.</h2>
         <p class="fine">Tell us who you are, what you are building, and what kind of campaign support you need. If there is fit, the team will follow up with the right next step.</p>
         <form id="tier3Form">
           <div class="row">
@@ -69,27 +69,27 @@ posthog.init('phx_QjmZYZzAVyZzYXQkK5BVggNhdLJFeu2peVHX8nYU7V9nUaWC',{api_host:'h
             <div><label for="launch_window">Launch window</label><select id="launch_window" name="launch_window" required><option value="">Select one</option><option>6–8 weeks from launch</option><option>Less than 6 weeks</option><option>8–12 weeks</option><option>More than 12 weeks</option><option>No release date yet</option></select></div>
             <div><label for="timeline">Release / campaign timeline</label><input id="timeline" name="timeline" placeholder="Example: single in 6 weeks, album in Q3, roster review now" /></div>
           </div>
-          <label for="notes">What should the team know?</label><textarea id="notes" name="notes" placeholder="Share links, goals, current traction, team context, or why Tier 3 is the right lane."></textarea>
-          <button class="btn" type="submit">Submit Tier 3 Application →</button>
+          <label for="notes">What should the team know?</label><textarea id="notes" name="notes" placeholder="Share links, goals, current traction, team context, or why Founding 100 is the right fit."></textarea>
+          <button class="btn" type="submit">Submit Founding 100 Application →</button>
           <div id="msg" class="msg"></div>
-          <div class="micro">By applying, you agree to be contacted by Icon Breaking Agency about your application. If you are introducing an artist, we will require artist consent or a warm introduction before contacting or acting for them. This form is for business inquiries only.</div>
+          <div class="micro">By applying, you agree to be contacted by Icon Breaking Agency about your Founding 100 application. If you are introducing an artist, we will require artist consent or a warm introduction before contacting or acting for them. This form is for business inquiries only.</div>
         </form>
       </main>
     </section>
-    <footer class="footer">© 2026 Icon Breaking Agency · Tier 3 Application</footer>
+    <footer class="footer">© 2026 Icon Breaking Agency · Founding 100 Application</footer>
   </div>
   <script>
   (function(){
     const form = document.getElementById('tier3Form');
     const msg = document.getElementById('msg');
     const btn = form.querySelector('button[type="submit"]');
-    const endpoint = 'https://themusicindustry.ai/intake/iba-june4';
+    const endpoint = 'https://themusicindustry.ai/intake/iba';
     const show = (kind, html) => { msg.className = 'msg ' + kind; msg.innerHTML = html; };
     const val = (fd, key) => String(fd.get(key) || '').trim();
     const nameFrom = (fd) => [val(fd,'first_name'), val(fd,'last_name')].filter(Boolean).join(' ');
     const buildMailto = (fd) => {
       const lines = [
-        'Tier 3 Application — Icon Breaking Agency',
+        'Founding 100 Application — Icon Breaking Agency',
         '',
         'Name: ' + nameFrom(fd),
         'Email: ' + val(fd,'email'),
@@ -111,7 +111,7 @@ posthog.init('phx_QjmZYZzAVyZzYXQkK5BVggNhdLJFeu2peVHX8nYU7V9nUaWC',{api_host:'h
         'Source: iconbreaking.com/apply'
       ];
       const body = encodeURIComponent(lines.join('\n'));
-      const subject = encodeURIComponent('Tier 3 Application — ' + (val(fd,'artist_name') || val(fd,'company') || nameFrom(fd) || 'IBA Prospect'));
+      const subject = encodeURIComponent('Founding 100 Application — ' + (val(fd,'artist_name') || val(fd,'company') || nameFrom(fd) || 'IBA Prospect'));
       return 'mailto:judson@iconbreaking.com?subject=' + subject + '&body=' + body;
     };
     form.addEventListener('submit', async (e) => {
@@ -122,8 +122,8 @@ posthog.init('phx_QjmZYZzAVyZzYXQkK5BVggNhdLJFeu2peVHX8nYU7V9nUaWC',{api_host:'h
       payload.name = nameFrom(fd);
       payload.release_window = val(fd,'launch_window');
       payload.social = val(fd,'links');
-      payload.source = 'iconbreaking-apply-tier3';
-      payload.source_channel = 'iconbreaking_apply';
+      payload.source = 'apply-page';
+      payload.source_channel = 'apply-page';
       payload.page_url = 'https://www.iconbreaking.com/apply/';
       payload.form_version = 'iconbreaking-tier3-application-v1';
       payload.intake_email = 'judson@iconbreaking.com';

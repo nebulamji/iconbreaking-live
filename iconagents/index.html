@@ -1876,6 +1876,7 @@ a { color: inherit; }
  <a href="#fight">The Fight</a>
  <a href="#how">How</a>
  <a href="#founding">Founding 100</a>
+ <a href="#skills">Stack</a>
  <a href="#pricing">Pricing</a>
  <a href="#chat">Chat</a>
  </nav>
@@ -2046,17 +2047,21 @@ a { color: inherit; }
       </div>
       <p>The questions we get on every intro call, in the order we get them.</p>
     </div>
-    <!-- ─── Skills Showcase ──────────────────────────────────── -->
-<section class="section" style="padding:80px 0 40px">
-  <div class="section-head">
-    <span class="section-tag">// SKILLS</span>
-    <h2 class="section-title">The Agent <span class="gold">Stack</span></h2>
-    <p class="section-sub">One Icon Agent brain. Six specialized skills. Each runs autonomously — and compounds with the others.</p>
+    <div id="faq-mount"></div>
   </div>
-  <div id="skills-mount"></div>
 </section>
 
-<div id="faq-mount"></div>
+<!-- ═════ §008 — SKILLS SHOWCASE ═════ -->
+<section class="section" id="skills" style="padding:80px 0 40px">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-tag">// §008 · AGENT STACK</div>
+        <h2 class="sec-title">The Agent <span class="gold">Stack</span></h2>
+      </div>
+      <p>One Icon Agent brain. Six specialized skills. Each runs autonomously — and compounds with the others.</p>
+    </div>
+    <div id="skills-mount"></div>
   </div>
 </section>
 
@@ -2145,6 +2150,7 @@ a { color: inherit; }
   mount("founding-mount",      <IAFounding />);
   mount("pricing-mount",       <IAPricing />);
   mount("chat-mount",          <IAChat />);
+  mount("skills-mount",       <IASkills />);
   mount("faq-mount",           <IAFAQ />);
 </script>
 
