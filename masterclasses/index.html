@@ -111,6 +111,26 @@ footer a{color:var(--gray)}
           <option value="other">Other</option>
         </select>
       </div>
+      <div class="field">
+        <label>Instagram handle (optional — we'll review your page)</label>
+        <input type="text" name="social" placeholder="@yourhandle" />
+      </div>
+      <div class="field">
+        <label>Next release timeline (optional)</label>
+        <select name="release_window">
+          <option value="">— Select —</option>
+          <option value="2_4_weeks">2–4 weeks out</option>
+          <option value="4_6_weeks">4–6 weeks out</option>
+          <option value="6_8_weeks">6–8 weeks out</option>
+          <option value="8_12_weeks">8–12 weeks out</option>
+          <option value="exploring">No date yet — exploring</option>
+          <option value="roster_campaign">Roster / multiple releases</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>What are you working on? (optional — one sentence, we read every one)</label>
+        <input type="text" name="project_description" placeholder="e.g. Dropping my first single in August, trying to build a real audience" />
+      </div>
       <label class="consent">
         <input type="checkbox" name="smsConsent" value="true" />
         <span>Yes, text me the masterclass reminder + replay link. (Msg frequency low; reply STOP to opt out. US numbers only.)</span>
@@ -131,6 +151,7 @@ footer a{color:var(--gray)}
 
   <section class="pitch">
     <h3>What you walk away with</h3>
+    <p style="color:var(--gold);font-size:.85rem;margin-bottom:14px">You'll get a personalized Release Readiness Scorecard — reviewed by the IBA team's specialists before the session.</p>
     <ul>
       <li>The 11-week rollout — pre-release → release → post-release, week by week.</li>
       <li>The Music Release Metadata Standard — ISRC, UPC, splits in writing. The layer that routes your royalties.</li>
@@ -161,7 +182,9 @@ posthog.capture('landing_page_viewed',{page:'masterclass-evergreen',source:docum
     var payload={
       name:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),
       role:fd.get('role'),source:fd.get('source'),event_slug:fd.get('event_slug'),
-      smsConsent:fd.get('smsConsent')==='true'
+      smsConsent:fd.get('smsConsent')==='true',
+      social:fd.get('social'),release_window:fd.get('release_window'),
+      project_description:fd.get('project_description')
     };
     fetch('https://themusicindustry.ai/intake/'+payload.event_slug,{
       method:'POST',headers:{'Content-Type':'application/json'},
@@ -169,7 +192,7 @@ posthog.capture('landing_page_viewed',{page:'masterclass-evergreen',source:docum
     }).then(function(r){return r.json().then(function(j){return{ok:r.ok,body:j}})})
       .then(function(x){
         if(x.ok&&x.body.ok!==false){
-          posthog&&posthog.capture('masterclass_registered',{page:'masterclass-evergreen',source:payload.source,role:payload.role,smsConsent:payload.smsConsent});
+          posthog&&posthog.capture('masterclass_registered',{page:'masterclass-evergreen',source:payload.source,role:payload.role,smsConsent:payload.smsConsent,has_social:!!payload.social,has_window:!!payload.release_window,has_project:!!payload.project_description});
           card.style.display='none'; ok.style.display='block';
           window.scrollTo({top:ok.offsetTop-100,behavior:'smooth'});
         } else {
