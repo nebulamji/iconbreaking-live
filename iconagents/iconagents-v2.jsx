@@ -41,28 +41,9 @@ const HOW_STEPS = [
 
 const PRICING = [
   {
-    name: "Signal",
-    sub: "Entry · One-time",
-    price: "$7",
-    per: "one-time",
-    featured: false,
-    feats: [
-      { head: true, label: "What you get" },
-      "Sample daily intel brief for your vertical",
-      "One rollout-agent chat session",
-      "Taste the system — no commitment",
-      { head: true, label: "What it doesn't include" },
-      "Ongoing delivery",
-      "Agent configuration",
-      "API access",
-    ],
-    cta: "Try it",
-    href: "#chat",
-  },
-  {
-    name: "Agent",
+    name: "Artist",
     sub: "Self-serve · Monthly",
-    price: "$97",
+    price: "$99",
     per: "/month",
     featured: false,
     feats: [
@@ -79,6 +60,25 @@ const PRICING = [
     href: "#chat",
   },
   {
+    name: "Aggie",
+    sub: "Real Growth · Monthly",
+    price: "$500",
+    per: "/month",
+    featured: false,
+    feats: [
+      { head: true, label: "Everything in Artist, plus" },
+      "Managed rollout — our team configures your 11-week protocol",
+      "Priority intel — your briefs run first in the queue",
+      "Audience growth campaigns — outreach, content ops, sync calls",
+      "Scorecard reporting — weekly KPIs delivered to your inbox",
+      { head: true, label: "Support" },
+      "Direct line to the IBA team via Discord",
+      "Monthly strategy review with your account manager",
+    ],
+    cta: "Start",
+    href: "#chat",
+  },
+  {
     name: "Founding 100",
     sub: "Managed · Founders only",
     price: "$5,000",
@@ -86,7 +86,7 @@ const PRICING = [
     featured: true,
     badge: "FOUNDERS",
     feats: [
-      { head: true, label: "Everything in Agent, plus" },
+      { head: true, label: "Everything in Aggie, plus" },
       "Managed agent — configured for your vertical by our team",
       "Branded intel — your logo, your domain, your inbox",
       "Priority rollout — your agent runs first in the queue",
@@ -95,8 +95,10 @@ const PRICING = [
       "Discovery calls · Sales calls · Consulting · CS",
       "Same agent brain — four call modes, one CRM",
     ],
-    cta: "Apply",
+    cta: "Book a Call",
     href: "https://www.iconbreaking.com/apply/",
+    ctaAlt: "Pay $5K Now",
+    hrefAlt: "https://buy.stripe.com/bJe14o3Rya5L8dAcf8c7u26",
   },
 ];
 
@@ -105,7 +107,7 @@ const FAQ_DATA = [
   { q: "Do I need to know how to prompt?", a: "No. The agent is pre-configured for music business operations. You talk to it like a team member: 'Set up my August release.' It breaks the goal into steps and executes." },
   { q: "What's the Founding 100?", a: "The first 100 Icon Agents accounts. Founder pricing locks permanently — $5,000 setup for managed, branded, priority agent service. After 100, the price increases for new accounts. Founders keep their rate forever." },
   { q: "Can I use my own brand?", a: "Yes. Founding 100 members get branded intel — your logo, your domain, your inbox. The agent runs under your brand, not ours. Your clients see you, not us." },
-  { q: "What's an API key?", a: "Founding 100 and Agent tier members get a grk_ key — a credential that lets developers integrate Icon Agents into their own tools, pipelines, or apps. Token packs are prepaid and metered: you pay for what you use." },
+  { q: "What's an API key?", a: "Founding 100 and Aggie tier members get a grk_ key — a credential that lets developers integrate Icon Agents into their own tools, pipelines, or apps. Token packs are prepaid and metered: you pay for what you use." },
   { q: "What about phone calls?", a: "Voice is coming — four call modes (Discovery, Sales, Consulting, Customer Support) snap into the same agent brain. The state machine is already designed; transport adapters arrive when voice infrastructure is live. Founding 100 members get first access." },
   { q: "Who built this?", a: "Icon Breaking Agency, in partnership with Audience Genomics. Keyz the Producer's music business expertise is baked into every agent — the 11-week rollout protocol, the pillar taxonomy, the intel framework. Not a generic AI wrapper." },
 ];
@@ -229,8 +231,9 @@ function IAFounding() {
           permanent rate lock. After 100, price increases. Founders keep their rate forever —
           and get first access to voice, consulting mode, and enterprise rails as they launch.
         </p>
-        <div style={{ marginTop: '28px' }}>
-          <a href="https://www.iconbreaking.com/apply/" className="btn btn-primary">Apply for Founding 100 <span className="arrow">→</span></a>
+        <div style={{ marginTop: '28px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          <a href="https://www.iconbreaking.com/apply/" className="btn btn-ghost">Book a Call <span className="arrow">→</span></a>
+          <a href="https://buy.stripe.com/bJe14o3Rya5L8dAcf8c7u26" className="btn btn-primary">Pay $5K Now <span className="arrow">→</span></a>
         </div>
       </div>
       <div>
@@ -271,9 +274,16 @@ function IAPricing() {
                 : <li key={i}>{f}</li>
             )}
           </ul>
-          <a href={tier.href} className={`btn ${tier.featured ? 'btn-primary' : 'btn-ghost'} tier-cta`}>
-            {tier.cta} <span className="arrow">→</span>
-          </a>
+          <div className="tier-cta-row" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <a href={tier.href} className={`btn ${tier.featured ? 'btn-ghost' : 'btn-ghost'} tier-cta`} style={{ flex: '1 1 auto' }}>
+              {tier.cta} <span className="arrow">→</span>
+            </a>
+            {tier.hrefAlt && (
+              <a href={tier.hrefAlt} className="btn btn-primary tier-cta" style={{ flex: '1 1 auto' }}>
+                {tier.ctaAlt} <span className="arrow">→</span>
+              </a>
+            )}
+          </div>
         </div>
       ))}
     </div>
