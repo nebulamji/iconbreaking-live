@@ -559,7 +559,7 @@ const balance = await agent.getBalance();</pre>
         <div style="display:flex;flex-direction:column;gap:20px">
           <div>
             <label style="display:block;margin-bottom:8px;font-family:var(--f-data);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan)">Delivery Time</label>
-            <select style="background:var(--bg-0);border:1px solid var(--line-2);color:var(--text);padding:12px;font-family:var(--f-body);width:100%;max-width:300px">
+            <select id="deliveryTime" style="background:var(--bg-0);border:1px solid var(--line-2);color:var(--text);padding:12px;font-family:var(--f-body);width:100%;max-width:300px">
               <option>7:00 AM ET</option>
               <option>8:00 AM ET</option>
               <option selected>9:00 AM ET</option>
@@ -568,7 +568,7 @@ const balance = await agent.getBalance();</pre>
           </div>
           <div>
             <label style="display:block;margin-bottom:8px;font-family:var(--f-data);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan)">Delivery Channel</label>
-            <select style="background:var(--bg-0);border:1px solid var(--line-2);color:var(--text);padding:12px;font-family:var(--f-body);width:100%;max-width:300px">
+            <select id="deliveryChannel" style="background:var(--bg-0);border:1px solid var(--line-2);color:var(--text);padding:12px;font-family:var(--f-body);width:100%;max-width:300px">
               <option selected>Email</option>
               <option>Discord DM</option>
               <option>Both</option>
@@ -1091,6 +1091,125 @@ function animateNumber(id, target) {
     el.textContent = current;
   }, 30);
 }
+
+// ── Export handlers (Theirs tab) ────────────────────────────────
+document.getElementById('exportIntel')?.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const email = getEmail();
+  if (!email) return;
+  const slug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
+  const apiKey = localStorage.getItem('ia_api_key') || '';
+  try {
+    const res = await fetch(`https://${RAIL}/api/v1/intel/${slug}?limit=90`, {
+      headers: apiKey ? { 'Authorization': `Bearer ${apiKey}` } : {},
+    });
+    const data = await res.json();
+    if (!data.ok || !data.briefs) throw new Error('no data');
+    
+    // Build CSV
+    const rows = [['date', 'signal_count', 'verdict', 'delivery_status', 'pillars']];
+    for (const b of data.briefs) {
+      rows.push([
+        b.date || '',
+        b.signal_count || 0,
+        (b.verdict || '').replace(/"/g, '""'),
+        b.delivery_status || '',
+        (b.pillars_json || '').replace(/"/g, '""'),
+      ].map(c => `"${c}"`).join(','));
+    }
+    const csv = rows.map(r => r.join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `icon-agent-intel-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    alert('Export failed — no intel data available yet.');
+  }
+});
+
+document.getElementById('exportRollout')?.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const email = getEmail();
+  if (!email) return;
+  const apiKey = localStorage.getItem('ia_api_key') || '';
+  const sessionId = getSession() || '';
+  
+  // Export chat history as JSON
+  try {
+    const res = await fetch(`${IBA_API}/rollout-chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'export_history',
+        session_id: sessionId,
+        surface: 'workspace',
+        email: email,
+      }),
+    });
+    const data = await res.json();
+    
+    const exportData = {
+      exported_at: new Date().toISOString(),
+      email: email,
+      agent: 'Icon Agent',
+      vertical: 'music',
+      session_id: sessionId,
+      chat_history: data.history || [],
+      rollout_protocol: [
+        { week: 1, title: 'Foundation & Goal Lock' },
+        { week: 2, title: 'Metadata & Distribution Lock' },
+        { week: 3, title: 'Audience & Angle' },
+        { week: 4, title: 'Content Capture Sprint' },
+        { week: 5, title: 'Pre-Save & Spotify Setup' },
+        { week: 6, title: 'Tease & Warm' },
+        { week: 7, title: 'Release Week Setup' },
+        { week: 8, title: 'Release Day' },
+        { week: 9, title: 'Sustain & Amplify' },
+        { week: 10, title: 'UGC & Community' },
+        { week: 11, title: 'Recap & Next Release' },
+      ],
+    };
+    
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `icon-agent-rollout-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    // Even if API fails, export the protocol
+    const exportData = {
+      exported_at: new Date().toISOString(),
+      email: email,
+      agent: 'Icon Agent',
+      vertical: 'music',
+      rollout_protocol: [
+        { week: 1, title: 'Foundation & Goal Lock', deliverable: 'Goal lock sheet + asset folder + rights checklist' },
+        { week: 2, title: 'Metadata & Distribution Lock', deliverable: 'Distributor upload complete + metadata locked' },
+        { week: 3, title: 'Audience & Angle', deliverable: 'Audience map + angle statement + baseline metrics' },
+        { week: 4, title: 'Content Capture Sprint', deliverable: 'Content bank of 12+ assets' },
+        { week: 5, title: 'Pre-Save & Spotify Setup', deliverable: 'Spotify for Artists claimed + pre-save live' },
+        { week: 6, title: 'Tease & Warm', deliverable: 'Daily short-form posting live + UGC seed' },
+        { week: 7, title: 'Release Week Setup', deliverable: 'Pitch list + release-day content scheduled + ads built' },
+        { week: 8, title: 'Release Day', deliverable: 'Coordinated multi-channel drop + 24h signal read' },
+        { week: 9, title: 'Sustain & Amplify', deliverable: 'Sustain content + amplify winner' },
+        { week: 10, title: 'UGC & Community', deliverable: 'UGC challenge live + fan data captured' },
+        { week: 11, title: 'Recap & Next Release', deliverable: 'Rollout report + next release locked' },
+      ],
+    };
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `icon-agent-rollout-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+});
 
 // ── Copy MCP config to clipboard
 function copyMcpConfig() {
