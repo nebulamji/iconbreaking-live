@@ -534,6 +534,11 @@ const intel = await agent.getIntel({ date: '2026-07-24' });
 
 // Check token balance
 const balance = await agent.getBalance();</pre>
+          <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+            <a href="/iconagents/docs/" style="font-family:var(--f-data);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold-dim);padding:8px 16px">Full API Docs →</a>
+            <a href="/iconagents/sdk/iconagents-sdk.mjs" style="font-family:var(--f-data);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);text-decoration:none;border:1px solid var(--line);padding:8px 16px">Download SDK</a>
+            <a href="#api" onclick="copyMcpConfig()" style="font-family:var(--f-data);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);text-decoration:none;border:1px solid var(--line);padding:8px 16px;cursor:pointer">Copy MCP Config</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1054,6 +1059,21 @@ function animateNumber(id, target) {
     if (current >= target) { current = target; clearInterval(interval); }
     el.textContent = current;
   }, 30);
+}
+
+// ── Copy MCP config to clipboard
+function copyMcpConfig() {
+  const config = JSON.stringify({
+    mcpServers: {
+      iconagents: {
+        type: "http",
+        url: "https://themusicindustry.ai/api/v1/mcp",
+        headers: { Authorization: "Bearer " + (localStorage.getItem('ia_api_key') || 'grk_YOUR_KEY') }
+      }
+    }
+  }, null, 2);
+  navigator.clipboard.writeText(config);
+  alert('MCP config copied to clipboard!');
 }
 
 // ── Provisioned state handler (Stripe checkout redirect) ───────
