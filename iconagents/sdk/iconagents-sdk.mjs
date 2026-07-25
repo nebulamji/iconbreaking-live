@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════
-//  Icon Agents SDK v1.0.0
+//  Icon Agents SDK v1.2.0
 //  The execution-native AI agent stack for the music business.
 //  ═══════════════════════════════════════════════════════════════
 //
@@ -244,6 +244,120 @@ class TokenManager {
 }
 
 // ═══════════════════════════════════════════════════════════════
+//  ConfigManager — pillar configuration and vertical settings
+// ═══════════════════════════════════════════════════════════════
+class ConfigManager {
+  constructor(rail, apiKey, clientSlug) {
+    this.rail = rail;
+    this.apiKey = apiKey;
+    this.clientSlug = clientSlug;
+  }
+
+  _authHeaders() {
+    return this.apiKey ? { Authorization: `Bearer ${this.apiKey}` } : {};
+  }
+
+  async getPillars(clientSlug) {
+    const slug = clientSlug || this.clientSlug || 'default';
+    return apiFetch(this.rail, `${API_PREFIX}/config/${slug}/pillars`, {
+      method: 'GET',
+      headers: this._authHeaders(),
+    });
+  }
+
+  async setPillars(weights, clientSlug) {
+    const slug = clientSlug || this.clientSlug || 'default';
+    return apiFetch(this.rail, `${API_PREFIX}/config/${slug}/pillars`, {
+      method: 'POST',
+      headers: { ...this._authHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ weights }),
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  ReceiptsClient — delivery receipts and audit trail
+// ═══════════════════════════════════════════════════════════════
+class ReceiptsClient {
+  constructor(rail, apiKey, clientSlug) {
+    this.rail = rail;
+    this.apiKey = apiKey;
+    this.clientSlug = clientSlug;
+  }
+
+  _authHeaders() {
+    return this.apiKey ? { Authorization: `Bearer ${this.apiKey}` } : {};
+  }
+
+  async list(options = {}) {
+    const limit = options.limit || 20;
+    const since = options.since ? `&since=${encodeURIComponent(options.since)}` : '';
+    return apiFetch(this.rail, `${API_PREFIX}/account/receipts?limit=${limit}${since}`, {
+      method: 'GET',
+      headers: this._authHeaders(),
+    });
+  }
+
+  async getIntelReceipts(clientSlug, options = {}) {
+    const slug = clientSlug || this.clientSlug || 'default';
+    const limit = options.limit || 10;
+    return apiFetch(this.rail, `${API_PREFIX}/intel/${slug}?limit=${limit}`, {
+      method: 'GET',
+      headers: this._authHeaders(),
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  SkillsRegistry — list and query available agent skills
+// ═══════════════════════════════════════════════════════════════
+class SkillsRegistry {
+  constructor(rail, apiKey) {
+    this.rail = rail;
+    this.apiKey = apiKey;
+  }
+
+  _authHeaders() {
+    return this.apiKey ? { Authorization: `Bearer ${this.apiKey}` } : {};
+  }
+
+  static SKILLS = [
+    { id: 'rollout', name: 'Rollout Agent', status: 'live', description: '11-week music release protocol' },
+    { id: 'daily-intel', name: 'Daily Intel Agent', status: 'live', description: 'Five-pillar market intelligence briefs' },
+    { id: 'scorecard', name: 'Scorecard Agent', status: 'live', description: 'Masterclass registrant readiness scoring' },
+    { id: 'discovery', name: 'Discovery Agent', status: 'soon', description: 'Qualify inbound leads by phone' },
+    { id: 'sales', name: 'Sales Agent', status: 'soon', description: 'Close cycle execution' },
+    { id: 'consulting', name: 'Consulting Agent', status: 'soon', description: 'Scanner briefs and strategic review' },
+  ];
+
+  list() {
+    return SkillsRegistry.SKILLS;
+  }
+
+  getLive() {
+    return SkillsRegistry.SKILLS.filter(s => s.status === 'live');
+  }
+
+  getSkill(id) {
+    return SkillsRegistry.SKILLS.find(s => s.id === id);
+  }
+
+  async chat(skillId, message, options = {}) {
+    return apiFetch(this.rail, `${IBA_PREFIX}/skill-chat?skill=${encodeURIComponent(skillId)}`, {
+      method: 'POST',
+      headers: { ...this._authHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message,
+        session_id: options.sessionId || `sdk-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        surface: options.surface || 'sdk',
+        email: options.email,
+        skill: skillId,
+      }),
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
 //  MCP Client — call the MCP server from the SDK
 // ═══════════════════════════════════════════════════════════════
 class McpClient {
@@ -309,6 +423,9 @@ export class IconAgent {
     this.rollout = new RolloutAgent(this.rail, this.apiKey);
     this.intel = new IntelAgent(this.rail, this.apiKey, this.clientSlug);
     this.tokens = new TokenManager(this.rail, this.apiKey);
+    this.config = new ConfigManager(this.rail, this.apiKey, this.clientSlug);
+    this.receipts = new ReceiptsClient(this.rail, this.apiKey, this.clientSlug);
+    this.skills = new SkillsRegistry(this.rail, this.apiKey);
     this.mcp = new McpClient(this.rail, this.apiKey);
   }
 
@@ -378,5 +495,5 @@ export class IconAgent {
 }
 
 // ── Named exports ────────────────────────────────────────────────
-export { RolloutSession, RolloutAgent, IntelAgent, TokenManager, McpClient, ApiError };
+export { RolloutSession, RolloutAgent, IntelAgent, TokenManager, ConfigManager, ReceiptsClient, SkillsRegistry, McpClient, ApiError };
 export default IconAgent;

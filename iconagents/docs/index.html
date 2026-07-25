@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Icon Agents API — Developer Documentation</title>
+<meta name="robots" content="noindex">
+<style>
+:root {
+  --bg-0: #070707;
+  --bg-1: #0c0c0c;
+  --bg-2: #121212;
+  --line: #1a1a1a;
+  --line-2: #242424;
+  --gold: #d4af37;
+  --gold-dim: rgba(212,175,55,0.3);
+  --cyan: #00e5ff;
+  --text: #e8e8e8;
+  --text-2: #a0a0a0;
+  --text-3: #666;
+  --green: #00d68f;
+  --red: #ff4d4d;
+  --f-data: 'Space Mono', 'SF Mono', monospace;
+  --f-body: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg-0); color:var(--text); font-family:var(--f-body); line-height:1.6; }
+.scanlines { position:fixed; top:0; left:0; right:0; bottom:0; pointer-events:none; z-index:9999; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px); }
+.grain { position:fixed; top:0; left:0; right:0; bottom:0; pointer-events:none; z-index:9998; opacity:0.03; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E"); }
+
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:260px; background:var(--bg-1); border-right:1px solid var(--line); padding:32px 0; position:sticky; top:0; height:100vh; overflow-y:auto; }
+.sidebar-brand { padding:0 24px 24px; border-bottom:1px solid var(--line); margin-bottom:16px; }
+.sidebar-brand a { color:var(--text); text-decoration:none; font-family:var(--f-data); font-size:16px; letter-spacing:0.05em; }
+.sidebar-brand .gold { color:var(--gold); }
+.sidebar-brand .ver { color:var(--text-3); font-size:10px; display:block; margin-top:4px; letter-spacing:0.1em; }
+.sidebar-nav { padding:0 12px; }
+.sidebar-section { font-family:var(--f-data); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-3); padding:16px 12px 8px; }
+.sidebar-link { display:block; padding:8px 12px; color:var(--text-2); text-decoration:none; font-size:13px; border-radius:0; transition:all 0.15s; border-left:2px solid transparent; }
+.sidebar-link:hover { color:var(--text); background:var(--bg-2); border-left-color:var(--gold-dim); }
+.sidebar-link.active { color:var(--gold); border-left-color:var(--gold); }
+
+.main { flex:1; padding:48px 64px; max-width:900px; }
+.doc-header { margin-bottom:48px; padding-bottom:32px; border-bottom:1px solid var(--line); }
+.doc-tag { font-family:var(--f-data); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--cyan); margin-bottom:8px; }
+.doc-title { font-size:36px; font-weight:700; margin-bottom:8px; }
+.doc-title .gold { color:var(--gold); }
+.doc-sub { color:var(--text-3); font-size:15px; }
+
+.endpoint { margin-bottom:40px; padding:24px; border:1px solid var(--line); background:var(--bg-1); }
+.endpoint-head { display:flex; align-items:center; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+.method { font-family:var(--f-data); font-size:10px; font-weight:700; letter-spacing:0.08em; padding:4px 10px; border-radius:0; }
+.method-get { background:rgba(0,229,255,0.12); color:var(--cyan); }
+.method-post { background:rgba(212,175,55,0.12); color:var(--gold); }
+.endpoint-path { font-family:var(--f-data); font-size:14px; color:var(--text); }
+.endpoint-status { font-family:var(--f-data); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; margin-left:auto; }
+.endpoint-status.live { color:var(--green); }
+.endpoint-desc { color:var(--text-2); font-size:14px; margin-bottom:16px; }
+.code-block { background:var(--bg-0); border:1px solid var(--line); padding:16px; overflow-x:auto; font-family:var(--f-data); font-size:12px; line-height:1.6; color:var(--text-2); white-space:pre; }
+.code-label { font-family:var(--f-data); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-3); margin:12px 0 6px; }
+.params-table { width:100%; border-collapse:collapse; margin:12px 0; }
+.params-table th { text-align:left; font-family:var(--f-data); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-3); padding:8px 12px; border-bottom:1px solid var(--line); }
+.params-table td { padding:8px 12px; border-bottom:1px solid var(--line-2); font-size:13px; }
+.params-table td:first-child { font-family:var(--f-data); font-size:12px; color:var(--cyan); }
+.params-table .req { color:var(--gold); font-family:var(--f-data); font-size:10px; }
+.params-table .opt { color:var(--text-3); font-family:var(--f-data); font-size:10px; }
+
+.section-head { font-family:var(--f-data); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin:48px 0 20px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+
+@media (max-width: 900px) {
+  .layout { flex-direction:column; }
+  .sidebar { width:100%; position:relative; height:auto; border-right:none; border-bottom:1px solid var(--line); }
+  .main { padding:24px; }
+}
+</style>
+</head>
+<body>
+<div class="scanlines"></div>
+<div class="grain"></div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="/iconagents/">Icon<span class="gold">/</span>Agents API</a>
+      <span class="ver">v1.2 · DOCS</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">Getting Started</div>
+      <a class="sidebar-link" href="#quickstart">Quick Start</a>
+      <a class="sidebar-link" href="#auth">Authentication</a>
+      <a class="sidebar-link" href="#skills">Skills</a>
+      <div class="sidebar-section">Endpoints</div>
+      <a class="sidebar-link" href="#rollout-chat">POST /rollout-chat</a>
+      <a class="sidebar-link" href="#skill-chat">POST /skill-chat</a>
+      <a class="sidebar-link" href="#intel-get">GET /intel/{client}/{date}</a>
+      <a class="sidebar-link" href="#intel-latest">GET /intel/{client}/latest</a>
+      <a class="sidebar-link" href="#intel-list">GET /intel/{client}</a>
+      <a class="sidebar-link" href="#config-pillars">POST /config/{client}/pillars</a>
+      <a class="sidebar-link" href="#config-get">GET /config/{client}/pillars</a>
+      <a class="sidebar-link" href="#tokens-balance">GET /tokens/balance</a>
+      <a class="sidebar-link" href="#tokens-buy">POST /tokens/buy</a>
+      <a class="sidebar-link" href="#completions">POST /chat/completions</a>
+      <a class="sidebar-link" href="#mcp">POST /mcp</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="doc-header">
+      <div class="doc-tag">// DEVELOPER DOCUMENTATION · v1.2</div>
+      <h1 class="doc-title">Icon Agents <span class="gold">API Reference</span></h1>
+      <p class="doc-sub">The execution-native AI agent stack for the music business. Full SDK and REST API. Your grk_ key unlocks chat, intel, config, and metered LLM completions.</p>
+    </div>
+
+    <div class="section-head" id="quickstart">Quick Start</div>
+    <div class="code-label">JavaScript — npm import</div>
+    <div class="code-block">import { IconAgent } from 'https://www.iconbreaking.com/iconagents/sdk/iconagents-sdk.mjs';
+
+const agent = new IconAgent({
+  apiKey: 'grk_YOUR_KEY',
+  rail: 'themusicindustry.ai'
+});
+
+// Talk to the Rollout Agent
+const reply = await agent.ask('Week 4 of my rollout — what do I do?');
+
+// Get today's intel
+const intel = await agent.getIntel({ date: '2026-07-24' });
+
+// Configure your pillars
+await agent.configurePillars({
+  'Capital & Deals': 25,
+  'AI/Music': 20,
+  'Web3/Blockchain': 15,
+  'Industry Structure': 25,
+  'Top Signal': 15
+});
+
+// Chat with a specific skill
+const scorecard = await agent.skills.chat('scorecard', 'Score my readiness');</div>
+
+    <div class="section-head" id="auth">Authentication</div>
+    <p style="color:var(--text-2);font-size:14px;margin-bottom:16px">All API requests require a <code style="color:var(--gold);font-family:var(--f-data)">grk_</code> API key, provisioned when you join the Founding 100. Pass it as a Bearer token:</p>
+    <div class="code-block">Authorization: Bearer grk_YOUR_KEY</div>
+    <p style="color:var(--text-3);font-size:13px;margin-top:12px">Self-serve members ($7/$97) get read-only intel access. Full execution and chat requires a Founding 100 seat. <a href="/apply/" style="color:var(--gold);text-decoration:none">Get your API key →</a></p>
+
+    <div class="section-head" id="skills">Available Skills</div>
+    <div class="endpoint">
+      <div class="endpoint-desc">Skills are the agent templates. Each is a specialized vertical with its own system prompt, protocol, and intent routing.</div>
+      <table class="params-table">
+        <thead><tr><th>Skill ID</th><th>Name</th><th>Status</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>rollout</td><td>Rollout Agent</td><td><span class="endpoint-status live">● LIVE</span></td><td>11-week music release protocol</td></tr>
+          <tr><td>daily-intel</td><td>Daily Intel Agent</td><td><span class="endpoint-status live">● LIVE</span></td><td>Five-pillar market intelligence briefs</td></tr>
+          <tr><td>scorecard</td><td>Scorecard Agent</td><td><span class="endpoint-status live">● LIVE</span></td><td>Masterclass registrant readiness scoring</td></tr>
+          <tr><td>discovery</td><td>Discovery Agent</td><td><span style="color:var(--text-3)">SOON</span></td><td>Qualify inbound leads by phone</td></tr>
+          <tr><td>sales</td><td>Sales Agent</td><td><span style="color:var(--text-3)">SOON</span></td><td>Close cycle execution</td></tr>
+          <tr><td>consulting</td><td>Consulting Agent</td><td><span style="color:var(--text-3)">SOON</span></td><td>Scanner briefs and strategic review</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head" id="rollout-chat">POST /api/iba/rollout-chat</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-post">POST</span>
+        <span class="endpoint-path">/api/iba/rollout-chat</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Create or continue a rollout-agent chat session. The agent maintains session memory across turns.</div>
+      <div class="code-label">Request Body</div>
+      <table class="params-table">
+        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>message</td><td>string</td><td class="req">YES</td><td>The user's message to the agent</td></tr>
+          <tr><td>session_id</td><td>string</td><td class="opt">no</td><td>Session ID for multi-turn memory. Auto-generated if omitted.</td></tr>
+          <tr><td>surface</td><td>string</td><td class="opt">no</td><td>Origin surface: 'web', 'workspace', 'discord', 'sdk', 'mcp'</td></tr>
+          <tr><td>email</td><td>string</td><td class="opt">no</td><td>User email for personalization</td></tr>
+        </tbody>
+      </table>
+      <div class="code-label">Response</div>
+      <div class="code-block">{ "ok": true, "reply": "...", "session_id": "...", "rail": "deepseek" }</div>
+    </div>
+
+    <div class="section-head" id="skill-chat">POST /api/iba/skill-chat</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-post">POST</span>
+        <span class="endpoint-path">/api/iba/skill-chat?skill={skill_id}</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Chat with a specific registered skill. Uses the generalized Skill handler with intent classification and D1 session memory.</div>
+      <div class="code-label">Request Body</div>
+      <table class="params-table">
+        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>message</td><td>string</td><td class="req">YES</td><td>The user's message</td></tr>
+          <tr><td>session_id</td><td>string</td><td class="opt">no</td><td>Session ID for memory continuity</td></tr>
+          <tr><td>skill</td><td>string</td><td class="opt">no</td><td>Skill ID (rollout, daily-intel, scorecard). Default: rollout</td></tr>
+          <tr><td>email</td><td>string</td><td class="opt">no</td><td>User email</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head" id="intel-get">GET /api/v1/intel/{client}/{date}</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-get">GET</span>
+        <span class="endpoint-path">/api/v1/intel/{client_slug}/{date}</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Retrieve a daily intel brief by client slug and date. Returns verdict + full markdown brief.</div>
+      <div class="code-label">Response</div>
+      <div class="code-block">{
+  "ok": true,
+  "brief": {
+    "id": "...",
+    "date": "2026-07-24",
+    "verdict": "UMG's catalog deal signals...",
+    "signal_count": 15,
+    "delivery_status": "delivered"
+  },
+  "content": { "brief_markdown": "## Capital & Deals\\n..." }
+}</div>
+    </div>
+
+    <div class="section-head" id="intel-latest">GET /api/v1/intel/{client}/latest</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-get">GET</span>
+        <span class="endpoint-path">/api/v1/intel/{client_slug}/latest</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Get the most recent intel brief for a client. Includes verdict and full markdown.</div>
+    </div>
+
+    <div class="section-head" id="intel-list">GET /api/v1/intel/{client}</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-get">GET</span>
+        <span class="endpoint-path">/api/v1/intel/{client_slug}?limit={n}</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">List recent intel briefs. Default limit: 14.</div>
+    </div>
+
+    <div class="section-head" id="config-pillars">POST /api/v1/config/{client}/pillars</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-post">POST</span>
+        <span class="endpoint-path">/api/v1/config/{client_slug}/pillars</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Update pillar weights for a client's vertical. Weights should sum to ~100 (80-120 accepted).</div>
+      <div class="code-label">Request Body</div>
+      <div class="code-block">{
+  "weights": {
+    "Capital & Deals": 25,
+    "AI/Music": 20,
+    "Web3/Blockchain": 15,
+    "Industry Structure": 25,
+    "Top Signal": 15
+  }
+}</div>
+    </div>
+
+    <div class="section-head" id="config-get">GET /api/v1/config/{client}/pillars</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-get">GET</span>
+        <span class="endpoint-path">/api/v1/config/{client_slug}/pillars</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Get current pillar configuration for a client.</div>
+    </div>
+
+    <div class="section-head" id="tokens-balance">GET /api/v1/tokens/balance</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-get">GET</span>
+        <span class="endpoint-path">/api/v1/tokens/balance</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Check prepaid token balance and usage for the authenticated grk_ key.</div>
+    </div>
+
+    <div class="section-head" id="tokens-buy">POST /api/v1/tokens/buy</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-post">POST</span>
+        <span class="endpoint-path">/api/v1/tokens/buy</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Purchase a prepaid token pack ($50 / $100 / $200). Returns a Stripe checkout URL.</div>
+      <div class="code-label">Request Body</div>
+      <table class="params-table">
+        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>pack_id</td><td>string</td><td class="req">YES</td><td>Pack ID: 'pack_50', 'pack_100', 'pack_200'</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head" id="completions">POST /api/v1/chat/completions</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-post">POST</span>
+        <span class="endpoint-path">/api/v1/chat/completions</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">Metered LLM completion via the GRK relay. Two-tier: Ollama pool (owned) → DeepSeek (billed overflow). Client price pegged to DeepSeek rate × markup. Usage metered through Stripe.</div>
+      <div class="endpoint-desc" style="color:var(--text-3);font-size:12px">OpenAI-compatible request/response format. Use your grk_ key as the Bearer token.</div>
+    </div>
+
+    <div class="section-head" id="mcp">POST /api/v1/mcp</div>
+    <div class="endpoint">
+      <div class="endpoint-head">
+        <span class="method method-post">POST</span>
+        <span class="endpoint-path">/api/v1/mcp</span>
+        <span class="endpoint-status live">● LIVE</span>
+      </div>
+      <div class="endpoint-desc">JSON-RPC 2.0 endpoint for Model Context Protocol. Exposes all Icon Agent tools to external AI tools (Claude, Codex, Gemini, etc.).</div>
+      <div class="code-label">Available MCP Tools</div>
+      <table class="params-table">
+        <thead><tr><th>Tool</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>iconagent_chat</td><td>Chat with any registered skill</td></tr>
+          <tr><td>iconagent_intel</td><td>Get intel brief by date</td></tr>
+          <tr><td>iconagent_intel_latest</td><td>Get latest intel brief</td></tr>
+          <tr><td>iconagent_intel_list</td><td>List recent intel briefs</td></tr>
+          <tr><td>iconagent_configure_pillars</td><td>Update pillar weights</td></tr>
+          <tr><td>iconagent_token_balance</td><td>Check token balance</td></tr>
+          <tr><td>iconagent_receipts</td><td>List delivery receipts</td></tr>
+        </tbody>
+      </table>
+      <div class="code-label">Claude Code MCP Config</div>
+      <div class="code-block">{
+  "mcpServers": {
+    "iconagents": {
+      "type": "http",
+      "url": "https://themusicindustry.ai/api/v1/mcp",
+      "headers": { "Authorization": "Bearer grk_YOUR_KEY" }
+    }
+  }
+}</div>
+    </div>
+
+    <div style="margin-top:64px;padding:32px;border:1px solid var(--gold-dim);background:rgba(212,175,55,0.04)">
+      <div style="font-family:var(--f-data);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">// FOUNDING 100 ACCESS</div>
+      <p style="font-size:15px;color:var(--text-2);margin-bottom:12px">Full API access — chat, intel, config, metered completions, and MCP — requires a Founding 100 seat. Self-serve members get read-only intel.</p>
+      <a href="/apply/" style="font-family:var(--f-data);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dim);padding-bottom:2px">Apply for Founding 100 →</a>
+    </div>
+
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid var(--line);color:var(--text-3);font-size:12px">
+      Icon Agents API v1.2 · Built by Icon Breaking Agency · Powered by Audience Genomics · © 2026 The Benford Group, LLC
+    </div>
+  </main>
+</div>
+</body>
+</html>
