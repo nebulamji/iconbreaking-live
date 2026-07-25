@@ -118,6 +118,22 @@ class RolloutAgent {
     const session = this.createSession({ email });
     return session.send('Give me the full 11-week rollout protocol');
   }
+
+  // Skill-based chat — uses the generalized skill handler
+  async skillChat(skill, message, options = {}) {
+    const body = {
+      message,
+      session_id: options.sessionId || `sdk-${Date.now()}-${Math.random().toString(36).slice(2,10)}`,
+      surface: options.surface || 'sdk',
+      email: options.email || undefined,
+      skill,
+    };
+    return apiFetch(this.rail, `${IBA_PREFIX}/skill-chat?skill=${encodeURIComponent(skill)}`, {
+      method: 'POST',
+      headers: this.apiKey ? { Authorization: `Bearer ${this.apiKey}` } : {},
+      body: JSON.stringify(body),
+    });
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -168,6 +184,21 @@ class IntelAgent {
       method: 'POST',
       headers: this._authHeaders(),
       body: JSON.stringify({ weights }),
+    });
+  }
+
+  async getLatest() {
+    return apiFetch(this.rail, `${API_PREFIX}/intel/${this.clientSlug}/latest`, {
+      method: 'GET',
+      headers: this._authHeaders(),
+    });
+  }
+
+  async list(options = {}) {
+    const limit = options.limit || 14;
+    return apiFetch(this.rail, `${API_PREFIX}/intel/${this.clientSlug}?limit=${limit}`, {
+      method: 'GET',
+      headers: this._authHeaders(),
     });
   }
 
@@ -314,6 +345,21 @@ export class IconAgent {
   // List MCP tools
   async listMcpTools() {
     return this.mcp.listTools();
+  }
+
+  // Skill-based chat (generalized agent handler)
+  async skillChat(skill, message, options = {}) {
+    return this.rollout.skillChat(skill, message, options);
+  }
+
+  // Get latest intel
+  async getLatestIntel() {
+    return this.intel.getLatest();
+  }
+
+  // List recent intel briefs
+  async listIntel(options = {}) {
+    return this.intel.list(options);
   }
 
   // Health check
