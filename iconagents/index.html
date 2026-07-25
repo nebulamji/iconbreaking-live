@@ -1777,6 +1777,82 @@ a { color: inherit; }
   color: var(--text-3);
   cursor: not-allowed;
 }
+
+/* ─── Skills Showcase ─────────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.skill-card {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  padding: 24px;
+  position: relative;
+  transition: border-color 0.2s;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+}
+.skill-card.live { border-color: var(--gold-dim); }
+.skill-card.soon { opacity: 0.7; }
+.skill-card:hover { border-color: var(--gold); }
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.skill-idx {
+  font-family: var(--f-data);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+.skill-badge {
+  font-family: var(--f-data);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border: 1px solid;
+}
+.badge-live {
+  color: var(--gold);
+  border-color: var(--gold-dim);
+  background: rgba(212, 175, 55, 0.05);
+}
+.badge-soon {
+  color: var(--text-3);
+  border-color: var(--line);
+}
+.skill-icon {
+  font-family: var(--f-display);
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  color: var(--cyan);
+  margin-bottom: 12px;
+}
+.skill-card.live .skill-icon { color: var(--gold); }
+.skill-name {
+  font-family: var(--f-display);
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.skill-desc {
+  font-family: var(--f-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+@media (max-width: 600px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body data-screen-label="IconAgents — Landing v2">
@@ -1970,7 +2046,17 @@ a { color: inherit; }
       </div>
       <p>The questions we get on every intro call, in the order we get them.</p>
     </div>
-    <div id="faq-mount"></div>
+    <!-- ─── Skills Showcase ──────────────────────────────────── -->
+<section class="section" style="padding:80px 0 40px">
+  <div class="section-head">
+    <span class="section-tag">// SKILLS</span>
+    <h2 class="section-title">The Agent <span class="gold">Stack</span></h2>
+    <p class="section-sub">One Icon Agent brain. Six specialized skills. Each runs autonomously — and compounds with the others.</p>
+  </div>
+  <div id="skills-mount"></div>
+</section>
+
+<div id="faq-mount"></div>
   </div>
 </section>
 

@@ -3,7 +3,7 @@
    ═══════════════════════════════════════════════════════════════
    8 components mounted by index.html:
      IACompounding · IACapabilities · IAFight · IAHow
-     IAFounding · IAPricing · IAChat · IAFAQ
+     IAFounding · IAPricing · IASkills · IAChat · IAFAQ
 
    Design grammar: HUD music-studio aesthetic
    Black base · gold primary · cyan secondary · scan-lines + data bars
