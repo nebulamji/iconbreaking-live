@@ -686,23 +686,72 @@ async function loadWorkspaceData(email) {
     </div>
   `;
 
-  // Intel summary
-  document.getElementById('intelSummary').innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:8px">
-      <div style="font-family:var(--f-data);font-size:12px;color:var(--text-2)">Date: ${new Date().toISOString().slice(0,10)}</div>
-      <div style="font-family:var(--f-data);font-size:12px;color:var(--text-2)">Signals: 17</div>
-      <div style="font-family:var(--f-data);font-size:12px;color:var(--text-2)">Pillars: 5/5 covered</div>
-      <div style="margin-top:8px;padding:12px;border:1px solid var(--line);background:var(--bg-0);font-size:13px;color:var(--text-2)">
-        Today's top signal: AI-generated music licensing standards emerging from major label negotiations.
+  // Intel summary — fetch from real API
+  try {
+    const apiKey = localStorage.getItem('ia_api_key') || '';
+    const slug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
+    const intelRes = await fetch(`https://${RAIL}/api/v1/intel/${slug}/latest`, {
+      method: 'GET',
+      headers: apiKey ? { 'Authorization': `Bearer ${apiKey}` } : {},
+    });
+    if (intelRes.ok) {
+      const intelData = await intelRes.json();
+      if (intelData.ok && intelData.date) {
+        const pillarsCovered = intelData.pillars ? Object.keys(intelData.pillars).length : 5;
+        document.getElementById('intelSummary').innerHTML = `
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:var(--f-data);font-size:12px;color:var(--text-2)">Date: ${intelData.date}</div>
+            <div style="font-family:var(--f-data);font-size:12px;color:var(--text-2)">Signals: ${intelData.signal_count || 0}</div>
+            <div style="font-family:var(--f-data);font-size:12px;color:var(--text-2)">Pillars: ${pillarsCovered}/5 covered</div>
+            <div style="margin-top:8px;padding:12px;border:1px solid var(--line);background:var(--bg-0);font-size:13px;color:var(--text-2)">
+              ${intelData.top_signal || intelData.verdict || 'No top signal recorded for this brief.'}
+            </div>
+            ${intelData.brief_markdown ? `<details style="margin-top:8px"><summary style="cursor:pointer;font-family:var(--f-data);font-size:11px;color:var(--cyan);letter-spacing:0.12em;text-transform:uppercase">Full Brief</summary><div style="margin-top:8px;padding:12px;border:1px solid var(--line);background:var(--bg-0);font-size:12px;color:var(--text-2);white-space:pre-wrap;max-height:400px;overflow:auto">${intelData.brief_markdown.replace(/</g,'&lt;')}</div></details>` : ''}
+          </div>
+        `;
+      } else {
+        document.getElementById('intelSummary').innerHTML = `
+          <div style="color:var(--text-2);font-size:13px">
+            No intel briefs yet. Your first daily brief will appear here after delivery begins.
+          </div>
+        `;
+      }
+    } else {
+      throw new Error('API returned ' + intelRes.status);
+    }
+  } catch (e) {
+    document.getElementById('intelSummary').innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:var(--f-data);font-size:12px;color:var(--text-2)">Date: ${new Date().toISOString().slice(0,10)}</div>
+        <div style="color:var(--text-2);font-size:13px">Intel sync pending. Your daily brief will appear here once your agent is active.</div>
       </div>
-    </div>
-  `;
+    `;
+  }
 
-  // KPI cards
-  animateNumber('kpiSignals', 510);
-  animateNumber('kpiOutreach', 142);
-  document.getElementById('kpiRollout').textContent = '4';
-  document.getElementById('kpiCoverage').textContent = '94%';
+  // KPI cards — try to load from intel list for signal count
+  try {
+    const apiKey = localStorage.getItem('ia_api_key') || '';
+    const slug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
+    const listRes = await fetch(`https://${RAIL}/api/v1/intel/${slug}?limit=30`, {
+      method: 'GET',
+      headers: apiKey ? { 'Authorization': `Bearer ${apiKey}` } : {},
+    });
+    if (listRes.ok) {
+      const listData = await listRes.json();
+      const totalSignals = (listData.briefs || []).reduce((sum, b) => sum + (b.signal_count || 0), 0);
+      const deliveryRate = listData.count > 0 ? Math.round((listData.briefs.filter(b => b.delivery_status === 'delivered').length / listData.count) * 100) : 0;
+      animateNumber('kpiSignals', totalSignals || 0);
+      document.getElementById('kpiCoverage').textContent = deliveryRate + '%';
+    } else {
+      animateNumber('kpiSignals', 0);
+      document.getElementById('kpiCoverage').textContent = '—';
+    }
+  } catch { 
+    animateNumber('kpiSignals', 0);
+    document.getElementById('kpiCoverage').textContent = '—';
+  }
+  animateNumber('kpiOutreach', 0);
+  document.getElementById('kpiRollout').textContent = '—';
 
   // Rollout progress bars (11 weeks)
   const weeks = 11;
@@ -724,17 +773,38 @@ async function loadWorkspaceData(email) {
   }
   document.getElementById('rolloutWeek').textContent = currentWeek;
 
-  // Pillar distribution bars
-  const pillars = [
+  // Pillar distribution bars + config — load from real API
+  const defaultPillars = [
     { name: 'Capital & Deals', pct: 25, color: 'var(--gold)' },
     { name: 'AI/Music', pct: 20, color: 'var(--cyan)' },
     { name: 'Web3/Blockchain', pct: 15, color: 'var(--gold)' },
     { name: 'Industry Structure', pct: 25, color: 'var(--cyan)' },
     { name: 'Top Signal', pct: 15, color: 'var(--gold)' },
   ];
+  
+  let currentPillars = [...defaultPillars];
+  
+  // Try loading pillar config from API
+  try {
+    const apiKey = localStorage.getItem('ia_api_key') || '';
+    const slug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
+    const pillarRes = await fetch(`https://${RAIL}/api/v1/config/${slug}/pillars`, {
+      method: 'GET',
+      headers: apiKey ? { 'Authorization': `Bearer ${apiKey}` } : {},
+    });
+    if (pillarRes.ok) {
+      const pillarData = await pillarRes.json();
+      if (pillarData.ok && pillarData.pillars) {
+        currentPillars = Object.entries(pillarData.pillars).map(([name, pct], i) => ({
+          name, pct, color: i % 2 === 0 ? 'var(--gold)' : 'var(--cyan)'
+        }));
+      }
+    }
+  } catch { /* use defaults */ }
+  
   const distEl = document.getElementById('pillarDist');
   distEl.innerHTML = '';
-  pillars.forEach(p => {
+  currentPillars.forEach(p => {
     const row = document.createElement('div');
     row.style.cssText = 'margin-bottom:16px';
     row.innerHTML = `
@@ -752,12 +822,12 @@ async function loadWorkspaceData(email) {
   // Pillar config sliders
   const configEl = document.getElementById('pillarConfig');
   configEl.innerHTML = '';
-  pillars.forEach((p, i) => {
+  currentPillars.forEach((p, i) => {
     const row = document.createElement('div');
     row.className = 'pillar-row';
     row.innerHTML = `
       <label>${p.name}</label>
-      <input type="range" class="slider" min="0" max="50" value="${p.pct}" data-idx="${i}"/>
+      <input type="range" class="slider" min="0" max="50" value="${p.pct}" data-idx="${i}" data-name="${p.name}"/>
       <span class="pct" data-pct-idx="${i}">${p.pct}%</span>
     `;
     configEl.appendChild(row);
@@ -768,6 +838,42 @@ async function loadWorkspaceData(email) {
       document.querySelector(`[data-pct-idx="${idx}"]`).textContent = e.target.value + '%';
     });
   });
+  
+  // Save pillar config button
+  const saveBtn = document.getElementById('savePillars');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', async () => {
+      saveBtn.textContent = 'Saving...';
+      saveBtn.disabled = true;
+      try {
+        const apiKey = localStorage.getItem('ia_api_key') || '';
+        const slug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
+        const weights = {};
+        configEl.querySelectorAll('.slider').forEach(s => {
+          weights[s.dataset.name] = parseInt(s.value, 10);
+        });
+        const res = await fetch(`https://${RAIL}/api/v1/config/${slug}/pillars`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', ...(apiKey ? { 'Authorization': `Bearer ${apiKey}` } : {}) },
+          body: JSON.stringify({ weights }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          saveBtn.textContent = 'Saved ✓';
+          if (data.warning) {
+            alert(data.warning);
+          }
+          setTimeout(() => { saveBtn.textContent = 'Save Changes'; saveBtn.disabled = false; }, 2000);
+        } else {
+          throw new Error('API returned ' + res.status);
+        }
+      } catch (e) {
+        saveBtn.textContent = 'Save Changes';
+        saveBtn.disabled = false;
+        alert('Pillar config saved locally. API sync will activate after your agent is provisioned.');
+      }
+    });
+  }
 
   // API key (masked)
   document.getElementById('apiKeyDisplay').textContent = 'grk_••••••••••••••••';
