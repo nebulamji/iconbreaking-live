@@ -1853,6 +1853,49 @@ a { color: inherit; }
   .skills-grid { grid-template-columns: 1fr; }
 }
 
+
+/* ─── §009 — SDK / Developer Access ─────────────────────────── */
+.sdk-section { max-width: 100%; }
+.sdk-tabs { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+.sdk-tab { background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--text-3); font-family: var(--f-data); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; padding: 12px 24px; cursor: pointer; transition: all 0.2s; }
+.sdk-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.sdk-tab:hover { color: var(--text); }
+
+.sdk-code-block { background: var(--bg-0); border: 1px solid var(--line); position: relative; overflow: hidden; }
+.sdk-code-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-1); }
+.sdk-code-filename { font-family: var(--f-data); font-size: 11px; letter-spacing: 0.12em; color: var(--text-3); text-transform: uppercase; }
+.sdk-copy-btn { background: transparent; border: 1px solid var(--line); color: var(--text-3); font-family: var(--f-data); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; cursor: pointer; transition: all 0.2s; }
+.sdk-copy-btn:hover { border-color: var(--gold); color: var(--gold); }
+.sdk-code { margin: 0; padding: 20px; overflow-x: auto; font-family: var(--f-mono, "SF Mono", monospace); font-size: 12px; line-height: 1.6; color: var(--text-2); white-space: pre; }
+.sdk-code code { font-family: inherit; }
+.sdk-code-block .sdk-code::-webkit-scrollbar { height: 6px; }
+.sdk-code-block .sdk-code::-webkit-scrollbar-thumb { background: var(--line); }
+
+.sdk-endpoints { border: 1px solid var(--line); overflow-x: auto; }
+.sdk-endpoints-header { display: grid; grid-template-columns: 70px 1fr 2fr 80px; gap: 0; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--bg-1); font-family: var(--f-data); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
+.sdk-endpoint-row { display: grid; grid-template-columns: 70px 1fr 2fr 80px; gap: 0; padding: 14px 16px; border-bottom: 1px solid var(--line-2); align-items: center; font-size: 13px; }
+.sdk-endpoint-row:last-child { border-bottom: none; }
+.sdk-endpoint-row:hover { background: var(--bg-1); }
+.sdk-method { font-family: var(--f-data); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 0; display: inline-block; text-align: center; }
+.method-get { background: rgba(0, 229, 255, 0.12); color: var(--cyan); }
+.method-post { background: rgba(212, 175, 55, 0.12); color: var(--gold); }
+.sdk-path { font-family: var(--f-mono, "SF Mono", monospace); font-size: 12px; color: var(--text); }
+.sdk-desc { font-family: var(--f-body); font-size: 12px; color: var(--text-3); }
+.sdk-ep-status { font-family: var(--f-data); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+.sdk-ep-status.live { color: var(--green); }
+
+.sdk-note { margin-top: 32px; padding: 24px; border: 1px solid var(--gold-dim); background: rgba(212, 175, 55, 0.04); }
+.sdk-note-tag { font-family: var(--f-data); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
+.sdk-note p { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 12px; }
+.sdk-cta { font-family: var(--f-data); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-dim); padding-bottom: 2px; }
+.sdk-cta:hover { border-bottom-color: var(--gold); }
+
+@media (max-width: 768px) {
+  .sdk-endpoints-header { display: none; }
+  .sdk-endpoint-row { grid-template-columns: 70px 1fr; gap: 4px; padding: 12px; }
+  .sdk-desc, .sdk-ep-status { grid-column: 1 / -1; padding-left: 0; }
+}
+
 </style>
 </head>
 <body data-screen-label="IconAgents — Landing v2">
@@ -1877,6 +1920,7 @@ a { color: inherit; }
  <a href="#how">How</a>
  <a href="#founding">Founding 100</a>
  <a href="#skills">Stack</a>
+ <a href="#sdk">API</a>
  <a href="#pricing">Pricing</a>
  <a href="#chat">Chat</a>
  </nav>
@@ -2065,6 +2109,21 @@ a { color: inherit; }
   </div>
 </section>
 
+
+<!-- ═════ §009 — DEVELOPER ACCESS ═════ -->
+<section class="section" id="sdk" style="padding:80px 0">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-tag">// §009 · DEVELOPER ACCESS</div>
+        <h2 class="sec-title">Build on <span class="gold">Icon Agents.</span></h2>
+      </div>
+      <p>Full SDK and REST API. Your grk_ key unlocks chat, intel, config, and metered LLM completions. Founding 100 members get full execution; self-serve gets read-only intel.</p>
+    </div>
+    <div id="sdk-mount"></div>
+  </div>
+</section>
+
 <!-- ═════ DEPLOY CTA ═════ -->
 <section class="deploy">
   <div class="wrap">
@@ -2151,6 +2210,7 @@ a { color: inherit; }
   mount("pricing-mount",       <IAPricing />);
   mount("chat-mount",          <IAChat />);
   mount("skills-mount",       <IASkills />);
+ mount("sdk-mount",           <IASdk />);
   mount("faq-mount",           <IAFAQ />);
 </script>
 

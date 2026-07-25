@@ -514,3 +514,118 @@ function IASkills() {
     </div>
   );
 }
+
+/* ─── §009 — IASDK (Developer Access) ─────────────────────────── */
+
+const SDK_ENDPOINTS = [
+  { method: "POST", path: "/api/iba/rollout-chat", desc: "Create or continue a rollout-agent chat session", status: "live" },
+  { method: "GET",  path: "/api/v1/intel/{client}/{date}", desc: "Retrieve a daily intel brief by date", status: "live" },
+  { method: "GET",  path: "/api/v1/intel/{client}/latest", desc: "Get the most recent intel brief", status: "live" },
+  { method: "GET",  path: "/api/v1/intel/{client}", desc: "List recent intel briefs", status: "live" },
+  { method: "POST", path: "/api/v1/config/{client}/pillars", desc: "Update pillar weights for a vertical", status: "live" },
+  { method: "GET",  path: "/api/v1/config/{client}/pillars", desc: "Get current pillar configuration", status: "live" },
+  { method: "POST", path: "/api/v1/chat/completions", desc: "LLM completion via metered relay (grk_ key)", status: "live" },
+  { method: "POST", path: "/api/v1/tokens/buy", desc: "Purchase prepaid token pack ($50/$100/$200)", status: "live" },
+  { method: "GET",  path: "/api/v1/tokens/balance", desc: "Check token balance and usage", status: "live" },
+  { method: "POST", path: "/api/v1/skill-chat", desc: "Chat with a specific skill (rollout, daily-intel, scorecard)", status: "live" },
+];
+
+const SDK_CODE = `import { IconAgent } from './iconagents-sdk.mjs';
+
+// Initialize with your grk_ API key
+const agent = new IconAgent({
+  apiKey: 'grk_...',
+  rail: 'themusicindustry.ai'
+});
+
+// ── Rollout Agent: 11-week release protocol
+const session = await agent.rollout.createSession({
+  artist: 'Your Artist',
+  releaseDate: '2026-09-15'
+});
+const reply = await session.send('Week 4 — what do I do?');
+
+// ── Daily Intel: market intelligence
+const intel = await agent.intel.get({ date: '2026-07-24' });
+console.log(intel.verdict);
+// → "UMG's catalog deal signals a shift..."
+
+// ── Configure: weight your pillars
+await agent.config.pillars({
+  'Capital & Deals': 0.25,
+  'AI/Music': 0.20,
+  'Web3/Blockchain': 0.15,
+  'Industry Structure': 0.25,
+  'Top Signal': 0.15
+});
+
+// ── Skill Chat: talk to any registered skill
+const scorecardReply = await agent.chat({
+  skill: 'scorecard',
+  message: 'Score my artist readiness'
+});`;
+
+function IASdk() {
+  const [copied, setCopied] = useState(false);
+  const [tab, setTab] = useState('code');
+
+  const copyCode = () => {
+    navigator.clipboard.writeText(SDK_CODE);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="sdk-section">
+      <div className="sdk-tabs">
+        <button
+          className={`sdk-tab ${tab === 'code' ? 'active' : ''}`}
+          onClick={() => setTab('code')}
+        >Quick Start</button>
+        <button
+          className={`sdk-tab ${tab === 'endpoints' ? 'active' : ''}`}
+          onClick={() => setTab('endpoints')}
+        >API Reference</button>
+      </div>
+
+      {tab === 'code' && (
+        <div className="sdk-code-block">
+          <div className="sdk-code-header">
+            <span className="sdk-code-filename">iconagents-sdk.mjs</span>
+            <button className="sdk-copy-btn" onClick={copyCode}>
+              {copied ? '✓ Copied' : 'Copy'}
+            </button>
+          </div>
+          <pre className="sdk-code"><code>{SDK_CODE}</code></pre>
+        </div>
+      )}
+
+      {tab === 'endpoints' && (
+        <div className="sdk-endpoints">
+          <div className="sdk-endpoints-header">
+            <span>METHOD</span>
+            <span>ENDPOINT</span>
+            <span>DESCRIPTION</span>
+            <span>STATUS</span>
+          </div>
+          {SDK_ENDPOINTS.map((ep, i) => (
+            <div key={i} className="sdk-endpoint-row">
+              <span className={`sdk-method method-${ep.method.toLowerCase()}`}>{ep.method}</span>
+              <span className="sdk-path">{ep.path}</span>
+              <span className="sdk-desc">{ep.desc}</span>
+              <span className={`sdk-ep-status ${ep.status}`}>
+                {ep.status === 'live' ? '● LIVE' : 'SOON'}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="sdk-note">
+        <span className="sdk-note-tag">// FOUNDING 100 ACCESS</span>
+        <p>API keys (grk_) are provisioned when you join the Founding 100. Self-serve members get read-only intel access. Full execution and chat requires a Founding 100 seat.</p>
+        <a href="/apply/" className="sdk-cta">Get your API key →</a>
+      </div>
+    </div>
+  );
+}
