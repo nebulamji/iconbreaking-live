@@ -81,8 +81,8 @@ const PRICING = [
   {
     name: "Founding 100",
     sub: "Managed · Founders only",
-    price: "$5,000",
-    per: "setup",
+    price: "By Application",
+    per: "apply",
     featured: true,
     badge: "FOUNDERS",
     feats: [
@@ -97,15 +97,15 @@ const PRICING = [
     ],
     cta: "Book a Call",
     href: "https://www.iconbreaking.com/apply/",
-    ctaAlt: "Pay $5K Now",
-    hrefAlt: "https://buy.stripe.com/bJe14o3Rya5L8dAcf8c7u26",
+
+
   },
 ];
 
 const FAQ_DATA = [
   { q: "Is this a chatbot?", a: "No. Chatbots advise. IconAgents executes. Every action produces a receipt — what was done, when, what came back. The chat is one interface; the agent also sends emails, generates daily intel, runs rollout protocols, and (when voice launches) makes calls." },
   { q: "Do I need to know how to prompt?", a: "No. The agent is pre-configured for music business operations. You talk to it like a team member: 'Set up my August release.' It breaks the goal into steps and executes." },
-  { q: "What's the Founding 100?", a: "The first 100 Icon Agents accounts. Founder pricing locks permanently — $5,000 setup for managed, branded, priority agent service. After 100, the price increases for new accounts. Founders keep their rate forever." },
+  { q: "What's the Founding 100?", a: "The first 100 Icon Agents accounts. Managed, branded, priority agent service for established artists and teams. After 100, access closes. Founders keep their priority access forever." },
   { q: "Can I use my own brand?", a: "Yes. Founding 100 members get branded intel — your logo, your domain, your inbox. The agent runs under your brand, not ours. Your clients see you, not us." },
   { q: "What's an API key?", a: "Founding 100 and Aggie tier members get a grk_ key — a credential that lets developers integrate Icon Agents into their own tools, pipelines, or apps. Token packs are prepaid and metered: you pay for what you use." },
   { q: "What about phone calls?", a: "Voice is coming — four call modes (Discovery, Sales, Consulting, Customer Support) snap into the same agent brain. The state machine is already designed; transport adapters arrive when voice infrastructure is live. Founding 100 members get first access." },
@@ -227,18 +227,17 @@ function IAFounding() {
           <div className="bar"><div className="bar-fill"></div></div>
         </div>
         <p style={{ fontFamily: 'var(--f-body)', fontSize: '15px', lineHeight: 1.6, color: 'var(--text-2)', maxWidth: '440px' }}>
-          The first 100 Icon Agents accounts receive founder pricing, managed onboarding, and
-          permanent rate lock. After 100, price increases. Founders keep their rate forever —
+          The first 100 Icon Agents accounts receive managed onboarding and
+          permanent priority access. After 100, access closes. Founders keep their status forever —
           and get first access to voice, consulting mode, and enterprise rails as they launch.
         </p>
         <div style={{ marginTop: '28px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <a href="https://www.iconbreaking.com/apply/" className="btn btn-ghost">Book a Call <span className="arrow">→</span></a>
-          <a href="https://buy.stripe.com/bJe14o3Rya5L8dAcf8c7u26" className="btn btn-primary">Pay $5K Now <span className="arrow">→</span></a>
         </div>
       </div>
       <div>
         <ul className="founding-list">
-          <li><span className="gold">✦</span> Founder pricing locks permanently — $5,000 setup, never increases</li>
+          <li><span className="gold">✦</span> Managed onboarding — our team configures your vertical from day one</li>
           <li><span className="gold">✦</span> Managed agent — our team configures your vertical, pillars, and delivery</li>
           <li><span className="gold">✦</span> Branded intel — your logo, your domain, your inbox</li>
           <li><span className="gold">✦</span> Priority rollout — your agent runs first in the queue</li>
@@ -278,11 +277,6 @@ function IAPricing() {
             <a href={tier.href} className={`btn ${tier.featured ? 'btn-ghost' : 'btn-ghost'} tier-cta`} style={{ flex: '1 1 auto' }}>
               {tier.cta} <span className="arrow">→</span>
             </a>
-            {tier.hrefAlt && (
-              <a href={tier.hrefAlt} className="btn btn-primary tier-cta" style={{ flex: '1 1 auto' }}>
-                {tier.ctaAlt} <span className="arrow">→</span>
-              </a>
-            )}
           </div>
         </div>
       ))}
