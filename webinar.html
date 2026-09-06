@@ -155,7 +155,7 @@ footer a{color:var(--gray)}
 
   <section class="replays">
     <h3>Past Masterclass Replays</h3>
-    <div class="replay-grid">
+    <div class="replay-grid" id="replay-grid">
       <a class="replay-card" href="/July16Masterclass.html">
         <div class="when">July 16, 2026</div>
         <h4>Release Machine Architecture</h4>
@@ -184,45 +184,153 @@ footer a{color:var(--gray)}
 </div>
 
 <script>
-// === URL parameter reader (event-aware evergreen) ===
-// Usage: /webinar.html?event=july16&guest=Monica+Payne&date=July+16&topic=Release+Architecture&vsl=YouTubeID
+// === Evergreen source-of-truth: Worker /api/iba/evergreen/next ===
+// Fetches the next live event (or replay library if no scheduled event)
+// then overrides with any explicit URL params (?event=, ?guest=, etc).
+// Falls back to local defaults on network error.
 (function(){
   var qp = new URLSearchParams(window.location.search);
-  var event  = (qp.get('event')  || '').trim();
-  var guest  = (qp.get('guest')  || '').trim();
-  var date   = (qp.get('date')   || '').trim();
-  var topic  = (qp.get('topic')  || '').trim();
-  var vsl    = (qp.get('vsl')    || '').trim();
-  var cta    = (qp.get('cta')    || '').trim();
+  var hasParam = function(k){ return qp.has(k) && qp.get(k).trim() !== ''; };
 
-  if(event){
-    var slugEl = document.getElementById('event_slug_field');
-    if(slugEl) slugEl.value = 'iba-' + event.toLowerCase().replace(/[^a-z0-9]+/g,'-');
-  }
+  // Live state containers — populated by fetch, then overridden by URL params.
+  var ev = {
+    event_slug: 'iba',
+    name: 'IBA x Aggie Release Strategy Masterclass',
+    guest: null,
+    topic: null,
+    summary: null,
+    date_iso: null,
+    seconds_until_start: null,
+    is_live: false,
+    is_past: true,
+    youtube_id: 'zkPlSYkB7OU',
+    discord_cta_url: 'https://discord.gg/3ECSg5ApPJ',
+  };
+  var library = [];
+  var defaults = { youtube_id: 'zkPlSYkB7OU', discord_cta_url: 'https://discord.gg/3ECSg5ApPJ' };
 
-  if(topic){
-    var h1 = document.getElementById('h1');
-    if(h1) h1.innerHTML = topic.replace(/(.{1,40})(\s|$)/g,'$1<br>').replace(/<br>$/,'') + '<br><span class="pk">Live</span>';
-  }
-  if(guest){
-    var eye = document.getElementById('eyebrow');
-    if(eye) eye.textContent = 'Live Masterclass · ' + guest;
-    var datePill = document.getElementById('date-pill');
-    if(datePill && date) datePill.textContent = date;
-  }
-  if(vsl){
-    var iframe = document.getElementById('vsl-iframe');
-    if(iframe) iframe.src = 'https://www.youtube.com/embed/' + vsl + '?rel=0&modestbranding=1';
-  }
-  if(cta){
-    var btn = document.getElementById('discordBtn');
-    if(btn) btn.href = cta;
-  }
-  if(event || guest || topic){
-    if(window.posthog){
-      posthog.capture('webinar_viewed',{event:event,guest:guest,topic:topic,date:date,path:location.pathname+location.search});
+  function applyEvent(){
+    // URL param overrides always win (campaign links can pin copy)
+    if(hasParam('event')){
+      var slugEl = document.getElementById('event_slug_field');
+      if(slugEl) slugEl.value = 'iba-' + qp.get('event').toLowerCase().replace(/[^a-z0-9]+/g,'-');
     }
+    if(hasParam('topic')){
+      var topic = qp.get('topic');
+      var h1 = document.getElementById('h1');
+      if(h1) h1.innerHTML = topic.replace(/(.{1,40})(\s|$)/g,'$1<br>').replace(/<br>$/,'') + '<br><span class="pk">Live</span>';
+    }
+    if(hasParam('guest')){
+      var eye = document.getElementById('eyebrow');
+      if(eye) eye.textContent = 'Live Masterclass · ' + decodeURIComponent(qp.get('guest'));
+    }
+    if(hasParam('date')){
+      var datePill = document.getElementById('date-pill');
+      if(datePill) datePill.textContent = decodeURIComponent(qp.get('date'));
+    }
+    if(hasParam('vsl')){
+      var vslId = qp.get('vsl');
+      var iframe = document.getElementById('vsl-iframe');
+      if(iframe) iframe.src = 'https://www.youtube.com/embed/' + vslId + '?rel=0&modestbranding=1';
+    }
+    if(hasParam('cta')){
+      var btn = document.getElementById('discordBtn');
+      if(btn) btn.href = decodeURIComponent(qp.get('cta'));
+    }
+    // Default render from DB (if no param overrides touched the relevant field)
+    if(!hasParam('topic') && ev.topic){
+      var h1d = document.getElementById('h1');
+      if(h1d) h1d.innerHTML = ev.topic.replace(/(.{1,40})(\s|$)/g,'$1<br>').replace(/<br>$/,'') + '<br><span class="pk">Live</span>';
+    }
+    if(!hasParam('guest') && ev.guest){
+      var eyed = document.getElementById('eyebrow');
+      if(eyed) eyed.textContent = 'Live Masterclass · ' + ev.guest;
+    }
+    if(!hasParam('date') && ev.date_iso){
+      var d = new Date(ev.date_iso);
+      var pill = document.getElementById('date-pill');
+      if(pill) pill.textContent = d.toLocaleString('en-US',{ weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit', timeZoneName:'short' });
+    }
+    if(!hasParam('vsl') && ev.youtube_id){
+      var ifd = document.getElementById('vsl-iframe');
+      if(ifd) ifd.src = 'https://www.youtube.com/embed/' + ev.youtube_id + '?rel=0&modestbranding=1';
+    }
+    if(!hasParam('cta') && ev.discord_cta_url){
+      var btnd = document.getElementById('discordBtn');
+      if(btnd) btnd.href = ev.discord_cta_url;
+    }
+    // event_slug from DB
+    var slugElD = document.getElementById('event_slug_field');
+    if(slugElD && ev.event_slug) slugElD.value = ev.event_slug;
+
+    // Countdown + replay library
+    if(ev.seconds_until_start && ev.seconds_until_start > 0){
+      var bar = document.getElementById('bar');
+      if(bar) bar.innerHTML = '<span style="color:#000">⏱ Starts in ' + formatCountdown(ev.seconds_until_start) + ' — Register below to lock your seat</span>';
+    } else if(ev.is_live){
+      var barL = document.getElementById('bar');
+      if(barL) barL.innerHTML = '<span style="color:#000">🔴 LIVE NOW — Join via Discord for the Zoom link</span>';
+    }
+    renderLibrary();
   }
+
+  function formatCountdown(seconds){
+    var d = Math.floor(seconds/86400), h = Math.floor((seconds%86400)/3600), m = Math.floor((seconds%3600)/60);
+    if(d > 0) return d + 'd ' + h + 'h';
+    if(h > 0) return h + 'h ' + m + 'm';
+    return m + 'm';
+  }
+
+  function renderLibrary(){
+    var grid = document.getElementById('replay-grid');
+    if(!grid) return;
+    if(library.length === 0){
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--gray-dim);padding:20px">Replay library populates as events conclude.</div>';
+      return;
+    }
+    grid.innerHTML = library.map(function(r){
+      var d = r.date_iso ? new Date(r.date_iso).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+      var guest = r.guest || 'IBA team';
+      var topic = r.topic || r.name || 'Masterclass';
+      var pageUrl = r.page_url || '/masterclasses/';
+      return '<a class="replay-card" href="' + pageUrl + '">' +
+        '<div class="when">' + d + '</div>' +
+        '<h4>' + escapeHtml(topic.slice(0,80)) + '</h4>' +
+        '<div class="guest">' + escapeHtml(guest) + '</div>' +
+        '<div class="watch">Watch Replay →</div>' +
+        '</a>';
+    }).join('');
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/"/g,'"');
+  }
+
+  // Fetch from Worker — fail-open to defaults on any error.
+  fetch('https://themusicindustry.ai/api/iba/evergreen/next', { credentials: 'omit' })
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(data){
+      if(data && data.ok){
+        if(data.defaults){ defaults.youtube_id = data.defaults.youtube_id || defaults.youtube_id; defaults.discord_cta_url = data.defaults.discord_cta_url || defaults.discord_cta_url; }
+        if(data.next_event){
+          ev = Object.assign(ev, data.next_event);
+          if(!ev.youtube_id) ev.youtube_id = defaults.youtube_id;
+          if(!ev.discord_cta_url) ev.discord_cta_url = defaults.discord_cta_url;
+        }
+        if(data.library){ library = data.library; }
+      }
+      applyEvent();
+      if(window.posthog){
+        posthog.capture('webinar_viewed',{
+          event_slug: ev.event_slug, guest: ev.guest, topic: ev.topic,
+          date_iso: ev.date_iso, is_live: ev.is_live,
+          library_count: library.length, path: location.pathname+location.search
+        });
+      }
+    })
+    .catch(function(){
+      applyEvent(); // fail-open to defaults + URL params
+    });
 })();
 </script>
 
