@@ -29,7 +29,7 @@ if (window.posthog) {
 <body style="margin:0;padding:0;background:#0a0a0a;">
 
 <!-- IBA Masterclass Banner — evergreen funnel -->
-<a href="/masterclasses/" style="display:block;background:linear-gradient(90deg,#c9a84c,#ff2d87);color:#0a0a0a;text-align:center;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:9px 14px;line-height:1.4;">IBA Masterclass · Register for the Next One + Get the Full Replay Library → Claim Your Seat</a>
+<a id="iba-banner" href="/masterclasses/" style="display:block;background:linear-gradient(90deg,#c9a84c,#ff2d87);color:#0a0a0a;text-align:center;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:9px 14px;line-height:1.4;">IBA Masterclass · Register for the Next One + Get the Full Replay Library → Claim Your Seat</a>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -1631,6 +1631,40 @@ document.addEventListener('click', function(e) {
     });
   }
 }, true);
+</script>
+
+<script>
+// IBA evergreen banner — fetch next event from Worker, swap copy/CTA on success.
+// Fail-open to default evergreen copy if Worker unreachable.
+(function(){
+  var banner = document.getElementById('iba-banner');
+  if(!banner) return;
+  fetch('https://themusicindustry.ai/api/iba/evergreen/next', { credentials: 'omit' })
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(data){
+      if(!data || !data.ok || !data.next_event) return;
+      var ev = data.next_event;
+      var guest = ev.guest ? 'Keyz × ' + ev.guest : 'Keyz the Producer';
+      var topic = ev.topic ? ev.topic.split(' — ')[0].split(':')[0] : '';
+      var dateStr = '';
+      if(ev.date_iso && ev.seconds_until_start && ev.seconds_until_start > 0){
+        var d = new Date(ev.date_iso);
+        dateStr = ' · ' + d.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' · Register →';
+      } else {
+        dateStr = ' · Replay Library Live →';
+      }
+      var line = topic ? (guest + ' — ' + topic + dateStr) : ('IBA Masterclass · ' + guest + dateStr);
+      banner.textContent = line;
+      // CTA: prefer /webinar.html?event=slug for prefill, fallback to /masterclasses/
+      if(ev.event_slug){
+        banner.href = '/webinar.html?event=' + encodeURIComponent(ev.event_slug.replace(/^iba-/, ''));
+      }
+      if(window.posthog){
+        posthog.capture('banner_viewed',{event_slug:ev.event_slug,guest:ev.guest,topic:ev.topic,path:location.pathname});
+      }
+    })
+    .catch(function(){ /* keep default copy */ });
+})();
 </script>
 
 </body>
